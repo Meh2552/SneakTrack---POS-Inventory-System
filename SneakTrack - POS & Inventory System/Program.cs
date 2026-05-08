@@ -17,6 +17,7 @@ namespace SneakTrack___POS___Inventory_System
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmSneakTrack());
+            Application.Run(new TESTDESIGNTEMP());
         }
     }
 }

@@ -15,15 +15,15 @@ namespace SneakTrack___POS___Inventory_System
     public partial class frmSneakTrack : Form
     {
 
-        private WindowHandler wh = new WindowHandler();
-        private UserAuth auth = new UserAuth();
-        private Validator v = new Validator();
-
         public frmSneakTrack()
         {
             InitializeComponent();
 
         }
+
+        private WindowHandler wh = new WindowHandler();
+        private UserAuth auth = new UserAuth();
+        private Validator v = new Validator();
 
         private void frmSneakTrack_Load(object sender, EventArgs e)
         {

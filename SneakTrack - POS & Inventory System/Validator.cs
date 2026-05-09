@@ -8,6 +8,7 @@ namespace SneakTrack___POS___Inventory_System
 {
     public class Validator
     {
+
         public String readString (String input)
         {
             if (input == null || input.Trim().Length == 0)

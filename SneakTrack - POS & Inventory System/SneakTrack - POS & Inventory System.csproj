@@ -109,5 +109,11 @@
   <ItemGroup>
     <None Include="Resources\icon\shopping-cart.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\685014915_956013527344190_1734367649017491867_n.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon\logotransp.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

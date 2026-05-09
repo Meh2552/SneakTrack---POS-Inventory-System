@@ -21,5 +21,22 @@ namespace SneakTrack___POS___Inventory_System
         {
 
         }
+
+        private void btnProdSB_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnInvSB_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnHistSB_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }

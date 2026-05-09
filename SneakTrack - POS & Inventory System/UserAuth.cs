@@ -8,6 +8,12 @@ namespace SneakTrack___POS___Inventory_System
 {
     public class UserAuth
     {
+        private MainSystem sys;
+
+        public UserAuth(MainSystem sys) { 
+            this.sys = sys;
+        }
+
         // For testing
         string[] userList = { "user1", "user2", "user3" };
         string[] passList = { "pass1", "pass1", "pass1" };

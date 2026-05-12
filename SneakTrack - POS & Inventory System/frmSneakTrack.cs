@@ -36,8 +36,19 @@ namespace SneakTrack___POS___Inventory_System
 
         private async void btnLogin_Click(object sender, EventArgs e)
         {
-            string inuser = v.readString(txbxUsername.Text), inpass = v.readString(txbxPassword.Text);
-            if (auth.authLogin(inuser, inpass))
+            string inuser = v.readStringNoEnd(txbxUsername.Text), inpass = v.readStringNoEnd(txbxPassword.Text);
+
+            if (string.IsNullOrEmpty(inuser) || string.IsNullOrEmpty(inpass))
+            {
+                loginResult("Please fill in the fields above");
+            }
+
+            else if (!v.validateCharacters(inuser) || !v.validateCharacters(inpass))
+            {
+                loginResult("Invalid characters (Only letters, numbers, and certain symbols)");
+            }
+
+            else if (auth.authLogin(inuser, inpass))
             {
                 await Task.Delay(300);
                 wh.switchControl(tblpnUserAuthSplit, tblpnUATransition);
@@ -47,11 +58,16 @@ namespace SneakTrack___POS___Inventory_System
 
             else
             {
-                wh.changeLbTxt(lbUserFormErr, "Invalid username or password.");
-                txbxPassword.Clear();
-                txbxUsername.Clear();
-                txbxUsername.Focus();
+                loginResult("Invalid username or password");
             }
+        }
+
+        private void loginResult(string message)
+        {
+            wh.changeLbTxt(lbUserFormErr, message);
+            txbxUsername.Clear();
+            txbxPassword.Clear();
+            txbxUsername.Focus();
         }
     }
 

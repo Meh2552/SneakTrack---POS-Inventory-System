@@ -93,9 +93,9 @@ namespace SneakTrack___POS___Inventory_System.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap logout {
+        internal static System.Drawing.Bitmap logout5 {
             get {
-                object obj = ResourceManager.GetObject("logout", resourceCulture);
+                object obj = ResourceManager.GetObject("logout5", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -116,26 +116,6 @@ namespace SneakTrack___POS___Inventory_System.Properties {
         internal static System.Drawing.Bitmap shopping_cart {
             get {
                 object obj = ResourceManager.GetObject("shopping-cart", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap shopping_cart1 {
-            get {
-                object obj = ResourceManager.GetObject("shopping-cart1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap shopping_cart2 {
-            get {
-                object obj = ResourceManager.GetObject("shopping-cart2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -22,9 +22,7 @@ namespace SneakTrack___POS___Inventory_System
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Debug.WriteLine(system.DH.getData("SELECT * FROM User"));
             Application.Run(new frmSneakTrack(system));
-            // Application.Run(new TESTDESIGNTEMP());
         }
 
     }
@@ -48,9 +46,6 @@ namespace SneakTrack___POS___Inventory_System
         public WindowHandler WH { get { return this.wh; } }
         public Validator VAL { get { return this.val; } }
         public DataHandler DH { get { return this.dh; } }
-        public UserAuth UA
-        {
-            get { return this.ua; }
-        }
+        public UserAuth UA { get { return this.ua; } }
     }
 }

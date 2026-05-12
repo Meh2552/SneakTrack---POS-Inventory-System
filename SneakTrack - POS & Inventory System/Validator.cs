@@ -22,6 +22,18 @@ namespace SneakTrack___POS___Inventory_System
             }
         }
 
+        public String readStringNoEnd(String input)
+        {
+            if (input == null || input.TrimEnd().Length == 0)
+            {
+                return null;
+            }
+            else
+            {
+                return input.TrimEnd();
+            }
+        }
+
         public int readInt(object input)
         {
             int result;

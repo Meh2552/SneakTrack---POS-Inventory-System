@@ -50,6 +50,12 @@
   <ItemGroup>
     <Compile Include="DataHandler.cs" />
     <Compile Include="Entities.cs" />
+    <Compile Include="MainDashboard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainDashboard.Designer.cs">
+      <DependentUpon>MainDashboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -71,10 +77,19 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserAuth.cs" />
+    <Compile Include="Login.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
     <Compile Include="Validator.cs" />
     <Compile Include="WindowHandler.cs" />
     <EmbeddedResource Include="frmSneakTrack.resx">
       <DependentUpon>frmSneakTrack.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainDashboard.resx">
+      <DependentUpon>MainDashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -120,6 +135,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon\logout2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon\logoutc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon\logout4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon\logout5.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

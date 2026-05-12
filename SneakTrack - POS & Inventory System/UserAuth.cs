@@ -10,6 +10,7 @@ namespace SneakTrack___POS___Inventory_System
     {
         private MainSystem sys;
         private DataHandler dh;
+        private User currentUser;
 
         public UserAuth(MainSystem sys) { 
             this.sys = sys;
@@ -24,27 +25,33 @@ namespace SneakTrack___POS___Inventory_System
 
         public struct User
         {
+
             public User(string username, string password, string name, string role, string dateCreated)
             {
                 this.username = username;
                 this.password = password;
                 this.name = name;
-                Enum.TryParse<Role>(role, out Role parsedRole);
-                this.role = parsedRole;
+                this.role = role;
                 this.dateCreated = dateCreated;
             }
 
             private string username;
             private string password;
-            private Role role;
+            private string role;
             private string name;
             private string dateCreated;
 
             public string Username { get { return this.username; } }
-            public Enum Role { get { return this.role; } }
+            public string Role { get { return this.role; } }
             public string Name { get { return this.name; } }
             public string DateCreated { get { return this.dateCreated; } }
             public string Password { get { return this.password; } }
+        }
+
+        // Used to set the current user after login
+        public User CurrentUser { 
+            get { return this.currentUser; } 
+            set { this.currentUser = value; } 
         }
 
         // Checks if login is authorized
@@ -57,6 +64,7 @@ namespace SneakTrack___POS___Inventory_System
             if (account.Password.Equals(password))
             {
                 found = true;
+                CurrentUser = account;
             }
 
             return found;

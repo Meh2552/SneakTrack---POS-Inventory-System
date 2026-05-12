@@ -12,9 +12,14 @@ namespace SneakTrack___POS___Inventory_System
 {
     public partial class TESTDESIGNTEMP : Form
     {
-        public TESTDESIGNTEMP()
+        private MainSystem sys;
+        private UserAuth ua;
+
+        public TESTDESIGNTEMP(MainSystem system)
         {
             InitializeComponent();
+            this.sys = system;
+            this.ua = sys.UA;
         }
 
         private void TESTDESIGNTEMP_Load(object sender, EventArgs e)
@@ -37,6 +42,9 @@ namespace SneakTrack___POS___Inventory_System
 
         }
 
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }

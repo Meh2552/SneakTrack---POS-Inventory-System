@@ -176,7 +176,7 @@ namespace SneakTrack___POS___Inventory_System
             // lbUserFormErr
             // 
             this.lbUserFormErr.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbUserFormErr.Font = new System.Drawing.Font("Microsoft YaHei UI Light", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbUserFormErr.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbUserFormErr.ForeColor = System.Drawing.Color.Red;
             this.lbUserFormErr.Location = new System.Drawing.Point(10, 310);
             this.lbUserFormErr.Margin = new System.Windows.Forms.Padding(10, 0, 0, 3);
@@ -212,7 +212,7 @@ namespace SneakTrack___POS___Inventory_System
             this.txbxPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbxPassword.Location = new System.Drawing.Point(10, 275);
             this.txbxPassword.Margin = new System.Windows.Forms.Padding(10, 0, 10, 3);
-            this.txbxPassword.MaxLength = 30;
+            this.txbxPassword.MaxLength = 20;
             this.txbxPassword.Name = "txbxPassword";
             this.txbxPassword.PasswordChar = '*';
             this.txbxPassword.Size = new System.Drawing.Size(345, 26);
@@ -239,7 +239,7 @@ namespace SneakTrack___POS___Inventory_System
             this.txbxUsername.ForeColor = System.Drawing.Color.Black;
             this.txbxUsername.Location = new System.Drawing.Point(10, 206);
             this.txbxUsername.Margin = new System.Windows.Forms.Padding(10, 0, 10, 3);
-            this.txbxUsername.MaxLength = 30;
+            this.txbxUsername.MaxLength = 20;
             this.txbxUsername.Name = "txbxUsername";
             this.txbxUsername.Size = new System.Drawing.Size(345, 26);
             this.txbxUsername.TabIndex = 1;

@@ -9,42 +9,54 @@ namespace SneakTrack___POS___Inventory_System
     public class UserAuth
     {
         private MainSystem sys;
+        private DataHandler dh;
 
         public UserAuth(MainSystem sys) { 
             this.sys = sys;
+            this.dh = sys.DH;
         }
 
-        // For testing
-        string[] userList = { "user1", "user2", "user3" };
-        string[] passList = { "pass1", "pass1", "pass1" };
+        public enum Role
+        {
+            ADMIN,
+            EMPLOYEE,
+        }
 
         public struct User
         {
-            User(string username, string password, string name)
+            public User(string username, string password, string name, string role, string dateCreated)
             {
                 this.username = username;
                 this.password = password;
                 this.name = name;
+                Enum.TryParse<Role>(role, out Role parsedRole);
+                this.role = parsedRole;
+                this.dateCreated = dateCreated;
             }
 
-            public string username;
-            public string password;
-            public string name;
+            private string username;
+            private string password;
+            private Role role;
+            private string name;
+            private string dateCreated;
+
+            public string Username { get { return this.username; } }
+            public Enum Role { get { return this.role; } }
+            public string Name { get { return this.name; } }
+            public string DateCreated { get { return this.dateCreated; } }
+            public string Password { get { return this.password; } }
         }
 
         // Checks if login is authorized
         public Boolean authLogin(string username, string password)
         {
             Boolean found = false;
-            int index = -1;
 
-            foreach (String userLN in userList)
+            User account = dh.checkUserAuth(username);
+            
+            if (account.Password.Equals(password))
             {
-                index++;
-                if (userLN.Equals(username)) {
-                   if (passList[index].Equals(password)) return true;
-                }
-                else continue;
+                found = true;
             }
 
             return found;

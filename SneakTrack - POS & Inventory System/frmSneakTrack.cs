@@ -14,12 +14,13 @@ namespace SneakTrack___POS___Inventory_System
 {
     public partial class frmSneakTrack : Form
     {
+        // Mostly for ease of reference
         private MainSystem sys;
         private Validator v; 
         private WindowHandler wh;
         private UserAuth auth;
 
-        public frmSneakTrack(MainSystem sys)
+        public frmSneakTrack(MainSystem sys) // Makes sure same sys throughout
         {
             this.sys = sys;
             this.v = sys.VAL;

@@ -35,7 +35,6 @@ namespace SneakTrack___POS___Inventory_System
             this.pnMain = new System.Windows.Forms.Panel();
             this.pnUserAuth = new System.Windows.Forms.Panel();
             this.tblpnUserAuthSplit = new System.Windows.Forms.TableLayoutPanel();
-            this.pcBxUserAuthBackground = new System.Windows.Forms.PictureBox();
             this.tblpnUserAuth = new System.Windows.Forms.TableLayoutPanel();
             this.lbProjTitle = new System.Windows.Forms.Label();
             this.pnUserForm = new System.Windows.Forms.Panel();
@@ -48,6 +47,8 @@ namespace SneakTrack___POS___Inventory_System
             this.lbUsername = new System.Windows.Forms.Label();
             this.pcBxUALogo = new System.Windows.Forms.PictureBox();
             this.lbUALogo = new System.Windows.Forms.Label();
+            this.pnUserAuthBackground = new System.Windows.Forms.Panel();
+            this.pcBxUserAuthBackground = new System.Windows.Forms.PictureBox();
             this.tblpnUATransition = new System.Windows.Forms.TableLayoutPanel();
             this.lbTransition = new System.Windows.Forms.Label();
             this.pcbxLoading = new System.Windows.Forms.PictureBox();
@@ -55,11 +56,12 @@ namespace SneakTrack___POS___Inventory_System
             this.pnMain.SuspendLayout();
             this.pnUserAuth.SuspendLayout();
             this.tblpnUserAuthSplit.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcBxUserAuthBackground)).BeginInit();
             this.tblpnUserAuth.SuspendLayout();
             this.pnUserForm.SuspendLayout();
             this.tblpnUserForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcBxUALogo)).BeginInit();
+            this.pnUserAuthBackground.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcBxUserAuthBackground)).BeginInit();
             this.tblpnUATransition.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbxLoading)).BeginInit();
             this.pnSTHub.SuspendLayout();
@@ -91,8 +93,8 @@ namespace SneakTrack___POS___Inventory_System
             this.tblpnUserAuthSplit.ColumnCount = 2;
             this.tblpnUserAuthSplit.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 57.65306F));
             this.tblpnUserAuthSplit.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.34694F));
-            this.tblpnUserAuthSplit.Controls.Add(this.pcBxUserAuthBackground, 1, 0);
             this.tblpnUserAuthSplit.Controls.Add(this.tblpnUserAuth, 0, 0);
+            this.tblpnUserAuthSplit.Controls.Add(this.pnUserAuthBackground, 1, 0);
             this.tblpnUserAuthSplit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblpnUserAuthSplit.Location = new System.Drawing.Point(0, 0);
             this.tblpnUserAuthSplit.Name = "tblpnUserAuthSplit";
@@ -100,19 +102,6 @@ namespace SneakTrack___POS___Inventory_System
             this.tblpnUserAuthSplit.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblpnUserAuthSplit.Size = new System.Drawing.Size(1184, 636);
             this.tblpnUserAuthSplit.TabIndex = 3;
-            // 
-            // pcBxUserAuthBackground
-            // 
-            this.pcBxUserAuthBackground.BackColor = System.Drawing.Color.Black;
-            this.pcBxUserAuthBackground.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pcBxUserAuthBackground.Image = global::SneakTrack___POS___Inventory_System.Properties.Resources._685014915_956013527344190_1734367649017491867_n;
-            this.pcBxUserAuthBackground.Location = new System.Drawing.Point(682, 0);
-            this.pcBxUserAuthBackground.Margin = new System.Windows.Forms.Padding(0);
-            this.pcBxUserAuthBackground.Name = "pcBxUserAuthBackground";
-            this.pcBxUserAuthBackground.Size = new System.Drawing.Size(502, 636);
-            this.pcBxUserAuthBackground.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pcBxUserAuthBackground.TabIndex = 0;
-            this.pcBxUserAuthBackground.TabStop = false;
             // 
             // tblpnUserAuth
             // 
@@ -182,7 +171,7 @@ namespace SneakTrack___POS___Inventory_System
             this.tblpnUserForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 56F));
             this.tblpnUserForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tblpnUserForm.Size = new System.Drawing.Size(365, 391);
-            this.tblpnUserForm.TabIndex = 3;
+            this.tblpnUserForm.TabIndex = 2;
             // 
             // lbUserFormErr
             // 
@@ -210,7 +199,7 @@ namespace SneakTrack___POS___Inventory_System
             this.btnLogin.Margin = new System.Windows.Forms.Padding(10, 5, 10, 10);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(345, 42);
-            this.btnLogin.TabIndex = 2;
+            this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -227,7 +216,7 @@ namespace SneakTrack___POS___Inventory_System
             this.txbxPassword.Name = "txbxPassword";
             this.txbxPassword.PasswordChar = '*';
             this.txbxPassword.Size = new System.Drawing.Size(345, 26);
-            this.txbxPassword.TabIndex = 4;
+            this.txbxPassword.TabIndex = 2;
             // 
             // lbPassw
             // 
@@ -247,6 +236,7 @@ namespace SneakTrack___POS___Inventory_System
             this.txbxUsername.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbxUsername.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txbxUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbxUsername.ForeColor = System.Drawing.Color.Black;
             this.txbxUsername.Location = new System.Drawing.Point(10, 206);
             this.txbxUsername.Margin = new System.Windows.Forms.Padding(10, 0, 10, 3);
             this.txbxUsername.MaxLength = 30;
@@ -291,6 +281,29 @@ namespace SneakTrack___POS___Inventory_System
             this.lbUALogo.TabIndex = 7;
             this.lbUALogo.Text = "SneakTrack Login";
             this.lbUALogo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // pnUserAuthBackground
+            // 
+            this.pnUserAuthBackground.Controls.Add(this.pcBxUserAuthBackground);
+            this.pnUserAuthBackground.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnUserAuthBackground.Location = new System.Drawing.Point(682, 0);
+            this.pnUserAuthBackground.Margin = new System.Windows.Forms.Padding(0);
+            this.pnUserAuthBackground.Name = "pnUserAuthBackground";
+            this.pnUserAuthBackground.Size = new System.Drawing.Size(502, 636);
+            this.pnUserAuthBackground.TabIndex = 5;
+            // 
+            // pcBxUserAuthBackground
+            // 
+            this.pcBxUserAuthBackground.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pcBxUserAuthBackground.BackColor = System.Drawing.Color.Black;
+            this.pcBxUserAuthBackground.Image = global::SneakTrack___POS___Inventory_System.Properties.Resources._685014915_956013527344190_1734367649017491867_n;
+            this.pcBxUserAuthBackground.Location = new System.Drawing.Point(-124, -24);
+            this.pcBxUserAuthBackground.Margin = new System.Windows.Forms.Padding(0);
+            this.pcBxUserAuthBackground.Name = "pcBxUserAuthBackground";
+            this.pcBxUserAuthBackground.Size = new System.Drawing.Size(806, 677);
+            this.pcBxUserAuthBackground.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcBxUserAuthBackground.TabIndex = 0;
+            this.pcBxUserAuthBackground.TabStop = false;
             // 
             // tblpnUATransition
             // 
@@ -363,12 +376,13 @@ namespace SneakTrack___POS___Inventory_System
             this.pnMain.ResumeLayout(false);
             this.pnUserAuth.ResumeLayout(false);
             this.tblpnUserAuthSplit.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pcBxUserAuthBackground)).EndInit();
             this.tblpnUserAuth.ResumeLayout(false);
             this.pnUserForm.ResumeLayout(false);
             this.tblpnUserForm.ResumeLayout(false);
             this.tblpnUserForm.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcBxUALogo)).EndInit();
+            this.pnUserAuthBackground.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pcBxUserAuthBackground)).EndInit();
             this.tblpnUATransition.ResumeLayout(false);
             this.tblpnUATransition.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbxLoading)).EndInit();
@@ -399,6 +413,7 @@ namespace SneakTrack___POS___Inventory_System
         private System.Windows.Forms.Panel pnUserForm;
         private System.Windows.Forms.PictureBox pcBxUALogo;
         private System.Windows.Forms.Label lbUALogo;
+        private System.Windows.Forms.Panel pnUserAuthBackground;
     }
 }
 

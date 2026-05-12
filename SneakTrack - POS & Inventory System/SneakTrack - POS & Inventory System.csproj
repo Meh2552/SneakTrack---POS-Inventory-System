@@ -115,5 +115,11 @@
   <ItemGroup>
     <None Include="Resources\icon\logotransp.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon\logout.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

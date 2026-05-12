@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace SneakTrack___POS___Inventory_System
 {
@@ -47,6 +48,12 @@ namespace SneakTrack___POS___Inventory_System
             {
                 return -1;
             }
+        }
+
+        public bool validateCharacters(string input)
+        {
+            String pattern = @"^[a-zA-Z0-9-_.]+$";
+            return Regex.IsMatch(input, pattern);
         }
     }
 }

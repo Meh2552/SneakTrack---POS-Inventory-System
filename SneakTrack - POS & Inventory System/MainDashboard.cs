@@ -12,9 +12,15 @@ namespace SneakTrack___POS___Inventory_System
 {
     public partial class MainDashboard : UserControl
     {
+        private MainSystem sys;
+
         public MainDashboard()
         {
             InitializeComponent();
+        }
+        public void initialize(MainSystem system)
+        {
+            this.sys = system;
         }
     }
 }

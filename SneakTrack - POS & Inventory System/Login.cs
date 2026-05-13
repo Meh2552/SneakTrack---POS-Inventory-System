@@ -71,8 +71,8 @@ namespace SneakTrack___POS___Inventory_System
         // Changes the image based on the state of the hide button in the password and hides the inputted data and vice versa
         private void btnHidePass_Click(object sender, EventArgs e)
         {
-            txbxPassword.HideSelection = !txbxPassword.HideSelection;
-            btnHidePass.Image = txbxPassword.HideSelection ? Properties.Resources.openeye : Properties.Resources.hideeye;
+            txbxPassword.UseSystemPasswordChar = !txbxPassword.UseSystemPasswordChar;
+            btnHidePass.Image = txbxPassword.UseSystemPasswordChar ? Properties.Resources.hideeye : Properties.Resources.openeye;
         }
     }
 }

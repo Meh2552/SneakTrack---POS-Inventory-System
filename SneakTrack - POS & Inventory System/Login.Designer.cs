@@ -264,12 +264,11 @@
             this.txbxPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbxPassword.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txbxPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbxPassword.HideSelection = false;
             this.txbxPassword.Location = new System.Drawing.Point(10, 0);
             this.txbxPassword.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.txbxPassword.MaxLength = 20;
             this.txbxPassword.Name = "txbxPassword";
-            this.txbxPassword.PasswordChar = '*';
+            this.txbxPassword.ShortcutsEnabled = false;
             this.txbxPassword.Size = new System.Drawing.Size(350, 26);
             this.txbxPassword.TabIndex = 3;
             // 
@@ -339,6 +338,8 @@
             this.btnHidePass.BackColor = System.Drawing.Color.White;
             this.btnHidePass.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnHidePass.FlatAppearance.BorderSize = 0;
+            this.btnHidePass.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnHidePass.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btnHidePass.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnHidePass.Image = global::SneakTrack___POS___Inventory_System.Properties.Resources.openeye;
             this.btnHidePass.Location = new System.Drawing.Point(328, 2);

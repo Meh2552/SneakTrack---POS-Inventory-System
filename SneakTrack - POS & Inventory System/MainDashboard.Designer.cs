@@ -130,6 +130,7 @@
             // 
             // lbUsersName
             // 
+            this.lbUsersName.AutoEllipsis = true;
             this.lbUsersName.BackColor = System.Drawing.Color.Transparent;
             this.lbUsersName.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbUsersName.ForeColor = System.Drawing.Color.White;

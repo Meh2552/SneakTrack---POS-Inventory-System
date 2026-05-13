@@ -74,5 +74,14 @@ namespace SneakTrack___POS___Inventory_System
             txbxPassword.UseSystemPasswordChar = !txbxPassword.UseSystemPasswordChar;
             btnHidePass.Image = txbxPassword.UseSystemPasswordChar ? Properties.Resources.hideeye : Properties.Resources.openeye;
         }
+
+        // Disables copying the password
+        private void txbxPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && (e.KeyCode == Keys.C || e.KeyCode == Keys.X))
+            {
+                e.SuppressKeyPress = true;
+            }
+        }
     }
 }

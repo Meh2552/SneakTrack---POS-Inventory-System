@@ -271,6 +271,8 @@
             this.txbxPassword.ShortcutsEnabled = false;
             this.txbxPassword.Size = new System.Drawing.Size(350, 26);
             this.txbxPassword.TabIndex = 3;
+            this.txbxPassword.UseSystemPasswordChar = true;
+            this.txbxPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txbxPassword_KeyDown);
             // 
             // pnUserAuthBackground
             // 
@@ -341,7 +343,7 @@
             this.btnHidePass.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnHidePass.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btnHidePass.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHidePass.Image = global::SneakTrack___POS___Inventory_System.Properties.Resources.openeye;
+            this.btnHidePass.Image = global::SneakTrack___POS___Inventory_System.Properties.Resources.hideeye;
             this.btnHidePass.Location = new System.Drawing.Point(328, 2);
             this.btnHidePass.Name = "btnHidePass";
             this.btnHidePass.Size = new System.Drawing.Size(25, 22);

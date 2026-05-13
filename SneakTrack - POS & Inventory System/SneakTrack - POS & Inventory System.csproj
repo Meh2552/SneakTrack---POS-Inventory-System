@@ -171,5 +171,11 @@
   <ItemGroup>
     <None Include="Resources\icon\burger-bar %281%29.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon\openeye.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon\hideeye.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -93,6 +93,16 @@ namespace SneakTrack___POS___Inventory_System.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap hideeye {
+            get {
+                object obj = ResourceManager.GetObject("hideeye", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap logotransp {
             get {
                 object obj = ResourceManager.GetObject("logotransp", resourceCulture);
@@ -106,6 +116,16 @@ namespace SneakTrack___POS___Inventory_System.Properties {
         internal static System.Drawing.Bitmap logout5 {
             get {
                 object obj = ResourceManager.GetObject("logout5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap openeye {
+            get {
+                object obj = ResourceManager.GetObject("openeye", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

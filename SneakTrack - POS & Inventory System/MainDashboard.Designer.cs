@@ -33,26 +33,26 @@
             this.pnSidebar = new System.Windows.Forms.Panel();
             this.tblpnSBLayout = new System.Windows.Forms.TableLayoutPanel();
             this.flpnModulesSB = new System.Windows.Forms.FlowLayoutPanel();
-            this.pnSBColor = new System.Windows.Forms.Panel();
-            this.lbUsersName = new System.Windows.Forms.Label();
-            this.lbUserRole = new System.Windows.Forms.Label();
-            this.pnHeaderSB = new System.Windows.Forms.Panel();
-            this.btnTitleSB = new System.Windows.Forms.Button();
-            this.pnModuleFocused = new System.Windows.Forms.Panel();
             this.btnProdSB = new System.Windows.Forms.Button();
             this.btnInvSB = new System.Windows.Forms.Button();
             this.btnHistSB = new System.Windows.Forms.Button();
             this.btnUsersSB = new System.Windows.Forms.Button();
+            this.pnSBColor = new System.Windows.Forms.Panel();
+            this.lbUsersName = new System.Windows.Forms.Label();
+            this.lbUserRole = new System.Windows.Forms.Label();
             this.btnLogout = new System.Windows.Forms.Button();
             this.pcbxUserProf = new System.Windows.Forms.PictureBox();
+            this.pnHeaderSB = new System.Windows.Forms.Panel();
             this.btnBurgerBarSB = new System.Windows.Forms.Button();
+            this.btnTitleSB = new System.Windows.Forms.Button();
+            this.pnModuleFocused = new System.Windows.Forms.Panel();
             this.tblpnSTMenu.SuspendLayout();
             this.pnSidebar.SuspendLayout();
             this.tblpnSBLayout.SuspendLayout();
             this.flpnModulesSB.SuspendLayout();
             this.pnSBColor.SuspendLayout();
-            this.pnHeaderSB.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbxUserProf)).BeginInit();
+            this.pnHeaderSB.SuspendLayout();
             this.SuspendLayout();
             // 
             // tblpnSTMenu
@@ -113,82 +113,6 @@
             this.flpnModulesSB.Name = "flpnModulesSB";
             this.flpnModulesSB.Size = new System.Drawing.Size(280, 410);
             this.flpnModulesSB.TabIndex = 0;
-            // 
-            // pnSBColor
-            // 
-            this.pnSBColor.BackColor = System.Drawing.Color.Black;
-            this.pnSBColor.Controls.Add(this.lbUsersName);
-            this.pnSBColor.Controls.Add(this.lbUserRole);
-            this.pnSBColor.Controls.Add(this.btnLogout);
-            this.pnSBColor.Controls.Add(this.pcbxUserProf);
-            this.pnSBColor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnSBColor.Location = new System.Drawing.Point(0, 576);
-            this.pnSBColor.Margin = new System.Windows.Forms.Padding(0);
-            this.pnSBColor.Name = "pnSBColor";
-            this.pnSBColor.Size = new System.Drawing.Size(280, 99);
-            this.pnSBColor.TabIndex = 2;
-            // 
-            // lbUsersName
-            // 
-            this.lbUsersName.AutoEllipsis = true;
-            this.lbUsersName.BackColor = System.Drawing.Color.Transparent;
-            this.lbUsersName.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbUsersName.ForeColor = System.Drawing.Color.White;
-            this.lbUsersName.Location = new System.Drawing.Point(69, 30);
-            this.lbUsersName.Name = "lbUsersName";
-            this.lbUsersName.Size = new System.Drawing.Size(152, 24);
-            this.lbUsersName.TabIndex = 6;
-            this.lbUsersName.Text = "User User";
-            this.lbUsersName.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            // 
-            // lbUserRole
-            // 
-            this.lbUserRole.AutoSize = true;
-            this.lbUserRole.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbUserRole.ForeColor = System.Drawing.Color.White;
-            this.lbUserRole.Location = new System.Drawing.Point(70, 52);
-            this.lbUserRole.Name = "lbUserRole";
-            this.lbUserRole.Size = new System.Drawing.Size(30, 16);
-            this.lbUserRole.TabIndex = 2;
-            this.lbUserRole.Text = "Role";
-            // 
-            // pnHeaderSB
-            // 
-            this.pnHeaderSB.Controls.Add(this.btnBurgerBarSB);
-            this.pnHeaderSB.Controls.Add(this.btnTitleSB);
-            this.pnHeaderSB.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnHeaderSB.Location = new System.Drawing.Point(0, 0);
-            this.pnHeaderSB.Margin = new System.Windows.Forms.Padding(0);
-            this.pnHeaderSB.Name = "pnHeaderSB";
-            this.pnHeaderSB.Size = new System.Drawing.Size(280, 166);
-            this.pnHeaderSB.TabIndex = 3;
-            // 
-            // btnTitleSB
-            // 
-            this.btnTitleSB.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnTitleSB.AutoSize = true;
-            this.btnTitleSB.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTitleSB.FlatAppearance.BorderSize = 0;
-            this.btnTitleSB.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
-            this.btnTitleSB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTitleSB.Font = new System.Drawing.Font("Coolvetica Rg", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTitleSB.Location = new System.Drawing.Point(32, 56);
-            this.btnTitleSB.Margin = new System.Windows.Forms.Padding(0);
-            this.btnTitleSB.Name = "btnTitleSB";
-            this.btnTitleSB.Size = new System.Drawing.Size(217, 55);
-            this.btnTitleSB.TabIndex = 2;
-            this.btnTitleSB.Text = "Sneak Track";
-            this.btnTitleSB.UseVisualStyleBackColor = true;
-            // 
-            // pnModuleFocused
-            // 
-            this.pnModuleFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.pnModuleFocused.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnModuleFocused.Location = new System.Drawing.Point(280, 0);
-            this.pnModuleFocused.Margin = new System.Windows.Forms.Padding(0);
-            this.pnModuleFocused.Name = "pnModuleFocused";
-            this.pnModuleFocused.Size = new System.Drawing.Size(920, 675);
-            this.pnModuleFocused.TabIndex = 1;
             // 
             // btnProdSB
             // 
@@ -278,6 +202,44 @@
             this.btnUsersSB.Visible = false;
             this.btnUsersSB.Click += new System.EventHandler(this.btnUsersSB_Click);
             // 
+            // pnSBColor
+            // 
+            this.pnSBColor.BackColor = System.Drawing.Color.Black;
+            this.pnSBColor.Controls.Add(this.lbUsersName);
+            this.pnSBColor.Controls.Add(this.lbUserRole);
+            this.pnSBColor.Controls.Add(this.btnLogout);
+            this.pnSBColor.Controls.Add(this.pcbxUserProf);
+            this.pnSBColor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnSBColor.Location = new System.Drawing.Point(0, 576);
+            this.pnSBColor.Margin = new System.Windows.Forms.Padding(0);
+            this.pnSBColor.Name = "pnSBColor";
+            this.pnSBColor.Size = new System.Drawing.Size(280, 99);
+            this.pnSBColor.TabIndex = 2;
+            // 
+            // lbUsersName
+            // 
+            this.lbUsersName.AutoEllipsis = true;
+            this.lbUsersName.BackColor = System.Drawing.Color.Transparent;
+            this.lbUsersName.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbUsersName.ForeColor = System.Drawing.Color.White;
+            this.lbUsersName.Location = new System.Drawing.Point(69, 30);
+            this.lbUsersName.Name = "lbUsersName";
+            this.lbUsersName.Size = new System.Drawing.Size(152, 24);
+            this.lbUsersName.TabIndex = 6;
+            this.lbUsersName.Text = "User User";
+            this.lbUsersName.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            // 
+            // lbUserRole
+            // 
+            this.lbUserRole.AutoSize = true;
+            this.lbUserRole.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbUserRole.ForeColor = System.Drawing.Color.White;
+            this.lbUserRole.Location = new System.Drawing.Point(70, 52);
+            this.lbUserRole.Name = "lbUserRole";
+            this.lbUserRole.Size = new System.Drawing.Size(30, 16);
+            this.lbUserRole.TabIndex = 2;
+            this.lbUserRole.Text = "Role";
+            // 
             // btnLogout
             // 
             this.btnLogout.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -303,6 +265,17 @@
             this.pcbxUserProf.TabIndex = 1;
             this.pcbxUserProf.TabStop = false;
             // 
+            // pnHeaderSB
+            // 
+            this.pnHeaderSB.Controls.Add(this.btnBurgerBarSB);
+            this.pnHeaderSB.Controls.Add(this.btnTitleSB);
+            this.pnHeaderSB.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnHeaderSB.Location = new System.Drawing.Point(0, 0);
+            this.pnHeaderSB.Margin = new System.Windows.Forms.Padding(0);
+            this.pnHeaderSB.Name = "pnHeaderSB";
+            this.pnHeaderSB.Size = new System.Drawing.Size(280, 166);
+            this.pnHeaderSB.TabIndex = 3;
+            // 
             // btnBurgerBarSB
             // 
             this.btnBurgerBarSB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -313,12 +286,39 @@
             this.btnBurgerBarSB.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
             this.btnBurgerBarSB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBurgerBarSB.Image = global::SneakTrack___POS___Inventory_System.Properties.Resources.burger_bar__1_;
-            this.btnBurgerBarSB.Location = new System.Drawing.Point(228, 7);
+            this.btnBurgerBarSB.Location = new System.Drawing.Point(221, 4);
             this.btnBurgerBarSB.Name = "btnBurgerBarSB";
-            this.btnBurgerBarSB.Size = new System.Drawing.Size(36, 37);
+            this.btnBurgerBarSB.Size = new System.Drawing.Size(51, 54);
             this.btnBurgerBarSB.TabIndex = 3;
             this.btnBurgerBarSB.UseVisualStyleBackColor = false;
             this.btnBurgerBarSB.Click += new System.EventHandler(this.btnBurgerBarSB_Click);
+            // 
+            // btnTitleSB
+            // 
+            this.btnTitleSB.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnTitleSB.AutoSize = true;
+            this.btnTitleSB.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTitleSB.FlatAppearance.BorderSize = 0;
+            this.btnTitleSB.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
+            this.btnTitleSB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTitleSB.Font = new System.Drawing.Font("Coolvetica Rg", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTitleSB.Location = new System.Drawing.Point(32, 56);
+            this.btnTitleSB.Margin = new System.Windows.Forms.Padding(0);
+            this.btnTitleSB.Name = "btnTitleSB";
+            this.btnTitleSB.Size = new System.Drawing.Size(217, 55);
+            this.btnTitleSB.TabIndex = 2;
+            this.btnTitleSB.Text = "Sneak Track";
+            this.btnTitleSB.UseVisualStyleBackColor = true;
+            // 
+            // pnModuleFocused
+            // 
+            this.pnModuleFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.pnModuleFocused.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnModuleFocused.Location = new System.Drawing.Point(280, 0);
+            this.pnModuleFocused.Margin = new System.Windows.Forms.Padding(0);
+            this.pnModuleFocused.Name = "pnModuleFocused";
+            this.pnModuleFocused.Size = new System.Drawing.Size(920, 675);
+            this.pnModuleFocused.TabIndex = 1;
             // 
             // MainDashboard
             // 
@@ -335,9 +335,9 @@
             this.flpnModulesSB.ResumeLayout(false);
             this.pnSBColor.ResumeLayout(false);
             this.pnSBColor.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbxUserProf)).EndInit();
             this.pnHeaderSB.ResumeLayout(false);
             this.pnHeaderSB.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbxUserProf)).EndInit();
             this.ResumeLayout(false);
 
         }

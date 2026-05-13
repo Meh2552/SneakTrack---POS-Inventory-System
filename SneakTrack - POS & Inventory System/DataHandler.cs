@@ -29,9 +29,9 @@ namespace SneakTrack___POS___Inventory_System
         {
             return $"SELECT * FROM [{table}]";
         }
-
+        
         // idk sa database sya parang path nung server
-        string conString = @"Data Source =.\SCHOOLSERVER; Initial Catalog = SneakTrackDB; Integrated Security = True;";
+        string conString = @"Data Source =.; Initial Catalog = SneakTrackDB; Integrated Security = True; Encrypt = False;";
 
         // Checks if user exists and credentials are correct
         public UserAuth.User checkUserAuth(string username)

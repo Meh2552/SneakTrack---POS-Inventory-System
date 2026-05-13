@@ -28,8 +28,9 @@ namespace SneakTrack___POS___Inventory_System
 
         public void switchControl(Control from, Control to)
         {
-            from.Visible = false;
+            to.SendToBack();
             to.Visible = true;
+            from.Visible = false;
             to.BringToFront();
         }
 

@@ -86,5 +86,12 @@ namespace SneakTrack___POS___Inventory_System
             selectedBtn.BackColor = darken;
         }
 
+        private bool expandSB = true;
+        private void btnBurgerBarSB_Click(object sender, EventArgs e)
+        {
+            tblpnSTMenu.ColumnStyles[0].Width = expandSB ? 280 : 65;
+            expandSB = !expandSB;
+            btnTitleSB.Visible = !expandSB;
+        }
     }
 }

@@ -33,16 +33,18 @@
             this.pnSidebar = new System.Windows.Forms.Panel();
             this.tblpnSBLayout = new System.Windows.Forms.TableLayoutPanel();
             this.flpnModulesSB = new System.Windows.Forms.FlowLayoutPanel();
-            this.lbTitleSB = new System.Windows.Forms.Label();
-            this.pnSBColor = new System.Windows.Forms.Panel();
-            this.lbUserRole = new System.Windows.Forms.Label();
             this.btnProdSB = new System.Windows.Forms.Button();
             this.btnInvSB = new System.Windows.Forms.Button();
             this.btnHistSB = new System.Windows.Forms.Button();
             this.btnUsersSB = new System.Windows.Forms.Button();
+            this.pnSBColor = new System.Windows.Forms.Panel();
+            this.lbUsersName = new System.Windows.Forms.Label();
+            this.lbUserRole = new System.Windows.Forms.Label();
             this.btnLogout = new System.Windows.Forms.Button();
             this.pcbxUserProf = new System.Windows.Forms.PictureBox();
-            this.lbUsersName = new System.Windows.Forms.Label();
+            this.pnHeaderSB = new System.Windows.Forms.Panel();
+            this.btnBurgerBarSB = new System.Windows.Forms.Button();
+            this.btnTitleSB = new System.Windows.Forms.Button();
             this.pnModuleFocused = new System.Windows.Forms.Panel();
             this.tblpnSTMenu.SuspendLayout();
             this.pnSidebar.SuspendLayout();
@@ -50,12 +52,13 @@
             this.flpnModulesSB.SuspendLayout();
             this.pnSBColor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbxUserProf)).BeginInit();
+            this.pnHeaderSB.SuspendLayout();
             this.SuspendLayout();
             // 
             // tblpnSTMenu
             // 
             this.tblpnSTMenu.ColumnCount = 2;
-            this.tblpnSTMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 282F));
+            this.tblpnSTMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 280F));
             this.tblpnSTMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 77.0424F));
             this.tblpnSTMenu.Controls.Add(this.pnSidebar, 0, 0);
             this.tblpnSTMenu.Controls.Add(this.pnModuleFocused, 1, 0);
@@ -76,7 +79,7 @@
             this.pnSidebar.Location = new System.Drawing.Point(0, 0);
             this.pnSidebar.Margin = new System.Windows.Forms.Padding(0);
             this.pnSidebar.Name = "pnSidebar";
-            this.pnSidebar.Size = new System.Drawing.Size(282, 675);
+            this.pnSidebar.Size = new System.Drawing.Size(280, 675);
             this.pnSidebar.TabIndex = 0;
             // 
             // tblpnSBLayout
@@ -84,8 +87,8 @@
             this.tblpnSBLayout.ColumnCount = 1;
             this.tblpnSBLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblpnSBLayout.Controls.Add(this.flpnModulesSB, 0, 1);
-            this.tblpnSBLayout.Controls.Add(this.lbTitleSB, 0, 0);
             this.tblpnSBLayout.Controls.Add(this.pnSBColor, 0, 2);
+            this.tblpnSBLayout.Controls.Add(this.pnHeaderSB, 0, 0);
             this.tblpnSBLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblpnSBLayout.Location = new System.Drawing.Point(0, 0);
             this.tblpnSBLayout.Margin = new System.Windows.Forms.Padding(0);
@@ -94,7 +97,7 @@
             this.tblpnSBLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 28.86406F));
             this.tblpnSBLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 71.13594F));
             this.tblpnSBLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 98F));
-            this.tblpnSBLayout.Size = new System.Drawing.Size(282, 675);
+            this.tblpnSBLayout.Size = new System.Drawing.Size(280, 675);
             this.tblpnSBLayout.TabIndex = 0;
             // 
             // flpnModulesSB
@@ -108,49 +111,13 @@
             this.flpnModulesSB.Location = new System.Drawing.Point(0, 166);
             this.flpnModulesSB.Margin = new System.Windows.Forms.Padding(0);
             this.flpnModulesSB.Name = "flpnModulesSB";
-            this.flpnModulesSB.Size = new System.Drawing.Size(282, 410);
+            this.flpnModulesSB.Size = new System.Drawing.Size(280, 410);
             this.flpnModulesSB.TabIndex = 0;
-            // 
-            // lbTitleSB
-            // 
-            this.lbTitleSB.AutoSize = true;
-            this.lbTitleSB.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbTitleSB.Font = new System.Drawing.Font("Coolvetica Rg", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTitleSB.Location = new System.Drawing.Point(3, 0);
-            this.lbTitleSB.Name = "lbTitleSB";
-            this.lbTitleSB.Size = new System.Drawing.Size(276, 166);
-            this.lbTitleSB.TabIndex = 1;
-            this.lbTitleSB.Text = "Sneak Track";
-            this.lbTitleSB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pnSBColor
-            // 
-            this.pnSBColor.BackColor = System.Drawing.Color.Black;
-            this.pnSBColor.Controls.Add(this.lbUsersName);
-            this.pnSBColor.Controls.Add(this.lbUserRole);
-            this.pnSBColor.Controls.Add(this.btnLogout);
-            this.pnSBColor.Controls.Add(this.pcbxUserProf);
-            this.pnSBColor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnSBColor.Location = new System.Drawing.Point(0, 576);
-            this.pnSBColor.Margin = new System.Windows.Forms.Padding(0);
-            this.pnSBColor.Name = "pnSBColor";
-            this.pnSBColor.Size = new System.Drawing.Size(282, 99);
-            this.pnSBColor.TabIndex = 2;
-            // 
-            // lbUserRole
-            // 
-            this.lbUserRole.AutoSize = true;
-            this.lbUserRole.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbUserRole.ForeColor = System.Drawing.Color.White;
-            this.lbUserRole.Location = new System.Drawing.Point(70, 52);
-            this.lbUserRole.Name = "lbUserRole";
-            this.lbUserRole.Size = new System.Drawing.Size(30, 16);
-            this.lbUserRole.TabIndex = 2;
-            this.lbUserRole.Text = "Role";
             // 
             // btnProdSB
             // 
             this.btnProdSB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
+            this.btnProdSB.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnProdSB.FlatAppearance.BorderSize = 0;
             this.btnProdSB.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(148)))), ((int)(((byte)(17)))));
             this.btnProdSB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -172,6 +139,7 @@
             // 
             this.btnInvSB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnInvSB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
+            this.btnInvSB.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnInvSB.FlatAppearance.BorderSize = 0;
             this.btnInvSB.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(148)))), ((int)(((byte)(17)))));
             this.btnInvSB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -193,6 +161,7 @@
             // 
             this.btnHistSB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnHistSB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
+            this.btnHistSB.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnHistSB.FlatAppearance.BorderSize = 0;
             this.btnHistSB.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(148)))), ((int)(((byte)(17)))));
             this.btnHistSB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -214,6 +183,7 @@
             // 
             this.btnUsersSB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnUsersSB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
+            this.btnUsersSB.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnUsersSB.FlatAppearance.BorderSize = 0;
             this.btnUsersSB.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(148)))), ((int)(((byte)(17)))));
             this.btnUsersSB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -232,13 +202,51 @@
             this.btnUsersSB.Visible = false;
             this.btnUsersSB.Click += new System.EventHandler(this.btnUsersSB_Click);
             // 
+            // pnSBColor
+            // 
+            this.pnSBColor.BackColor = System.Drawing.Color.Black;
+            this.pnSBColor.Controls.Add(this.lbUsersName);
+            this.pnSBColor.Controls.Add(this.lbUserRole);
+            this.pnSBColor.Controls.Add(this.btnLogout);
+            this.pnSBColor.Controls.Add(this.pcbxUserProf);
+            this.pnSBColor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnSBColor.Location = new System.Drawing.Point(0, 576);
+            this.pnSBColor.Margin = new System.Windows.Forms.Padding(0);
+            this.pnSBColor.Name = "pnSBColor";
+            this.pnSBColor.Size = new System.Drawing.Size(280, 99);
+            this.pnSBColor.TabIndex = 2;
+            // 
+            // lbUsersName
+            // 
+            this.lbUsersName.BackColor = System.Drawing.Color.Transparent;
+            this.lbUsersName.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbUsersName.ForeColor = System.Drawing.Color.White;
+            this.lbUsersName.Location = new System.Drawing.Point(69, 30);
+            this.lbUsersName.Name = "lbUsersName";
+            this.lbUsersName.Size = new System.Drawing.Size(152, 24);
+            this.lbUsersName.TabIndex = 6;
+            this.lbUsersName.Text = "User User";
+            this.lbUsersName.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            // 
+            // lbUserRole
+            // 
+            this.lbUserRole.AutoSize = true;
+            this.lbUserRole.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbUserRole.ForeColor = System.Drawing.Color.White;
+            this.lbUserRole.Location = new System.Drawing.Point(70, 52);
+            this.lbUserRole.Name = "lbUserRole";
+            this.lbUserRole.Size = new System.Drawing.Size(30, 16);
+            this.lbUserRole.TabIndex = 2;
+            this.lbUserRole.Text = "Role";
+            // 
             // btnLogout
             // 
             this.btnLogout.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnLogout.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLogout.FlatAppearance.BorderSize = 0;
             this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogout.Image = global::SneakTrack___POS___Inventory_System.Properties.Resources.logout5;
-            this.btnLogout.Location = new System.Drawing.Point(223, 0);
+            this.btnLogout.Location = new System.Drawing.Point(221, 0);
             this.btnLogout.Margin = new System.Windows.Forms.Padding(0);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(59, 99);
@@ -256,26 +264,59 @@
             this.pcbxUserProf.TabIndex = 1;
             this.pcbxUserProf.TabStop = false;
             // 
-            // lbUsersName
+            // pnHeaderSB
             // 
-            this.lbUsersName.BackColor = System.Drawing.Color.Transparent;
-            this.lbUsersName.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbUsersName.ForeColor = System.Drawing.Color.White;
-            this.lbUsersName.Location = new System.Drawing.Point(69, 30);
-            this.lbUsersName.Name = "lbUsersName";
-            this.lbUsersName.Size = new System.Drawing.Size(152, 24);
-            this.lbUsersName.TabIndex = 6;
-            this.lbUsersName.Text = "User User";
-            this.lbUsersName.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.pnHeaderSB.Controls.Add(this.btnBurgerBarSB);
+            this.pnHeaderSB.Controls.Add(this.btnTitleSB);
+            this.pnHeaderSB.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnHeaderSB.Location = new System.Drawing.Point(0, 0);
+            this.pnHeaderSB.Margin = new System.Windows.Forms.Padding(0);
+            this.pnHeaderSB.Name = "pnHeaderSB";
+            this.pnHeaderSB.Size = new System.Drawing.Size(280, 166);
+            this.pnHeaderSB.TabIndex = 3;
+            // 
+            // btnBurgerBarSB
+            // 
+            this.btnBurgerBarSB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBurgerBarSB.BackColor = System.Drawing.Color.Transparent;
+            this.btnBurgerBarSB.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBurgerBarSB.FlatAppearance.BorderSize = 0;
+            this.btnBurgerBarSB.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
+            this.btnBurgerBarSB.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
+            this.btnBurgerBarSB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBurgerBarSB.Image = global::SneakTrack___POS___Inventory_System.Properties.Resources.burger_bar__1_;
+            this.btnBurgerBarSB.Location = new System.Drawing.Point(228, 7);
+            this.btnBurgerBarSB.Name = "btnBurgerBarSB";
+            this.btnBurgerBarSB.Size = new System.Drawing.Size(36, 37);
+            this.btnBurgerBarSB.TabIndex = 3;
+            this.btnBurgerBarSB.UseVisualStyleBackColor = false;
+            this.btnBurgerBarSB.Click += new System.EventHandler(this.btnBurgerBarSB_Click);
+            // 
+            // btnTitleSB
+            // 
+            this.btnTitleSB.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnTitleSB.AutoSize = true;
+            this.btnTitleSB.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTitleSB.FlatAppearance.BorderSize = 0;
+            this.btnTitleSB.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
+            this.btnTitleSB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTitleSB.Font = new System.Drawing.Font("Coolvetica Rg", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTitleSB.Location = new System.Drawing.Point(-1, 0);
+            this.btnTitleSB.Margin = new System.Windows.Forms.Padding(0);
+            this.btnTitleSB.Name = "btnTitleSB";
+            this.btnTitleSB.Size = new System.Drawing.Size(282, 166);
+            this.btnTitleSB.TabIndex = 2;
+            this.btnTitleSB.Text = "Sneak Track";
+            this.btnTitleSB.UseVisualStyleBackColor = true;
             // 
             // pnModuleFocused
             // 
             this.pnModuleFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.pnModuleFocused.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnModuleFocused.Location = new System.Drawing.Point(282, 0);
+            this.pnModuleFocused.Location = new System.Drawing.Point(280, 0);
             this.pnModuleFocused.Margin = new System.Windows.Forms.Padding(0);
             this.pnModuleFocused.Name = "pnModuleFocused";
-            this.pnModuleFocused.Size = new System.Drawing.Size(918, 675);
+            this.pnModuleFocused.Size = new System.Drawing.Size(920, 675);
             this.pnModuleFocused.TabIndex = 1;
             // 
             // MainDashboard
@@ -290,11 +331,12 @@
             this.tblpnSTMenu.ResumeLayout(false);
             this.pnSidebar.ResumeLayout(false);
             this.tblpnSBLayout.ResumeLayout(false);
-            this.tblpnSBLayout.PerformLayout();
             this.flpnModulesSB.ResumeLayout(false);
             this.pnSBColor.ResumeLayout(false);
             this.pnSBColor.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbxUserProf)).EndInit();
+            this.pnHeaderSB.ResumeLayout(false);
+            this.pnHeaderSB.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -309,12 +351,14 @@
         private System.Windows.Forms.Button btnInvSB;
         private System.Windows.Forms.Button btnHistSB;
         private System.Windows.Forms.Button btnUsersSB;
-        private System.Windows.Forms.Label lbTitleSB;
         private System.Windows.Forms.Panel pnSBColor;
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Label lbUserRole;
         private System.Windows.Forms.PictureBox pcbxUserProf;
         private System.Windows.Forms.Label lbUsersName;
         private System.Windows.Forms.Panel pnModuleFocused;
+        private System.Windows.Forms.Button btnTitleSB;
+        private System.Windows.Forms.Panel pnHeaderSB;
+        private System.Windows.Forms.Button btnBurgerBarSB;
     }
 }

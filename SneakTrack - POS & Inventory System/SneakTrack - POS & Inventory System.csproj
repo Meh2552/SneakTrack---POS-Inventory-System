@@ -168,5 +168,8 @@
   <ItemGroup>
     <None Include="Resources\icon\logout5.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon\burger-bar %281%29.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

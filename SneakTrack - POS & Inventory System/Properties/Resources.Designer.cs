@@ -73,6 +73,16 @@ namespace SneakTrack___POS___Inventory_System.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap burger_bar__1_ {
+            get {
+                object obj = ResourceManager.GetObject("burger-bar (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap discord_loading_sticker_discord_loading_loading_gif {
             get {
                 object obj = ResourceManager.GetObject("discord-loading-sticker-discord-loading-loading-gif", resourceCulture);

@@ -11,6 +11,7 @@ namespace SneakTrack___POS___Inventory_System
 {
     public class WindowHandler
     {
+        
         private Login login;
         private MainDashboard dash;
 

@@ -41,25 +41,25 @@
             this.txbxUsername = new System.Windows.Forms.TextBox();
             this.lbUsername = new System.Windows.Forms.Label();
             this.lbUALogo = new System.Windows.Forms.Label();
+            this.pcBxUALogo = new System.Windows.Forms.PictureBox();
             this.pnPassword = new System.Windows.Forms.Panel();
+            this.btnHidePass = new System.Windows.Forms.Button();
             this.txbxPassword = new System.Windows.Forms.TextBox();
             this.pnUserAuthBackground = new System.Windows.Forms.Panel();
+            this.pcBxUserAuthBackground = new System.Windows.Forms.PictureBox();
             this.tblpnUATransition = new System.Windows.Forms.TableLayoutPanel();
             this.lbTransition = new System.Windows.Forms.Label();
-            this.pcBxUALogo = new System.Windows.Forms.PictureBox();
-            this.btnHidePass = new System.Windows.Forms.Button();
-            this.pcBxUserAuthBackground = new System.Windows.Forms.PictureBox();
             this.pcbxLoading = new System.Windows.Forms.PictureBox();
             this.pnUserAuth.SuspendLayout();
             this.tblpnUserAuthSplit.SuspendLayout();
             this.tblpnUserAuth.SuspendLayout();
             this.pnUserForm.SuspendLayout();
             this.tblpnUserForm.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcBxUALogo)).BeginInit();
             this.pnPassword.SuspendLayout();
             this.pnUserAuthBackground.SuspendLayout();
-            this.tblpnUATransition.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcBxUALogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcBxUserAuthBackground)).BeginInit();
+            this.tblpnUATransition.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbxLoading)).BeginInit();
             this.SuspendLayout();
             // 
@@ -246,6 +246,19 @@
             this.lbUALogo.Text = "SneakTrack Login";
             this.lbUALogo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // pcBxUALogo
+            // 
+            this.pcBxUALogo.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.pcBxUALogo.Image = global::SneakTrack___POS___Inventory_System.Properties.Resources.logotransp;
+            this.pcBxUALogo.Location = new System.Drawing.Point(125, 26);
+            this.pcBxUALogo.Margin = new System.Windows.Forms.Padding(0);
+            this.pcBxUALogo.MaximumSize = new System.Drawing.Size(120, 120);
+            this.pcBxUALogo.Name = "pcBxUALogo";
+            this.pcBxUALogo.Size = new System.Drawing.Size(120, 120);
+            this.pcBxUALogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcBxUALogo.TabIndex = 6;
+            this.pcBxUALogo.TabStop = false;
+            // 
             // pnPassword
             // 
             this.pnPassword.Controls.Add(this.btnHidePass);
@@ -257,6 +270,24 @@
             this.pnPassword.Padding = new System.Windows.Forms.Padding(10, 0, 10, 10);
             this.pnPassword.Size = new System.Drawing.Size(370, 35);
             this.pnPassword.TabIndex = 2;
+            // 
+            // btnHidePass
+            // 
+            this.btnHidePass.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnHidePass.BackColor = System.Drawing.Color.White;
+            this.btnHidePass.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnHidePass.FlatAppearance.BorderSize = 0;
+            this.btnHidePass.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnHidePass.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnHidePass.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHidePass.Image = global::SneakTrack___POS___Inventory_System.Properties.Resources.hideeye;
+            this.btnHidePass.Location = new System.Drawing.Point(328, 2);
+            this.btnHidePass.Name = "btnHidePass";
+            this.btnHidePass.Size = new System.Drawing.Size(25, 22);
+            this.btnHidePass.TabIndex = 4;
+            this.btnHidePass.Text = "o";
+            this.btnHidePass.UseVisualStyleBackColor = false;
+            this.btnHidePass.Click += new System.EventHandler(this.btnHidePass_Click);
             // 
             // txbxPassword
             // 
@@ -283,6 +314,19 @@
             this.pnUserAuthBackground.Name = "pnUserAuthBackground";
             this.pnUserAuthBackground.Size = new System.Drawing.Size(509, 675);
             this.pnUserAuthBackground.TabIndex = 5;
+            // 
+            // pcBxUserAuthBackground
+            // 
+            this.pcBxUserAuthBackground.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pcBxUserAuthBackground.BackColor = System.Drawing.Color.Black;
+            this.pcBxUserAuthBackground.Image = global::SneakTrack___POS___Inventory_System.Properties.Resources._685014915_956013527344190_1734367649017491867_n;
+            this.pcBxUserAuthBackground.Location = new System.Drawing.Point(-121, -5);
+            this.pcBxUserAuthBackground.Margin = new System.Windows.Forms.Padding(0);
+            this.pcBxUserAuthBackground.Name = "pcBxUserAuthBackground";
+            this.pcBxUserAuthBackground.Size = new System.Drawing.Size(806, 677);
+            this.pcBxUserAuthBackground.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcBxUserAuthBackground.TabIndex = 0;
+            this.pcBxUserAuthBackground.TabStop = false;
             // 
             // tblpnUATransition
             // 
@@ -321,50 +365,6 @@
             this.lbTransition.Text = "Login Successful, now loading...";
             this.lbTransition.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
-            // pcBxUALogo
-            // 
-            this.pcBxUALogo.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.pcBxUALogo.Image = global::SneakTrack___POS___Inventory_System.Properties.Resources.logotransp;
-            this.pcBxUALogo.Location = new System.Drawing.Point(125, 26);
-            this.pcBxUALogo.Margin = new System.Windows.Forms.Padding(0);
-            this.pcBxUALogo.MaximumSize = new System.Drawing.Size(120, 120);
-            this.pcBxUALogo.Name = "pcBxUALogo";
-            this.pcBxUALogo.Size = new System.Drawing.Size(120, 120);
-            this.pcBxUALogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcBxUALogo.TabIndex = 6;
-            this.pcBxUALogo.TabStop = false;
-            // 
-            // btnHidePass
-            // 
-            this.btnHidePass.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnHidePass.BackColor = System.Drawing.Color.White;
-            this.btnHidePass.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnHidePass.FlatAppearance.BorderSize = 0;
-            this.btnHidePass.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.btnHidePass.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btnHidePass.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHidePass.Image = global::SneakTrack___POS___Inventory_System.Properties.Resources.hideeye;
-            this.btnHidePass.Location = new System.Drawing.Point(328, 2);
-            this.btnHidePass.Name = "btnHidePass";
-            this.btnHidePass.Size = new System.Drawing.Size(25, 22);
-            this.btnHidePass.TabIndex = 4;
-            this.btnHidePass.Text = "o";
-            this.btnHidePass.UseVisualStyleBackColor = false;
-            this.btnHidePass.Click += new System.EventHandler(this.btnHidePass_Click);
-            // 
-            // pcBxUserAuthBackground
-            // 
-            this.pcBxUserAuthBackground.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pcBxUserAuthBackground.BackColor = System.Drawing.Color.Black;
-            this.pcBxUserAuthBackground.Image = global::SneakTrack___POS___Inventory_System.Properties.Resources._685014915_956013527344190_1734367649017491867_n;
-            this.pcBxUserAuthBackground.Location = new System.Drawing.Point(-121, -5);
-            this.pcBxUserAuthBackground.Margin = new System.Windows.Forms.Padding(0);
-            this.pcBxUserAuthBackground.Name = "pcBxUserAuthBackground";
-            this.pcBxUserAuthBackground.Size = new System.Drawing.Size(806, 677);
-            this.pcBxUserAuthBackground.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcBxUserAuthBackground.TabIndex = 0;
-            this.pcBxUserAuthBackground.TabStop = false;
-            // 
             // pcbxLoading
             // 
             this.pcbxLoading.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -391,13 +391,13 @@
             this.pnUserForm.ResumeLayout(false);
             this.tblpnUserForm.ResumeLayout(false);
             this.tblpnUserForm.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcBxUALogo)).EndInit();
             this.pnPassword.ResumeLayout(false);
             this.pnPassword.PerformLayout();
             this.pnUserAuthBackground.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pcBxUserAuthBackground)).EndInit();
             this.tblpnUATransition.ResumeLayout(false);
             this.tblpnUATransition.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcBxUALogo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcBxUserAuthBackground)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbxLoading)).EndInit();
             this.ResumeLayout(false);
 

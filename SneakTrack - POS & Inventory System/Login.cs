@@ -63,8 +63,6 @@ namespace SneakTrack___POS___Inventory_System
         private void loginResult(string message)
         {
             wh.changeLbTxt(lbUserFormErr, message);
-            txbxUsername.Clear();
-            txbxPassword.Clear();
             txbxUsername.Focus();
         }
 

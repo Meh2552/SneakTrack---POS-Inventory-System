@@ -49,7 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataHandler.cs" />
-    <Compile Include="Entities.cs" />
+    <Compile Include="Products.cs" />
     <Compile Include="MainDashboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -61,12 +61,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="TESTDESIGNTEMP.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TESTDESIGNTEMP.Designer.cs">
-      <DependentUpon>TESTDESIGNTEMP.cs</DependentUpon>
-    </Compile>
     <Compile Include="POS.cs" />
     <Compile Include="frmSneakTrack.cs">
       <SubType>Form</SubType>
@@ -76,6 +70,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UIControls\ProductItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIControls\ProductItem.Designer.cs">
+      <DependentUpon>ProductItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserAuth.cs" />
     <Compile Include="Login.cs">
       <SubType>UserControl</SubType>
@@ -99,9 +99,26 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="TESTDESIGNTEMP.resx">
-      <DependentUpon>TESTDESIGNTEMP.cs</DependentUpon>
+    <EmbeddedResource Include="UIControls\ProductItem.resx">
+      <DependentUpon>ProductItem.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\DataHandler.datasource" />
+    <None Include="Properties\DataSources\Entities.datasource" />
+    <None Include="Properties\DataSources\Entities.Product.datasource" />
+    <None Include="Properties\DataSources\Entities.Reciept.datasource" />
+    <None Include="Properties\DataSources\frmSneakTrack.datasource" />
+    <None Include="Properties\DataSources\Login.datasource" />
+    <None Include="Properties\DataSources\MainDashboard.datasource" />
+    <None Include="Properties\DataSources\MainSystem.datasource" />
+    <None Include="Properties\DataSources\POS.datasource" />
+    <None Include="Properties\DataSources\Program.datasource" />
+    <None Include="Properties\DataSources\SneakTrack___POS___Inventory_System.Properties.Resources.datasource" />
+    <None Include="Properties\DataSources\SneakTrack___POS___Inventory_System.Properties.Settings.datasource" />
+    <None Include="Properties\DataSources\UserAuth.datasource" />
+    <None Include="Properties\DataSources\UserAuth.Role.datasource" />
+    <None Include="Properties\DataSources\UserAuth.User.datasource" />
+    <None Include="Properties\DataSources\Validator.datasource" />
+    <None Include="Properties\DataSources\WindowHandler.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

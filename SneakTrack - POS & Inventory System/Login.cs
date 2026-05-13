@@ -26,6 +26,9 @@ namespace SneakTrack___POS___Inventory_System
         public void initialize(MainSystem system)
         {
             this.sys = system;
+            v = sys.VAL;
+            wh = sys.WH;
+            auth = sys.UA;
         }
 
         private async void btnLogin_Click(object sender, EventArgs e)
@@ -47,7 +50,8 @@ namespace SneakTrack___POS___Inventory_System
                 await Task.Delay(300);
                 wh.switchControl(tblpnUserAuthSplit, tblpnUATransition);
                 await Task.Delay(4000);
-                // wh.switchControl(tblpnUATransition);
+                wh.Dash.start();
+                wh.switchControl(this, wh.Dash);
             }
 
             else
@@ -63,5 +67,6 @@ namespace SneakTrack___POS___Inventory_System
             txbxPassword.Clear();
             txbxUsername.Focus();
         }
+
     }
 }

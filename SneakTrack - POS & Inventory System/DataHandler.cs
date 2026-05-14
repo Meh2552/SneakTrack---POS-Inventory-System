@@ -15,6 +15,8 @@ namespace SneakTrack___POS___Inventory_System
         private MainSystem sys;
         private UserAuth ua;
 
+        public DataHandler() { }
+
         public DataHandler(MainSystem system)
         {
             this.sys = system;

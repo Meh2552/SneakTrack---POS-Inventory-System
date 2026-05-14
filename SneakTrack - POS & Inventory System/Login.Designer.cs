@@ -115,7 +115,7 @@
             // lbProjTitle
             // 
             this.lbProjTitle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbProjTitle.Font = new System.Drawing.Font("Coolvetica Rg", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbProjTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbProjTitle.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.lbProjTitle.Location = new System.Drawing.Point(163, 0);
             this.lbProjTitle.Name = "lbProjTitle";
@@ -355,7 +355,7 @@
             this.lbTransition.AutoSize = true;
             this.lbTransition.BackColor = System.Drawing.Color.Transparent;
             this.lbTransition.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbTransition.Font = new System.Drawing.Font("Coolvetica Rg", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTransition.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTransition.ForeColor = System.Drawing.Color.Black;
             this.lbTransition.Location = new System.Drawing.Point(243, 133);
             this.lbTransition.Name = "lbTransition";

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
@@ -25,6 +26,11 @@ namespace SneakTrack___POS___Inventory_System
             return $"SELECT {column} FROM [{table}] WHERE {condition}";
         }
 
+        public string selectQuery(string table, string column)
+        {
+            return $"SELECT {column} FROM [{table}]";
+        }
+
         public string selectQuery(string table)
         {
             return $"SELECT * FROM [{table}]";
@@ -32,6 +38,29 @@ namespace SneakTrack___POS___Inventory_System
         
         // idk sa database sya parang path nung server
         string conString = @"Data Source =.; Initial Catalog = SneakTrackDB; Integrated Security = True; Encrypt = False;";
+
+        // Returns a datatable of a table in the database.
+        public DataTable dataToTable(string table)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(conString);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(selectQuery(table), conn);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                conn.Close();
+                return dt;
+
+            }
+
+            catch (Exception e)
+            {
+                Debug.WriteLine("Error: " + e.Message);
+                return null;
+            }
+        }
 
         // Checks if user exists and credentials are correct
         public UserAuth.User checkUserAuth(string username)

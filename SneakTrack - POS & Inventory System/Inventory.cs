@@ -16,5 +16,6 @@ namespace SneakTrack___POS___Inventory_System
         {
             InitializeComponent();
         }
+
     }
 }

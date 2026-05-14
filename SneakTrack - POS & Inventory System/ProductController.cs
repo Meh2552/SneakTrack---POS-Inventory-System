@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace SneakTrack___POS___Inventory_System
 {
-    internal class POSController
+    public class ProductController
     {
+
     }
 }

@@ -10,13 +10,17 @@ using System.Windows.Forms;
 
 namespace SneakTrack___POS___Inventory_System
 {
-    public partial class UserControl1 : UserControl
-    public partial class Inventory : UserControl
+    public partial class Test : Form
     {
-        public Inventory()
-        public UserControl1()
+        DataHandler datah = new DataHandler();
+        public Test()
         {
             InitializeComponent();
+        }
+
+        private void Test_Load(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = datah.dataToTable("User");
         }
     }
 }

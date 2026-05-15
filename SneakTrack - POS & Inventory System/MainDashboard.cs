@@ -15,6 +15,7 @@ namespace SneakTrack___POS___Inventory_System
     {
         private MainSystem sys;
         private UserAuth ua;
+        private WindowHandler wh;
 
         public MainDashboard()
         {
@@ -25,11 +26,12 @@ namespace SneakTrack___POS___Inventory_System
         {
             this.sys = system;
             this.ua = sys.UA;
+            this.wh = sys.WH;
         }
 
         private void MainDashboard_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         public void start()
@@ -54,6 +56,7 @@ namespace SneakTrack___POS___Inventory_System
 
         }
 
+        UserControl active; 
         Color darken = Color.FromArgb(198, 148, 17);
         Color sbColor = Color.FromArgb(254, 182, 66);
 
@@ -65,6 +68,8 @@ namespace SneakTrack___POS___Inventory_System
         private void btnInvSB_Click(object sender, EventArgs e)
         {
             selectedColorBtn(btnInvSB);
+            wh.switchControl(active, inventory1);
+            active = inventory1;
         }
 
         private void btnHistSB_Click(object sender, EventArgs e)
@@ -75,6 +80,8 @@ namespace SneakTrack___POS___Inventory_System
         private void btnUsersSB_Click(object sender, EventArgs e)
         {
             selectedColorBtn(btnUsersSB);
+            wh.switchControl(active, user1);
+            active = user1;
         }
 
         private void selectedColorBtn(Button selectedBtn)

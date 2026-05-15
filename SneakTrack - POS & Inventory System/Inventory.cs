@@ -15,6 +15,7 @@ namespace SneakTrack___POS___Inventory_System
         public Inventory()
         {
             InitializeComponent();
+            tblpnSideInfo.ColumnStyles[1].Width = 0;
         }
 
     }

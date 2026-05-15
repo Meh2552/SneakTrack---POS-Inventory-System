@@ -87,6 +87,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UIControls\RoundedPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UIControls\ProductItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -98,6 +101,12 @@
     </Compile>
     <Compile Include="UIControls\RoundedTxBx.Designer.cs">
       <DependentUpon>RoundedTxBx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIControls\Tile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIControls\Tile.Designer.cs">
+      <DependentUpon>Tile.cs</DependentUpon>
     </Compile>
     <Compile Include="UserAuth.cs" />
     <Compile Include="Login.cs">
@@ -145,6 +154,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UIControls\RoundedTxBx.resx">
       <DependentUpon>RoundedTxBx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIControls\Tile.resx">
+      <DependentUpon>Tile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User.resx">
       <DependentUpon>User.cs</DependentUpon>
@@ -226,6 +238,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\7124408.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon\boxes plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon\apps-add %281%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

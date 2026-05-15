@@ -29,10 +29,19 @@ namespace SneakTrack___POS___Inventory_System
 
         public void switchControl(Control from, Control to)
         {
-            to.SendToBack();
-            to.Visible = true;
-            from.Visible = false;
-            to.BringToFront();
+            if (from == null || from == to)
+            {
+                to.Visible = true;
+                to.BringToFront();
+            }
+
+            else
+            {
+                to.SendToBack();
+                to.Visible = true;
+                from.Visible = false;
+                to.BringToFront();
+            }
         }
 
         public void changeLbTxt(Label label, string txt)

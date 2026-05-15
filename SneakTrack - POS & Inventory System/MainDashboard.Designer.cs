@@ -46,6 +46,7 @@
             this.btnBurgerBarSB = new System.Windows.Forms.Button();
             this.btnTitleSB = new System.Windows.Forms.Button();
             this.pnModuleFocused = new System.Windows.Forms.Panel();
+            this.inventory1 = new SneakTrack___POS___Inventory_System.Inventory();
             this.tblpnSTMenu.SuspendLayout();
             this.pnSidebar.SuspendLayout();
             this.tblpnSBLayout.SuspendLayout();
@@ -53,6 +54,7 @@
             this.pnSBColor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbxUserProf)).BeginInit();
             this.pnHeaderSB.SuspendLayout();
+            this.pnModuleFocused.SuspendLayout();
             this.SuspendLayout();
             // 
             // tblpnSTMenu
@@ -313,12 +315,22 @@
             // pnModuleFocused
             // 
             this.pnModuleFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.pnModuleFocused.Controls.Add(this.inventory1);
             this.pnModuleFocused.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnModuleFocused.Location = new System.Drawing.Point(280, 0);
             this.pnModuleFocused.Margin = new System.Windows.Forms.Padding(0);
             this.pnModuleFocused.Name = "pnModuleFocused";
             this.pnModuleFocused.Size = new System.Drawing.Size(920, 675);
             this.pnModuleFocused.TabIndex = 1;
+            // 
+            // inventory1
+            // 
+            this.inventory1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.inventory1.Location = new System.Drawing.Point(0, 0);
+            this.inventory1.Margin = new System.Windows.Forms.Padding(0);
+            this.inventory1.Name = "inventory1";
+            this.inventory1.Size = new System.Drawing.Size(920, 675);
+            this.inventory1.TabIndex = 0;
             // 
             // MainDashboard
             // 
@@ -338,6 +350,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pcbxUserProf)).EndInit();
             this.pnHeaderSB.ResumeLayout(false);
             this.pnHeaderSB.PerformLayout();
+            this.pnModuleFocused.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -361,5 +374,6 @@
         private System.Windows.Forms.Button btnTitleSB;
         private System.Windows.Forms.Panel pnHeaderSB;
         private System.Windows.Forms.Button btnBurgerBarSB;
+        private Inventory inventory1;
     }
 }

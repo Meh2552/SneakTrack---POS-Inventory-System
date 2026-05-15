@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -33,7 +34,8 @@ namespace SneakTrack___POS___Inventory_System
 
         private async void btnLogin_Click(object sender, EventArgs e)
         {
-            string inuser = v.readStringNoEnd(txbxUsername.Text), inpass = v.readStringNoEnd(txbxPassword.Text);
+            Debug.WriteLine(txbxUsername.Texts);
+            string inuser = v.readStringNoEnd(txbxUsername.Texts), inpass = v.readStringNoEnd(txbxPassword.Texts);
 
             if (string.IsNullOrEmpty(inuser) || string.IsNullOrEmpty(inpass))
             {
@@ -68,9 +70,9 @@ namespace SneakTrack___POS___Inventory_System
 
         // Changes the image based on the state of the hide button in the password and hides the inputted data and vice versa
         private void btnHidePass_Click(object sender, EventArgs e)
-        {
-            txbxPassword.UseSystemPasswordChar = !txbxPassword.UseSystemPasswordChar;
-            btnHidePass.Image = txbxPassword.UseSystemPasswordChar ? Properties.Resources.hideeye : Properties.Resources.openeye;
+        { 
+            txbxPassword.PasswordChar = !txbxPassword.PasswordChar;
+            btnHidePass.Image = txbxPassword.PasswordChar ? Properties.Resources.hideeye : Properties.Resources.openeye;
         }
 
         // Disables copying the password
@@ -80,6 +82,16 @@ namespace SneakTrack___POS___Inventory_System
             {
                 e.SuppressKeyPress = true;
             }
+        }
+
+        private void txbxPassword_Enter(object sender, EventArgs e)
+        {
+            btnHidePass.Visible = true;
+        }
+
+        private void txbxPassword_Leave(object sender, EventArgs e)
+        {
+            btnHidePass.Visible = false;
         }
     }
 }

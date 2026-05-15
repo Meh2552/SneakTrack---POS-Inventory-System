@@ -30,7 +30,7 @@ namespace SneakTrack___POS___Inventory_System
             initialize();
             userConLogin.initialize(sys);
             userConMainDash.initialize(sys);
-            skipLogin(true); // Testing only
+            //skipLogin(true); // Testing only
         }
 
         private void frmSneakTrack_Load(object sender, EventArgs e)

@@ -31,10 +31,10 @@
             this.tblpnBorderSplit = new System.Windows.Forms.TableLayoutPanel();
             this.pn = new System.Windows.Forms.Panel();
             this.pnHeader = new System.Windows.Forms.Panel();
-            this.lbHeaderTitle = new System.Windows.Forms.Label();
             this.tblpnSelectionInv = new System.Windows.Forms.TableLayoutPanel();
             this.pnSelectionHeader = new System.Windows.Forms.Panel();
             this.lbBarcode = new System.Windows.Forms.Label();
+            this.lbHeaderTitle = new System.Windows.Forms.Label();
             this.tblpnBorderSplit.SuspendLayout();
             this.pn.SuspendLayout();
             this.pnHeader.SuspendLayout();
@@ -81,18 +81,6 @@
             this.pnHeader.Size = new System.Drawing.Size(920, 60);
             this.pnHeader.TabIndex = 0;
             // 
-            // lbHeaderTitle
-            // 
-            this.lbHeaderTitle.AutoSize = true;
-            this.lbHeaderTitle.BackColor = System.Drawing.Color.Transparent;
-            this.lbHeaderTitle.Font = new System.Drawing.Font("Microsoft YaHei UI Light", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbHeaderTitle.ForeColor = System.Drawing.Color.White;
-            this.lbHeaderTitle.Location = new System.Drawing.Point(17, 12);
-            this.lbHeaderTitle.Name = "lbHeaderTitle";
-            this.lbHeaderTitle.Size = new System.Drawing.Size(130, 35);
-            this.lbHeaderTitle.TabIndex = 0;
-            this.lbHeaderTitle.Text = "Inventory";
-            // 
             // tblpnSelectionInv
             // 
             this.tblpnSelectionInv.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
@@ -131,6 +119,18 @@
             this.lbBarcode.TabIndex = 1;
             this.lbBarcode.Text = "Inventory";
             // 
+            // lbHeaderTitle
+            // 
+            this.lbHeaderTitle.AutoSize = true;
+            this.lbHeaderTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lbHeaderTitle.Font = new System.Drawing.Font("Microsoft YaHei UI Light", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbHeaderTitle.ForeColor = System.Drawing.Color.White;
+            this.lbHeaderTitle.Location = new System.Drawing.Point(17, 12);
+            this.lbHeaderTitle.Name = "lbHeaderTitle";
+            this.lbHeaderTitle.Size = new System.Drawing.Size(130, 35);
+            this.lbHeaderTitle.TabIndex = 0;
+            this.lbHeaderTitle.Text = "Inventory";
+            // 
             // Inventory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -155,8 +155,8 @@
         private System.Windows.Forms.Panel pnHeader;
         private System.Windows.Forms.TableLayoutPanel tblpnSelectionInv;
         private System.Windows.Forms.Panel pnSelectionHeader;
-        private System.Windows.Forms.Label lbHeaderTitle;
         private System.Windows.Forms.Panel pn;
         private System.Windows.Forms.Label lbBarcode;
+        private System.Windows.Forms.Label lbHeaderTitle;
     }
 }

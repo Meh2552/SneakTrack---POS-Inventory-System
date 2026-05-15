@@ -10,9 +10,11 @@ using System.Windows.Forms;
 
 namespace SneakTrack___POS___Inventory_System
 {
+    public partial class UserControl1 : UserControl
     public partial class Inventory : UserControl
     {
         public Inventory()
+        public UserControl1()
         {
             InitializeComponent();
         }

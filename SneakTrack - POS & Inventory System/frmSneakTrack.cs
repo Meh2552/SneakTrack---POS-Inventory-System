@@ -49,7 +49,7 @@ namespace SneakTrack___POS___Inventory_System
         // For Testing
         private void skipLogin(bool admin)
         {
-            User account = dh.checkUserAuth(admin ? "admin" : "rolandslnt");
+            UserAuth.User account = dh.checkUserAuth(admin ? "admin" : "rolandslnt");
             auth.CurrentUser = account;
             wh.Dash.start();
             wh.switchControl(userConLogin, userConMainDash);

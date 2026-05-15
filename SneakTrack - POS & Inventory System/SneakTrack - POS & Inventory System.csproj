@@ -109,6 +109,12 @@
     <Compile Include="POS.Designer.cs">
       <DependentUpon>POS.cs</DependentUpon>
     </Compile>
+    <Compile Include="User.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User.Designer.cs">
+      <DependentUpon>User.cs</DependentUpon>
+    </Compile>
     <Compile Include="Validator.cs" />
     <Compile Include="WindowHandler.cs" />
     <EmbeddedResource Include="Inventory.resx">
@@ -133,6 +139,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UIControls\ProductItem.resx">
       <DependentUpon>ProductItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User.resx">
+      <DependentUpon>User.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\DataSources\DataHandler.datasource" />
     <None Include="Properties\DataSources\Entities.datasource" />
@@ -214,6 +223,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\7124408.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

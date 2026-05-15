@@ -1,6 +1,6 @@
 ﻿namespace SneakTrack___POS___Inventory_System
 {
-    partial class Inventory
+    partial class UserControl1
     {
         /// <summary> 
         /// Required designer variable.

@@ -28,41 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Inventory));
             this.tblpnHeader = new System.Windows.Forms.TableLayoutPanel();
             this.pnHeader = new System.Windows.Forms.Panel();
+            this.lbTitleSH = new System.Windows.Forms.Label();
             this.tblpnSideInfo = new System.Windows.Forms.TableLayoutPanel();
             this.pnSideInfo = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tblpnBottomBar = new System.Windows.Forms.TableLayoutPanel();
+            this.pnBottom = new System.Windows.Forms.Panel();
             this.tblpnSelectionInv = new System.Windows.Forms.TableLayoutPanel();
             this.pnSelectionHeader = new System.Windows.Forms.Panel();
-            this.lbTitleSH = new System.Windows.Forms.Label();
-            this.pnBottom = new System.Windows.Forms.Panel();
-            this.roundedPanel3 = new SneakTrack___POS___Inventory_System.UIControls.RoundedPanel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.roundedPanel1 = new SneakTrack___POS___Inventory_System.UIControls.RoundedPanel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.roundedPanel2 = new SneakTrack___POS___Inventory_System.UIControls.RoundedPanel();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.tblpnTilesSH = new System.Windows.Forms.TableLayoutPanel();
+            this.tile1 = new SneakTrack___POS___Inventory_System.UIControls.Tile();
+            this.tile2 = new SneakTrack___POS___Inventory_System.UIControls.Tile();
             this.tblpnHeader.SuspendLayout();
             this.pnHeader.SuspendLayout();
             this.tblpnSideInfo.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.tblpnBottomBar.SuspendLayout();
             this.tblpnSelectionInv.SuspendLayout();
             this.pnSelectionHeader.SuspendLayout();
-            this.roundedPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.roundedPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.roundedPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            this.tableLayoutPanel2.SuspendLayout();
+            this.tblpnTilesSH.SuspendLayout();
             this.SuspendLayout();
             // 
             // tblpnHeader
@@ -92,13 +77,25 @@
             this.pnHeader.Size = new System.Drawing.Size(920, 60);
             this.pnHeader.TabIndex = 0;
             // 
+            // lbTitleSH
+            // 
+            this.lbTitleSH.AutoSize = true;
+            this.lbTitleSH.BackColor = System.Drawing.Color.Transparent;
+            this.lbTitleSH.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTitleSH.ForeColor = System.Drawing.Color.White;
+            this.lbTitleSH.Location = new System.Drawing.Point(13, 15);
+            this.lbTitleSH.Name = "lbTitleSH";
+            this.lbTitleSH.Size = new System.Drawing.Size(271, 32);
+            this.lbTitleSH.TabIndex = 0;
+            this.lbTitleSH.Text = "Inventory Management";
+            // 
             // tblpnSideInfo
             // 
             this.tblpnSideInfo.ColumnCount = 2;
             this.tblpnSideInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 76.52174F));
-            this.tblpnSideInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 270F));
+            this.tblpnSideInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 250F));
             this.tblpnSideInfo.Controls.Add(this.pnSideInfo, 1, 0);
-            this.tblpnSideInfo.Controls.Add(this.tableLayoutPanel1, 0, 0);
+            this.tblpnSideInfo.Controls.Add(this.tblpnBottomBar, 0, 0);
             this.tblpnSideInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblpnSideInfo.Location = new System.Drawing.Point(0, 60);
             this.tblpnSideInfo.Margin = new System.Windows.Forms.Padding(0);
@@ -112,66 +109,27 @@
             // 
             this.pnSideInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(63)))), ((int)(((byte)(70)))));
             this.pnSideInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnSideInfo.Location = new System.Drawing.Point(650, 0);
+            this.pnSideInfo.Location = new System.Drawing.Point(670, 0);
             this.pnSideInfo.Margin = new System.Windows.Forms.Padding(0);
             this.pnSideInfo.Name = "pnSideInfo";
-            this.pnSideInfo.Size = new System.Drawing.Size(270, 615);
+            this.pnSideInfo.Size = new System.Drawing.Size(250, 615);
             this.pnSideInfo.TabIndex = 3;
             // 
-            // tableLayoutPanel1
+            // tblpnBottomBar
             // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.tblpnSelectionInv, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.pnBottom, 0, 1);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 86.0119F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 47F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(650, 615);
-            this.tableLayoutPanel1.TabIndex = 2;
-            // 
-            // tblpnSelectionInv
-            // 
-            this.tblpnSelectionInv.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.tblpnSelectionInv.ColumnCount = 1;
-            this.tblpnSelectionInv.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 715F));
-            this.tblpnSelectionInv.Controls.Add(this.pnSelectionHeader, 0, 0);
-            this.tblpnSelectionInv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblpnSelectionInv.Location = new System.Drawing.Point(0, 0);
-            this.tblpnSelectionInv.Margin = new System.Windows.Forms.Padding(0);
-            this.tblpnSelectionInv.Name = "tblpnSelectionInv";
-            this.tblpnSelectionInv.RowCount = 2;
-            this.tblpnSelectionInv.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 198F));
-            this.tblpnSelectionInv.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblpnSelectionInv.Size = new System.Drawing.Size(650, 568);
-            this.tblpnSelectionInv.TabIndex = 1;
-            // 
-            // pnSelectionHeader
-            // 
-            this.pnSelectionHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(35)))), ((int)(((byte)(37)))));
-            this.pnSelectionHeader.Controls.Add(this.tableLayoutPanel2);
-            this.pnSelectionHeader.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnSelectionHeader.Location = new System.Drawing.Point(0, 0);
-            this.pnSelectionHeader.Margin = new System.Windows.Forms.Padding(0);
-            this.pnSelectionHeader.Name = "pnSelectionHeader";
-            this.pnSelectionHeader.Size = new System.Drawing.Size(715, 198);
-            this.pnSelectionHeader.TabIndex = 0;
-            // 
-            // lbTitleSH
-            // 
-            this.lbTitleSH.AutoSize = true;
-            this.lbTitleSH.BackColor = System.Drawing.Color.Transparent;
-            this.lbTitleSH.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTitleSH.ForeColor = System.Drawing.Color.White;
-            this.lbTitleSH.Location = new System.Drawing.Point(13, 15);
-            this.lbTitleSH.Name = "lbTitleSH";
-            this.lbTitleSH.Size = new System.Drawing.Size(271, 32);
-            this.lbTitleSH.TabIndex = 0;
-            this.lbTitleSH.Text = "Inventory Management";
+            this.tblpnBottomBar.ColumnCount = 1;
+            this.tblpnBottomBar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblpnBottomBar.Controls.Add(this.pnBottom, 0, 1);
+            this.tblpnBottomBar.Controls.Add(this.tblpnSelectionInv, 0, 0);
+            this.tblpnBottomBar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tblpnBottomBar.Location = new System.Drawing.Point(0, 0);
+            this.tblpnBottomBar.Margin = new System.Windows.Forms.Padding(0);
+            this.tblpnBottomBar.Name = "tblpnBottomBar";
+            this.tblpnBottomBar.RowCount = 2;
+            this.tblpnBottomBar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 86.0119F));
+            this.tblpnBottomBar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 47F));
+            this.tblpnBottomBar.Size = new System.Drawing.Size(670, 615);
+            this.tblpnBottomBar.TabIndex = 2;
             // 
             // pnBottom
             // 
@@ -180,168 +138,90 @@
             this.pnBottom.Location = new System.Drawing.Point(0, 568);
             this.pnBottom.Margin = new System.Windows.Forms.Padding(0);
             this.pnBottom.Name = "pnBottom";
-            this.pnBottom.Size = new System.Drawing.Size(650, 47);
+            this.pnBottom.Size = new System.Drawing.Size(670, 47);
             this.pnBottom.TabIndex = 2;
             // 
-            // roundedPanel3
+            // tblpnSelectionInv
             // 
-            this.roundedPanel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
-            this.roundedPanel3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
-            this.roundedPanel3.Controls.Add(this.pictureBox1);
-            this.roundedPanel3.Controls.Add(this.label5);
-            this.roundedPanel3.Controls.Add(this.label6);
-            this.roundedPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.roundedPanel3.Location = new System.Drawing.Point(91, 3);
-            this.roundedPanel3.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
-            this.roundedPanel3.Name = "roundedPanel3";
-            this.roundedPanel3.Radius = 20;
-            this.roundedPanel3.Size = new System.Drawing.Size(135, 192);
-            this.roundedPanel3.TabIndex = 3;
-            this.roundedPanel3.Thickness = 5F;
+            this.tblpnSelectionInv.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.tblpnSelectionInv.ColumnCount = 1;
+            this.tblpnSelectionInv.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblpnSelectionInv.Controls.Add(this.pnSelectionHeader, 0, 0);
+            this.tblpnSelectionInv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tblpnSelectionInv.Location = new System.Drawing.Point(0, 0);
+            this.tblpnSelectionInv.Margin = new System.Windows.Forms.Padding(0);
+            this.tblpnSelectionInv.Name = "tblpnSelectionInv";
+            this.tblpnSelectionInv.RowCount = 2;
+            this.tblpnSelectionInv.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 229F));
+            this.tblpnSelectionInv.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblpnSelectionInv.Size = new System.Drawing.Size(670, 568);
+            this.tblpnSelectionInv.TabIndex = 1;
             // 
-            // pictureBox1
+            // pnSelectionHeader
             // 
-            this.pictureBox1.Image = global::SneakTrack___POS___Inventory_System.Properties.Resources.apps_add__1_;
-            this.pictureBox1.Location = new System.Drawing.Point(65, 39);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(40, 32);
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
+            this.pnSelectionHeader.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnSelectionHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(35)))), ((int)(((byte)(37)))));
+            this.pnSelectionHeader.Controls.Add(this.tblpnTilesSH);
+            this.pnSelectionHeader.Location = new System.Drawing.Point(0, 0);
+            this.pnSelectionHeader.Margin = new System.Windows.Forms.Padding(0);
+            this.pnSelectionHeader.Name = "pnSelectionHeader";
+            this.pnSelectionHeader.Size = new System.Drawing.Size(670, 229);
+            this.pnSelectionHeader.TabIndex = 0;
             // 
-            // label5
+            // tblpnTilesSH
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Coolvetica Rg", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(43, 74);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(85, 29);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "999999";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tblpnTilesSH.ColumnCount = 5;
+            this.tblpnTilesSH.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tblpnTilesSH.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
+            this.tblpnTilesSH.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
+            this.tblpnTilesSH.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
+            this.tblpnTilesSH.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tblpnTilesSH.Controls.Add(this.tile1, 1, 0);
+            this.tblpnTilesSH.Controls.Add(this.tile2, 2, 0);
+            this.tblpnTilesSH.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tblpnTilesSH.Location = new System.Drawing.Point(0, 0);
+            this.tblpnTilesSH.Margin = new System.Windows.Forms.Padding(0);
+            this.tblpnTilesSH.Name = "tblpnTilesSH";
+            this.tblpnTilesSH.RowCount = 1;
+            this.tblpnTilesSH.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblpnTilesSH.Size = new System.Drawing.Size(670, 229);
+            this.tblpnTilesSH.TabIndex = 6;
             // 
-            // label6
+            // tile1
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Yu Gothic UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(13, 10);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(71, 17);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "Total Stock";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tile1.BackColor = System.Drawing.Color.Transparent;
+            this.tile1.BackColors = System.Drawing.Color.Silver;
+            this.tile1.BorderColor = System.Drawing.Color.Gray;
+            this.tile1.BottomText = "999999";
+            this.tile1.ForeColors = System.Drawing.Color.Black;
+            this.tile1.ImageSize = new System.Drawing.Size(32, 32);
+            this.tile1.Location = new System.Drawing.Point(23, 3);
+            this.tile1.Name = "tile1";
+            this.tile1.Radius = 20;
+            this.tile1.RowPercent = 50F;
+            this.tile1.Size = new System.Drawing.Size(204, 178);
+            this.tile1.TabIndex = 0;
+            this.tile1.Thickness = 2;
+            this.tile1.TileImage = ((System.Drawing.Image)(resources.GetObject("tile1.TileImage")));
+            this.tile1.TopText = "Total Stock";
             // 
-            // roundedPanel1
+            // tile2
             // 
-            this.roundedPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
-            this.roundedPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
-            this.roundedPanel1.Controls.Add(this.pictureBox2);
-            this.roundedPanel1.Controls.Add(this.label1);
-            this.roundedPanel1.Controls.Add(this.label2);
-            this.roundedPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.roundedPanel1.Location = new System.Drawing.Point(232, 3);
-            this.roundedPanel1.Name = "roundedPanel1";
-            this.roundedPanel1.Radius = 20;
-            this.roundedPanel1.Size = new System.Drawing.Size(94, 192);
-            this.roundedPanel1.TabIndex = 4;
-            this.roundedPanel1.Thickness = 5F;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::SneakTrack___POS___Inventory_System.Properties.Resources.apps_add__1_;
-            this.pictureBox2.Location = new System.Drawing.Point(65, 39);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(40, 32);
-            this.pictureBox2.TabIndex = 2;
-            this.pictureBox2.TabStop = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Coolvetica Rg", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(43, 74);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 29);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "999999";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Yu Gothic UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(13, 10);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 17);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Total Stock";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // roundedPanel2
-            // 
-            this.roundedPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
-            this.roundedPanel2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
-            this.roundedPanel2.Controls.Add(this.pictureBox3);
-            this.roundedPanel2.Controls.Add(this.label3);
-            this.roundedPanel2.Controls.Add(this.label4);
-            this.roundedPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.roundedPanel2.Location = new System.Drawing.Point(332, 3);
-            this.roundedPanel2.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
-            this.roundedPanel2.Name = "roundedPanel2";
-            this.roundedPanel2.Radius = 20;
-            this.roundedPanel2.Size = new System.Drawing.Size(270, 192);
-            this.roundedPanel2.TabIndex = 4;
-            this.roundedPanel2.Thickness = 5F;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::SneakTrack___POS___Inventory_System.Properties.Resources.apps_add__1_;
-            this.pictureBox3.Location = new System.Drawing.Point(65, 39);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(40, 32);
-            this.pictureBox3.TabIndex = 2;
-            this.pictureBox3.TabStop = false;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Coolvetica Rg", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(43, 74);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(85, 29);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "999999";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Yu Gothic UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(13, 10);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(71, 17);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Total Stock";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 5;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.5466F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 148F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 283F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.roundedPanel2, 3, 0);
-            this.tableLayoutPanel2.Controls.Add(this.roundedPanel1, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.roundedPanel3, 1, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(715, 198);
-            this.tableLayoutPanel2.TabIndex = 6;
+            this.tile2.BackColor = System.Drawing.Color.Transparent;
+            this.tile2.BackColors = System.Drawing.Color.Black;
+            this.tile2.BorderColor = System.Drawing.Color.Red;
+            this.tile2.BottomText = "wowzers";
+            this.tile2.ForeColors = System.Drawing.Color.White;
+            this.tile2.ImageSize = new System.Drawing.Size(62, 62);
+            this.tile2.Location = new System.Drawing.Point(233, 3);
+            this.tile2.Name = "tile2";
+            this.tile2.Radius = 20;
+            this.tile2.RowPercent = 50F;
+            this.tile2.Size = new System.Drawing.Size(188, 194);
+            this.tile2.TabIndex = 1;
+            this.tile2.Thickness = 2;
+            this.tile2.TileImage = global::SneakTrack___POS___Inventory_System.Properties.Resources.user;
+            this.tile2.TopText = "wowie";
             // 
             // Inventory
             // 
@@ -355,19 +235,10 @@
             this.pnHeader.ResumeLayout(false);
             this.pnHeader.PerformLayout();
             this.tblpnSideInfo.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tblpnBottomBar.ResumeLayout(false);
             this.tblpnSelectionInv.ResumeLayout(false);
             this.pnSelectionHeader.ResumeLayout(false);
-            this.roundedPanel3.ResumeLayout(false);
-            this.roundedPanel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.roundedPanel1.ResumeLayout(false);
-            this.roundedPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.roundedPanel2.ResumeLayout(false);
-            this.roundedPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tblpnTilesSH.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -382,19 +253,9 @@
         private System.Windows.Forms.Label lbTitleSH;
         private System.Windows.Forms.TableLayoutPanel tblpnSideInfo;
         private System.Windows.Forms.Panel pnSideInfo;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private UIControls.RoundedPanel roundedPanel3;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private UIControls.RoundedPanel roundedPanel2;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private UIControls.RoundedPanel roundedPanel1;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel tblpnBottomBar;
+        private System.Windows.Forms.TableLayoutPanel tblpnTilesSH;
+        private UIControls.Tile tile1;
+        private UIControls.Tile tile2;
     }
 }

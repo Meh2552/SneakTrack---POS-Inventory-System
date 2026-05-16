@@ -6,10 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Media.Media3D;
+using System.ComponentModel;
 
 namespace SneakTrack___POS___Inventory_System.UIControls
 {
+    [DesignerCategory("Component")]
     public class RoundedPanel : Panel
     {
         private float _thickness = 5;
@@ -22,6 +23,10 @@ namespace SneakTrack___POS___Inventory_System.UIControls
             set
             {
                 _thickness = value;
+                if (_pen != null)
+                {
+                    _pen.Dispose();
+                }
                 _pen = new Pen(_borderColor, Thickness);
                 Invalidate();
             }
@@ -37,6 +42,10 @@ namespace SneakTrack___POS___Inventory_System.UIControls
             set
             {
                 _borderColor = value;
+                if (_pen != null)
+                {
+                    _pen.Dispose();
+                }
                 _pen = new Pen(_borderColor, Thickness);
                 Invalidate();
             }
@@ -62,7 +71,23 @@ namespace SneakTrack___POS___Inventory_System.UIControls
         {
             _pen = new Pen(BorderColor, Thickness);
             DoubleBuffered = true;
+            // Set default size to prevent 0 width/height issues
+            this.Size = new Size(100, 100);
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (_pen != null)
+                {
+                    _pen.Dispose();
+                    _pen = null;
+                }
+            }
+            base.Dispose(disposing);
+        }
+
         private Rectangle GetLeftUpper(int e)
         {
             return new Rectangle(0, 0, e, e);
@@ -82,41 +107,73 @@ namespace SneakTrack___POS___Inventory_System.UIControls
 
         private void ExtendedDraw(PaintEventArgs e)
         {
+            // Prevent drawing with invalid dimensions
+            if (Width <= 0 || Height <= 0 || Radius <= 0)
+                return;
+
             e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-            GraphicsPath path = new GraphicsPath();
-            path.StartFigure();
-            path.AddArc(GetLeftUpper(Radius), 180, 90);
-            path.AddLine(Radius, 0, Width - Radius, 0);
-            path.AddArc(GetRightUpper(Radius), 270, 90);
-            path.AddLine(Width, Radius, Width, Height - Radius);
-            path.AddArc(GetRightLower(Radius), 0, 90);
-            path.AddLine(Width - Radius, Height, Radius, Height);
-            path.AddArc(GetLeftLower(Radius), 90, 90);
-            path.AddLine(0, Height - Radius, 0, Radius);
-            path.CloseFigure();
-            Region = new Region(path);
+
+            using (GraphicsPath path = new GraphicsPath())
+            {
+                // Ensure radius doesn't exceed half of the smallest dimension
+                int actualRadius = Math.Min(Radius, Math.Min(Width / 2, Height / 2));
+
+                path.StartFigure();
+                path.AddArc(GetLeftUpper(actualRadius), 180, 90);
+                path.AddLine(actualRadius, 0, Width - actualRadius, 0);
+                path.AddArc(GetRightUpper(actualRadius), 270, 90);
+                path.AddLine(Width, actualRadius, Width, Height - actualRadius);
+                path.AddArc(GetRightLower(actualRadius), 0, 90);
+                path.AddLine(Width - actualRadius, Height, actualRadius, Height);
+                path.AddArc(GetLeftLower(actualRadius), 90, 90);
+                path.AddLine(0, Height - actualRadius, 0, actualRadius);
+                path.CloseFigure();
+
+                Region = new Region(path);
+            }
         }
+
         private void DrawSingleBorder(Graphics graphics)
         {
-            graphics.DrawArc(_pen, new Rectangle(0, 0, Radius, Radius), 180, 90);
-            graphics.DrawArc(_pen, new Rectangle(Width - Radius - 1, -1, Radius, Radius), 270, 90);
-            graphics.DrawArc(_pen, new Rectangle(Width - Radius - 1, Height - Radius - 1, Radius, Radius), 0, 90);
-            graphics.DrawArc(_pen, new Rectangle(0, Height - Radius - 1, Radius, Radius), 90, 90);
+            // Prevent drawing with invalid dimensions
+            if (Width <= 0 || Height <= 0 || Radius <= 0 || _pen == null)
+                return;
+
+            // Ensure radius doesn't exceed half of the smallest dimension
+            int actualRadius = Math.Min(Radius, Math.Min(Width / 2, Height / 2));
+
+            graphics.DrawArc(_pen, new Rectangle(0, 0, actualRadius, actualRadius), 180, 90);
+            graphics.DrawArc(_pen, new Rectangle(Width - actualRadius - 1, -1, actualRadius, actualRadius), 270, 90);
+            graphics.DrawArc(_pen, new Rectangle(Width - actualRadius - 1, Height - actualRadius - 1, actualRadius, actualRadius), 0, 90);
+            graphics.DrawArc(_pen, new Rectangle(0, Height - actualRadius - 1, actualRadius, actualRadius), 90, 90);
             graphics.DrawRectangle(_pen, 0.0f, 0.0f, (float)Width - 1.0f, (float)Height - 1.0f);
         }
-        private void Draw3DBorder(Graphics graphics)
-        {
-            DrawSingleBorder(graphics);
-        }
+
         private void DrawBorder(Graphics graphics)
         {
             DrawSingleBorder(graphics);
         }
+
         protected override void OnPaint(PaintEventArgs e)
         {
-            base.OnPaint(e);
-            ExtendedDraw(e);
-            DrawBorder(e.Graphics);
+            // Add safety check for design-time and runtime
+            if (Width > 0 && Height > 0)
+            {
+                base.OnPaint(e);
+                ExtendedDraw(e);
+                DrawBorder(e.Graphics);
+            }
+            else
+            {
+                base.OnPaint(e);
+            }
+        }
+
+        // Override to refresh on resize
+        protected override void OnResize(EventArgs eventargs)
+        {
+            base.OnResize(eventargs);
+            Invalidate();
         }
     }
 }

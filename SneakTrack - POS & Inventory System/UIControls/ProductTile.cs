@@ -13,7 +13,7 @@ namespace SneakTrack___POS___Inventory_System.UIControls
     public partial class ProductTile : UserControl
     {
         #region -> Fields
-        private Image tileImage = null;
+        private Image tileImage = Properties.Resources.sport_shoe;
         private string topText = "BRAND";
         private string bottomText = "Product Name";
         private string price = "P 000,000.00";
@@ -34,6 +34,7 @@ namespace SneakTrack___POS___Inventory_System.UIControls
             Price = price;
             TileImage = image;
             LowStock = lowStock;
+            checkLowStock();
             InitializeComponent();
         }
 
@@ -43,7 +44,7 @@ namespace SneakTrack___POS___Inventory_System.UIControls
             set 
             { 
                 lowStock = value;
-                pcbxLowStock.Visible = value;
+                checkLowStock();
             }
         }
 
@@ -101,16 +102,7 @@ namespace SneakTrack___POS___Inventory_System.UIControls
 
         private void checkLowStock()
         {
-            if (stock <= 1)
-            {
-                pcbxLowStock.Visible = true;
-                lowStock = true;
-            }
-            else
-            {
-                pcbxLowStock.Visible = false;
-                lowStock = false;
-            }
+            pcbxLowStock.Visible = lowStock;
         }
     }
 }

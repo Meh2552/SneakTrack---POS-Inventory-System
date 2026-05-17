@@ -13,7 +13,7 @@ namespace SneakTrack___POS___Inventory_System.UIControls
     public partial class ProductTile : UserControl
     {
         #region -> Fields
-        private Image tileImage = Properties.Resources.sport_shoe;
+        private Image tileImage = null;
         private string topText = "BRAND";
         private string bottomText = "Product Name";
         private string price = "P 000,000.00";
@@ -92,9 +92,16 @@ namespace SneakTrack___POS___Inventory_System.UIControls
             get { return tileImage; }
             set
             {
-                tileImage = value;
-
-                pictureBox1.Image = value;
+                if (value == null)
+                {
+                    tileImage = null;
+                    pictureBox1.Image = Properties.Resources.sport_shoe;
+                }
+                else
+                {
+                    tileImage = value;
+                    pictureBox1.Image = value;
+                }
             }
         }
 

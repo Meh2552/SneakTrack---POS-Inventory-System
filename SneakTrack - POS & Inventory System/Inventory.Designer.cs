@@ -31,18 +31,18 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Inventory));
             this.tblpnHeader = new System.Windows.Forms.TableLayoutPanel();
             this.pnHeader = new System.Windows.Forms.Panel();
-            this.lbTitleSH = new System.Windows.Forms.Label();
             this.tblpnSideInfo = new System.Windows.Forms.TableLayoutPanel();
             this.pnSideInfo = new System.Windows.Forms.Panel();
             this.tblpnBottomBar = new System.Windows.Forms.TableLayoutPanel();
             this.pnBottom = new System.Windows.Forms.Panel();
             this.tblpnSelectionInv = new System.Windows.Forms.TableLayoutPanel();
             this.pnSelectionHeader = new System.Windows.Forms.Panel();
+            this.lbTitleSH = new System.Windows.Forms.Label();
             this.tblpnTilesSH = new System.Windows.Forms.TableLayoutPanel();
-            this.tile1 = new SneakTrack___POS___Inventory_System.UIControls.Tile();
-            this.tile2 = new SneakTrack___POS___Inventory_System.UIControls.Tile();
+            this.tlTotalStockSH = new SneakTrack___POS___Inventory_System.UIControls.Tile();
+            this.tlProductListedSH = new SneakTrack___POS___Inventory_System.UIControls.Tile();
+            this.tlTSVSH = new SneakTrack___POS___Inventory_System.UIControls.Tile();
             this.tblpnHeader.SuspendLayout();
-            this.pnHeader.SuspendLayout();
             this.tblpnSideInfo.SuspendLayout();
             this.tblpnBottomBar.SuspendLayout();
             this.tblpnSelectionInv.SuspendLayout();
@@ -69,25 +69,12 @@
             // pnHeader
             // 
             this.pnHeader.BackColor = System.Drawing.Color.Black;
-            this.pnHeader.Controls.Add(this.lbTitleSH);
             this.pnHeader.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnHeader.Location = new System.Drawing.Point(0, 0);
             this.pnHeader.Margin = new System.Windows.Forms.Padding(0);
             this.pnHeader.Name = "pnHeader";
             this.pnHeader.Size = new System.Drawing.Size(920, 60);
             this.pnHeader.TabIndex = 0;
-            // 
-            // lbTitleSH
-            // 
-            this.lbTitleSH.AutoSize = true;
-            this.lbTitleSH.BackColor = System.Drawing.Color.Transparent;
-            this.lbTitleSH.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTitleSH.ForeColor = System.Drawing.Color.White;
-            this.lbTitleSH.Location = new System.Drawing.Point(13, 15);
-            this.lbTitleSH.Name = "lbTitleSH";
-            this.lbTitleSH.Size = new System.Drawing.Size(271, 32);
-            this.lbTitleSH.TabIndex = 0;
-            this.lbTitleSH.Text = "Inventory Management";
             // 
             // tblpnSideInfo
             // 
@@ -152,76 +139,111 @@
             this.tblpnSelectionInv.Margin = new System.Windows.Forms.Padding(0);
             this.tblpnSelectionInv.Name = "tblpnSelectionInv";
             this.tblpnSelectionInv.RowCount = 2;
-            this.tblpnSelectionInv.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 229F));
+            this.tblpnSelectionInv.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 247F));
             this.tblpnSelectionInv.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblpnSelectionInv.Size = new System.Drawing.Size(670, 568);
             this.tblpnSelectionInv.TabIndex = 1;
             // 
             // pnSelectionHeader
             // 
-            this.pnSelectionHeader.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.pnSelectionHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(35)))), ((int)(((byte)(37)))));
+            this.pnSelectionHeader.Controls.Add(this.lbTitleSH);
             this.pnSelectionHeader.Controls.Add(this.tblpnTilesSH);
+            this.pnSelectionHeader.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnSelectionHeader.Location = new System.Drawing.Point(0, 0);
             this.pnSelectionHeader.Margin = new System.Windows.Forms.Padding(0);
             this.pnSelectionHeader.Name = "pnSelectionHeader";
-            this.pnSelectionHeader.Size = new System.Drawing.Size(670, 229);
+            this.pnSelectionHeader.Size = new System.Drawing.Size(670, 247);
             this.pnSelectionHeader.TabIndex = 0;
+            // 
+            // lbTitleSH
+            // 
+            this.lbTitleSH.AutoSize = true;
+            this.lbTitleSH.BackColor = System.Drawing.Color.Transparent;
+            this.lbTitleSH.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTitleSH.ForeColor = System.Drawing.Color.White;
+            this.lbTitleSH.Location = new System.Drawing.Point(16, 13);
+            this.lbTitleSH.Name = "lbTitleSH";
+            this.lbTitleSH.Size = new System.Drawing.Size(271, 32);
+            this.lbTitleSH.TabIndex = 0;
+            this.lbTitleSH.Text = "Inventory Management";
             // 
             // tblpnTilesSH
             // 
+            this.tblpnTilesSH.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tblpnTilesSH.ColumnCount = 5;
             this.tblpnTilesSH.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tblpnTilesSH.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
             this.tblpnTilesSH.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
             this.tblpnTilesSH.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
             this.tblpnTilesSH.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tblpnTilesSH.Controls.Add(this.tile1, 1, 0);
-            this.tblpnTilesSH.Controls.Add(this.tile2, 2, 0);
-            this.tblpnTilesSH.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblpnTilesSH.Location = new System.Drawing.Point(0, 0);
+            this.tblpnTilesSH.Controls.Add(this.tlTotalStockSH, 1, 0);
+            this.tblpnTilesSH.Controls.Add(this.tlProductListedSH, 2, 0);
+            this.tblpnTilesSH.Controls.Add(this.tlTSVSH, 3, 0);
+            this.tblpnTilesSH.Location = new System.Drawing.Point(0, 53);
             this.tblpnTilesSH.Margin = new System.Windows.Forms.Padding(0);
             this.tblpnTilesSH.Name = "tblpnTilesSH";
             this.tblpnTilesSH.RowCount = 1;
             this.tblpnTilesSH.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblpnTilesSH.Size = new System.Drawing.Size(670, 229);
+            this.tblpnTilesSH.Size = new System.Drawing.Size(670, 194);
             this.tblpnTilesSH.TabIndex = 6;
             // 
-            // tile1
+            // tlTotalStockSH
             // 
-            this.tile1.BackColor = System.Drawing.Color.Transparent;
-            this.tile1.BackColors = System.Drawing.Color.Silver;
-            this.tile1.BorderColor = System.Drawing.Color.Gray;
-            this.tile1.BottomText = "999999";
-            this.tile1.ForeColors = System.Drawing.Color.Black;
-            this.tile1.ImageSize = new System.Drawing.Size(32, 32);
-            this.tile1.Location = new System.Drawing.Point(23, 3);
-            this.tile1.Name = "tile1";
-            this.tile1.Radius = 20;
-            this.tile1.RowPercent = 50F;
-            this.tile1.Size = new System.Drawing.Size(204, 178);
-            this.tile1.TabIndex = 0;
-            this.tile1.Thickness = 2;
-            this.tile1.TileImage = ((System.Drawing.Image)(resources.GetObject("tile1.TileImage")));
-            this.tile1.TopText = "Total Stock";
+            this.tlTotalStockSH.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tlTotalStockSH.BackColor = System.Drawing.Color.Transparent;
+            this.tlTotalStockSH.BackColors = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
+            this.tlTotalStockSH.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
+            this.tlTotalStockSH.BottomText = "0";
+            this.tlTotalStockSH.ForeColors = System.Drawing.Color.Black;
+            this.tlTotalStockSH.ImageSize = new System.Drawing.Size(40, 40);
+            this.tlTotalStockSH.Location = new System.Drawing.Point(23, 18);
+            this.tlTotalStockSH.Name = "tlTotalStockSH";
+            this.tlTotalStockSH.Radius = 20;
+            this.tlTotalStockSH.RowPercent = 55F;
+            this.tlTotalStockSH.Size = new System.Drawing.Size(204, 157);
+            this.tlTotalStockSH.TabIndex = 0;
+            this.tlTotalStockSH.Thickness = 2;
+            this.tlTotalStockSH.TileImage = ((System.Drawing.Image)(resources.GetObject("tlTotalStockSH.TileImage")));
+            this.tlTotalStockSH.TopText = "Total Stock";
             // 
-            // tile2
+            // tlProductListedSH
             // 
-            this.tile2.BackColor = System.Drawing.Color.Transparent;
-            this.tile2.BackColors = System.Drawing.Color.Black;
-            this.tile2.BorderColor = System.Drawing.Color.Red;
-            this.tile2.BottomText = "wowzers";
-            this.tile2.ForeColors = System.Drawing.Color.White;
-            this.tile2.ImageSize = new System.Drawing.Size(62, 62);
-            this.tile2.Location = new System.Drawing.Point(233, 3);
-            this.tile2.Name = "tile2";
-            this.tile2.Radius = 20;
-            this.tile2.RowPercent = 50F;
-            this.tile2.Size = new System.Drawing.Size(188, 194);
-            this.tile2.TabIndex = 1;
-            this.tile2.Thickness = 2;
-            this.tile2.TileImage = global::SneakTrack___POS___Inventory_System.Properties.Resources.user;
-            this.tile2.TopText = "wowie";
+            this.tlProductListedSH.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tlProductListedSH.BackColor = System.Drawing.Color.Transparent;
+            this.tlProductListedSH.BackColors = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
+            this.tlProductListedSH.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
+            this.tlProductListedSH.BottomText = "0";
+            this.tlProductListedSH.ForeColors = System.Drawing.Color.Black;
+            this.tlProductListedSH.ImageSize = new System.Drawing.Size(40, 40);
+            this.tlProductListedSH.Location = new System.Drawing.Point(233, 18);
+            this.tlProductListedSH.Name = "tlProductListedSH";
+            this.tlProductListedSH.Radius = 20;
+            this.tlProductListedSH.RowPercent = 55F;
+            this.tlProductListedSH.Size = new System.Drawing.Size(204, 157);
+            this.tlProductListedSH.TabIndex = 1;
+            this.tlProductListedSH.Thickness = 2;
+            this.tlProductListedSH.TileImage = ((System.Drawing.Image)(resources.GetObject("tlProductListedSH.TileImage")));
+            this.tlProductListedSH.TopText = "Products Listed";
+            // 
+            // tlTSVSH
+            // 
+            this.tlTSVSH.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tlTSVSH.BackColor = System.Drawing.Color.Transparent;
+            this.tlTSVSH.BackColors = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
+            this.tlTSVSH.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
+            this.tlTSVSH.BottomText = "0";
+            this.tlTSVSH.ForeColors = System.Drawing.Color.Black;
+            this.tlTSVSH.ImageSize = new System.Drawing.Size(40, 40);
+            this.tlTSVSH.Location = new System.Drawing.Point(443, 18);
+            this.tlTSVSH.Name = "tlTSVSH";
+            this.tlTSVSH.Radius = 20;
+            this.tlTSVSH.RowPercent = 55F;
+            this.tlTSVSH.Size = new System.Drawing.Size(204, 157);
+            this.tlTSVSH.TabIndex = 2;
+            this.tlTSVSH.Thickness = 2;
+            this.tlTSVSH.TileImage = global::SneakTrack___POS___Inventory_System.Properties.Resources.wallet;
+            this.tlTSVSH.TopText = "Total Stock Value";
             // 
             // Inventory
             // 
@@ -232,12 +254,11 @@
             this.Name = "Inventory";
             this.Size = new System.Drawing.Size(920, 675);
             this.tblpnHeader.ResumeLayout(false);
-            this.pnHeader.ResumeLayout(false);
-            this.pnHeader.PerformLayout();
             this.tblpnSideInfo.ResumeLayout(false);
             this.tblpnBottomBar.ResumeLayout(false);
             this.tblpnSelectionInv.ResumeLayout(false);
             this.pnSelectionHeader.ResumeLayout(false);
+            this.pnSelectionHeader.PerformLayout();
             this.tblpnTilesSH.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -255,7 +276,8 @@
         private System.Windows.Forms.Panel pnSideInfo;
         private System.Windows.Forms.TableLayoutPanel tblpnBottomBar;
         private System.Windows.Forms.TableLayoutPanel tblpnTilesSH;
-        private UIControls.Tile tile1;
-        private UIControls.Tile tile2;
+        private UIControls.Tile tlTotalStockSH;
+        private UIControls.Tile tlProductListedSH;
+        private UIControls.Tile tlTSVSH;
     }
 }

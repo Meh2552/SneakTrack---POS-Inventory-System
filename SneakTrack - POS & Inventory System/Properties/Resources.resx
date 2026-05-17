@@ -118,23 +118,14 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="apps-add (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon\apps-add (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="logotransp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon\logotransp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="openeye" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon\openeye.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="original-62a62037f08d4ea86adca195e021131e" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\original-62a62037f08d4ea86adca195e021131e.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="685014915_956013527344190_1734367649017491867_n" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\685014915_956013527344190_1734367649017491867_n.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="hideeye" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon\hideeye.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="user" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon\user.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="7124408" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\7124408.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="shopping-cart" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon\shopping-cart.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -142,19 +133,34 @@
   <data name="burger-bar (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon\burger-bar (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="original-62a62037f08d4ea86adca195e021131e" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\original-62a62037f08d4ea86adca195e021131e.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="user" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon\user.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="logout5" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon\logout5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="hideeye" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon\hideeye.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="7124408" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\7124408.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="openeye" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon\openeye.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="discord-loading-sticker-discord-loading-loading-gif" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\discord-loading-sticker-discord-loading-loading-gif.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="inventory" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon\inventory.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="wallet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon\wallet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logout5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon\logout5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="apps-add (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon\apps-add (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="exclamation-mark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon\exclamation-mark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="685014915_956013527344190_1734367649017491867_n" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\685014915_956013527344190_1734367649017491867_n.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sport-shoe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon\sport-shoe.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

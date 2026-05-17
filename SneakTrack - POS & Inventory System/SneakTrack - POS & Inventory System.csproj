@@ -87,14 +87,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UIControls\RoundedPanel.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="UIControls\ProductItem.cs">
+    <Compile Include="UIControls\ProductTile.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UIControls\ProductItem.Designer.cs">
-      <DependentUpon>ProductItem.cs</DependentUpon>
+    <Compile Include="UIControls\ProductTile.Designer.cs">
+      <DependentUpon>ProductTile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIControls\RoundedPanel.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="UIControls\RoundedTxBx.cs">
       <SubType>UserControl</SubType>
@@ -149,8 +149,8 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="UIControls\ProductItem.resx">
-      <DependentUpon>ProductItem.cs</DependentUpon>
+    <EmbeddedResource Include="UIControls\ProductTile.resx">
+      <DependentUpon>ProductTile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UIControls\RoundedTxBx.resx">
       <DependentUpon>RoundedTxBx.cs</DependentUpon>
@@ -247,6 +247,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon\inventory.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon\dollar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon\wallet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon\exclamation-mark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon\sport-shoe.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

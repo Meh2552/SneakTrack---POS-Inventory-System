@@ -113,9 +113,9 @@ namespace SneakTrack___POS___Inventory_System.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap hideeye {
+        internal static System.Drawing.Bitmap exclamation_mark {
             get {
-                object obj = ResourceManager.GetObject("hideeye", resourceCulture);
+                object obj = ResourceManager.GetObject("exclamation-mark", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,9 +123,9 @@ namespace SneakTrack___POS___Inventory_System.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap inventory {
+        internal static System.Drawing.Bitmap hideeye {
             get {
-                object obj = ResourceManager.GetObject("inventory", resourceCulture);
+                object obj = ResourceManager.GetObject("hideeye", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -183,9 +183,29 @@ namespace SneakTrack___POS___Inventory_System.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap sport_shoe {
+            get {
+                object obj = ResourceManager.GetObject("sport-shoe", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap user {
             get {
                 object obj = ResourceManager.GetObject("user", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap wallet {
+            get {
+                object obj = ResourceManager.GetObject("wallet", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

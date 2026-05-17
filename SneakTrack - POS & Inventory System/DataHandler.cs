@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 
 namespace SneakTrack___POS___Inventory_System
 {
@@ -42,19 +45,31 @@ namespace SneakTrack___POS___Inventory_System
         string conString = @"Data Source =.; Initial Catalog = SneakTrackDB; Integrated Security = True; Encrypt = False;";
 
         // Returns a datatable of a table in the database.
-        public DataTable dataToTable(string table)
+        public DataTable dataToTable(string query)
         {
             try
             {
                 SqlConnection conn = new SqlConnection(conString);
                 conn.Open();
-                SqlCommand cmd = new SqlCommand(selectQuery(table), conn);
+                SqlCommand cmd = new SqlCommand(query, conn);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
                 conn.Close();
-                return dt;
+                
 
+                /* For testing */
+                foreach (DataRow row in dt.Rows)
+                {
+                    foreach (DataColumn col in dt.Columns)
+                    {
+                        Debug.Write(row[col] + "\t");
+                    }
+                    Debug.WriteLine("");
+                }
+                //*/
+
+                return dt;
             }
 
             catch (Exception e)
@@ -97,6 +112,62 @@ namespace SneakTrack___POS___Inventory_System
             }
 
             return new UserAuth.User(username, password, name, role, dateCreated);
+        }
+
+        // Used to get Products
+        public List<Product> getProducts(string query)
+        {
+
+            List<int> listed = new List<int>();
+            List<Product> products = new List<Product>();
+
+            DataTable dt = dataToTable(query);
+            foreach (DataRow dr in dt.Rows) {
+
+                int id = Convert.ToInt32(dr["product_id"]);
+                if (!products.Count.Equals(0) && listed.Contains(id))
+                {
+                    products.ElementAt(listed.IndexOf(id)).addVariant(new Variant(
+                        (double)dr["size"],
+                        dr["size_type"].ToString(),
+                        (int)dr["quantity"],
+                        dr["barcode"].ToString(),
+                        (char)(dr["gender"].ToString()[0]),
+                        (bool)dr["for_sale"],
+                        (decimal)dr["price"]
+                    ));
+                }
+
+                else
+                {
+                    Product p = new Product(
+                        (int)dr["product_id"],
+                        dr["product_name"].ToString(),
+                        dr["brand_name"].ToString(),
+                        (int)dr["brand_id"],
+                        dr["color_name"].ToString(),
+                        dr["description"].ToString(),
+                        dr["image"].ToString()
+                    );
+
+                    p.addVariant(new Variant(
+                        (double)dr["size"],
+                        dr["size_type"].ToString(),
+                        (int)dr["quantity"],
+                        dr["barcode"].ToString(),
+                        (char)(dr["gender"].ToString()[0]),
+                        (bool)dr["for_sale"],
+                        (decimal)dr["price"]
+                    ));
+
+                    listed.Add(id);
+                    products.Add(p);
+                }
+
+                
+            }
+
+            return products;
         }
 
     }

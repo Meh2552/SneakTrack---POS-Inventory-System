@@ -42,7 +42,6 @@
             this.tlTotalStockSH = new SneakTrack___POS___Inventory_System.UIControls.Tile();
             this.tlProductListedSH = new SneakTrack___POS___Inventory_System.UIControls.Tile();
             this.tlTSVSH = new SneakTrack___POS___Inventory_System.UIControls.Tile();
-            this.tblpnSelection = new System.Windows.Forms.TableLayoutPanel();
             this.tblpnHeader.SuspendLayout();
             this.tblpnSideInfo.SuspendLayout();
             this.tblpnBottomBar.SuspendLayout();
@@ -131,11 +130,11 @@
             // 
             // tblpnSelectionInv
             // 
+            this.tblpnSelectionInv.AutoScroll = true;
             this.tblpnSelectionInv.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.tblpnSelectionInv.ColumnCount = 1;
             this.tblpnSelectionInv.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblpnSelectionInv.Controls.Add(this.pnSelectionHeader, 0, 0);
-            this.tblpnSelectionInv.Controls.Add(this.tblpnSelection, 0, 1);
             this.tblpnSelectionInv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblpnSelectionInv.Location = new System.Drawing.Point(0, 0);
             this.tblpnSelectionInv.Margin = new System.Windows.Forms.Padding(0);
@@ -247,20 +246,6 @@
             this.tlTSVSH.TileImage = global::SneakTrack___POS___Inventory_System.Properties.Resources.wallet;
             this.tlTSVSH.TopText = "Total Stock Value";
             // 
-            // tblpnSelection
-            // 
-            this.tblpnSelection.AutoScroll = true;
-            this.tblpnSelection.ColumnCount = 1;
-            this.tblpnSelection.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblpnSelection.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblpnSelection.Location = new System.Drawing.Point(0, 247);
-            this.tblpnSelection.Margin = new System.Windows.Forms.Padding(0);
-            this.tblpnSelection.Name = "tblpnSelection";
-            this.tblpnSelection.RowCount = 1;
-            this.tblpnSelection.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblpnSelection.Size = new System.Drawing.Size(670, 321);
-            this.tblpnSelection.TabIndex = 1;
-            // 
             // Inventory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -295,6 +280,5 @@
         private UIControls.Tile tlTotalStockSH;
         private UIControls.Tile tlProductListedSH;
         private UIControls.Tile tlTSVSH;
-        private System.Windows.Forms.TableLayoutPanel tblpnSelection;
     }
 }

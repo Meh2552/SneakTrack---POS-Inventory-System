@@ -50,8 +50,7 @@ namespace SneakTrack___POS___Inventory_System
         {
 
             List<Product> prodList = dh.getProducts(query);
-            tblpnSelection.Controls.Clear();
-            tblpnSelection.RowStyles.Clear();
+            clearRows(0);
 
             int current = 0, count = 0;
             FlowLayoutPanel currentProd = new FlowLayoutPanel(); 
@@ -61,18 +60,40 @@ namespace SneakTrack___POS___Inventory_System
                 {
                     current = prod.BrandId;
                     //Debug.WriteLine("Brand: " + prod.BrandId + ", " + prod.Brand); TODO: remove
-                    tblpnSelection.RowStyles.Add(new RowStyle(SizeType.Absolute, 70F));
-                    tblpnSelection.Controls.Add(toLabel(prod.Brand));
+                    tblpnSelectionInv.RowStyles.Add(new RowStyle(SizeType.Absolute, 70F));
+                    tblpnSelectionInv.Controls.Add(toLabel(prod.Brand));
 
                     currentProd = productContainer();
-                    tblpnSelection.RowStyles.Add(new RowStyle(SizeType.Absolute, 500F));
-                    tblpnSelection.Controls.Add(currentProd);
+                    tblpnSelectionInv.RowStyles.Add(new RowStyle(SizeType.Absolute, 500F));
+                    tblpnSelectionInv.Controls.Add(currentProd);
                 }
 
                 Variant v = prod.Variants.ElementAt(0);
                 currentProd.Controls.Add(product(prod, v));
 
             }
+        }
+
+        private void clearRows(int afterRow)
+        {
+            tblpnSelectionInv.SuspendLayout();
+
+            for (int i = tblpnSelectionInv.Controls.Count - 1; i >= 0 ; i--)
+            {
+                Control control = tblpnSelectionInv.Controls[i];
+                if (tblpnSelectionInv.GetRow(control) != afterRow)
+                {
+                    tblpnSelectionInv.Controls.Remove(control);
+                    control.Dispose();
+                }
+            }
+
+            for (int i = tblpnSelectionInv.RowCount - 1; i >= afterRow; i--)
+            {
+                if (i != afterRow) tblpnSelectionInv.RowStyles.RemoveAt(i);
+            }
+
+            tblpnSelectionInv.ResumeLayout(true);
         }
 
         private Label toLabel(string brandName)
@@ -111,7 +132,7 @@ namespace SneakTrack___POS___Inventory_System
                 Price = "₱ " + v.Price,
                 TileImage = product.Image,
                 Margin = new Padding(4, 7, 4, 7),
-
+                Cursor = Cursors.Hand
             };
 
             return tile;

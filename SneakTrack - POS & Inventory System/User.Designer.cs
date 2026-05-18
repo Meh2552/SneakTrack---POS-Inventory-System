@@ -56,7 +56,7 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6.725469F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 93.27453F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 61F));
             this.tableLayoutPanel1.Controls.Add(this.panel1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 1, 1);
@@ -77,9 +77,9 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.btnAdd);
-            this.panel1.Location = new System.Drawing.Point(63, 3);
+            this.panel1.Location = new System.Drawing.Point(62, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(828, 51);
+            this.panel1.Size = new System.Drawing.Size(823, 51);
             this.panel1.TabIndex = 1;
             // 
             // label2
@@ -115,9 +115,9 @@
             this.panel2.Controls.Add(this.btnEdit);
             this.panel2.Controls.Add(this.btnDelete);
             this.panel2.Controls.Add(this.btnDisable);
-            this.panel2.Location = new System.Drawing.Point(63, 560);
+            this.panel2.Location = new System.Drawing.Point(62, 560);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(828, 52);
+            this.panel2.Size = new System.Drawing.Size(823, 52);
             this.panel2.TabIndex = 2;
             // 
             // btnEdit
@@ -156,9 +156,9 @@
             this.Column2,
             this.Column3,
             this.Column4});
-            this.dataGridView1.Location = new System.Drawing.Point(63, 60);
+            this.dataGridView1.Location = new System.Drawing.Point(62, 60);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(828, 494);
+            this.dataGridView1.Size = new System.Drawing.Size(823, 494);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -186,7 +186,7 @@
             // 
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pictureBox1.Image = global::SneakTrack___POS___Inventory_System.Properties.Resources._7124408;
-            this.pictureBox1.Location = new System.Drawing.Point(897, 3);
+            this.pictureBox1.Location = new System.Drawing.Point(891, 3);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(49, 51);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;

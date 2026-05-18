@@ -63,6 +63,26 @@ namespace SneakTrack___POS___Inventory_System.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _2079711_200 {
+            get {
+                object obj = ResourceManager.GetObject("2079711-200", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _213498_200 {
+            get {
+                object obj = ResourceManager.GetObject("213498-200", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _685014915_956013527344190_1734367649017491867_n {
             get {
                 object obj = ResourceManager.GetObject("685014915_956013527344190_1734367649017491867_n", resourceCulture);
@@ -133,6 +153,16 @@ namespace SneakTrack___POS___Inventory_System.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap kindpng_2719336 {
+            get {
+                object obj = ResourceManager.GetObject("kindpng_2719336", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap logotransp {
             get {
                 object obj = ResourceManager.GetObject("logotransp", resourceCulture);
@@ -166,6 +196,16 @@ namespace SneakTrack___POS___Inventory_System.Properties {
         internal static System.Drawing.Bitmap original_62a62037f08d4ea86adca195e021131e {
             get {
                 object obj = ResourceManager.GetObject("original-62a62037f08d4ea86adca195e021131e", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap product_box_icon_225732 {
+            get {
+                object obj = ResourceManager.GetObject("product_box_icon_225732", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -118,6 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="2079711-200" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\2079711-200.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="logotransp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon\logotransp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -133,17 +136,26 @@
   <data name="burger-bar (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon\burger-bar (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="product_box_icon_225732" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\product_box_icon_225732.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="user" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon\user.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="discord-loading-sticker-discord-loading-loading-gif" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\discord-loading-sticker-discord-loading-loading-gif.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="hideeye" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon\hideeye.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="sport-shoe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon\sport-shoe.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="openeye" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon\openeye.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="discord-loading-sticker-discord-loading-loading-gif" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\discord-loading-sticker-discord-loading-loading-gif.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="kindpng_2719336" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kindpng_2719336.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="wallet" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon\wallet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -160,7 +172,7 @@
   <data name="685014915_956013527344190_1734367649017491867_n" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\685014915_956013527344190_1734367649017491867_n.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="sport-shoe" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon\sport-shoe.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="213498-200" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\213498-200.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

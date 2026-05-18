@@ -21,15 +21,7 @@ namespace SneakTrack___POS___Inventory_System
         private Validator v;
         private WindowHandler wh;
         private DataHandler dh;
-
-        string filter = "";
-        string query = "SELECT * FROM Product " + 
-            "INNER JOIN Product_Variants " +
-            "ON Product.product_id = Product_Variants.product_id " +
-            "LEFT JOIN Size ON Product_Variants.variant_id = Size.variant_id " +
-            "LEFT JOIN Brand ON Product.brand_id = Brand.brand_id " +
-            "LEFT JOIN Color ON Product.color_id = Color.color_id "+
-            "ORDER BY Product.brand_id";
+        private Product selected;
 
         public Inventory()
         {
@@ -46,11 +38,11 @@ namespace SneakTrack___POS___Inventory_System
             loadProducts();
         }
     
-        public void loadProducts()
+        public void loadProducts() // TODO: make method accesible to Products
         {
 
-            List<Product> prodList = dh.getProducts(query);
-            clearRows(0);
+            List<Product> prodList = dh.toProducts(dh.ProductMasterList);
+            wh.clearRows(tblpnSelectionInv, 0);
 
             int current = 0, count = 0;
             FlowLayoutPanel currentProd = new FlowLayoutPanel(); 
@@ -69,31 +61,11 @@ namespace SneakTrack___POS___Inventory_System
                 }
 
                 Variant v = prod.Variants.ElementAt(0);
-                currentProd.Controls.Add(product(prod, v));
-
+                ProductTile pt = wh.toProductTile(prod, v);
+                pt.DoubleClick += new System.EventHandler(this.productTile_DoubleClick);
+                currentProd.Controls.Add(pt);
+                
             }
-        }
-
-        private void clearRows(int afterRow)
-        {
-            tblpnSelectionInv.SuspendLayout();
-
-            for (int i = tblpnSelectionInv.Controls.Count - 1; i >= 0 ; i--)
-            {
-                Control control = tblpnSelectionInv.Controls[i];
-                if (tblpnSelectionInv.GetRow(control) != afterRow)
-                {
-                    tblpnSelectionInv.Controls.Remove(control);
-                    control.Dispose();
-                }
-            }
-
-            for (int i = tblpnSelectionInv.RowCount - 1; i >= afterRow; i--)
-            {
-                if (i != afterRow) tblpnSelectionInv.RowStyles.RemoveAt(i);
-            }
-
-            tblpnSelectionInv.ResumeLayout(true);
         }
 
         private Label toLabel(string brandName)
@@ -123,21 +95,12 @@ namespace SneakTrack___POS___Inventory_System
             return flow;
         }
 
-        private ProductTile product(Product product, Variant v)
+        private void productTile_DoubleClick(object sender, EventArgs e)
         {
-            ProductTile tile = new ProductTile
-            {
-                TopText = product.Brand,
-                BottomText = product.Name,
-                Price = "₱ " + v.Price,
-                TileImage = product.Image,
-                Margin = new Padding(4, 7, 4, 7),
-                Cursor = Cursors.Hand
-            };
-
-            return tile;
+            ProductTile tile = sender as ProductTile;
+            System.Windows.Forms.MessageBox.Show("works");
+            Debug.WriteLine("wowie");
         }
-
     }
 
 }

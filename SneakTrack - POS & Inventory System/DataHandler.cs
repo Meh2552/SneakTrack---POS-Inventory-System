@@ -6,9 +6,11 @@ using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Documents;
 
 namespace SneakTrack___POS___Inventory_System
@@ -17,6 +19,7 @@ namespace SneakTrack___POS___Inventory_System
     {
         private MainSystem sys;
         private UserAuth ua;
+        private DataTable productMasterList;
 
         public DataHandler() { }
 
@@ -24,6 +27,7 @@ namespace SneakTrack___POS___Inventory_System
         {
             this.sys = system;
             this.ua = system.UA;
+            loadMasterList();
         }
 
         public string selectQuery(string table, string column, string condition)
@@ -44,6 +48,26 @@ namespace SneakTrack___POS___Inventory_System
         // idk sa database sya parang path nung server
         string conString = @"Data Source =.; Initial Catalog = SneakTrackDB; Integrated Security = True; Encrypt = False;";
 
+        // Gets all products (no sorting)
+        string prodInfoQuery = "SELECT * FROM Product " +
+            "INNER JOIN Product_Variants " +
+            "ON Product.product_id = Product_Variants.product_id " +
+            "LEFT JOIN Size ON Product_Variants.variant_id = Size.variant_id " +
+            "LEFT JOIN Brand ON Product.brand_id = Brand.brand_id " +
+            "LEFT JOIN Color ON Product.color_id = Color.color_id ";
+
+        public DataTable ProductMasterList
+        {
+            get { return this.productMasterList; }
+        }
+
+        private void loadMasterList()
+        {
+            string query = $"{prodInfoQuery} ORDER BY Product.brand_id";
+            this.productMasterList = dataToTable(query);
+        }
+
+
         // Returns a datatable of a table in the database.
         public DataTable dataToTable(string query)
         {
@@ -58,7 +82,7 @@ namespace SneakTrack___POS___Inventory_System
                 conn.Close();
                 
 
-                /* For testing */
+                /* For testing /
                 foreach (DataRow row in dt.Rows)
                 {
                     foreach (DataColumn col in dt.Columns)
@@ -67,7 +91,7 @@ namespace SneakTrack___POS___Inventory_System
                     }
                     Debug.WriteLine("");
                 }
-                //*/
+                */
 
                 return dt;
             }
@@ -115,14 +139,13 @@ namespace SneakTrack___POS___Inventory_System
         }
 
         // Used to get Products
-        public List<Product> getProducts(string query)
+        public List<Product> toProducts(DataTable table)
         {
 
             List<int> listed = new List<int>();
             List<Product> products = new List<Product>();
 
-            DataTable dt = dataToTable(query);
-            foreach (DataRow dr in dt.Rows) {
+            foreach (DataRow dr in table.Rows) {
 
                 int id = Convert.ToInt32(dr["product_id"]);
                 if (!products.Count.Equals(0) && listed.Contains(id))

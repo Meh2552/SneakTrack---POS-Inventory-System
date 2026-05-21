@@ -66,17 +66,20 @@ namespace SneakTrack___POS___Inventory_System
             this.val = new Validator();
             this.dh = new DataHandler(this);
             this.ua = new UserAuth(this);
+            this.pc = new ProductController(this);
         }
 
         private WindowHandler wh;
         private Validator val;
         private DataHandler dh;
         private UserAuth ua;
+        private ProductController pc;
 
         public WindowHandler WH { get { return this.wh; } }
         public Validator VAL { get { return this.val; } }
         public DataHandler DH { get { return this.dh; } }
         public UserAuth UA { get { return this.ua; } }
+        public ProductController PC { get { return this.pc; } }
     }
     
 

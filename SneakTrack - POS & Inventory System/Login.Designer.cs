@@ -290,7 +290,7 @@
             this.btnHidePass.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnHidePass.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btnHidePass.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHidePass.Image = global::SneakTrack___POS___Inventory_System.Properties.Resources.openeye;
+            this.btnHidePass.Image = global::SneakTrack___POS___Inventory_System.Properties.Resources.hideeye;
             this.btnHidePass.Location = new System.Drawing.Point(322, 4);
             this.btnHidePass.Margin = new System.Windows.Forms.Padding(0);
             this.btnHidePass.Name = "btnHidePass";
@@ -317,7 +317,7 @@
             this.txbxPassword.Multiline = false;
             this.txbxPassword.Name = "txbxPassword";
             this.txbxPassword.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txbxPassword.PasswordChar = false;
+            this.txbxPassword.PasswordChar = true;
             this.txbxPassword.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txbxPassword.PlaceholderText = "Password";
             this.txbxPassword.Size = new System.Drawing.Size(350, 35);

@@ -82,16 +82,19 @@ namespace SneakTrack___POS___Inventory_System
          *    Returns a ProductTile object based on the product and variant parameters
         */
 
-        public ProductTile toProductTile(Product product, Variant v)
+        public ProductTile toProductTile(Product product)
         {
             ProductTile tile = new ProductTile
             {
+                ProductID = product.ProdId,
                 TopText = product.Brand,
-                BottomText = product.Name,
-                Price = "₱ " + v.Price,
+                BottomText = product.DisplayName(),
+                Price = "₱ " + product.displayPrice(),
                 TileImage = product.Image,
                 Margin = new Padding(4, 7, 4, 7),
-                Cursor = Cursors.Hand
+                Cursor = Cursors.Hand,
+                ProductObj = product
+
             };
 
             return tile;
@@ -100,6 +103,7 @@ namespace SneakTrack___POS___Inventory_System
     }
 
     // Optional mabye remove nalang later on lmao
+    /*
     public class Pallete
     {
         public static Color accent = Color.FromArgb(254, 182, 66);
@@ -107,4 +111,5 @@ namespace SneakTrack___POS___Inventory_System
         public static Color black = Color.Black;
         public static Color white = Color.White;
     }
+    */
 }

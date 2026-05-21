@@ -21,6 +21,7 @@ namespace SneakTrack___POS___Inventory_System
         private Validator v;
         private WindowHandler wh;
         private DataHandler dh;
+        private ProductController pc;
         private Product selected;
 
         public Inventory()
@@ -35,71 +36,40 @@ namespace SneakTrack___POS___Inventory_System
             this.v = sys.VAL;
             this.wh = sys.WH;
             this.dh = sys.DH;
-            loadProducts();
+            this.pc = sys.PC;
+            loadSelection();
         }
-    
-        public void loadProducts() // TODO: make method accesible to Products
+ 
+        private void loadSelection()
         {
-
-            List<Product> prodList = dh.toProducts(dh.ProductMasterList);
-            wh.clearRows(tblpnSelectionInv, 0);
-
-            int current = 0, count = 0;
-            FlowLayoutPanel currentProd = new FlowLayoutPanel(); 
-            foreach (Product prod in prodList)
+            List<ProductTile> ptlist = pc.loadProducts(tblpnSelectionInv, true);
+            foreach (ProductTile tile in ptlist)
             {
-                if (prod.BrandId != current)
-                {
-                    current = prod.BrandId;
-                    //Debug.WriteLine("Brand: " + prod.BrandId + ", " + prod.Brand); TODO: remove
-                    tblpnSelectionInv.RowStyles.Add(new RowStyle(SizeType.Absolute, 70F));
-                    tblpnSelectionInv.Controls.Add(toLabel(prod.Brand));
-
-                    currentProd = productContainer();
-                    tblpnSelectionInv.RowStyles.Add(new RowStyle(SizeType.Absolute, 500F));
-                    tblpnSelectionInv.Controls.Add(currentProd);
-                }
-
-                Variant v = prod.Variants.ElementAt(0);
-                ProductTile pt = wh.toProductTile(prod, v);
-                pt.DoubleClick += new System.EventHandler(this.productTile_DoubleClick);
-                currentProd.Controls.Add(pt);
-                
+                tile.Click += new System.EventHandler(this.productTile_Click);
             }
         }
 
-        private Label toLabel(string brandName)
+        private void loadSideInfo(Product product)
         {
-            Label label = new Label
-            {
-                Text = brandName.ToUpper(),
-                Anchor = AnchorStyles.Bottom | AnchorStyles.Left,
-                Margin = new Padding(30, 0, 0, 0),
-                Font = new Font("Yu Gothic UI", 18F, System.Drawing.FontStyle.Bold),
-                AutoSize = true,
-                TextAlign = ContentAlignment.MiddleLeft
-            };
-        
-            return label;
+            tblpnSideInfo.ColumnStyles[1].Width = 250;
+            txbxProductInfoSI.Text = pc.toProdInfo(product);
+            pcbxSideInfo.Image = product.Image;
+            pcbxSideInfo.BackColor = System.Drawing.Color.White;
         }
 
-        private FlowLayoutPanel productContainer()
-        {
-            FlowLayoutPanel flow = new FlowLayoutPanel
-            {
-                Anchor = AnchorStyles.Bottom | AnchorStyles.Top,
-                AutoSize = true,
-                Margin = new Padding(0, 0, 0, 0)
-            };
-
-            return flow;
-        }
-
-        private void productTile_DoubleClick(object sender, EventArgs e)
+        private void productTile_Click(object sender, EventArgs e)
         {
             ProductTile tile = sender as ProductTile;
-            System.Windows.Forms.MessageBox.Show("works");
-            Debug.WriteLine("wowie");
+            if (tile == null) return;
+
+            Product p = tile.ProductObj;
+            if (p == null) {
+                System.Windows.Forms.MessageBox.Show("Error: Product not found;");
+                return;
+            }
+
+            selected = p;
+            loadSideInfo(selected);
         }
     }
 

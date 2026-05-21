@@ -19,7 +19,8 @@ namespace SneakTrack___POS___Inventory_System.UIControls
         private string topText = "BRAND";
         private string bottomText = "Product Name";
         private string price = "P 000,000.00";
-        private int prod_id;
+        private Product productObj;
+        private int prod_id; // mabye remove depending on changes
 
         private bool lowStock = false;
         #endregion
@@ -28,7 +29,7 @@ namespace SneakTrack___POS___Inventory_System.UIControls
         {
             InitializeComponent();
 
-            checkLowStock();
+            loadControls();
         }
 
         public ProductTile(string brand, string name, string price, Image image, bool lowStock, int prod_id)
@@ -42,9 +43,21 @@ namespace SneakTrack___POS___Inventory_System.UIControls
             LowStock = lowStock;
             ProductID = prod_id;
 
-            checkLowStock();
-            this.Click += (s, e) => Debug.WriteLine("TILE CLICKED"); // test
-            forwardDoubleClicks(this);
+            loadControls();
+        }
+
+        public ProductTile(Product pr)
+        {
+            InitializeComponent();
+
+            TopText = pr.Brand;
+            BottomText = pr.Name;
+            Price = pr.Variants.First().Price.ToString();
+            TileImage = pr.Image;
+            LowStock = checkLowStock(pr);
+            ProductID = pr.ProdId;
+
+            loadControls();
         }
 
         public int ProductID
@@ -53,23 +66,35 @@ namespace SneakTrack___POS___Inventory_System.UIControls
             set { prod_id = value; }
         }
 
+        public Product ProductObj
+        {
+            get { return productObj; }
+            set { productObj = value; }
+        }
+
         public bool LowStock
         {
             get { return lowStock; }
             set 
             { 
                 lowStock = value;
-                checkLowStock();
+                setLowStock();
             }
         }
 
-        private void forwardDoubleClicks(Control parent)
+        private void forwardClicks(Control parent)
         {
-            foreach (Control c in Controls)
+            foreach (Control c in parent.Controls)
             {
-                c.DoubleClick += (s, e) => OnDoubleClick(e);
-                forwardDoubleClicks(c);
+                c.Click += (s, e) => this.OnClick(e);
+                forwardClicks(c);
             }
+        }
+
+        private void loadControls()
+        {
+            forwardClicks(this);
+            setLowStock();
         }
 
         #region -> Properties
@@ -114,26 +139,26 @@ namespace SneakTrack___POS___Inventory_System.UIControls
         public Image TileImage
         {
             get { return tileImage; }
-            set
-            {
-                if (value == null)
-                {
-                    tileImage = null;
-                    pictureBox1.Image = Properties.Resources.sport_shoe;
-                }
-                else
-                {
-                    tileImage = value;
-                    pictureBox1.Image = value;
-                }
-            }
+            set { this.tileImage = value;  }
         }
 
         #endregion
 
-        private void checkLowStock()
+        private void setLowStock()
         {
             pcbxLowStock.Visible = lowStock;
+        }
+
+        private bool checkLowStock(Product p)
+        {
+            if (p == null || p.Variants == null) return false;
+
+            foreach (Variant v in p.Variants)
+            {
+                if (v.Quantity <= 3) return true;
+            }
+
+            return false;
         }
     }
 }

@@ -150,38 +150,16 @@ namespace SneakTrack___POS___Inventory_System
                 int id = Convert.ToInt32(dr["product_id"]);
                 if (!products.Count.Equals(0) && listed.Contains(id))
                 {
-                    products.ElementAt(listed.IndexOf(id)).addVariant(new Variant(
-                        (double)dr["size"],
-                        dr["size_type"].ToString(),
-                        (int)dr["quantity"],
-                        dr["barcode"].ToString(),
-                        (char)(dr["gender"].ToString()[0]),
-                        (bool)dr["for_sale"],
-                        (decimal)dr["price"]
-                    ));
+                    products.ElementAt(listed.IndexOf(id)).addVariant
+                    (
+                        rowToVariant(dr)
+                    );
                 }
 
                 else
                 {
-                    Product p = new Product(
-                        (int)dr["product_id"],
-                        dr["product_name"].ToString(),
-                        dr["brand_name"].ToString(),
-                        (int)dr["brand_id"],
-                        dr["color_name"].ToString(),
-                        dr["description"].ToString(),
-                        dr["image"].ToString()
-                    );
-
-                    p.addVariant(new Variant(
-                        (double)dr["size"],
-                        dr["size_type"].ToString(),
-                        (int)dr["quantity"],
-                        dr["barcode"].ToString(),
-                        (char)(dr["gender"].ToString()[0]),
-                        (bool)dr["for_sale"],
-                        (decimal)dr["price"]
-                    ));
+                    Product p = rowToProduct(dr);
+                    p.addVariant(rowToVariant(dr));
 
                     listed.Add(id);
                     products.Add(p);
@@ -193,5 +171,38 @@ namespace SneakTrack___POS___Inventory_System
             return products;
         }
 
+        public Product rowToProduct(DataRow dr)
+        {
+            Product p = new Product
+            (
+                (int)dr["product_id"],
+                dr["product_name"].ToString(),
+                dr["brand_name"].ToString(),
+                (int)dr["brand_id"],
+                dr["color_name"].ToString(),
+                dr["description"].ToString(),
+                dr["image"].ToString()
+            );
+
+            return p;
+        }
+
+        public Variant rowToVariant(DataRow dr)
+        {
+            Variant v = new Variant
+            (
+                (double)dr["size"],
+                dr["size_type"].ToString(),
+                (int)dr["quantity"],
+                dr["barcode"].ToString(),
+                (char)(dr["gender"].ToString()[0]),
+                (bool)dr["for_sale"],
+                (decimal)dr["price"],
+                (int)dr["variant_id"],
+                (int)dr["size_id"]
+            );
+
+            return v;
+        }
     }
 }

@@ -113,6 +113,26 @@ namespace SneakTrack___POS___Inventory_System.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap arrow_circle_left {
+            get {
+                object obj = ResourceManager.GetObject("arrow-circle-left", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap arrow_circle_right {
+            get {
+                object obj = ResourceManager.GetObject("arrow-circle-right", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap burger_bar__1_ {
             get {
                 object obj = ResourceManager.GetObject("burger-bar (1)", resourceCulture);
@@ -126,6 +146,16 @@ namespace SneakTrack___POS___Inventory_System.Properties {
         internal static System.Drawing.Bitmap discord_loading_sticker_discord_loading_loading_gif {
             get {
                 object obj = ResourceManager.GetObject("discord-loading-sticker-discord-loading-loading-gif", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap edit {
+            get {
+                object obj = ResourceManager.GetObject("edit", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -43,7 +43,7 @@ namespace SneakTrack___POS___Inventory_System
             {
                 Text = brandName.ToUpper(),
                 Anchor = AnchorStyles.Bottom | AnchorStyles.Left,
-                Margin = new Padding(30, 0, 0, 0),
+                Margin = new Padding(30, 15, 0, 15),
                 Font = new Font("Yu Gothic UI", 18F, System.Drawing.FontStyle.Bold),
                 AutoSize = true,
                 TextAlign = ContentAlignment.MiddleLeft
@@ -56,9 +56,9 @@ namespace SneakTrack___POS___Inventory_System
         {
             FlowLayoutPanel flow = new FlowLayoutPanel
             {
-                Anchor = AnchorStyles.Bottom | AnchorStyles.Top,
+                Anchor = AnchorStyles.Bottom | AnchorStyles.Top | AnchorStyles.Left,
                 AutoSize = true,
-                Margin = new Padding(0, 0, 0, 0)
+                Margin = new Padding(35, 0, 0, 0)
             };
 
             return flow;
@@ -83,13 +83,15 @@ namespace SneakTrack___POS___Inventory_System
             {
                 if (prod.BrandId != current)
                 {
+                    int labelRow = tablePanel.RowCount++;
                     current = prod.BrandId;
-                    tablePanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 70F));
-                    tablePanel.Controls.Add(brandToLabel(prod.Brand));
+                    tablePanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 100F));
+                    tablePanel.Controls.Add(brandToLabel(prod.Brand), 0, labelRow);
 
+                    int flowRow = tablePanel.RowCount++;
                     currentProd = productContainer();
-                    tablePanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 500F)); // TODO: adjust values
-                    tablePanel.Controls.Add(currentProd);
+                    tablePanel.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+                    tablePanel.Controls.Add(currentProd, 0, flowRow);
                 }
 
                 ProductTile pt = wh.toProductTile(prod);

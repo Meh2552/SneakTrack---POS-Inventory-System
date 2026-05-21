@@ -71,6 +71,37 @@ namespace SneakTrack___POS___Inventory_System
             selected = p;
             loadSideInfo(selected);
         }
+
+        private void txbxBarcodeQuan_TextChanged(object sender, EventArgs e)
+        {
+            double quan = v.readDouble(txbxBarcodeQuan.Text);
+
+            if (quan == -1)
+            {
+                System.Windows.Forms.MessageBox.Show("Error: Invalid quantity input.");
+            }
+
+            else if (quan <= 0)
+            {
+                System.Windows.Forms.MessageBox.Show("Quantity cannot be negative or zero.");
+            }
+
+            else if (quan > 99)
+            {
+                System.Windows.Forms.MessageBox.Show("Quantity cannot exceed 99.");
+                txbxBarcodeQuan.Text = "99";
+            }
+        }
+
+        private void btnQuanDecrease_Click(object sender, EventArgs e)
+        {
+            txbxBarcodeQuan.Text = (v.readDouble(txbxBarcodeQuan.Text) - 1).ToString();
+        }
+
+        private void btnQuanIncrease_Click(object sender, EventArgs e)
+        {
+            txbxBarcodeQuan.Text = (v.readDouble(txbxBarcodeQuan.Text) + 1).ToString();
+        }
     }
 
 }

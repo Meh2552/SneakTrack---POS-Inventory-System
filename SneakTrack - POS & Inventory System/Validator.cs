@@ -34,12 +34,12 @@ namespace SneakTrack___POS___Inventory_System
             }
         }
 
-        public int readInt(object input)
+        public int readInt(String input)
         {
             int result;
             try
             {
-                result = (int)input;
+                result = Convert.ToInt32(input);
                 return result;
             }
             catch (Exception e)
@@ -48,12 +48,12 @@ namespace SneakTrack___POS___Inventory_System
             }
         }
 
-        public double readDouble(object input)
+        public double readDouble(string input)
         {
             double result;
             try
             {
-                result = (double)input;
+                result = Convert.ToDouble(input);
                 return result;
             }
             catch (Exception e)

@@ -139,11 +139,20 @@
   <data name="product_box_icon_225732" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\product_box_icon_225732.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="685014915_956013527344190_1734367649017491867_n" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\685014915_956013527344190_1734367649017491867_n.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="213498-200" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\213498-200.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="user" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon\user.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="discord-loading-sticker-discord-loading-loading-gif" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\discord-loading-sticker-discord-loading-loading-gif.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="arrow-circle-left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon\arrow-circle-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon\edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="hideeye" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon\hideeye.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -169,10 +178,10 @@
   <data name="exclamation-mark" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon\exclamation-mark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="685014915_956013527344190_1734367649017491867_n" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\685014915_956013527344190_1734367649017491867_n.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="discord-loading-sticker-discord-loading-loading-gif" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\discord-loading-sticker-discord-loading-loading-gif.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="213498-200" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\213498-200.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="arrow-circle-right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon\arrow-circle-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

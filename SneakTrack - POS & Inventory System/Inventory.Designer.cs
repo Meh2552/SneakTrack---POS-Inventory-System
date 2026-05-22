@@ -37,12 +37,9 @@
             this.pnBottom = new System.Windows.Forms.Panel();
             this.tblpnBottom = new System.Windows.Forms.TableLayoutPanel();
             this.pnBottomButtons = new System.Windows.Forms.Panel();
-            this.btnNewProduct = new System.Windows.Forms.Button();
             this.pnBarcodeControls = new System.Windows.Forms.Panel();
             this.chbxAutoAddInp = new System.Windows.Forms.CheckBox();
             this.pnBarcodeQuan = new System.Windows.Forms.Panel();
-            this.btnQuanIncrease = new System.Windows.Forms.Button();
-            this.btnQuanDecrease = new System.Windows.Forms.Button();
             this.txbxBarcodeQuan = new System.Windows.Forms.TextBox();
             this.btnBarcodeAdd = new System.Windows.Forms.Button();
             this.tblpnSelectionInv = new System.Windows.Forms.TableLayoutPanel();
@@ -52,13 +49,18 @@
             this.tblpnSideInfoLayout = new System.Windows.Forms.TableLayoutPanel();
             this.pnSideInfo = new System.Windows.Forms.Panel();
             this.txbxProductInfoSI = new System.Windows.Forms.TextBox();
+            this.btnCloseSideInfo = new System.Windows.Forms.Button();
             this.lbCaptionSI = new System.Windows.Forms.Label();
-            this.pcbxSideInfo = new System.Windows.Forms.PictureBox();
             this.pnSideInfoButtons = new System.Windows.Forms.Panel();
             this.btnManageStock = new System.Windows.Forms.Button();
             this.btnDeleteProduct = new System.Windows.Forms.Button();
             this.btnEditProduct = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.btnNewProduct = new System.Windows.Forms.Button();
+            this.btnQuanIncrease = new System.Windows.Forms.Button();
+            this.btnQuanDecrease = new System.Windows.Forms.Button();
+            this.pcbxSideInfo = new System.Windows.Forms.PictureBox();
             this.txbxSearch = new SneakTrack___POS___Inventory_System.UIControls.RoundedTxBx();
             this.txbxBarcode = new SneakTrack___POS___Inventory_System.UIControls.RoundedTxBx();
             this.tlTotalStockSH = new SneakTrack___POS___Inventory_System.UIControls.Tile();
@@ -78,8 +80,8 @@
             this.tblpnTilesSH.SuspendLayout();
             this.tblpnSideInfoLayout.SuspendLayout();
             this.pnSideInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbxSideInfo)).BeginInit();
             this.pnSideInfoButtons.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbxSideInfo)).BeginInit();
             this.SuspendLayout();
             // 
             // tblpnHeader
@@ -101,6 +103,7 @@
             // pnHeader
             // 
             this.pnHeader.BackColor = System.Drawing.Color.Black;
+            this.pnHeader.Controls.Add(this.btnSearch);
             this.pnHeader.Controls.Add(this.txbxSearch);
             this.pnHeader.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnHeader.Location = new System.Drawing.Point(0, 0);
@@ -156,7 +159,7 @@
             // 
             this.tblpnBottom.ColumnCount = 4;
             this.tblpnBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblpnBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 183F));
+            this.tblpnBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 209F));
             this.tblpnBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 108F));
             this.tblpnBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tblpnBottom.Controls.Add(this.pnBottomButtons, 0, 0);
@@ -169,6 +172,7 @@
             this.tblpnBottom.Name = "tblpnBottom";
             this.tblpnBottom.RowCount = 1;
             this.tblpnBottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblpnBottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tblpnBottom.Size = new System.Drawing.Size(670, 60);
             this.tblpnBottom.TabIndex = 1;
             // 
@@ -179,27 +183,8 @@
             this.pnBottomButtons.Location = new System.Drawing.Point(0, 0);
             this.pnBottomButtons.Margin = new System.Windows.Forms.Padding(0);
             this.pnBottomButtons.Name = "pnBottomButtons";
-            this.pnBottomButtons.Size = new System.Drawing.Size(259, 60);
+            this.pnBottomButtons.Size = new System.Drawing.Size(233, 60);
             this.pnBottomButtons.TabIndex = 8;
-            // 
-            // btnNewProduct
-            // 
-            this.btnNewProduct.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnNewProduct.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
-            this.btnNewProduct.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnNewProduct.FlatAppearance.BorderSize = 0;
-            this.btnNewProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNewProduct.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNewProduct.Image = global::SneakTrack___POS___Inventory_System.Properties.Resources.edit;
-            this.btnNewProduct.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnNewProduct.Location = new System.Drawing.Point(22, 14);
-            this.btnNewProduct.Name = "btnNewProduct";
-            this.btnNewProduct.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnNewProduct.Size = new System.Drawing.Size(138, 34);
-            this.btnNewProduct.TabIndex = 5;
-            this.btnNewProduct.Text = "      New Product";
-            this.btnNewProduct.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnNewProduct.UseVisualStyleBackColor = false;
             // 
             // pnBarcodeControls
             // 
@@ -230,7 +215,7 @@
             // pnBarcodeQuan
             // 
             this.pnBarcodeQuan.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.pnBarcodeQuan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
+            this.pnBarcodeQuan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.pnBarcodeQuan.Controls.Add(this.txbxBarcodeQuan);
             this.pnBarcodeQuan.Controls.Add(this.btnQuanIncrease);
             this.pnBarcodeQuan.Controls.Add(this.btnQuanDecrease);
@@ -239,38 +224,6 @@
             this.pnBarcodeQuan.Name = "pnBarcodeQuan";
             this.pnBarcodeQuan.Size = new System.Drawing.Size(100, 27);
             this.pnBarcodeQuan.TabIndex = 1;
-            // 
-            // btnQuanIncrease
-            // 
-            this.btnQuanIncrease.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnQuanIncrease.BackColor = System.Drawing.Color.Transparent;
-            this.btnQuanIncrease.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnQuanIncrease.FlatAppearance.BorderSize = 0;
-            this.btnQuanIncrease.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnQuanIncrease.Image = global::SneakTrack___POS___Inventory_System.Properties.Resources.arrow_circle_right;
-            this.btnQuanIncrease.Location = new System.Drawing.Point(70, -5);
-            this.btnQuanIncrease.Margin = new System.Windows.Forms.Padding(0);
-            this.btnQuanIncrease.Name = "btnQuanIncrease";
-            this.btnQuanIncrease.Size = new System.Drawing.Size(30, 37);
-            this.btnQuanIncrease.TabIndex = 1;
-            this.btnQuanIncrease.UseVisualStyleBackColor = false;
-            this.btnQuanIncrease.Click += new System.EventHandler(this.btnQuanIncrease_Click);
-            // 
-            // btnQuanDecrease
-            // 
-            this.btnQuanDecrease.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnQuanDecrease.BackColor = System.Drawing.Color.Transparent;
-            this.btnQuanDecrease.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnQuanDecrease.FlatAppearance.BorderSize = 0;
-            this.btnQuanDecrease.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnQuanDecrease.Image = global::SneakTrack___POS___Inventory_System.Properties.Resources.arrow_circle_left;
-            this.btnQuanDecrease.Location = new System.Drawing.Point(0, -5);
-            this.btnQuanDecrease.Margin = new System.Windows.Forms.Padding(0);
-            this.btnQuanDecrease.Name = "btnQuanDecrease";
-            this.btnQuanDecrease.Size = new System.Drawing.Size(30, 37);
-            this.btnQuanDecrease.TabIndex = 0;
-            this.btnQuanDecrease.UseVisualStyleBackColor = false;
-            this.btnQuanDecrease.Click += new System.EventHandler(this.btnQuanDecrease_Click);
             // 
             // txbxBarcodeQuan
             // 
@@ -387,6 +340,7 @@
             // 
             this.pnSideInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(63)))), ((int)(((byte)(70)))));
             this.pnSideInfo.Controls.Add(this.txbxProductInfoSI);
+            this.pnSideInfo.Controls.Add(this.btnCloseSideInfo);
             this.pnSideInfo.Controls.Add(this.lbCaptionSI);
             this.pnSideInfo.Controls.Add(this.pcbxSideInfo);
             this.pnSideInfo.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -413,26 +367,32 @@
     "er Infor: 213\r\nDescription: Description for a shoe made by brand name this is re" +
     "all long";
             // 
+            // btnCloseSideInfo
+            // 
+            this.btnCloseSideInfo.BackColor = System.Drawing.Color.Transparent;
+            this.btnCloseSideInfo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCloseSideInfo.FlatAppearance.BorderSize = 0;
+            this.btnCloseSideInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCloseSideInfo.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCloseSideInfo.ForeColor = System.Drawing.Color.White;
+            this.btnCloseSideInfo.Location = new System.Drawing.Point(0, 0);
+            this.btnCloseSideInfo.Name = "btnCloseSideInfo";
+            this.btnCloseSideInfo.Size = new System.Drawing.Size(30, 34);
+            this.btnCloseSideInfo.TabIndex = 4;
+            this.btnCloseSideInfo.Text = "X";
+            this.btnCloseSideInfo.UseVisualStyleBackColor = false;
+            this.btnCloseSideInfo.Click += new System.EventHandler(this.btnCloseSideInfo_Click);
+            // 
             // lbCaptionSI
             // 
             this.lbCaptionSI.AutoSize = true;
             this.lbCaptionSI.Font = new System.Drawing.Font("Yu Gothic UI Light", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbCaptionSI.ForeColor = System.Drawing.Color.White;
-            this.lbCaptionSI.Location = new System.Drawing.Point(14, 13);
+            this.lbCaptionSI.Location = new System.Drawing.Point(143, 10);
             this.lbCaptionSI.Name = "lbCaptionSI";
             this.lbCaptionSI.Size = new System.Drawing.Size(92, 15);
             this.lbCaptionSI.TabIndex = 1;
             this.lbCaptionSI.Text = "Selected Product";
-            // 
-            // pcbxSideInfo
-            // 
-            this.pcbxSideInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(35)))), ((int)(((byte)(37)))));
-            this.pcbxSideInfo.Location = new System.Drawing.Point(0, 33);
-            this.pcbxSideInfo.Name = "pcbxSideInfo";
-            this.pcbxSideInfo.Size = new System.Drawing.Size(250, 214);
-            this.pcbxSideInfo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcbxSideInfo.TabIndex = 0;
-            this.pcbxSideInfo.TabStop = false;
             // 
             // pnSideInfoButtons
             // 
@@ -476,6 +436,7 @@
             this.btnDeleteProduct.TabIndex = 4;
             this.btnDeleteProduct.Text = "Remove Product";
             this.btnDeleteProduct.UseVisualStyleBackColor = false;
+            this.btnDeleteProduct.Click += new System.EventHandler(this.btnDeleteProduct_Click);
             // 
             // btnEditProduct
             // 
@@ -490,9 +451,89 @@
             this.btnEditProduct.TabIndex = 3;
             this.btnEditProduct.Text = "Edit Product";
             this.btnEditProduct.UseVisualStyleBackColor = false;
+            this.btnEditProduct.Click += new System.EventHandler(this.btnEditProduct_Click);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnSearch.BackColor = System.Drawing.Color.White;
+            this.btnSearch.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSearch.FlatAppearance.BorderSize = 0;
+            this.btnSearch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearch.Image = global::SneakTrack___POS___Inventory_System.Properties.Resources.search;
+            this.btnSearch.Location = new System.Drawing.Point(415, 16);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(0);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(29, 27);
+            this.btnSearch.TabIndex = 5;
+            this.btnSearch.UseVisualStyleBackColor = false;
+            // 
+            // btnNewProduct
+            // 
+            this.btnNewProduct.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnNewProduct.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
+            this.btnNewProduct.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNewProduct.FlatAppearance.BorderSize = 0;
+            this.btnNewProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNewProduct.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNewProduct.Image = global::SneakTrack___POS___Inventory_System.Properties.Resources.edit;
+            this.btnNewProduct.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNewProduct.Location = new System.Drawing.Point(22, 14);
+            this.btnNewProduct.Name = "btnNewProduct";
+            this.btnNewProduct.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnNewProduct.Size = new System.Drawing.Size(138, 34);
+            this.btnNewProduct.TabIndex = 5;
+            this.btnNewProduct.Text = "      New Product";
+            this.btnNewProduct.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNewProduct.UseVisualStyleBackColor = false;
+            this.btnNewProduct.Click += new System.EventHandler(this.btnNewProduct_Click);
+            // 
+            // btnQuanIncrease
+            // 
+            this.btnQuanIncrease.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnQuanIncrease.BackColor = System.Drawing.Color.Transparent;
+            this.btnQuanIncrease.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnQuanIncrease.FlatAppearance.BorderSize = 0;
+            this.btnQuanIncrease.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnQuanIncrease.Image = global::SneakTrack___POS___Inventory_System.Properties.Resources.arrow_circle_right;
+            this.btnQuanIncrease.Location = new System.Drawing.Point(70, -5);
+            this.btnQuanIncrease.Margin = new System.Windows.Forms.Padding(0);
+            this.btnQuanIncrease.Name = "btnQuanIncrease";
+            this.btnQuanIncrease.Size = new System.Drawing.Size(30, 37);
+            this.btnQuanIncrease.TabIndex = 1;
+            this.btnQuanIncrease.UseVisualStyleBackColor = false;
+            this.btnQuanIncrease.Click += new System.EventHandler(this.btnQuanIncrease_Click);
+            // 
+            // btnQuanDecrease
+            // 
+            this.btnQuanDecrease.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnQuanDecrease.BackColor = System.Drawing.Color.Transparent;
+            this.btnQuanDecrease.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnQuanDecrease.FlatAppearance.BorderSize = 0;
+            this.btnQuanDecrease.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnQuanDecrease.Image = global::SneakTrack___POS___Inventory_System.Properties.Resources.arrow_circle_left;
+            this.btnQuanDecrease.Location = new System.Drawing.Point(0, -5);
+            this.btnQuanDecrease.Margin = new System.Windows.Forms.Padding(0);
+            this.btnQuanDecrease.Name = "btnQuanDecrease";
+            this.btnQuanDecrease.Size = new System.Drawing.Size(30, 37);
+            this.btnQuanDecrease.TabIndex = 0;
+            this.btnQuanDecrease.UseVisualStyleBackColor = false;
+            this.btnQuanDecrease.Click += new System.EventHandler(this.btnQuanDecrease_Click);
+            // 
+            // pcbxSideInfo
+            // 
+            this.pcbxSideInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(35)))), ((int)(((byte)(37)))));
+            this.pcbxSideInfo.Location = new System.Drawing.Point(0, 33);
+            this.pcbxSideInfo.Name = "pcbxSideInfo";
+            this.pcbxSideInfo.Size = new System.Drawing.Size(250, 214);
+            this.pcbxSideInfo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcbxSideInfo.TabIndex = 0;
+            this.pcbxSideInfo.TabStop = false;
             // 
             // txbxSearch
             // 
+            this.txbxSearch.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txbxSearch.BackColor = System.Drawing.Color.White;
             this.txbxSearch.BorderColor = System.Drawing.Color.MediumSlateBlue;
             this.txbxSearch.BorderFocusColor = System.Drawing.Color.HotPink;
@@ -506,7 +547,7 @@
             this.txbxSearch.MaxLength = 32767;
             this.txbxSearch.Multiline = false;
             this.txbxSearch.Name = "txbxSearch";
-            this.txbxSearch.Padding = new System.Windows.Forms.Padding(14, 7, 10, 7);
+            this.txbxSearch.Padding = new System.Windows.Forms.Padding(20, 7, 10, 7);
             this.txbxSearch.PasswordChar = false;
             this.txbxSearch.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txbxSearch.PlaceholderText = "Search";
@@ -525,7 +566,7 @@
             this.txbxBarcode.BorderSize = 2;
             this.txbxBarcode.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbxBarcode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txbxBarcode.Location = new System.Drawing.Point(279, 13);
+            this.txbxBarcode.Location = new System.Drawing.Point(253, 13);
             this.txbxBarcode.Margin = new System.Windows.Forms.Padding(20, 4, 10, 4);
             this.txbxBarcode.MaxLength = 32767;
             this.txbxBarcode.Multiline = false;
@@ -534,10 +575,11 @@
             this.txbxBarcode.PasswordChar = false;
             this.txbxBarcode.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txbxBarcode.PlaceholderText = "Barcode";
-            this.txbxBarcode.Size = new System.Drawing.Size(153, 34);
+            this.txbxBarcode.Size = new System.Drawing.Size(179, 34);
             this.txbxBarcode.TabIndex = 6;
             this.txbxBarcode.Texts = "";
             this.txbxBarcode.UnderlinedStyle = false;
+            this.txbxBarcode._TextChanged += new System.EventHandler(this.txbxBarcode__TextChanged);
             // 
             // tlTotalStockSH
             // 
@@ -575,7 +617,7 @@
             this.tlProductListedSH.TabIndex = 1;
             this.tlProductListedSH.Thickness = 2;
             this.tlProductListedSH.TileImage = ((System.Drawing.Image)(resources.GetObject("tlProductListedSH.TileImage")));
-            this.tlProductListedSH.TopText = "Products Listed";
+            this.tlProductListedSH.TopText = "Products Types";
             // 
             // tlTSVSH
             // 
@@ -622,8 +664,8 @@
             this.tblpnSideInfoLayout.ResumeLayout(false);
             this.pnSideInfo.ResumeLayout(false);
             this.pnSideInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbxSideInfo)).EndInit();
             this.pnSideInfoButtons.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pcbxSideInfo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -664,5 +706,7 @@
         private System.Windows.Forms.Panel pnBarcodeQuan;
         private System.Windows.Forms.Button btnQuanDecrease;
         private System.Windows.Forms.Button btnQuanIncrease;
+        private System.Windows.Forms.Button btnCloseSideInfo;
+        private System.Windows.Forms.Button btnSearch;
     }
 }

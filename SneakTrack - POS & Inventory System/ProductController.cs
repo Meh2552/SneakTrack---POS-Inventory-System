@@ -1,6 +1,7 @@
 ﻿using SneakTrack___POS___Inventory_System.UIControls;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
@@ -67,7 +68,7 @@ namespace SneakTrack___POS___Inventory_System
         public List<ProductTile> loadProducts(TableLayoutPanel tablePanel, bool clearRowAfter0) // TODO: make method accesible to Products idk how coz of the event
         {
 
-            List <Product> list = dh.toProducts(dh.ProductMasterList);
+            List<Product> list = dh.toProducts(dh.ProductMasterList);
             List<ProductTile> ptList = new List<ProductTile>();
 
             if (clearRowAfter0) wh.clearRows(tablePanel, 0);
@@ -111,8 +112,43 @@ namespace SneakTrack___POS___Inventory_System
                 $"Variants: {p.variantsString()}\r\n" +
                 $"Total Quantity: {p.totalQuantity()}\r\n\r\n" +
                 $"{p.Description}";
-                
+
             return output;
+        }
+
+        public int totalQuantity(List<Product> list)
+        {
+            int total = 0;
+            foreach (Product p in list)
+            {
+                total += p.totalQuantity();
+            }
+            return total;
+        }
+
+        public int totalProductTypes()
+        {
+            int total = dh.ProductMasterList.AsEnumerable()
+                .Select(p => p.Field<int>("product_id"))
+                .Distinct().Count();
+
+            return total;
+        }
+
+        public int totalStock()
+        {
+            int total = dh.ProductMasterList.AsEnumerable()
+                .Select(p => p.Field<int>("quantity")).Sum();
+
+            return total;
+        }
+
+        public decimal totalValue()
+        {
+            decimal total = dh.ProductMasterList.AsEnumerable()
+                .Select(p => p.Field<int>("quantity") * p.Field<decimal>("price")).Sum();
+
+            return total;
         }
     }
 }

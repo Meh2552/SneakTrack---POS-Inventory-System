@@ -20,6 +20,7 @@ namespace SneakTrack___POS___Inventory_System
         private MainSystem sys;
         private UserAuth ua;
         private DataTable productMasterList;
+        private List<Product> masterToProductList;
 
         public DataHandler() { }
 
@@ -44,27 +45,28 @@ namespace SneakTrack___POS___Inventory_System
         {
             return $"SELECT * FROM [{table}]";
         }
-        
+
+        private string joinAllQuery()
+        {
+            string output = "INNER JOIN Product_Variants " +
+                "ON Product.product_id = Product_Variants.product_id " +
+                "LEFT JOIN Size ON Product_Variants.variant_id = Size.variant_id " +
+                "LEFT JOIN Brand ON Product.brand_id = Brand.brand_id " +
+                "LEFT JOIN Color ON Product.color_id = Color.color_id ";
+            return output;
+        }
+
         // idk sa database sya parang path nung server
         string conString = @"Data Source =.; Initial Catalog = SneakTrackDB; Integrated Security = True; Encrypt = False;";
 
-        // Gets all products (no sorting)
-        string prodInfoQuery = "SELECT * FROM Product " +
-            "INNER JOIN Product_Variants " +
-            "ON Product.product_id = Product_Variants.product_id " +
-            "LEFT JOIN Size ON Product_Variants.variant_id = Size.variant_id " +
-            "LEFT JOIN Brand ON Product.brand_id = Brand.brand_id " +
-            "LEFT JOIN Color ON Product.color_id = Color.color_id ";
-
-        public DataTable ProductMasterList
-        {
-            get { return this.productMasterList; }
-        }
+        public DataTable ProductMasterList { get { return this.productMasterList; } }
+        public List<Product> MasterToProductList { get { return this.masterToProductList; } }
 
         private void loadMasterList()
         {
-            string query = $"{prodInfoQuery} ORDER BY Product.brand_id";
+            string query = $"{String.Concat(selectQuery("Product"),joinAllQuery())} WHERE Product.archived = 0 ORDER BY Product.brand_id";
             this.productMasterList = dataToTable(query);
+            this.masterToProductList = toProducts(this.productMasterList);
         }
 
 

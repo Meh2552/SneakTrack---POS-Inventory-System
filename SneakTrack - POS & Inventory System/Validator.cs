@@ -34,7 +34,7 @@ namespace SneakTrack___POS___Inventory_System
             }
         }
 
-        public int readInt(String input)
+        public int readInt(object input)
         {
             int result;
             try
@@ -48,7 +48,7 @@ namespace SneakTrack___POS___Inventory_System
             }
         }
 
-        public double readDouble(string input)
+        public double readDouble(object input)
         {
             double result;
             try

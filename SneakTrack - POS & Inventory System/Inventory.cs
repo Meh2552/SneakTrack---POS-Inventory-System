@@ -47,6 +47,8 @@ namespace SneakTrack___POS___Inventory_System
             {
                 tile.Click += new System.EventHandler(this.productTile_Click);
             }
+
+            loadTiles();
         }
 
         private void loadSideInfo(Product product)
@@ -74,16 +76,18 @@ namespace SneakTrack___POS___Inventory_System
 
         private void txbxBarcodeQuan_TextChanged(object sender, EventArgs e)
         {
-            double quan = v.readDouble(txbxBarcodeQuan.Text);
+            double quan = v.readDouble((object)txbxBarcodeQuan.Text);
 
             if (quan == -1)
             {
                 System.Windows.Forms.MessageBox.Show("Error: Invalid quantity input.");
+                txbxBarcodeQuan.Text = "1";
             }
 
             else if (quan <= 0)
             {
                 System.Windows.Forms.MessageBox.Show("Quantity cannot be negative or zero.");
+                txbxBarcodeQuan.Text = "1";
             }
 
             else if (quan > 99)
@@ -95,12 +99,44 @@ namespace SneakTrack___POS___Inventory_System
 
         private void btnQuanDecrease_Click(object sender, EventArgs e)
         {
-            txbxBarcodeQuan.Text = (v.readDouble(txbxBarcodeQuan.Text) - 1).ToString();
+            txbxBarcodeQuan.Text = (v.readDouble((object)txbxBarcodeQuan.Text) - 1).ToString();
         }
 
         private void btnQuanIncrease_Click(object sender, EventArgs e)
         {
-            txbxBarcodeQuan.Text = (v.readDouble(txbxBarcodeQuan.Text) + 1).ToString();
+            txbxBarcodeQuan.Text = (v.readDouble((object)txbxBarcodeQuan.Text) + 1).ToString();
+        }
+
+        private void btnCloseSideInfo_Click(object sender, EventArgs e)
+        {
+            tblpnSideInfo.ColumnStyles[1].Width = 0;
+        }
+
+        private void txbxBarcode__TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnNewProduct_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEditProduct_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDeleteProduct_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void loadTiles()
+        {
+            tlProductListedSH.BottomText = pc.totalProductTypes().ToString();
+            tlTotalStockSH.BottomText = pc.totalStock().ToString();
+            tlTSVSH.BottomText = "₱ " + pc.totalValue().ToString();
         }
     }
 

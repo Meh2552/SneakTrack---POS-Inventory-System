@@ -296,7 +296,6 @@
             this.btnHidePass.Name = "btnHidePass";
             this.btnHidePass.Size = new System.Drawing.Size(30, 25);
             this.btnHidePass.TabIndex = 4;
-            this.btnHidePass.Text = "o";
             this.btnHidePass.UseVisualStyleBackColor = false;
             this.btnHidePass.Visible = false;
             this.btnHidePass.Click += new System.EventHandler(this.btnHidePass_Click);

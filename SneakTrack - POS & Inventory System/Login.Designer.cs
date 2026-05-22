@@ -197,6 +197,8 @@
             // 
             // txbxUsername
             // 
+            this.txbxUsername.AutocompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.txbxUsername.AutocompleteSource = System.Windows.Forms.AutoCompleteSource.None;
             this.txbxUsername.BackColor = System.Drawing.Color.White;
             this.txbxUsername.BorderColor = System.Drawing.Color.Silver;
             this.txbxUsername.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -302,6 +304,8 @@
             // 
             // txbxPassword
             // 
+            this.txbxPassword.AutocompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.txbxPassword.AutocompleteSource = System.Windows.Forms.AutoCompleteSource.None;
             this.txbxPassword.BackColor = System.Drawing.Color.White;
             this.txbxPassword.BorderColor = System.Drawing.Color.Silver;
             this.txbxPassword.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));

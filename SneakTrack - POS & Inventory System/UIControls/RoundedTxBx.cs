@@ -28,6 +28,9 @@ namespace SneakTrack___POS___Inventory_System.UIControls
         private bool isPlaceholder = false;
         private bool isPasswordChar = false;
 
+        private AutoCompleteMode autoComMode = AutoCompleteMode.None;
+        private AutoCompleteSource autoComSource = AutoCompleteSource.None;
+
         private int maxLength = 32767;
 
         //Events
@@ -204,9 +207,36 @@ namespace SneakTrack___POS___Inventory_System.UIControls
             }
         }
 
+        public AutoCompleteMode AutocompleteMode
+        {
+            get { return autoComMode; }
+            set
+            {
+                autoComMode = value;
+                textBox1.AutoCompleteMode = value;
+            }
+        }
 
+        public AutoCompleteSource AutocompleteSource
+        {
+            get { return autoComSource; }
+            set
+            {
+                autoComSource = value;
+                textBox1.AutoCompleteSource = value;
+            }
+        }
+
+        public AutoCompleteStringCollection AutoCompleteCustomSource
+        {
+            set
+            {
+                textBox1.AutoCompleteCustomSource = value;
+            }
+        }
 
         #endregion
+
 
         #region -> Overridden methods
         protected override void OnResize(EventArgs e)

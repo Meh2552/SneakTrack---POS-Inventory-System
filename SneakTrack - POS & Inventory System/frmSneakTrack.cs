@@ -63,10 +63,11 @@ namespace SneakTrack___POS___Inventory_System
         public MainSystem(Login login, MainDashboard dash)
         {
             this.wh = new WindowHandler(login, dash);
-            this.val = new Validator();
+            this.val = new Validator(this);
             this.dh = new DataHandler(this);
             this.ua = new UserAuth(this);
             this.pc = new ProductController(this);
+            this.fh = new FileHandler(this);
         }
 
         private WindowHandler wh;
@@ -74,13 +75,14 @@ namespace SneakTrack___POS___Inventory_System
         private DataHandler dh;
         private UserAuth ua;
         private ProductController pc;
+        private FileHandler fh;
 
         public WindowHandler WH { get { return this.wh; } }
         public Validator VAL { get { return this.val; } }
         public DataHandler DH { get { return this.dh; } }
         public UserAuth UA { get { return this.ua; } }
         public ProductController PC { get { return this.pc; } }
-    }
-    
+        public FileHandler FH { get { return this.fh; } }
 
+    }
 }

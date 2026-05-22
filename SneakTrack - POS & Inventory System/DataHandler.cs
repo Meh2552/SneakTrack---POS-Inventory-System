@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows.Forms;
 
 namespace SneakTrack___POS___Inventory_System
 {
@@ -21,6 +22,10 @@ namespace SneakTrack___POS___Inventory_System
         private UserAuth ua;
         private DataTable productMasterList;
         private List<Product> masterToProductList;
+
+        private List<string> colorList;
+        private List<string> brandList;
+        private List<double> sizeList;
 
         public DataHandler() { }
 
@@ -61,14 +66,55 @@ namespace SneakTrack___POS___Inventory_System
 
         public DataTable ProductMasterList { get { return this.productMasterList; } }
         public List<Product> MasterToProductList { get { return this.masterToProductList; } }
+        public List<string> ColorList { get { return this.colorList; } set { this.colorList = value; } }
+        public List<string> BrandList { get { return this.brandList; } set { this.brandList = value; } }
+        public List<double> SizeList { get { return this.sizeList; } set { this.sizeList = value; } }
 
         private void loadMasterList()
         {
             string query = $"{String.Concat(selectQuery("Product"),joinAllQuery())} WHERE Product.archived = 0 ORDER BY Product.brand_id";
             this.productMasterList = dataToTable(query);
             this.masterToProductList = toProducts(this.productMasterList);
+            loadInfoLists();
         }
 
+        private void loadInfoLists()
+        {
+            string query = selectQuery("Color", "color_name");
+            DataTable dt = dataToTable(query);
+            List<string> colors = new List<string>();
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                colors.Add(dr["color_name"].ToString());
+            }
+
+            ColorList = colors;
+
+
+            query = selectQuery("Brand", "brand_name");
+            dt = dataToTable(query);
+            List<string> brands = new List<string>();
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                brands.Add(dr["brand_name"].ToString());
+            }
+
+            BrandList = brands;
+
+
+            query = selectQuery("Size", "DISTINCT size");
+            dt = dataToTable(query);
+            List<double> sizes = new List<double>();
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                sizes.Add(Convert.ToDouble(dr["size"]));
+            }
+
+            SizeList = sizes;
+        }
 
         // Returns a datatable of a table in the database.
         public DataTable dataToTable(string query)
@@ -206,5 +252,6 @@ namespace SneakTrack___POS___Inventory_System
 
             return v;
         }
+
     }
 }

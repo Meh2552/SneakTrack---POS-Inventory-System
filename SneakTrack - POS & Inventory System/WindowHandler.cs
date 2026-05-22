@@ -100,6 +100,29 @@ namespace SneakTrack___POS___Inventory_System
             return tile;
         }
 
+        public string getImageFilePath()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;",
+                Title = "Select an Image"
+            };
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    Image.FromFile(openFileDialog.FileName);
+                    return openFileDialog.FileName;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading image: " + ex.Message);
+                    return null;
+                }
+            }
+            return null;
+        }
+
     }
 
     // Optional mabye remove nalang later on lmao

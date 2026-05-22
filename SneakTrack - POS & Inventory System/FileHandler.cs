@@ -6,15 +6,18 @@ using System.Threading.Tasks;
 
 namespace SneakTrack___POS___Inventory_System
 {
-    abstract class Controller
+    public class FileHandler
     {
-        private MainSystem sys;
+        MainSystem sys;
 
-        Controller(MainSystem system)
+        public FileHandler(MainSystem system)
         {
             this.sys = system;
         }
 
+        public void imagePathtoFile(string path)
+        {
 
+        }
     }
 }

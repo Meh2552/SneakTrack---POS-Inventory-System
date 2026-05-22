@@ -1,14 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 
 namespace SneakTrack___POS___Inventory_System
 {
     public class Validator
     {
+        private MainSystem sys;
+
+        public Validator(MainSystem system)
+        {
+            this.sys = system;
+        }
 
         public String readString (String input)
         {
@@ -60,6 +66,22 @@ namespace SneakTrack___POS___Inventory_System
             {
                 return -1;
             }
+        }
+
+        public bool tableHasValue(DataTable table, string column, string value, bool ignoreCase = false)
+        {
+            foreach (DataRow dr in table.Rows)
+            {
+                if (ignoreCase)
+                {
+                    if (dr[column].ToString().Equals(value, StringComparison.OrdinalIgnoreCase)) return true;
+                }
+                else
+                {
+                    if (dr[column].ToString().Equals(value)) return true;
+                }
+            }
+            return false;
         }
 
         public bool validateCharacters(string input)

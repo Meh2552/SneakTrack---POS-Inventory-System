@@ -12,6 +12,8 @@ namespace SneakTrack___POS___Inventory_System
 {
     public partial class User : UserControl
     {
+        int id = 1;
+        int selectedRow = -1;
         public User()
         {
             InitializeComponent();
@@ -29,12 +31,74 @@ namespace SneakTrack___POS___Inventory_System
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            selectedRow = e.RowIndex;
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void tableLayoutPanel1_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            AddAccount2 frm = new AddAccount2();
+
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                dgvUsers.Rows.Add(
+                    id++,
+                    frm.username,
+                    frm.role,
+                    "Active"
+                );
+
+                MessageBox.Show("Account Added!");
+            }
+        }
+
+        private void btnDisable_Click(object sender, EventArgs e)
+        {
+            if (selectedRow >= 0)
+            {
+                dgvUsers.Rows[selectedRow]
+                .Cells["colStatus"].Value = "Disabled";
+
+                MessageBox.Show("Account Disabled!");
+            }
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            if (selectedRow >= 0)
+            {
+                AddAccount2 frm = new AddAccount2();
+
+                frm.txtUser.Text =
+                    dgvUsers.Rows[selectedRow]
+                    .Cells["colUsername"].Value.ToString();
+
+                frm.cboRole.Text =
+                    dgvUsers.Rows[selectedRow]
+                    .Cells["colRole"].Value.ToString();
+
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    dgvUsers.Rows[selectedRow]
+                    .Cells["colUsername"].Value =
+                    frm.username;
+
+                    dgvUsers.Rows[selectedRow]
+                    .Cells["colRole"].Value =
+                    frm.role;
+
+                    MessageBox.Show("Updated!");
+                }
+            }
         }
     }
 }

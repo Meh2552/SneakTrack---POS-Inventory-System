@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
+using System.Diagnostics;
+using System.Drawing;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace SneakTrack___POS___Inventory_System
 {
@@ -16,7 +17,7 @@ namespace SneakTrack___POS___Inventory_System
             this.sys = system;
         }
 
-        public String readString (String input)
+        public string readString(string input)
         {
             if (input == null || input.Trim().Length == 0)
             {
@@ -88,6 +89,68 @@ namespace SneakTrack___POS___Inventory_System
         {
             String pattern = @"^[a-zA-Z0-9-_.]+$";
             return Regex.IsMatch(input, pattern);
+        }
+
+        public bool validateCharacters(string input, string pattern)
+        {
+            return Regex.IsMatch(input, pattern);
+        }
+
+        public bool validateCellValue(DataGridViewCell cell, bool condition, string errorMessage)
+        {
+            string value = cell.Value?.ToString() ?? "";
+
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                cell.Style.BackColor = Color.Tomato;
+                cell.Style.ForeColor = Color.White;
+                cell.ErrorText = "This field is required";
+                return false;
+            }
+
+            else if (condition)
+            {
+                cell.Style.BackColor = Color.White;
+                cell.Style.ForeColor = Color.Black;
+                cell.ErrorText = "";  // Tooltip error
+                return true;
+            }
+
+            else
+            {
+                cell.Style.BackColor = Color.Tomato;
+                cell.Style.ForeColor = Color.White;
+                cell.ErrorText = errorMessage;  // Show on cell hover
+                return false;
+            }
+        }
+
+        public bool dataGridHasErrorsOrBlank(DataGridView grid, List<int> excludeColumns = null)
+        {
+            foreach (DataGridViewRow row in grid.Rows)
+            {
+                if (row.IsNewRow) continue; // Skip the new row for adding data
+
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    Debug.WriteLine("checking column: " + cell.ColumnIndex);
+                    if (excludeColumns != null && excludeColumns.Contains(cell.ColumnIndex))
+                    {
+                        continue;
+                    }
+
+                    if (!string.IsNullOrEmpty(cell.ErrorText))
+                    {
+                        return true;
+                    }
+
+                    else if (string.IsNullOrEmpty(cell.Value?.ToString()))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 }

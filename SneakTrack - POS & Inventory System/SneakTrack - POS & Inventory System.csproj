@@ -52,6 +52,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddAccount2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddAccount2.Designer.cs">
+      <DependentUpon>AddAccount2.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataHandler.cs" />
     <Compile Include="FileHandler.cs" />
     <Compile Include="Inventory.cs">
@@ -153,6 +159,9 @@
     </Compile>
     <Compile Include="Validator.cs" />
     <Compile Include="WindowHandler.cs" />
+    <EmbeddedResource Include="AddAccount2.resx">
+      <DependentUpon>AddAccount2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>

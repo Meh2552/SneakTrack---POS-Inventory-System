@@ -20,12 +20,14 @@ namespace SneakTrack___POS___Inventory_System
     {
         private MainSystem sys;
         private UserAuth ua;
+        private FileHandler fh;
         private DataTable productMasterList;
         private List<Product> masterToProductList;
 
         private List<string> colorList;
         private List<string> brandList;
         private List<double> sizeList;
+        private List<string> sizeTypesList; 
 
         public DataHandler() { }
 
@@ -33,6 +35,14 @@ namespace SneakTrack___POS___Inventory_System
         {
             this.sys = system;
             this.ua = system.UA;
+            this.fh = system.FH;
+            
+        }
+
+        public void initialize() 
+        {
+            this.ua = sys.UA;
+            this.fh = sys.FH;
             loadMasterList();
         }
 
@@ -61,6 +71,16 @@ namespace SneakTrack___POS___Inventory_System
             return output;
         }
 
+        public string insertQuery(string table, string columns, string values, bool returnId = false)
+        {
+            return $"INSERT INTO [{table}] ({columns}) VALUES ({values})" + (returnId ? "; SELECT SCOPE_IDENTITY();" : "");
+        }
+
+        public string updateQuery(string table, string setClause, string condition)
+        {
+            return $"UPDATE [{table}] SET {setClause} WHERE {condition}";
+        }
+
         // idk sa database sya parang path nung server
         string conString = @"Data Source =.; Initial Catalog = SneakTrackDB; Integrated Security = True; Encrypt = False;";
 
@@ -69,10 +89,11 @@ namespace SneakTrack___POS___Inventory_System
         public List<string> ColorList { get { return this.colorList; } set { this.colorList = value; } }
         public List<string> BrandList { get { return this.brandList; } set { this.brandList = value; } }
         public List<double> SizeList { get { return this.sizeList; } set { this.sizeList = value; } }
+        public List<string> SizeTypesList { get { return this.sizeTypesList; } set { this.sizeTypesList = value; } }
 
         private void loadMasterList()
         {
-            string query = $"{String.Concat(selectQuery("Product"),joinAllQuery())} WHERE Product.archived = 0 ORDER BY Product.brand_id";
+            string query = $"{String.Concat(selectQuery("Product"), joinAllQuery())} WHERE Product.archived = 0 ORDER BY Product.brand_id";
             this.productMasterList = dataToTable(query);
             this.masterToProductList = toProducts(this.productMasterList);
             loadInfoLists();
@@ -114,6 +135,40 @@ namespace SneakTrack___POS___Inventory_System
             }
 
             SizeList = sizes;
+
+            query = selectQuery("Size", "DISTINCT size_type");
+            dt = dataToTable(query);
+            List<string> sizeTypes = new List<string>();
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                sizeTypes.Add(dr["size_type"].ToString());
+            }
+
+            SizeTypesList = sizeTypes;
+        }
+
+        public string getValueFromTable(string query)
+        {
+            string output = "";
+            try
+            {
+                SqlConnection conn = new SqlConnection(conString);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    output = reader[0].ToString();
+                }
+                reader.Close();
+                conn.Close();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Error: " + e.Message);
+            }
+            return output;
         }
 
         // Returns a datatable of a table in the database.
@@ -128,7 +183,7 @@ namespace SneakTrack___POS___Inventory_System
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
                 conn.Close();
-                
+
 
                 /* For testing /
                 foreach (DataRow row in dt.Rows)
@@ -180,7 +235,7 @@ namespace SneakTrack___POS___Inventory_System
 
             catch (Exception e)
             {
-                Debug.WriteLine("Error: " + e.Message); 
+                Debug.WriteLine("Error: " + e.Message);
             }
 
             return new UserAuth.User(username, password, name, role, dateCreated);
@@ -193,7 +248,8 @@ namespace SneakTrack___POS___Inventory_System
             List<int> listed = new List<int>();
             List<Product> products = new List<Product>();
 
-            foreach (DataRow dr in table.Rows) {
+            foreach (DataRow dr in table.Rows)
+            {
 
                 int id = Convert.ToInt32(dr["product_id"]);
                 if (!products.Count.Equals(0) && listed.Contains(id))
@@ -213,7 +269,7 @@ namespace SneakTrack___POS___Inventory_System
                     products.Add(p);
                 }
 
-                
+
             }
 
             return products;
@@ -253,5 +309,156 @@ namespace SneakTrack___POS___Inventory_System
             return v;
         }
 
+        public int toBrandDB(Product p)
+        {
+            string query = insertQuery("Brand", "brand_name", "@brand_name", true);
+            int brandId = 0;
+
+            try
+            {
+                SqlConnection conn = new SqlConnection(conString);
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@brand_name", p.Brand);
+                Debug.Write(cmd.CommandText);
+                brandId = Convert.ToInt32(cmd.ExecuteScalar());
+
+                conn.Close();
+            }
+
+            catch (Exception e)
+            {
+                Debug.WriteLine("Error: " + e.Message);
+            }
+
+            return brandId;
+        }
+
+        public int toColorDB(Product p)
+        {
+            string query = insertQuery("Color", "color_name", "@color_name", true);
+            int colorId = 0;
+            try
+            {
+                SqlConnection conn = new SqlConnection(conString);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@color_name", p.Color);
+                colorId = Convert.ToInt32(cmd.ExecuteScalar());
+                conn.Close();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Error: " + e.Message);
+            }
+            return colorId;
+        }
+
+        public int toProductDB(Product p, int brandId, int colorId)
+        {
+            bool hasDescription = !String.IsNullOrEmpty(p.Description);
+            bool hasImage = !String.IsNullOrEmpty(p.ImagePath);
+
+            string values = "@product_name, @brand_id, @color_id" +
+                (hasDescription ? ", @description" : "") +
+                (hasImage ? ", @image" : "");
+
+            string columns = "product_name, brand_id, color_id" +
+                (hasDescription ? ", description" : "") +
+                (hasImage ? ", image" : "");
+
+            string query = insertQuery("Product", columns, values, true);
+
+            int productId = 0;
+            try
+            {
+                SqlConnection conn = new SqlConnection(conString);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("@product_name", p.Name);
+                cmd.Parameters.AddWithValue("@brand_id", brandId);
+                cmd.Parameters.AddWithValue("@color_id", colorId);
+                if (hasDescription) cmd.Parameters.AddWithValue("@description", p.Description);
+                if (hasImage) cmd.Parameters.AddWithValue("@image", p.ImagePath);
+
+                productId = Convert.ToInt32(cmd.ExecuteScalar());
+                Debug.WriteLine($"Product ID: {productId} = {cmd.CommandText}");
+
+                if (hasImage)
+                {
+                    SqlCommand updateCmd = new SqlCommand(updateQuery("Product", "image = @image", "product_id = @product_id"), conn);
+                    updateCmd.Parameters.AddWithValue("@image", fh.imagePathtoFile(p.ImagePath, p.newImageFileName(productId)));
+                    updateCmd.Parameters.AddWithValue("@product_id", productId);
+                    updateCmd.ExecuteNonQuery();
+
+                    Debug.WriteLine(updateCmd.CommandText + " Updated");
+                }
+
+                conn.Close();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Error: " + e.Message);
+            }
+
+            return productId;
+        }
+
+        public int toVariantDB(Variant v, int productId)
+        {
+            string query = insertQuery("Product_Variants", "product_id, gender, price", "@product_id,  @gender, @price", true);
+            int variantId = 0;
+            try
+            {
+                SqlConnection conn = new SqlConnection(conString);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("@product_id", productId);
+                cmd.Parameters.AddWithValue("@gender", v.Gender);
+                cmd.Parameters.AddWithValue("@price", v.Price);
+
+                variantId = Convert.ToInt32(cmd.ExecuteScalar());
+
+                conn.Close();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Error: " + e.Message);
+            }
+
+            return variantId;
+        }
+
+        public int toSizeDB(Variant v, int variantId)
+        {
+            bool hasBarcode = !String.IsNullOrEmpty(v.Barcode);
+
+            string values = "@variant_id, @size, @size_type, @quantity" + (hasBarcode ? ", @barcode" : "");
+            string columns = "variant_id, size, size_type, quantity" + (hasBarcode ? ", barcode" : "");
+
+            string query = insertQuery("Size", columns, values, true);
+            int sizeId = 0;
+            try
+            {
+                SqlConnection conn = new SqlConnection(conString);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@variant_id", variantId);
+                cmd.Parameters.AddWithValue("@size", v.Size);
+                cmd.Parameters.AddWithValue("@size_type", v.SizeType);
+                cmd.Parameters.AddWithValue("@quantity", v.Quantity);
+                if (hasBarcode) cmd.Parameters.AddWithValue("@barcode", v.Barcode);
+                sizeId = Convert.ToInt32(cmd.ExecuteScalar());
+                conn.Close();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Error: " + e.Message);
+            }
+            return sizeId;
+        }
     }
 }

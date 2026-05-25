@@ -99,12 +99,6 @@
     <Compile Include="UIControls\AddProductForm.Designer.cs">
       <DependentUpon>AddProductForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UIControls\Confirmation.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UIControls\Confirmation.Designer.cs">
-      <DependentUpon>Confirmation.cs</DependentUpon>
-    </Compile>
     <Compile Include="UIControls\ConfirmationPrompt.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -193,9 +187,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UIControls\AddProductForm.resx">
       <DependentUpon>AddProductForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UIControls\Confirmation.resx">
-      <DependentUpon>Confirmation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UIControls\ConfirmationPrompt.resx">
       <DependentUpon>ConfirmationPrompt.cs</DependentUpon>
@@ -343,6 +334,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon\add-image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon\icons8-clipboard-24.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

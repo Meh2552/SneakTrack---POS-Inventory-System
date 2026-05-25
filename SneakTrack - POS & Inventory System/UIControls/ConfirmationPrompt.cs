@@ -96,5 +96,11 @@ namespace SneakTrack___POS___Inventory_System.UIControls
             }
         }
 
+
+        // TODO: do this if u have time idk
+        private void btnChanges_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

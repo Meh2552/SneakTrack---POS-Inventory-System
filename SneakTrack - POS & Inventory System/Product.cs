@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,9 +16,11 @@ namespace SneakTrack___POS___Inventory_System
         private string name;
         private string brand;
         private string color;
-        private Image image;
+        private Image image = null;
+        private string imagePath = null;
         private string description;
         private int brandId;
+        private bool archived = false; //TODO: this
         private List<Variant> variants = new List<Variant>();
 
         private bool hasMale = false, hasFemale = false, hasUnisex = false;
@@ -32,6 +35,18 @@ namespace SneakTrack___POS___Inventory_System
             this.image = setImagePath(imagePath);
             this.description = description;
             this.brandId = brandId;
+        }
+
+        public Product(string name, string brand, string color, string description, string imagePath = null)
+        {
+            this.prodId = -1;
+            this.name = name;
+            this.brand = brand;
+            this.color = color;
+            this.description = description;
+            this.brandId = -1;
+            this.image = imagePath == null ? null : setImagePath(imagePath);
+            this.imagePath = imagePath;
         }
 
         public int ProdId { get { return prodId; } set { prodId = value; } }
@@ -59,6 +74,7 @@ namespace SneakTrack___POS___Inventory_System
         {
             try
             {
+                Debug.WriteLine($"Loading image from path: {imagePath}");
                 return Image.FromFile(imagePath);
             }
 
@@ -69,9 +85,21 @@ namespace SneakTrack___POS___Inventory_System
             }
         }
 
+        public string newImageFileName(int productId)
+        {
+            string output = string.Format("PID_{0}-{1}{2}{3}",
+                productId,
+                Name?[0].ToString().ToUpper() ?? "N",
+                Color?[0].ToString().ToUpper() ?? "C",
+                Brand?[0].ToString().ToUpper() ?? "B"
+            );
+            return output;
+        }
+
         public string Description { get { return description; } set { description = value; } }
         public int BrandId { get { return brandId; } set { brandId = value; } }
         public string Name { get { return name; } set { name = value; } }
+        public string ImagePath { get { return imagePath; } set { imagePath = value; } }
         public List<Variant> Variants { get { return variants; } }
 
         public int totalQuantity()
@@ -183,6 +211,19 @@ namespace SneakTrack___POS___Inventory_System
             this.price = price;
             this.variantId = variant_id;
             this.sizeId = size_id;
+        }
+
+        public Variant(double size, string sizeType, int quantity, string barcode, char gender, decimal price)
+        {
+            this.size = size;
+            this.sizeType = sizeType;
+            this.quantity = quantity;
+            this.barcode = barcode;
+            this.gender = gender;
+            this.forSale = true;
+            this.price = price;
+            this.variantId = -1;
+            this.sizeId = -1;
         }
 
         public double Size { get { return size; } set { size = value; } }

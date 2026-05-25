@@ -193,6 +193,16 @@ namespace SneakTrack___POS___Inventory_System.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_clipboard_24 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-clipboard-24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap kindpng_2719336 {
             get {
                 object obj = ResourceManager.GetObject("kindpng_2719336", resourceCulture);

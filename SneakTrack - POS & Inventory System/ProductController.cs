@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace SneakTrack___POS___Inventory_System
 {
@@ -16,12 +18,14 @@ namespace SneakTrack___POS___Inventory_System
         private MainSystem sys;
         private DataHandler dh;
         private WindowHandler wh;
+        private Validator v;
 
         public ProductController(MainSystem system)
         {
             this.sys = system;
             this.dh = sys.DH;
             this.wh = sys.WH;
+            this.v = sys.VAL;
         }
 
         /* remove if unecessary idk
@@ -37,6 +41,16 @@ namespace SneakTrack___POS___Inventory_System
             return null;
         }
         */
+
+        public bool hasDuplicateProduct(string productName, string brandName, string colorName)
+        {
+            return dh.ProductMasterList.AsEnumerable().Any(row =>
+                string.Equals(row.Field<string>("product_name"), productName, StringComparison.OrdinalIgnoreCase) &&
+                string.Equals(row.Field<string>("brand_name"), brandName, StringComparison.OrdinalIgnoreCase) &&
+                string.Equals(row.Field<string>("color_name"), colorName, StringComparison.OrdinalIgnoreCase)
+            );
+        }
+
 
         public Label brandToLabel(string brandName)
         {
@@ -101,6 +115,38 @@ namespace SneakTrack___POS___Inventory_System
             }
 
             return ptList;
+        }
+
+        // v.idFromValue(dh.ProductMasterList, "brand_name", "brand_id", p.Brand, true)  mabye useful
+        public void addProduct(Product p)
+        {
+
+            int brandid = v.tableHasValue(dh.dataToTable(dh.selectQuery("Brand")), "brand_name", p.Brand, true) 
+                ? v.readInt(dh.getValueFromTable(dh.selectQuery("Brand", "brand_id", $"brand_name = '{p.Brand}'")))
+                : dh.toBrandDB(p);
+            Debug.WriteLine($"Brand ID: {brandid}");
+
+            int colorid = v.tableHasValue(dh.dataToTable(dh.selectQuery("Color")), "color_name", p.Color, true) 
+                ? v.readInt(dh.getValueFromTable(dh.selectQuery("Color", "color_id", $"color_name = '{p.Color}'")))
+                : dh.toColorDB(p);
+            Debug.WriteLine($"Color ID: {colorid}");
+
+            int prodid = dh.toProductDB(p, brandid, colorid); //TODO: yung price sa variant dapat iba for each gender.
+            Debug.WriteLine($"Product ID: {prodid}");
+
+            List<char> genders = new List<char>();
+            List<int> variantIds = new List<int>();
+
+            foreach (Variant v in p.Variants)
+            {
+                if (!genders.Contains(v.Gender)) 
+                {
+                    genders.Add(v.Gender);
+                    variantIds.Add(dh.toVariantDB(v, prodid));
+                }
+
+                dh.toSizeDB(v, variantIds[genders.FindIndex(g => g == v.Gender)]);
+            }
         }
 
         public string toProdInfo(Product p)

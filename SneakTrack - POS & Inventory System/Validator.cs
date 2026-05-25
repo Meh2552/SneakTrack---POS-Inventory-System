@@ -69,6 +69,20 @@ namespace SneakTrack___POS___Inventory_System
             }
         }
 
+        public decimal readDecimal(object input)
+        {
+            decimal result;
+            try
+            {
+                result = Convert.ToDecimal(input);
+                return result;
+            }
+            catch (Exception e)
+            {
+                return -1;
+            }
+        }
+
         public bool tableHasValue(DataTable table, string column, string value, bool ignoreCase = false)
         {
             foreach (DataRow dr in table.Rows)
@@ -83,6 +97,22 @@ namespace SneakTrack___POS___Inventory_System
                 }
             }
             return false;
+        }
+
+        public int idFromValue(DataTable table, string targetColumn, string idColumn, string value, bool ignoreCase = false)
+        {
+            foreach (DataRow dr in table.Rows)
+            {
+                if (ignoreCase)
+                {
+                    if (dr[targetColumn].ToString().Equals(value, StringComparison.OrdinalIgnoreCase)) return readInt(dr[idColumn]);
+                }
+                else
+                {
+                    if (dr[targetColumn].ToString().Equals(value)) return readInt(dr[idColumn]);
+                }
+            }
+            return -1;
         }
 
         public bool validateCharacters(string input)
@@ -127,30 +157,35 @@ namespace SneakTrack___POS___Inventory_System
 
         public bool dataGridHasErrorsOrBlank(DataGridView grid, List<int> excludeColumns = null)
         {
+            bool hasError = false;
             foreach (DataGridViewRow row in grid.Rows)
             {
                 if (row.IsNewRow) continue; // Skip the new row for adding data
+                
 
                 foreach (DataGridViewCell cell in row.Cells)
                 {
-                    Debug.WriteLine("checking column: " + cell.ColumnIndex);
                     if (excludeColumns != null && excludeColumns.Contains(cell.ColumnIndex))
                     {
                         continue;
                     }
 
-                    if (!string.IsNullOrEmpty(cell.ErrorText))
+                    else if (!string.IsNullOrEmpty(cell.ErrorText))
                     {
-                        return true;
+                        hasError = true;
                     }
 
                     else if (string.IsNullOrEmpty(cell.Value?.ToString()))
                     {
-                        return true;
+                        cell.Style.BackColor = Color.Tomato;
+                        cell.Style.ForeColor = Color.White;
+                        cell.ErrorText = "This field is required";
+                        hasError = true;
                     }
                 }
             }
-            return false;
+            return hasError;
         }
+
     }
 }

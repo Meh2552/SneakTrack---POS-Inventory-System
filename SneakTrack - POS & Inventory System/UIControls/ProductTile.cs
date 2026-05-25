@@ -139,7 +139,11 @@ namespace SneakTrack___POS___Inventory_System.UIControls
         public Image TileImage
         {
             get { return tileImage; }
-            set { this.tileImage = value;  }
+            set 
+            {
+                this.tileImage = value;
+                pictureBox1.Image = value;
+            }
         }
 
         #endregion

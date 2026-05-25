@@ -68,6 +68,8 @@ namespace SneakTrack___POS___Inventory_System
             this.ua = new UserAuth(this);
             this.pc = new ProductController(this);
             this.fh = new FileHandler(this);
+
+            dh.initialize();
         }
 
         private WindowHandler wh;

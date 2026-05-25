@@ -20,9 +20,11 @@ namespace SneakTrack___POS___Inventory_System
         private WindowHandler wh;
         private Validator v;
         private DataHandler dh;
+        private ProductController pc;
         private Product outProd;
 
         private string imagePath = null;
+        private string genderRegex = null;
 
         public AddProductForm()
         {
@@ -36,6 +38,7 @@ namespace SneakTrack___POS___Inventory_System
             this.wh = sys.WH;
             this.v = sys.VAL;
             this.dh = sys.DH;
+            this.pc = sys.PC;
             initialize();
         }
 
@@ -61,6 +64,10 @@ namespace SneakTrack___POS___Inventory_System
             AutoCompleteStringCollection colorColl = new AutoCompleteStringCollection();
             colorColl.AddRange(dh.ColorList.ToArray());
             txbxColor.AutoCompleteCustomSource = colorColl;
+
+            AutoCompleteStringCollection sizeTypeColl = new AutoCompleteStringCollection();
+            sizeTypeColl.AddRange(dh.SizeTypesList.ToArray());
+            txbxSizeType.AutoCompleteCustomSource = sizeTypeColl;
         }
 
         private void btnAddImage_Click(object sender, EventArgs e) // TODO: add image to file, resources.
@@ -77,40 +84,24 @@ namespace SneakTrack___POS___Inventory_System
 
         private void btnAddProduct_Click(object sender, EventArgs e)
         {
-            if (!validateProductFields())
+            if (!validateProductFields() || dtgridSizeFields.Rows.Count == 0)
             {
                 MessageBox.Show("Process has been cancelled due to unexpected errors.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            bool isName = false;
-            bool isBrand = false;
-            bool isColor = false;
+            string name = v.readString(txbxProductName.Texts);
+            string brand = v.readString(txbxBrand.Texts);
+            string color = v.readString(txbxColor.Texts);
+            string sizeType = v.readString(txbxSizeType.Texts);
 
-            try //TODO: reqrite, this doesnt check for duplicates
+            if (pc.hasDuplicateProduct(name, brand, color))
             {
-                isName = v.tableHasValue(dh.dataToTable(dh.selectQuery("Product")), "product_name", v.readString(txbxProductName.Texts), true);
-                isBrand = v.tableHasValue(dh.dataToTable(dh.selectQuery("Brand")), "brand_name", v.readString(txbxBrand.Texts), true);
-                isColor = v.tableHasValue(dh.dataToTable(dh.selectQuery("Color")), "color_name", v.readString(txbxColor.Texts).ToUpper());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Process has been cancelled due to unexpected errors.", "Unexpected Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Debug.WriteLine("exception " + ex.Message);
+                MessageBox.Show("Similar product is already listed in the system", "Duplicate Product", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (isName && isBrand && isColor)
-            {
-                MessageBox.Show("Product is already in the system.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            bool isValidImage = false; //TODO: this only checks if image path is already in, so that duplicate file will not be created
-            if (imagePath != null) isValidImage = v.tableHasValue(dh.dataToTable(dh.selectQuery("Product")), "image", imagePath);
-
-            ConfirmationPrompt confirmationPrompt = new ConfirmationPrompt();
-            DialogResult results = confirmationPrompt.ShowDialog();
+            confirmationAddProd();
         }
 
         private void dtgridSizeFields_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -127,7 +118,7 @@ namespace SneakTrack___POS___Inventory_System
             validateCell(cell);
         }
 
-        private bool validateCell(DataGridViewCell cell)
+        private bool validateCell(DataGridViewCell cell) // TODO: check for duplicate barcode mabye on upper method idk
         {
             bool isValid = true;
             string columnName = dtgridSizeFields.Columns[cell.ColumnIndex].Name;
@@ -137,11 +128,37 @@ namespace SneakTrack___POS___Inventory_System
             switch (columnName)
             {
                 case "Gender":
-                    isValid = v.validateCellValue(cell, v.validateCharacters(newValue, "^[mMfFuU]$"), "Invalid gender (M/F/U)");
+                    if (genderRegex == null)
+                    {
+                        isValid = v.validateCellValue(cell, false, "Select at least one checkbox");
+                    }
+
+                    else if (v.validateCellValue(cell, v.validateCharacters(newValue, genderRegex), "Invalid gender"))
+                    {
+                        cell.Value = cell.Value.ToString().ToUpper();
+                    }
+
+                    else
+                    {
+                        isValid = false;
+                    }
                     break;
 
                 case "Size":
-                    isValid = v.validateCellValue(cell, v.readDouble(newValue) > 0, "Enter a valid size greater than 0");
+                    bool hasValue = dtgridSizeFields.Rows.Cast<DataGridViewRow>()
+                        .Where(row => !row.IsNewRow && row.Index != cell.RowIndex)
+                        .Any (row => row.Cells["Size"].Value?.ToString() == cell.Value?.ToString() 
+                        && row.Cells["Gender"].Value?.ToString() == 
+                        dtgridSizeFields.Rows[cell.RowIndex].Cells["Gender"].Value?.ToString());
+
+                    if (hasValue)
+                    {
+                        isValid = v.validateCellValue(cell, false, "Duplicate size found");
+                    }
+                    else
+                    {
+                        isValid = v.validateCellValue(cell, v.readDouble(newValue) > 0, "Enter a valid size greater than 0");
+                    }
                     break;
 
                 case "Quantity":
@@ -168,38 +185,120 @@ namespace SneakTrack___POS___Inventory_System
             }
 
             double price = v.readDouble((object)txbxPrice.Texts);
-            if (price < 0 || price   > 999999.99)
+            if (price < 0 || price > 999999.99)
             {
                 wh.changeLbTxt(lbPriceError, "Invalid price");
                 valid = false;
             }
+            else txbxPrice.Texts = v.readDecimal((object)txbxPrice.Texts).ToString("0.00");
 
-            if (v.readString(txbxBrand.Texts) == null)
+            string brand = v.readString(txbxBrand.Texts);
+            if (brand == null)
             {
                 wh.changeLbTxt(lbBrandError, "The field cannot be blank");
                 valid = false;
             }
+            else txbxBrand.Texts = brand.ToUpper();
 
-            if (v.readString(txbxColor.Texts) == null)
+            string color = v.readString(txbxColor.Texts);
+            if (color == null)
             {
                 wh.changeLbTxt(lbColorError, "The field cannot be blank");
                 valid = false;
             }
+            else txbxColor.Texts = color.ToUpper();
 
-            if (v.readString(txbxProductName.Texts) == null)
+            string productName = v.readString(txbxProductName.Texts);
+            if (productName == null)
             {
                 wh.changeLbTxt(lbProductError, "The field cannot be blank");
                 valid = false;
             }
+            else txbxProductName.Texts = productName;
+
+            string sizeType = v.readString(txbxSizeType.Texts);
+            if (sizeType != null)
+            {
+                txbxSizeType.Texts = sizeType.ToUpper();
+            }
+            else txbxSizeType.Texts = "US";
 
             List<int> columnIndex = new List<int>() { 3 };
             if (v.dataGridHasErrorsOrBlank(dtgridSizeFields, columnIndex))
             {
-                Debug.WriteLine("field on grid ");
                 valid = false;
             }
 
             return valid;
         }
+
+        private void chbx_CheckedChanged(object sender, EventArgs e)
+        {
+            string gender = "^[";
+            
+            gender += chbxMale.Checked ? "mM" : "";
+            gender += chbxFemale.Checked ? "fF" : "";
+            gender += chbxUnisex.Checked ? "uU" : "";
+
+            gender += "]$";
+
+            if (gender != "^[]$") genderRegex = gender;
+            else genderRegex = null;
+        }
+
+        private void confirmationAddProd()
+        {
+            ConfirmationPrompt confirm = new ConfirmationPrompt();
+            confirm.Header = "Confirm Product Addition";
+            confirm.Prompt = "Are you sure you want to add this product: \r\n" + txbxProductName.Texts + " - " + txbxColor.Texts;
+            DialogResult results = confirm.ShowDialog();
+
+            if (results == DialogResult.OK) { 
+                this.DialogResult = results;
+                loadProduct();
+                this.Close();
+            }
+        }
+        // TODO: check if barcode is duplicate
+       
+        private void loadProduct()
+        {
+            Product p = null;
+            try
+            {
+                string name = v.readString(txbxProductName.Texts);
+                string brand = v.readString(txbxBrand.Texts);
+                string color = v.readString(txbxColor.Texts);
+                string sizeType = v.readString(txbxSizeType.Texts) ?? "US";
+                decimal price = v.readDecimal(txbxPrice.Texts);
+                string description = v.readString(txbxDescription.Text);
+
+                p = new Product(name, brand, color, description, imagePath);
+
+                foreach (DataGridViewRow row in dtgridSizeFields.Rows)
+                {
+                    if (row.IsNewRow) continue;
+
+                    char gender = v.readString(row.Cells[0].Value.ToString())[0];
+                    double size = v.readDouble(row.Cells[1].Value);
+                    int quantity = v.readInt(row.Cells[2].Value);
+                    string barcode = string.IsNullOrEmpty(row.Cells[3].Value?.ToString()) ? null : v.readString(row.Cells[3].Value.ToString());
+
+                    Variant variant = new Variant(size, sizeType, quantity, barcode, gender, price);
+                    p.addVariant(variant);
+
+                }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while loading the product.");
+            }
+
+            outProd = p;
+            pc.addProduct(outProd);
+
+        }
+        
     }
 }

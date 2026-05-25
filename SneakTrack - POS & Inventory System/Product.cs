@@ -21,6 +21,7 @@ namespace SneakTrack___POS___Inventory_System
         private string description;
         private int brandId;
         private bool archived = false; //TODO: this
+        private bool lowStock;
         private List<Variant> variants = new List<Variant>();
 
         private bool hasMale = false, hasFemale = false, hasUnisex = false;
@@ -52,10 +53,13 @@ namespace SneakTrack___POS___Inventory_System
         public int ProdId { get { return prodId; } set { prodId = value; } }
         public string Brand { get { return brand; } set { brand = value; } }
         public string Color { get { return color; } set { color = value; } }
+        public bool HasMale { get { return hasMale; } }
+        public bool HasFemale { get { return hasFemale; } }
+        public bool HasUnisex { get { return hasUnisex; } }
 
         public Image Image
         {
-            get 
+            get
             {
                 if (this.image == null)
                 {
@@ -101,6 +105,7 @@ namespace SneakTrack___POS___Inventory_System
         public string Name { get { return name; } set { name = value; } }
         public string ImagePath { get { return imagePath; } set { imagePath = value; } }
         public List<Variant> Variants { get { return variants; } }
+        public bool LowStock { get { return lowStock; } set { lowStock = value; } }
 
         public int totalQuantity()
         {
@@ -148,10 +153,53 @@ namespace SneakTrack___POS___Inventory_System
             return output;
         }
 
+        public string gendersStringFull()
+        {
+            bool comma = false;
+            string output = string.Empty;
+
+            if (hasMale)
+            {
+                output += "Male";
+                comma = true;
+            }
+
+            if (hasFemale)
+            {
+                output += comma ? " ,Female" : "Female";
+                comma = true;
+            }
+
+            if (hasUnisex)
+            {
+                output += comma ? " ,Unisex" : "Unisex";
+                comma = true;
+            }
+
+            return output;
+        }
+
+        public List<char> genderArray()
+        {
+            List<char> genders = new List<char>();
+
+            if (hasMale)
+                genders.Add('M');
+
+            if (hasFemale)
+                genders.Add('F');
+
+            if (hasUnisex)
+                genders.Add('U');
+
+            return genders;
+        }
+
         public void addVariant(Variant variant)
         {
             variants.Add(variant);
             checkVariantGender(variant);
+            checkLowStock(variant);
         }
 
         public decimal displayPrice()
@@ -161,28 +209,34 @@ namespace SneakTrack___POS___Inventory_System
                 return Variants.First().Price;
             }
 
-            catch (Exception e) {}
+            catch (Exception e) { }
 
             return 0;
         }
 
         private void checkVariantGender(Variant v)
         {
-            switch(v.Gender) {
+            switch (v.Gender)
+            {
 
                 case 'M':
-                this.hasMale = true;
-                break;
+                    this.hasMale = true;
+                    break;
 
                 case 'F':
-                this.hasFemale = true;
-                break;
+                    this.hasFemale = true;
+                    break;
 
                 case 'U':
-                this.hasUnisex = true;
-                break;
+                    this.hasUnisex = true;
+                    break;
 
             }
+        }
+
+        private void checkLowStock(Variant v)
+        {
+            this.lowStock = v.Quantity <= 3;
         }
 
     }

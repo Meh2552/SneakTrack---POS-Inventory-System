@@ -42,15 +42,28 @@ namespace SneakTrack___POS___Inventory_System
         }
         */
 
-        public bool hasDuplicateProduct(string productName, string brandName, string colorName)
+        public bool readBarcode(string input, int quantity)
         {
-            return dh.ProductMasterList.AsEnumerable().Any(row =>
-                string.Equals(row.Field<string>("product_name"), productName, StringComparison.OrdinalIgnoreCase) &&
-                string.Equals(row.Field<string>("brand_name"), brandName, StringComparison.OrdinalIgnoreCase) &&
-                string.Equals(row.Field<string>("color_name"), colorName, StringComparison.OrdinalIgnoreCase)
-            );
-        }
+            bool output = false;
 
+            DataTable productsM = dh.ProductMasterDT;
+            if (v.tableHasValue(productsM, "Barcode", input))
+            {
+                DataRow dr = productsM.Select($"Barcode = '{input}'").First();
+
+                Product p = idsToProduct(v.readInt(dr["product_id"]));
+
+                dh.updateValueToTable(dh.updateQuery("Size", "quantity += @quantity", $"size_id = {dr["size_id"]}"), "@quantity", quantity.ToString());
+                MessageBox.Show("Product updated successfully.", "Stock Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return true;
+            }
+
+            else
+            {
+                MessageBox.Show("Barcode not found in database.");
+                return false;
+            }
+        } // TODO: stock limits for quantity
 
         public Label brandToLabel(string brandName)
         {
@@ -81,16 +94,25 @@ namespace SneakTrack___POS___Inventory_System
 
         public List<ProductTile> loadProducts(TableLayoutPanel tablePanel, bool clearRowAfter0) // TODO: make method accesible to Products idk how coz of the event
         {
-
-            List<Product> list = dh.toProducts(dh.ProductMasterList);
+            dh.loadMasterList();
+            
+            List<Product> list = dh.toProducts(dh.ProductMasterDT);
             List<ProductTile> ptList = new List<ProductTile>();
 
-            if (clearRowAfter0) wh.clearRows(tablePanel, 0);
+            if (clearRowAfter0)
+            {
+                wh.clearRows(tablePanel, 0);
+                TableLayoutRowStyleCollection style = tablePanel.RowStyles;
+                tablePanel.RowCount = style.Count;
+            }
+
             else
             {
                 tablePanel.RowStyles.Clear();
                 tablePanel.Controls.Clear();
             }
+
+            tablePanel.SuspendLayout();
 
             int current = 0, count = 0; // TODO: limit for page length
             FlowLayoutPanel currentProd = new FlowLayoutPanel();
@@ -114,19 +136,20 @@ namespace SneakTrack___POS___Inventory_System
                 ptList.Add(pt);
             }
 
+            tablePanel.ResumeLayout();
             return ptList;
         }
 
-        // v.idFromValue(dh.ProductMasterList, "brand_name", "brand_id", p.Brand, true)  mabye useful
+        // v.idFromValue(dh.productMasterDT, "brand_name", "brand_id", p.Brand, true)  mabye useful
         public void addProduct(Product p)
         {
 
-            int brandid = v.tableHasValue(dh.dataToTable(dh.selectQuery("Brand")), "brand_name", p.Brand, true) 
+            int brandid = v.tableHasValue(dh.dtFromTable(dh.selectQuery("Brand")), "brand_name", p.Brand, true) 
                 ? v.readInt(dh.getValueFromTable(dh.selectQuery("Brand", "brand_id", $"brand_name = '{p.Brand}'")))
                 : dh.toBrandDB(p);
             Debug.WriteLine($"Brand ID: {brandid}");
 
-            int colorid = v.tableHasValue(dh.dataToTable(dh.selectQuery("Color")), "color_name", p.Color, true) 
+            int colorid = v.tableHasValue(dh.dtFromTable(dh.selectQuery("Color")), "color_name", p.Color, true) 
                 ? v.readInt(dh.getValueFromTable(dh.selectQuery("Color", "color_id", $"color_name = '{p.Color}'")))
                 : dh.toColorDB(p);
             Debug.WriteLine($"Color ID: {colorid}");
@@ -149,14 +172,36 @@ namespace SneakTrack___POS___Inventory_System
             }
         }
 
+        public void updateQuantity(Product P)
+        {
+            foreach (Variant v in P.Variants)
+            {
+                dh.updateValueToTable(dh.updateQuery("Size", "quantity = @quantity", $"size_id = {v.SizeId}"), "@quantity", v.Quantity.ToString());
+            }
+
+        }
+
+        public Product idsToProduct(int prodId)
+        {
+            foreach(Product p in dh.MasterToProductList)
+            {
+                if (p.ProdId == prodId)
+                    return p;
+            }
+            return null;
+        }
+
         public string toProdInfo(Product p)
         {
+            string listed = p.Variants.First().ForSale ? "Listed for sale" : "Unlisted";
             string output =
+                "\r\n" +
                 $"Product Name: {p.DisplayName()}\r\n" +
                 $"Color: {p.Color}\r\n" +
                 $"Brand: {p.Brand}\r\n\r\n" +
                 $"Variants: {p.variantsString()}\r\n" +
-                $"Total Quantity: {p.totalQuantity()}\r\n\r\n" +
+                $"Total Quantity: {p.totalQuantity()}\r\n" +
+                $"Status: {listed}\r\n\r\n" +
                 $"{p.Description}";
 
             return output;
@@ -174,7 +219,7 @@ namespace SneakTrack___POS___Inventory_System
 
         public int totalProductTypes()
         {
-            int total = dh.ProductMasterList.AsEnumerable()
+            int total = dh.ProductMasterDT.AsEnumerable()
                 .Select(p => p.Field<int>("product_id"))
                 .Distinct().Count();
 
@@ -183,7 +228,7 @@ namespace SneakTrack___POS___Inventory_System
 
         public int totalStock()
         {
-            int total = dh.ProductMasterList.AsEnumerable()
+            int total = dh.ProductMasterDT.AsEnumerable()
                 .Select(p => p.Field<int>("quantity")).Sum();
 
             return total;
@@ -191,7 +236,7 @@ namespace SneakTrack___POS___Inventory_System
 
         public decimal totalValue()
         {
-            decimal total = dh.ProductMasterList.AsEnumerable()
+            decimal total = dh.ProductMasterDT.AsEnumerable()
                 .Select(p => p.Field<int>("quantity") * p.Field<decimal>("price")).Sum();
 
             return total;

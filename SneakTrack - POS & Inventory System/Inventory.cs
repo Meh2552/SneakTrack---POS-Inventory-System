@@ -29,7 +29,16 @@ namespace SneakTrack___POS___Inventory_System
             this.pc = sys.PC;
             loadSelection();
         }
- 
+
+        private void reloadInv()
+        {
+            loadSelection();
+            if (selected != null)
+            {
+                loadSideInfo(selected);
+            }
+        }
+
         private void loadSelection()
         {
             List<ProductTile> ptlist = pc.loadProducts(tblpnSelectionInv, true);
@@ -104,18 +113,25 @@ namespace SneakTrack___POS___Inventory_System
 
         private void txbxBarcode__TextChanged(object sender, EventArgs e)
         {
+            if (!chbxAutoAddInp.Checked) return;
 
+            barcodeCheck();
         }
 
         private void btnNewProduct_Click(object sender, EventArgs e)
         {
             AddProductForm addForm = new AddProductForm(sys);
             DialogResult result = addForm.ShowDialog(this);
+
+            if (result == DialogResult.OK) reloadInv();
         }
 
         private void btnEditProduct_Click(object sender, EventArgs e)
         {
+            EditProductForm editForm = new EditProductForm(sys, selected);
+            DialogResult result = editForm.ShowDialog(this);
 
+            if (result == DialogResult.OK) reloadInv();
         }
 
         private void btnDeleteProduct_Click(object sender, EventArgs e)
@@ -123,11 +139,48 @@ namespace SneakTrack___POS___Inventory_System
 
         }
 
+        private void btnManageStock_Click(object sender, EventArgs e)
+        {
+            ManageStockForm addForm = new ManageStockForm(sys, selected);
+            DialogResult result = addForm.ShowDialog(this);
+
+            if (result == DialogResult.OK) reloadInv();
+        }
+
         private void loadTiles()
         {
             tlProductListedSH.BottomText = pc.totalProductTypes().ToString();
             tlTotalStockSH.BottomText = pc.totalStock().ToString();
             tlTSVSH.BottomText = "₱ " + pc.totalValue().ToString();
+        }
+
+        private void barcodeCheck()
+        {
+            string barcode = v.readString(txbxBarcode.Texts);
+            if (string.IsNullOrEmpty(barcode)) return;
+
+            if (pc.readBarcode(barcode, v.readInt(txbxBarcodeQuan.Text))) reloadInv();
+            txbxBarcode.Focus();
+        }
+
+        private void btnBarcodeAdd_Click(object sender, EventArgs e)
+        {
+            if (v.readString(txbxBarcode.Texts) == null)
+            {
+                System.Windows.Forms.MessageBox.Show("Please enter a barcode.");
+                return;
+            }
+            barcodeCheck();
+        }
+
+        private void chbxAutoAddInp_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chbxAutoAddInp.Checked) barcodeCheck();
+        }
+
+        private void btnReload_Click(object sender, EventArgs e)
+        {
+            reloadInv();
         }
     }
 

@@ -88,26 +88,8 @@ namespace SneakTrack___POS___Inventory_System.UIControls
             base.Dispose(disposing);
         }
 
-        private Rectangle GetLeftUpper(int e)
-        {
-            return new Rectangle(0, 0, e, e);
-        }
-        private Rectangle GetRightUpper(int e)
-        {
-            return new Rectangle(Width - e, 0, e, e);
-        }
-        private Rectangle GetRightLower(int e)
-        {
-            return new Rectangle(Width - e, Height - e, e, e);
-        }
-        private Rectangle GetLeftLower(int e)
-        {
-            return new Rectangle(0, Height - e, e, e);
-        }
-
         private void ExtendedDraw(PaintEventArgs e)
         {
-            // Prevent drawing with invalid dimensions
             if (Width <= 0 || Height <= 0 || Radius <= 0)
                 return;
 
@@ -115,21 +97,39 @@ namespace SneakTrack___POS___Inventory_System.UIControls
 
             using (GraphicsPath path = new GraphicsPath())
             {
-                // Ensure radius doesn't exceed half of the smallest dimension
-                int actualRadius = Math.Min(Radius, Math.Min(Width / 2, Height / 2));
+                int r = Math.Min(Radius, Math.Min(Width / 2, Height / 2));
+                int w = Width - 1;  // 👈 -1 to stay within bounds
+                int h = Height - 1;
 
                 path.StartFigure();
-                path.AddArc(GetLeftUpper(actualRadius), 180, 90);
-                path.AddLine(actualRadius, 0, Width - actualRadius, 0);
-                path.AddArc(GetRightUpper(actualRadius), 270, 90);
-                path.AddLine(Width, actualRadius, Width, Height - actualRadius);
-                path.AddArc(GetRightLower(actualRadius), 0, 90);
-                path.AddLine(Width - actualRadius, Height, actualRadius, Height);
-                path.AddArc(GetLeftLower(actualRadius), 90, 90);
-                path.AddLine(0, Height - actualRadius, 0, actualRadius);
+
+                // Top-left
+                path.AddArc(0, 0, r * 2, r * 2, 180, 90);
+
+                // Top-right
+                path.AddArc(w - r * 2, 0, r * 2, r * 2, 270, 90);
+
+                // Bottom-right
+                path.AddArc(w - r * 2, h - r * 2, r * 2, r * 2, 0, 90);
+
+                // Bottom-left
+                path.AddArc(0, h - r * 2, r * 2, r * 2, 90, 90);
+
                 path.CloseFigure();
 
                 Region = new Region(path);
+
+                // Draw border
+                using (Pen pen = new Pen(BorderColor, Thickness))
+                {
+                    e.Graphics.DrawPath(pen, path);
+                }
+
+                // Fill background
+                using (SolidBrush brush = new SolidBrush(BackColor))
+                {
+                    e.Graphics.FillPath(brush, path);
+                }
             }
         }
 

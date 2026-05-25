@@ -164,8 +164,20 @@ namespace SneakTrack___POS___Inventory_System.UIControls
             }
             set
             {
+                if (isPlaceholder)
+                {
+                    isPlaceholder = false;
+                    if (isPasswordChar)
+                        textBox1.UseSystemPasswordChar = true;
+                }
+
                 textBox1.Text = value;
-                SetPlaceholder();
+                textBox1.ForeColor = this.ForeColor;
+
+                if (string.IsNullOrWhiteSpace(value) && !isFocused)
+                {
+                    SetPlaceholder();
+                }
             }
         }
 
@@ -312,7 +324,7 @@ namespace SneakTrack___POS___Inventory_System.UIControls
         #region -> Private methods
         private void SetPlaceholder()
         {
-            if (string.IsNullOrWhiteSpace(textBox1.Text) && placeholderText != "")
+            if (string.IsNullOrWhiteSpace(textBox1.Text) && placeholderText != "" && !isFocused)
             {
                 isPlaceholder = true;
                 textBox1.Text = placeholderText;
@@ -321,6 +333,7 @@ namespace SneakTrack___POS___Inventory_System.UIControls
                     textBox1.UseSystemPasswordChar = false;
             }
         }
+
         private void RemovePlaceholder()
         {
             if (isPlaceholder && placeholderText != "")
@@ -332,6 +345,7 @@ namespace SneakTrack___POS___Inventory_System.UIControls
                     textBox1.UseSystemPasswordChar = true;
             }
         }
+
         private GraphicsPath GetFigurePath(Rectangle rect, int radius)
         {
             GraphicsPath path = new GraphicsPath();

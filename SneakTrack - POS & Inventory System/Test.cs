@@ -20,7 +20,7 @@ namespace SneakTrack___POS___Inventory_System
 
         private void Test_Load(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = datah.dataToTable("User");
+            dataGridView1.DataSource = datah.dtFromTable("User");
         }
     }
 }

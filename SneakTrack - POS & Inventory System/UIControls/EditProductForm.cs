@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace SneakTrack___POS___Inventory_System
 {
-    public partial class AddProductForm : Form
+    public partial class EditProductForm : Form
     {
         private MainSystem sys;
         private WindowHandler wh;
@@ -23,14 +23,15 @@ namespace SneakTrack___POS___Inventory_System
         private ProductController pc;
 
         private string imagePath = null;
+        private Product inProd;
         private string genderRegex = null;
 
-        public AddProductForm()
+        public EditProductForm()
         {
             InitializeComponent();
         }
 
-        public AddProductForm(MainSystem system)
+        public EditProductForm(MainSystem system, Product p)
         {
             InitializeComponent();
             this.sys = system;
@@ -38,7 +39,7 @@ namespace SneakTrack___POS___Inventory_System
             this.v = sys.VAL;
             this.dh = sys.DH;
             this.pc = sys.PC;
-            initialize();
+            initialize(p);
         }
 
 
@@ -53,8 +54,10 @@ namespace SneakTrack___POS___Inventory_System
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
-        private void initialize() // TODO: add for size type
+        private void initialize(Product p) // TODO: add for size type
         {
+            this.inProd = p;
+
             AutoCompleteStringCollection brandColl = new AutoCompleteStringCollection();
             brandColl.AddRange(dh.BrandList.ToArray());
             txbxBrand.AutoCompleteCustomSource = brandColl;
@@ -62,10 +65,36 @@ namespace SneakTrack___POS___Inventory_System
             AutoCompleteStringCollection colorColl = new AutoCompleteStringCollection();
             colorColl.AddRange(dh.ColorList.ToArray());
             txbxColor.AutoCompleteCustomSource = colorColl;
+            
+            txbxProductName.Texts = p.Name;
+            txbxBrand.Texts = p.Brand;
+            txbxColor.Texts = p.Color;
+            txbxPrice.Texts = p.displayPrice().ToString("0.00");
 
-            AutoCompleteStringCollection sizeTypeColl = new AutoCompleteStringCollection();
-            sizeTypeColl.AddRange(dh.SizeTypesList.ToArray());
-            txbxSizeType.AutoCompleteCustomSource = sizeTypeColl;
+            loadProductFields(p);
+
+            if (p.HasMale) chbxMale.Checked = true;
+            if (p.HasFemale) chbxFemale.Checked = true;
+            if (p.HasUnisex) chbxUnisex.Checked = true;
+        }
+
+        private void loadProductFields(Product p)
+        {
+
+            foreach (Variant v in p.Variants)
+            {
+                string barcode = string.IsNullOrEmpty(v.Barcode) ? string.Empty : v.Barcode;
+                dtgridSizeFields.Rows.Add(
+                        v.Gender,
+                        v.Size,
+                        v.Quantity,
+                        barcode,
+                        v.SizeType,
+                        v.SizeId
+                    );
+
+                dtgridSizeFields.Rows[dtgridSizeFields.Rows.Count - 1].Tag = v;
+            }
         }
 
         private void btnAddImage_Click(object sender, EventArgs e) // TODO: add image to file, resources.
@@ -80,32 +109,11 @@ namespace SneakTrack___POS___Inventory_System
 
         }
 
-        private void btnAddProduct_Click(object sender, EventArgs e)
-        {
-            if (!validateProductFields() || dtgridSizeFields.Rows.Count == 1)
-            {
-                MessageBox.Show("Process has been cancelled due to unexpected errors.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
 
-            string name = v.readString(txbxProductName.Texts);
-            string brand = v.readString(txbxBrand.Texts);
-            string color = v.readString(txbxColor.Texts);
-            string sizeType = v.readString(txbxSizeType.Texts);
 
-            Debug.WriteLine($"Checking for duplicate product with Name: {name}, Brand: {brand}, Color: {color}");
-
-            if (dh.hasDuplicateProduct(name, brand, color))
-            {
-                MessageBox.Show("Similar product is already listed in the system", "Duplicate Product", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            confirmationAddProd();
-        }
 
         private void dtgridSizeFields_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
+        {  
             int rowIndex = e.RowIndex;
             int colIndex = e.ColumnIndex;
 
@@ -116,10 +124,12 @@ namespace SneakTrack___POS___Inventory_System
             DataGridViewCell cell = row.Cells[colIndex];
 
             validateCell(cell);
+           
         }
 
+        
         private bool validateCell(DataGridViewCell cell) // TODO: check for duplicate barcode mabye on upper method idk
-        {
+        { 
             bool isValid = true;
             string columnName = dtgridSizeFields.Columns[cell.ColumnIndex].Name;
             string newValue = cell.FormattedValue.ToString();
@@ -147,8 +157,8 @@ namespace SneakTrack___POS___Inventory_System
                 case "Size":
                     bool hasValue = dtgridSizeFields.Rows.Cast<DataGridViewRow>()
                         .Where(row => !row.IsNewRow && row.Index != cell.RowIndex)
-                        .Any (row => row.Cells["Size"].Value?.ToString() == cell.Value?.ToString() 
-                        && row.Cells["Gender"].Value?.ToString() == 
+                        .Any(row => row.Cells["Size"].Value?.ToString() == cell.Value?.ToString()
+                        && row.Cells["Gender"].Value?.ToString() ==
                         dtgridSizeFields.Rows[cell.RowIndex].Cells["Gender"].Value?.ToString());
 
                     if (hasValue)
@@ -164,10 +174,13 @@ namespace SneakTrack___POS___Inventory_System
                 case "Quantity":
                     isValid = v.validateCellValue(cell, v.readInt(newValue) >= 0, "Enter a valid quantity (0 or more)");
                     break;
-            }
 
+                case "SizeType":
+                    break;
+            }
             return isValid;
         }
+
 
         private bool validateProductFields()
         {
@@ -216,21 +229,16 @@ namespace SneakTrack___POS___Inventory_System
             }
             else txbxProductName.Texts = productName;
 
-            string sizeType = v.readString(txbxSizeType.Texts);
-            if (sizeType != null)
-            {
-                txbxSizeType.Texts = sizeType.ToUpper();
-            }
-            else txbxSizeType.Texts = "US";
-
-            List<int> columnIndex = new List<int>() { 3 };
+            List<int> columnIndex = new List<int>() { 3, 4, 5, 6 };
             if (v.dataGridHasErrorsOrBlank(dtgridSizeFields, columnIndex))
             {
                 valid = false;
             }
 
             return valid;
+
         }
+
 
         private void chbx_CheckedChanged(object sender, EventArgs e)
         {
@@ -246,11 +254,33 @@ namespace SneakTrack___POS___Inventory_System
             else genderRegex = null;
         }
 
-        private void confirmationAddProd()
+        private void btnConfirmChanges_Click(object sender, EventArgs e)
         {
+            if (!validateProductFields() || dtgridSizeFields.Rows.Count == 1)
+            {
+                MessageBox.Show("Process has been cancelled due to unexpected errors.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string name = v.readString(txbxProductName.Texts);
+            string brand = v.readString(txbxBrand.Texts);
+            string color = v.readString(txbxColor.Texts);
+
+            if (dh.hasDuplicateProduct(name, brand, color, inProd.ProdId.ToString()))
+            {
+                MessageBox.Show("Similar product is already listed in the system", "Duplicate Product", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+           confirmationAddProd();
+        }
+
+        // TODO: remove size type txbx 
+        private void confirmationAddProd()
+        { 
             ConfirmationPrompt confirm = new ConfirmationPrompt();
-            confirm.Header = "Confirm Product Addition";
-            confirm.Prompt = "Are you sure you want to add this product: \r\n" + txbxProductName.Texts + " - " + txbxColor.Texts;
+            confirm.Header = "Confirm Product Changes";
+            confirm.Prompt = "Save the product changes: \r\n" + txbxProductName.Texts + " - " + txbxColor.Texts;
             DialogResult results = confirm.ShowDialog();
 
             if (results == DialogResult.OK) { 
@@ -260,7 +290,8 @@ namespace SneakTrack___POS___Inventory_System
             }
         }
         // TODO: check if barcode is duplicate
-       
+
+
         private void loadProduct()
         {
             Product p = null;
@@ -269,7 +300,7 @@ namespace SneakTrack___POS___Inventory_System
                 string name = v.readString(txbxProductName.Texts);
                 string brand = v.readString(txbxBrand.Texts);
                 string color = v.readString(txbxColor.Texts);
-                string sizeType = v.readString(txbxSizeType.Texts) ?? "US";
+                //string sizeType = v.readString(txbxSizeType.Texts) ?? "US"; TODO: this
                 decimal price = v.readDecimal(txbxPrice.Texts);
                 string description = v.readString(txbxDescription.Text);
 
@@ -284,7 +315,7 @@ namespace SneakTrack___POS___Inventory_System
                     int quantity = v.readInt(row.Cells[2].Value);
                     string barcode = string.IsNullOrEmpty(row.Cells[3].Value?.ToString()) ? null : v.readString(row.Cells[3].Value.ToString());
 
-                    Variant variant = new Variant(size, sizeType, quantity, barcode, gender, price);
+                    Variant variant = new Variant(size, "sizeType", quantity, barcode, gender, price);
                     p.addVariant(variant);
 
                 }
@@ -295,9 +326,8 @@ namespace SneakTrack___POS___Inventory_System
                 MessageBox.Show("An error occurred while loading the product.");
             }
 
-            pc.addProduct(p);
-
+            // pc.addProduct(p);
         }
-        
+
     }
 }

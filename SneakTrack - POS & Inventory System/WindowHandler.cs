@@ -93,8 +93,8 @@ namespace SneakTrack___POS___Inventory_System
                 TileImage = product.Image,
                 Margin = new Padding(4, 7, 4, 7),
                 Cursor = Cursors.Hand,
-                ProductObj = product
-
+                ProductObj = product,
+                LowStock = product.LowStock
             };
 
             return tile;

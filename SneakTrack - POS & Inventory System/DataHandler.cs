@@ -21,7 +21,7 @@ namespace SneakTrack___POS___Inventory_System
         private MainSystem sys;
         private UserAuth ua;
         private FileHandler fh;
-        private DataTable productMasterList;
+        private DataTable productMasterDT;
         private List<Product> masterToProductList;
 
         private List<string> colorList;
@@ -44,6 +44,11 @@ namespace SneakTrack___POS___Inventory_System
             this.ua = sys.UA;
             this.fh = sys.FH;
             loadMasterList();
+        }
+
+        public string selectQuery(string table, string column, string condition, string join)
+        {
+            return $"SELECT {column} FROM [{table}] {join} WHERE {condition}";
         }
 
         public string selectQuery(string table, string column, string condition)
@@ -84,25 +89,25 @@ namespace SneakTrack___POS___Inventory_System
         // idk sa database sya parang path nung server
         string conString = @"Data Source =.; Initial Catalog = SneakTrackDB; Integrated Security = True; Encrypt = False;";
 
-        public DataTable ProductMasterList { get { return this.productMasterList; } }
+        public DataTable ProductMasterDT { get { return this.productMasterDT; } }
         public List<Product> MasterToProductList { get { return this.masterToProductList; } }
         public List<string> ColorList { get { return this.colorList; } set { this.colorList = value; } }
         public List<string> BrandList { get { return this.brandList; } set { this.brandList = value; } }
         public List<double> SizeList { get { return this.sizeList; } set { this.sizeList = value; } }
         public List<string> SizeTypesList { get { return this.sizeTypesList; } set { this.sizeTypesList = value; } }
 
-        private void loadMasterList()
+        public void loadMasterList()
         {
             string query = $"{String.Concat(selectQuery("Product"), joinAllQuery())} WHERE Product.archived = 0 ORDER BY Product.brand_id";
-            this.productMasterList = dataToTable(query);
-            this.masterToProductList = toProducts(this.productMasterList);
+            this.productMasterDT = dtFromTable(query);
+            this.masterToProductList = toProducts(this.productMasterDT);
             loadInfoLists();
         }
 
         private void loadInfoLists()
         {
             string query = selectQuery("Color", "color_name");
-            DataTable dt = dataToTable(query);
+            DataTable dt = dtFromTable(query);
             List<string> colors = new List<string>();
 
             foreach (DataRow dr in dt.Rows)
@@ -114,7 +119,7 @@ namespace SneakTrack___POS___Inventory_System
 
 
             query = selectQuery("Brand", "brand_name");
-            dt = dataToTable(query);
+            dt = dtFromTable(query);
             List<string> brands = new List<string>();
 
             foreach (DataRow dr in dt.Rows)
@@ -126,7 +131,7 @@ namespace SneakTrack___POS___Inventory_System
 
 
             query = selectQuery("Size", "DISTINCT size");
-            dt = dataToTable(query);
+            dt = dtFromTable(query);
             List<double> sizes = new List<double>();
 
             foreach (DataRow dr in dt.Rows)
@@ -137,7 +142,7 @@ namespace SneakTrack___POS___Inventory_System
             SizeList = sizes;
 
             query = selectQuery("Size", "DISTINCT size_type");
-            dt = dataToTable(query);
+            dt = dtFromTable(query);
             List<string> sizeTypes = new List<string>();
 
             foreach (DataRow dr in dt.Rows)
@@ -171,8 +176,101 @@ namespace SneakTrack___POS___Inventory_System
             return output;
         }
 
+        public bool hasDuplicateProduct(string productName, string brandName, string colorName, string prodId = null)
+        {
+            bool output = false;
+            try
+            {
+                SqlConnection conn = new SqlConnection(conString);
+                conn.Open();
+
+                bool allParams = prodId != null;
+                string whereClause = allParams ?
+                    $"(Product.product_name = @productName AND Brand.brand_name = @brandName AND Color.color_name = @colorName) AND " +
+                    $"Product.product_id != @prodId" :
+                    $"Product.product_name = @productName AND Brand.brand_name = @brandName AND Color.color_name = @colorName";
+
+                string query = selectQuery("Product", "COUNT(*)",
+                    whereClause, joinAllQuery());
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@productName", productName);
+                cmd.Parameters.AddWithValue("@brandName", brandName);
+                cmd.Parameters.AddWithValue("@colorName", colorName);
+
+                if (allParams)
+                {
+                    cmd.Parameters.AddWithValue("@prodId", prodId);
+                }
+
+                int count = Convert.ToInt32(cmd.ExecuteScalar());
+                output = count > 0;
+                conn.Close();
+
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Error: " + e.Message);
+
+            }
+            return output;
+        }
+
+        /*
+        public bool valueListToTable(string query, List<string> values)
+        {
+            bool output = false;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(conString))
+                {
+                    conn.Open();
+
+                    foreach (string value in values)
+                    {
+                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@value", value);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    output = true;
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Error: " + e.Message);
+            }
+            return output;
+        }
+        */
+        
+        public bool updateValueToTable(string query, string parameterName, string parameterValue)
+        {
+            bool output = false;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(conString))
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue(parameterName, parameterValue);
+                        cmd.ExecuteNonQuery();
+                        output = true;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Error: " + e.Message);
+            }
+            return output;
+        }
+
         // Returns a datatable of a table in the database.
-        public DataTable dataToTable(string query)
+        public DataTable dtFromTable(string query)
         {
             try
             {
@@ -183,18 +281,6 @@ namespace SneakTrack___POS___Inventory_System
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
                 conn.Close();
-
-
-                /* For testing /
-                foreach (DataRow row in dt.Rows)
-                {
-                    foreach (DataColumn col in dt.Columns)
-                    {
-                        Debug.Write(row[col] + "\t");
-                    }
-                    Debug.WriteLine("");
-                }
-                */
 
                 return dt;
             }

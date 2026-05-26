@@ -11,7 +11,6 @@ namespace SneakTrack___POS___Inventory_System
 {
     public class Product
     {
-
         private int prodId;
         private string name;
         private string brand;
@@ -23,11 +22,12 @@ namespace SneakTrack___POS___Inventory_System
         private bool archived = false; //TODO: this
         private bool lowStock;
         private List<Variant> variants = new List<Variant>();
+        private bool forSale;
 
         private bool hasMale = false, hasFemale = false, hasUnisex = false;
 
         public Product(int prodId, string name, string brand, int brandId, string color,
-                  string description, string imagePath)
+                  string description, string imagePath, bool forSale)
         {
             this.prodId = prodId;
             this.name = name;
@@ -36,9 +36,10 @@ namespace SneakTrack___POS___Inventory_System
             this.image = setImagePath(imagePath);
             this.description = description;
             this.brandId = brandId;
+            this.forSale = forSale;
         }
 
-        public Product(string name, string brand, string color, string description, string imagePath = null)
+        public Product(string name, string brand, string color, string description, string imagePath = null, bool forSale = true)
         {
             this.prodId = -1;
             this.name = name;
@@ -48,6 +49,7 @@ namespace SneakTrack___POS___Inventory_System
             this.brandId = -1;
             this.image = imagePath == null ? null : setImagePath(imagePath);
             this.imagePath = imagePath;
+            this.forSale = true;
         }
 
         public int ProdId { get { return prodId; } set { prodId = value; } }
@@ -76,10 +78,13 @@ namespace SneakTrack___POS___Inventory_System
 
         public Image setImagePath(string imagePath)
         {
+            Image output = null;
+            if (imagePath == null || string.IsNullOrWhiteSpace(imagePath)) return null;
+
             try
             {
                 Debug.WriteLine($"Loading image from path: {imagePath}");
-                return Image.FromFile(imagePath);
+                output = Image.FromFile(imagePath);
             }
 
             catch (Exception ex)
@@ -87,6 +92,7 @@ namespace SneakTrack___POS___Inventory_System
                 Console.WriteLine($"Error loading image: {ex.Message}");
                 return null;
             }
+            return output;
         }
 
         public string newImageFileName(int productId)
@@ -103,9 +109,16 @@ namespace SneakTrack___POS___Inventory_System
         public string Description { get { return description; } set { description = value; } }
         public int BrandId { get { return brandId; } set { brandId = value; } }
         public string Name { get { return name; } set { name = value; } }
-        public string ImagePath { get { return imagePath; } set { imagePath = value; } }
+        public string ImagePath { get { return imagePath; }
+
+            set { 
+                imagePath = value;
+                if (imagePath == null && string.IsNullOrWhiteSpace(imagePath))setImagePath(value);
+            } 
+        }
         public List<Variant> Variants { get { return variants; } }
         public bool LowStock { get { return lowStock; } set { lowStock = value; } }
+        public bool ForSale { get { return forSale; } set { forSale = value; } }
 
         public int totalQuantity()
         {
@@ -127,7 +140,7 @@ namespace SneakTrack___POS___Inventory_System
             return $"{Name} - {Color}";
         }
 
-        public string variantsString()
+        public string gendersString()
         {
             bool comma = false;
             string output = string.Empty;
@@ -195,6 +208,26 @@ namespace SneakTrack___POS___Inventory_System
             return genders;
         }
 
+        public Variant fromVariantId(int id)
+        {
+            Variant output = null;
+            foreach (Variant variant in variants)
+            {
+                if (variant.VariantId == id) return variant;
+            }
+            return output;
+        }
+
+        public Variant fromSizeId(int id)
+        {
+            Variant output = null;
+            foreach (Variant variant in variants)
+            {
+                if (variant.SizeId == id) return variant;
+            }
+            return output;
+        }
+
         public void addVariant(Variant variant)
         {
             variants.Add(variant);
@@ -230,7 +263,21 @@ namespace SneakTrack___POS___Inventory_System
                 case 'U':
                     this.hasUnisex = true;
                     break;
+            }
+        }
 
+        public void recheckValues()
+        {
+            if (Variants.Count == 0) return;
+
+            this.hasMale = false;
+            this.hasFemale = false;
+            this.hasUnisex= false;
+
+            foreach (Variant vari in Variants)
+            {
+                checkVariantGender(vari);
+                checkLowStock(vari);
             }
         }
 
@@ -239,6 +286,15 @@ namespace SneakTrack___POS___Inventory_System
             this.lowStock = v.Quantity <= 3;
         }
 
+        public override string ToString()
+        {
+            string output = $"Product: {prodId}\n" +
+                $"{name} - {color} from {brand} BID: {brandId}\n" +
+                $"Variants Loaded: {variants.Count} - M? {hasMale}, F? {hasFemale}, U? {hasUnisex}\n" +
+                $"Low Stock - {lowStock} | For Sale: {forSale}\n" +
+                $"Desc: {description} \nImPath: {imagePath}";
+            return output;
+        }
     }
 
     public class Variant
@@ -250,18 +306,17 @@ namespace SneakTrack___POS___Inventory_System
         private int quantity;
         private string barcode;
         private char gender;
-        private bool forSale;
         private decimal price;
+        private bool remove = false;
 
         public Variant(double size, string sizeType, int quantity, string barcode, char gender, 
-                       bool forSale, decimal price, int variant_id, int size_id)
+                       decimal price, int variant_id, int size_id)
         {
             this.size = size;
             this.sizeType = sizeType;
             this.quantity = quantity;
             this.barcode = barcode;
             this.gender = gender;
-            this.forSale = forSale;
             this.price = price;
             this.variantId = variant_id;
             this.sizeId = size_id;
@@ -274,7 +329,6 @@ namespace SneakTrack___POS___Inventory_System
             this.quantity = quantity;
             this.barcode = barcode;
             this.gender = gender;
-            this.forSale = true;
             this.price = price;
             this.variantId = -1;
             this.sizeId = -1;
@@ -285,9 +339,17 @@ namespace SneakTrack___POS___Inventory_System
         public int Quantity { get { return quantity; } set { quantity = value; } }
         public string Barcode { get { return barcode; } set { barcode = value; } }
         public char Gender { get { return gender; } set { gender = value; } }
-        public bool ForSale { get { return forSale; } set { forSale = value; } }
         public decimal Price { get { return price; } set { price = value; } }
         public int VariantId { get { return variantId; } set { variantId = value; } }
         public int SizeId { get { return sizeId; } set { sizeId = value; } }
+        public bool Remove { get { return remove; } set { remove = value; } }
+
+        public override string ToString()
+        {
+            string output = $"Variant: {variantId} \n" +
+                $"Size: {size} ({sizeType}, {gender}) - {quantity} items for {price} - {barcode}\n" + 
+                $"SID: {sizeId} - Remove? {remove}";
+            return output;
+        }
     }
 }

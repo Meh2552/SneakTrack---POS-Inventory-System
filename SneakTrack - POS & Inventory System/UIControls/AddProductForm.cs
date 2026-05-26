@@ -298,6 +298,12 @@ namespace SneakTrack___POS___Inventory_System
             pc.addProduct(p);
 
         }
-        
+
+        private void btnRemoveImage_Click(object sender, EventArgs e)
+        {
+            imagePath = null;
+            pcbxImage.Image = Properties.Resources.add_image;
+            pcbxImage.SizeMode = PictureBoxSizeMode.CenterImage;
+        }
     }
 }

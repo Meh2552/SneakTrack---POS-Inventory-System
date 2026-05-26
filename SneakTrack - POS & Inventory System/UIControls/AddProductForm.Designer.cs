@@ -42,6 +42,7 @@
             this.lbSizeType = new System.Windows.Forms.Label();
             this.lbSetStock = new System.Windows.Forms.Label();
             this.pnFields = new SneakTrack___POS___Inventory_System.UIControls.RoundedPanel();
+            this.btnRemoveImage = new System.Windows.Forms.Button();
             this.lbDisclaimer = new System.Windows.Forms.Label();
             this.lbProductError = new System.Windows.Forms.Label();
             this.lbBrandError = new System.Windows.Forms.Label();
@@ -224,6 +225,7 @@
             // 
             this.pnFields.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(35)))), ((int)(((byte)(37)))));
             this.pnFields.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(35)))), ((int)(((byte)(37)))));
+            this.pnFields.Controls.Add(this.btnRemoveImage);
             this.pnFields.Controls.Add(this.lbDisclaimer);
             this.pnFields.Controls.Add(this.lbProductError);
             this.pnFields.Controls.Add(this.lbBrandError);
@@ -253,6 +255,25 @@
             this.pnFields.Size = new System.Drawing.Size(498, 533);
             this.pnFields.TabIndex = 15;
             this.pnFields.Thickness = 5F;
+            // 
+            // btnRemoveImage
+            // 
+            this.btnRemoveImage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRemoveImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
+            this.btnRemoveImage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRemoveImage.FlatAppearance.BorderSize = 0;
+            this.btnRemoveImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemoveImage.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemoveImage.ForeColor = System.Drawing.Color.Black;
+            this.btnRemoveImage.Location = new System.Drawing.Point(183, 474);
+            this.btnRemoveImage.Margin = new System.Windows.Forms.Padding(0);
+            this.btnRemoveImage.Name = "btnRemoveImage";
+            this.btnRemoveImage.Size = new System.Drawing.Size(22, 24);
+            this.btnRemoveImage.TabIndex = 16;
+            this.btnRemoveImage.Text = "X";
+            this.btnRemoveImage.UseVisualStyleBackColor = false;
+            this.btnRemoveImage.Click += new System.EventHandler(this.btnRemoveImage_Click);
             // 
             // lbDisclaimer
             // 
@@ -346,8 +367,9 @@
             this.btnAddImage.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddImage.ForeColor = System.Drawing.Color.White;
             this.btnAddImage.Location = new System.Drawing.Point(73, 474);
+            this.btnAddImage.Margin = new System.Windows.Forms.Padding(0);
             this.btnAddImage.Name = "btnAddImage";
-            this.btnAddImage.Size = new System.Drawing.Size(132, 24);
+            this.btnAddImage.Size = new System.Drawing.Size(110, 24);
             this.btnAddImage.TabIndex = 26;
             this.btnAddImage.Text = "Add Image";
             this.btnAddImage.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -732,6 +754,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Size;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn Barcode;
+        private System.Windows.Forms.Button btnRemoveImage;
     }
 }
 

@@ -371,7 +371,8 @@ namespace SneakTrack___POS___Inventory_System
                 (int)dr["brand_id"],
                 dr["color_name"].ToString(),
                 dr["description"].ToString(),
-                dr["image"].ToString()
+                dr["image"].ToString(),
+                (bool)dr["for_sale"]
             );
 
             return p;
@@ -386,7 +387,6 @@ namespace SneakTrack___POS___Inventory_System
                 (int)dr["quantity"],
                 dr["barcode"].ToString(),
                 (char)(dr["gender"].ToString()[0]),
-                (bool)dr["for_sale"],
                 (decimal)dr["price"],
                 (int)dr["variant_id"],
                 (int)dr["size_id"]

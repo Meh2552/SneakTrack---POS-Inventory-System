@@ -31,17 +31,25 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditProductForm));
             this.lbHeader = new System.Windows.Forms.Label();
             this.btnConfirmChanges = new System.Windows.Forms.Button();
             this.btnCloseForm = new System.Windows.Forms.Button();
             this.tblpnAddProduct = new System.Windows.Forms.TableLayoutPanel();
             this.pnHeader = new System.Windows.Forms.Panel();
             this.pnBody = new System.Windows.Forms.Panel();
+            this.chbxForSale = new System.Windows.Forms.CheckBox();
             this.lbSetStock = new System.Windows.Forms.Label();
             this.dtgridSizeFields = new System.Windows.Forms.DataGridView();
+            this.Gender = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Size = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SizeType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.size_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnCancel = new System.Windows.Forms.Button();
             this.pnFields = new SneakTrack___POS___Inventory_System.UIControls.RoundedPanel();
+            this.btnAddImage = new System.Windows.Forms.Button();
+            this.btnRemoveImage = new System.Windows.Forms.Button();
             this.lbDisclaimer = new System.Windows.Forms.Label();
             this.lbProductError = new System.Windows.Forms.Label();
             this.lbBrandError = new System.Windows.Forms.Label();
@@ -49,7 +57,6 @@
             this.lbPriceError = new System.Windows.Forms.Label();
             this.lbGenderError = new System.Windows.Forms.Label();
             this.pcbxImage = new System.Windows.Forms.PictureBox();
-            this.btnAddImage = new System.Windows.Forms.Button();
             this.txbxDescription = new System.Windows.Forms.TextBox();
             this.lbDescription = new System.Windows.Forms.Label();
             this.lbGenders = new System.Windows.Forms.Label();
@@ -65,13 +72,6 @@
             this.lbBrand = new System.Windows.Forms.Label();
             this.txbxProductName = new SneakTrack___POS___Inventory_System.UIControls.RoundedTxBx();
             this.txbxBrand = new SneakTrack___POS___Inventory_System.UIControls.RoundedTxBx();
-            this.Gender = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Size = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SizeType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ForSale = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.size_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblpnAddProduct.SuspendLayout();
             this.pnHeader.SuspendLayout();
             this.pnBody.SuspendLayout();
@@ -160,6 +160,7 @@
             // 
             // pnBody
             // 
+            this.pnBody.Controls.Add(this.chbxForSale);
             this.pnBody.Controls.Add(this.lbSetStock);
             this.pnBody.Controls.Add(this.pnFields);
             this.pnBody.Controls.Add(this.btnConfirmChanges);
@@ -172,6 +173,23 @@
             this.pnBody.Name = "pnBody";
             this.pnBody.Size = new System.Drawing.Size(958, 521);
             this.pnBody.TabIndex = 1;
+            // 
+            // chbxForSale
+            // 
+            this.chbxForSale.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.chbxForSale.AutoSize = true;
+            this.chbxForSale.Checked = true;
+            this.chbxForSale.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chbxForSale.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbxForSale.Font = new System.Drawing.Font("Yu Gothic UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chbxForSale.ForeColor = System.Drawing.Color.Black;
+            this.chbxForSale.Location = new System.Drawing.Point(834, 15);
+            this.chbxForSale.Name = "chbxForSale";
+            this.chbxForSale.Size = new System.Drawing.Size(95, 21);
+            this.chbxForSale.TabIndex = 0;
+            this.chbxForSale.Text = "List for Sale";
+            this.chbxForSale.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chbxForSale.UseVisualStyleBackColor = true;
             // 
             // lbSetStock
             // 
@@ -209,7 +227,6 @@
             this.Quantity,
             this.Barcode,
             this.SizeType,
-            this.ForSale,
             this.size_id});
             this.dtgridSizeFields.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.dtgridSizeFields.EnableHeadersVisualStyles = false;
@@ -236,6 +253,52 @@
             this.dtgridSizeFields.TabIndex = 16;
             this.dtgridSizeFields.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgridSizeFields_CellEndEdit);
             // 
+            // Gender
+            // 
+            this.Gender.FillWeight = 15F;
+            this.Gender.HeaderText = "Gender*";
+            this.Gender.Name = "Gender";
+            this.Gender.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Gender.Width = 76;
+            // 
+            // Size
+            // 
+            this.Size.FillWeight = 15F;
+            this.Size.HeaderText = "Size*";
+            this.Size.MaxInputLength = 6;
+            this.Size.Name = "Size";
+            this.Size.ToolTipText = "Shoe size fields (Numeric or Decimal)";
+            this.Size.Width = 59;
+            // 
+            // Quantity
+            // 
+            this.Quantity.FillWeight = 20F;
+            this.Quantity.HeaderText = "Quantity*";
+            this.Quantity.MaxInputLength = 4;
+            this.Quantity.Name = "Quantity";
+            this.Quantity.Width = 82;
+            // 
+            // Barcode
+            // 
+            this.Barcode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Barcode.FillWeight = 110F;
+            this.Barcode.HeaderText = "Barcode";
+            this.Barcode.MaxInputLength = 13;
+            this.Barcode.Name = "Barcode";
+            // 
+            // SizeType
+            // 
+            this.SizeType.HeaderText = "Size Type";
+            this.SizeType.Name = "SizeType";
+            this.SizeType.Width = 81;
+            // 
+            // size_id
+            // 
+            this.size_id.HeaderText = "size_id";
+            this.size_id.Name = "size_id";
+            this.size_id.Visible = false;
+            this.size_id.Width = 68;
+            // 
             // btnCancel
             // 
             this.btnCancel.BackColor = System.Drawing.Color.Black;
@@ -257,6 +320,8 @@
             // 
             this.pnFields.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(35)))), ((int)(((byte)(37)))));
             this.pnFields.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(35)))), ((int)(((byte)(37)))));
+            this.pnFields.Controls.Add(this.btnAddImage);
+            this.pnFields.Controls.Add(this.btnRemoveImage);
             this.pnFields.Controls.Add(this.lbDisclaimer);
             this.pnFields.Controls.Add(this.lbProductError);
             this.pnFields.Controls.Add(this.lbBrandError);
@@ -264,7 +329,6 @@
             this.pnFields.Controls.Add(this.lbPriceError);
             this.pnFields.Controls.Add(this.lbGenderError);
             this.pnFields.Controls.Add(this.pcbxImage);
-            this.pnFields.Controls.Add(this.btnAddImage);
             this.pnFields.Controls.Add(this.txbxDescription);
             this.pnFields.Controls.Add(this.lbDescription);
             this.pnFields.Controls.Add(this.lbGenders);
@@ -286,6 +350,44 @@
             this.pnFields.Size = new System.Drawing.Size(498, 538);
             this.pnFields.TabIndex = 15;
             this.pnFields.Thickness = 5F;
+            // 
+            // btnAddImage
+            // 
+            this.btnAddImage.BackColor = System.Drawing.Color.Black;
+            this.btnAddImage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddImage.FlatAppearance.BorderSize = 0;
+            this.btnAddImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddImage.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddImage.ForeColor = System.Drawing.Color.White;
+            this.btnAddImage.Location = new System.Drawing.Point(72, 475);
+            this.btnAddImage.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAddImage.Name = "btnAddImage";
+            this.btnAddImage.Size = new System.Drawing.Size(110, 24);
+            this.btnAddImage.TabIndex = 26;
+            this.btnAddImage.Text = "Add Image";
+            this.btnAddImage.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnAddImage.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnAddImage.UseVisualStyleBackColor = false;
+            this.btnAddImage.Click += new System.EventHandler(this.btnAddImage_Click);
+            // 
+            // btnRemoveImage
+            // 
+            this.btnRemoveImage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRemoveImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
+            this.btnRemoveImage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRemoveImage.FlatAppearance.BorderSize = 0;
+            this.btnRemoveImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemoveImage.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemoveImage.ForeColor = System.Drawing.Color.Black;
+            this.btnRemoveImage.Location = new System.Drawing.Point(182, 475);
+            this.btnRemoveImage.Margin = new System.Windows.Forms.Padding(0);
+            this.btnRemoveImage.Name = "btnRemoveImage";
+            this.btnRemoveImage.Size = new System.Drawing.Size(22, 24);
+            this.btnRemoveImage.TabIndex = 15;
+            this.btnRemoveImage.Text = "X";
+            this.btnRemoveImage.UseVisualStyleBackColor = false;
+            this.btnRemoveImage.Click += new System.EventHandler(this.btnRemoveImage_Click);
             // 
             // lbDisclaimer
             // 
@@ -362,31 +464,13 @@
             // 
             this.pcbxImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.pcbxImage.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcbxImage.Image = ((System.Drawing.Image)(resources.GetObject("pcbxImage.Image")));
+            this.pcbxImage.Image = global::SneakTrack___POS___Inventory_System.Properties.Resources.add_image;
             this.pcbxImage.Location = new System.Drawing.Point(72, 337);
             this.pcbxImage.Name = "pcbxImage";
             this.pcbxImage.Size = new System.Drawing.Size(132, 132);
             this.pcbxImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pcbxImage.TabIndex = 27;
             this.pcbxImage.TabStop = false;
-            // 
-            // btnAddImage
-            // 
-            this.btnAddImage.BackColor = System.Drawing.Color.Black;
-            this.btnAddImage.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddImage.FlatAppearance.BorderSize = 0;
-            this.btnAddImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddImage.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddImage.ForeColor = System.Drawing.Color.White;
-            this.btnAddImage.Location = new System.Drawing.Point(72, 475);
-            this.btnAddImage.Name = "btnAddImage";
-            this.btnAddImage.Size = new System.Drawing.Size(132, 24);
-            this.btnAddImage.TabIndex = 26;
-            this.btnAddImage.Text = "Add Image";
-            this.btnAddImage.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnAddImage.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnAddImage.UseVisualStyleBackColor = false;
-            this.btnAddImage.Click += new System.EventHandler(this.btnAddImage_Click);
             // 
             // txbxDescription
             // 
@@ -618,58 +702,6 @@
             this.txbxBrand.Texts = "";
             this.txbxBrand.UnderlinedStyle = false;
             // 
-            // Gender
-            // 
-            this.Gender.FillWeight = 15F;
-            this.Gender.HeaderText = "Gender*";
-            this.Gender.Name = "Gender";
-            this.Gender.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Gender.Width = 76;
-            // 
-            // Size
-            // 
-            this.Size.FillWeight = 15F;
-            this.Size.HeaderText = "Size*";
-            this.Size.MaxInputLength = 6;
-            this.Size.Name = "Size";
-            this.Size.ToolTipText = "Shoe size fields (Numeric or Decimal)";
-            this.Size.Width = 59;
-            // 
-            // Quantity
-            // 
-            this.Quantity.FillWeight = 20F;
-            this.Quantity.HeaderText = "Quantity*";
-            this.Quantity.MaxInputLength = 4;
-            this.Quantity.Name = "Quantity";
-            this.Quantity.Width = 82;
-            // 
-            // Barcode
-            // 
-            this.Barcode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Barcode.FillWeight = 110F;
-            this.Barcode.HeaderText = "Barcode";
-            this.Barcode.MaxInputLength = 13;
-            this.Barcode.Name = "Barcode";
-            // 
-            // SizeType
-            // 
-            this.SizeType.HeaderText = "Size Type";
-            this.SizeType.Name = "SizeType";
-            this.SizeType.Width = 81;
-            // 
-            // ForSale
-            // 
-            this.ForSale.HeaderText = "For Sale";
-            this.ForSale.Name = "ForSale";
-            this.ForSale.Width = 56;
-            // 
-            // size_id
-            // 
-            this.size_id.HeaderText = "size_id";
-            this.size_id.Name = "size_id";
-            this.size_id.Visible = false;
-            this.size_id.Width = 68;
-            // 
             // EditProductForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -737,8 +769,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn Barcode;
         private System.Windows.Forms.DataGridViewTextBoxColumn SizeType;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn ForSale;
         private System.Windows.Forms.DataGridViewTextBoxColumn size_id;
+        private System.Windows.Forms.CheckBox chbxForSale;
+        private System.Windows.Forms.Button btnRemoveImage;
     }
 }
 

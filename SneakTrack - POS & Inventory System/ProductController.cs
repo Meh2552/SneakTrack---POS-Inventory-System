@@ -172,6 +172,15 @@ namespace SneakTrack___POS___Inventory_System
             }
         }
 
+        public bool updateProd(Product newProd, Product oldProd) 
+        {
+            bool valid = false;
+
+            //if (oldProd != null)
+
+            return valid;
+        }
+
         public void updateQuantity(Product P)
         {
             foreach (Variant v in P.Variants)
@@ -193,13 +202,13 @@ namespace SneakTrack___POS___Inventory_System
 
         public string toProdInfo(Product p)
         {
-            string listed = p.Variants.First().ForSale ? "Listed for sale" : "Unlisted";
+            string listed = p.ForSale ? "Listed for sale" : "Unlisted";
             string output =
                 "\r\n" +
                 $"Product Name: {p.DisplayName()}\r\n" +
                 $"Color: {p.Color}\r\n" +
                 $"Brand: {p.Brand}\r\n\r\n" +
-                $"Variants: {p.variantsString()}\r\n" +
+                $"Variants: {p.gendersString()}\r\n" +
                 $"Total Quantity: {p.totalQuantity()}\r\n" +
                 $"Status: {listed}\r\n\r\n" +
                 $"{p.Description}";

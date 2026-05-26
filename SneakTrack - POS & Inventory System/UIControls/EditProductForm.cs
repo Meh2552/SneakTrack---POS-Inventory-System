@@ -24,6 +24,7 @@ namespace SneakTrack___POS___Inventory_System
 
         private string imagePath = null;
         private Product inProd;
+        private Product outProd;
         private string genderRegex = null;
 
         public EditProductForm()
@@ -57,6 +58,7 @@ namespace SneakTrack___POS___Inventory_System
         private void initialize(Product p) // TODO: add for size type
         {
             this.inProd = p;
+            this.outProd = p;
 
             AutoCompleteStringCollection brandColl = new AutoCompleteStringCollection();
             brandColl.AddRange(dh.BrandList.ToArray());
@@ -73,9 +75,10 @@ namespace SneakTrack___POS___Inventory_System
 
             loadProductFields(p);
 
-            if (p.HasMale) chbxMale.Checked = true;
-            if (p.HasFemale) chbxFemale.Checked = true;
-            if (p.HasUnisex) chbxUnisex.Checked = true;
+            chbxMale.Checked = p.HasMale;
+            chbxFemale.Checked = p.HasFemale;
+            chbxUnisex.Checked = p.HasUnisex;
+            chbxForSale.Checked = p.ForSale;
         }
 
         private void loadProductFields(Product p)
@@ -92,8 +95,6 @@ namespace SneakTrack___POS___Inventory_System
                         v.SizeType,
                         v.SizeId
                     );
-
-                dtgridSizeFields.Rows[dtgridSizeFields.Rows.Count - 1].Tag = v;
             }
         }
 
@@ -175,7 +176,7 @@ namespace SneakTrack___POS___Inventory_System
                     isValid = v.validateCellValue(cell, v.readInt(newValue) >= 0, "Enter a valid quantity (0 or more)");
                     break;
 
-                case "SizeType":
+                case "SizeType": //TODO: this
                     break;
             }
             return isValid;
@@ -229,7 +230,7 @@ namespace SneakTrack___POS___Inventory_System
             }
             else txbxProductName.Texts = productName;
 
-            List<int> columnIndex = new List<int>() { 3, 4, 5, 6 };
+            List<int> columnIndex = new List<int>() { 3, 4, 5};
             if (v.dataGridHasErrorsOrBlank(dtgridSizeFields, columnIndex))
             {
                 valid = false;
@@ -294,31 +295,55 @@ namespace SneakTrack___POS___Inventory_System
 
         private void loadProduct()
         {
-            Product p = null;
+            Product p = outProd;
             try
             {
-                string name = v.readString(txbxProductName.Texts);
-                string brand = v.readString(txbxBrand.Texts);
-                string color = v.readString(txbxColor.Texts);
-                //string sizeType = v.readString(txbxSizeType.Texts) ?? "US"; TODO: this
-                decimal price = v.readDecimal(txbxPrice.Texts);
-                string description = v.readString(txbxDescription.Text);
+                p.Name = v.readString(txbxProductName.Texts);
+                p.Brand = v.readString(txbxBrand.Texts);
+                p.Color = v.readString(txbxColor.Texts);
+                p.Description = v.readString(txbxDescription.Text);
+                p.ForSale = chbxForSale.Checked;
+                p.ImagePath = this.imagePath;
 
-                p = new Product(name, brand, color, description, imagePath);
+                foreach (Variant vari in p.Variants) vari.Remove = true; // Those not found in the dataGridView are marked to be deleted
 
                 foreach (DataGridViewRow row in dtgridSizeFields.Rows)
                 {
                     if (row.IsNewRow) continue;
 
+                    int sizeId = v.readInt(row.Cells[5].Value);
+
                     char gender = v.readString(row.Cells[0].Value.ToString())[0];
                     double size = v.readDouble(row.Cells[1].Value);
                     int quantity = v.readInt(row.Cells[2].Value);
                     string barcode = string.IsNullOrEmpty(row.Cells[3].Value?.ToString()) ? null : v.readString(row.Cells[3].Value.ToString());
+                    string sizeType = v.readString(row.Cells[4].Value.ToString());
+                    decimal price = v.readDecimal(txbxPrice.Texts);
 
-                    Variant variant = new Variant(size, "sizeType", quantity, barcode, gender, price);
-                    p.addVariant(variant);
+                    // TODO: default values for datagridview
+                    if (sizeId == 0) // There was no entry for size id in the dataGridView, meaning it was newly created
+                    {
+                        Variant variant = new Variant(size, sizeType, quantity, barcode, gender, price);
+                        p.addVariant(variant);
+                    }
+
+                    else
+                    {
+                        Variant variant = p.fromSizeId(sizeId);
+
+                        variant.Gender = gender;
+                        variant.Size = size;
+                        variant.Quantity = quantity;
+                        variant.Barcode = barcode;
+                        variant.SizeType = sizeType;
+                        variant.Price = price;
+
+                        variant.Remove = false;
+                    }
 
                 }
+
+                p.recheckValues();
             }
 
             catch (Exception ex)
@@ -326,8 +351,16 @@ namespace SneakTrack___POS___Inventory_System
                 MessageBox.Show("An error occurred while loading the product.");
             }
 
+            Debug.WriteLine("\n\n" + p.ToString());
+            foreach (Variant v in p.Variants) Debug.WriteLine("\n" + v.ToString());
             // pc.addProduct(p);
         }
 
+        private void btnRemoveImage_Click(object sender, EventArgs e)
+        {
+            imagePath = null;
+            pcbxImage.Image = Properties.Resources.add_image;
+            pcbxImage.SizeMode = PictureBoxSizeMode.CenterImage;
+        }
     }
 }

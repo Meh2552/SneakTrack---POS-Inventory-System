@@ -252,7 +252,7 @@ namespace SneakTrack___POS___Inventory_System
         {
             decimal price = 0;
 
-            foreach (Variant var in p.Variants)
+            foreach (Variant var in Variants)
             {
                 if (var.Gender == 'M') return var.Price;
             }
@@ -263,7 +263,7 @@ namespace SneakTrack___POS___Inventory_System
         {
             decimal price = 0;
 
-            foreach (Variant var in p.Variants)
+            foreach (Variant var in Variants)
             {
                 if (var.Gender == 'F') return var.Price;
             }
@@ -274,7 +274,7 @@ namespace SneakTrack___POS___Inventory_System
         {
             decimal price = 0;
 
-            foreach (Variant var in p.Variants)
+            foreach (Variant var in Variants)
             {
                 if (var.Gender == 'U') return var.Price;
             }

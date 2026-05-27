@@ -201,13 +201,13 @@ namespace SneakTrack___POS___Inventory_System
                 dh.updateValueToTable(dh.updateQuery("Product", "description = @description", $"product_id = {prodId}"), "@description", v.readString(newProd.Description));
 
             if (newProd.ImagePath != oldProd.ImagePath)
-                dh.updateValueToTable(dh.updateQuery("Product", "image = @image", $"product_id = {prodId}"), "@image", v.readString(newProd.ImagePath);
+                dh.updateValueToTable(dh.updateQuery("Product", "image = @image", $"product_id = {prodId}"), "@image", v.readString(newProd.ImagePath));
 
             if (newProd.Archived != oldProd.Archived)
-                dh.updateValueToTable(dh.updateQuery("Product", "archived = @archived", $"product_id = {prodId}"), "@archived", newProd.Archived ? "1" : "0";
+                dh.updateValueToTable(dh.updateQuery("Product", "archived = @archived", $"product_id = {prodId}"), "@archived", newProd.Archived ? "1" : "0");
 
             if (newProd.ImagePath != oldProd.ImagePath)
-                dh.updateValueToTable(dh.updateQuery("Product", "for_sale = @for_sale", $"product_id = {prodId}"), "@for_sale", newProd.ForSale ? "1" : "0";
+                dh.updateValueToTable(dh.updateQuery("Product", "for_sale = @for_sale", $"product_id = {prodId}"), "@for_sale", newProd.ForSale ? "1" : "0");
 
 
 

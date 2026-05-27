@@ -1,15 +1,11 @@
 ﻿using SneakTrack___POS___Inventory_System.UIControls;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SneakTrack___POS___Inventory_System
@@ -91,9 +87,6 @@ namespace SneakTrack___POS___Inventory_System
             string name = v.readString(txbxProductName.Texts);
             string brand = v.readString(txbxBrand.Texts);
             string color = v.readString(txbxColor.Texts);
-            string sizeType = v.readString(txbxSizeType.Texts);
-
-            Debug.WriteLine($"Checking for duplicate product with Name: {name}, Brand: {brand}, Color: {color}");
 
             if (dh.hasDuplicateProduct(name, brand, color))
             {
@@ -118,7 +111,7 @@ namespace SneakTrack___POS___Inventory_System
             validateCell(cell);
         }
 
-        private bool validateCell(DataGridViewCell cell) // TODO: check for duplicate barcode mabye on upper method idk
+        private bool validateCell(DataGridViewCell cell)
         {
             bool isValid = true;
             string columnName = dtgridSizeFields.Columns[cell.ColumnIndex].Name;
@@ -147,8 +140,8 @@ namespace SneakTrack___POS___Inventory_System
                 case "Size":
                     bool hasValue = dtgridSizeFields.Rows.Cast<DataGridViewRow>()
                         .Where(row => !row.IsNewRow && row.Index != cell.RowIndex)
-                        .Any (row => row.Cells["Size"].Value?.ToString() == cell.Value?.ToString() 
-                        && row.Cells["Gender"].Value?.ToString() == 
+                        .Any(row => row.Cells["Size"].Value?.ToString() == cell.Value?.ToString()
+                        && row.Cells["Gender"].Value?.ToString() ==
                         dtgridSizeFields.Rows[cell.RowIndex].Cells["Gender"].Value?.ToString());
 
                     if (hasValue)
@@ -164,6 +157,22 @@ namespace SneakTrack___POS___Inventory_System
                 case "Quantity":
                     isValid = v.validateCellValue(cell, v.readInt(newValue) >= 0, "Enter a valid quantity (0 or more)");
                     break;
+
+                case "Barcode":
+                    if (v.readString(newValue) == null) break;
+
+                    if (v.validateCellValue(cell, !v.tableHasValue(dh.ProductMasterDT, "Barcode", v.readString(newValue)),
+                        "Barcode already in the system")) {isValid = false; break; }
+
+                    bool valueExists = dtgridSizeFields.Rows.Cast<DataGridViewRow>()
+                            .Where(row => !row.IsNewRow && row.Index != cell.RowIndex)
+                            .Any(row => row.Cells["Barcode"].Value?.ToString() == cell.Value?.ToString());
+
+                    if (valueExists)
+                    {
+                        isValid = v.validateCellValue(cell, false, "Duplicate barcode found");
+                    }
+                    break;
             }
 
             return isValid;
@@ -173,24 +182,19 @@ namespace SneakTrack___POS___Inventory_System
         {
             bool valid = true;
             lbGenderError.Visible = false;
-            lbPriceError.Visible = false;
             lbBrandError.Visible = false;
             lbColorError.Visible = false;
             lbProductError.Visible = false;
 
             if (!chbxMale.Checked && !chbxFemale.Checked && !chbxUnisex.Checked)
             {
-                wh.changeLbTxt(lbGenderError, "One must be selected");
+                wh.changeLbTxt(lbGenderError, "Select One");
                 valid = false;
             }
 
-            double price = v.readDouble((object)txbxPrice.Texts);
-            if (price < 0 || price > 999999.99)
-            {
-                wh.changeLbTxt(lbPriceError, "Invalid price");
-                valid = false;
-            }
-            else txbxPrice.Texts = v.readDecimal((object)txbxPrice.Texts).ToString("0.00");
+            if (!checkPrice(txbxMPrice, chbxMale)) valid = false;
+            if (!checkPrice(txbxFPrice, chbxFemale)) valid = false;
+            if (!checkPrice(txbxUPrice, chbxUnisex)) valid = false;
 
             string brand = v.readString(txbxBrand.Texts);
             if (brand == null)
@@ -217,11 +221,31 @@ namespace SneakTrack___POS___Inventory_System
             else txbxProductName.Texts = productName;
 
             string sizeType = v.readString(txbxSizeType.Texts);
-            if (sizeType != null)
+            txbxSizeType.Texts = sizeType.ToUpper();
+            foreach (DataGridViewRow dr in dtgridSizeFields.Rows)
             {
-                txbxSizeType.Texts = sizeType.ToUpper();
+                if (dr.IsNewRow) continue;
+
+                DataGridViewCell cell = dr.Cells[4];
+
+                if (sizeType != null && v.readString(cell.Value?.ToString()) == null)
+                {
+                    cell.Value = txbxSizeType.Texts.ToUpper();
+                    cell.Style.BackColor = Color.White;
+                    cell.Style.ForeColor = Color.Black;
+                    cell.ErrorText = "";
+                }
+
+                else
+                {
+                    if (sizeType == null) continue;
+                    cell.Value = cell.Value.ToString().ToUpper();
+                    cell.Style.BackColor = Color.White;
+                    cell.Style.ForeColor = Color.Black;
+                    cell.ErrorText = "";
+                }
             }
-            else txbxSizeType.Texts = "US";
+
 
             List<int> columnIndex = new List<int>() { 3 };
             if (v.dataGridHasErrorsOrBlank(dtgridSizeFields, columnIndex))
@@ -232,18 +256,42 @@ namespace SneakTrack___POS___Inventory_System
             return valid;
         }
 
+        private bool checkPrice(RoundedTxBx textbox, CheckBox checkbox)
+        {
+            double price = v.readDouble(textbox.Texts);
+            if (!checkbox.Checked) return true;
+
+            else if (price < 0 || price > 999999.99)
+            {
+                wh.changeLbTxt(lbGenderError, "Invalid price");
+                return false;
+            }
+
+            else
+            {
+                txbxMPrice.Texts = v.readDecimal((object)txbxMPrice.Texts).ToString("0.00");
+                return true;
+            }
+        }
+
         private void chbx_CheckedChanged(object sender, EventArgs e)
         {
             string gender = "^[";
-            
-            gender += chbxMale.Checked ? "mM" : "";
-            gender += chbxFemale.Checked ? "fF" : "";
-            gender += chbxUnisex.Checked ? "uU" : "";
+
+            bool hasMale = chbxMale.Checked, hasFemale = chbxFemale.Checked, hasUnisex = chbxUnisex.Checked;
+
+            gender += hasMale ? "mM" : "";
+            gender += hasFemale ? "fF" : "";
+            gender += hasUnisex? "uU" : "";
 
             gender += "]$";
 
             if (gender != "^[]$") genderRegex = gender;
             else genderRegex = null;
+
+            if (!hasMale && !string.IsNullOrWhiteSpace(txbxMPrice.Texts)) txbxMPrice.Texts = "";
+            if (!hasFemale && !string.IsNullOrWhiteSpace(txbxFPrice.Texts)) txbxFPrice.Texts = "";
+            if (!hasUnisex && !string.IsNullOrWhiteSpace(txbxUPrice.Texts)) txbxUPrice.Texts = "";
         }
 
         private void confirmationAddProd()
@@ -270,7 +318,6 @@ namespace SneakTrack___POS___Inventory_System
                 string brand = v.readString(txbxBrand.Texts);
                 string color = v.readString(txbxColor.Texts);
                 string sizeType = v.readString(txbxSizeType.Texts) ?? "US";
-                decimal price = v.readDecimal(txbxPrice.Texts);
                 string description = v.readString(txbxDescription.Text);
 
                 p = new Product(name, brand, color, description, imagePath);
@@ -284,6 +331,11 @@ namespace SneakTrack___POS___Inventory_System
                     int quantity = v.readInt(row.Cells[2].Value);
                     string barcode = string.IsNullOrEmpty(row.Cells[3].Value?.ToString()) ? null : v.readString(row.Cells[3].Value.ToString());
 
+                    decimal price = 0;
+                    if (gender == 'M') price = v.readDecimal(txbxMPrice.Texts);
+                    else if (gender == 'F') price = v.readDecimal(txbxFPrice.Texts);
+                    else if (gender == 'U') price = v.readDecimal(txbxUPrice.Texts);
+
                     Variant variant = new Variant(size, sizeType, quantity, barcode, gender, price);
                     p.addVariant(variant);
 
@@ -296,6 +348,8 @@ namespace SneakTrack___POS___Inventory_System
             }
 
             pc.addProduct(p);
+            Debug.WriteLine(p.ToString());
+            foreach (Variant varia in p.Variants) Debug.WriteLine(varia.ToString());
 
         }
 

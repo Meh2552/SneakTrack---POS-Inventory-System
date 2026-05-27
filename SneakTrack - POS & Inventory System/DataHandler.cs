@@ -256,7 +256,7 @@ namespace SneakTrack___POS___Inventory_System
                     conn.Open();
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue(parameterName, parameterValue);
+                        cmd.Parameters.AddWithValue(parameterName, parameterValue ?? (object)DBNull.Value);
                         cmd.ExecuteNonQuery();
                         output = true;
                     }

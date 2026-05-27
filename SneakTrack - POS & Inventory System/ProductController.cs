@@ -92,6 +92,20 @@ namespace SneakTrack___POS___Inventory_System
             return flow;
         }
 
+        public int brandToDB(Product p)
+        {
+            return v.tableHasValue(dh.dtFromTable(dh.selectQuery("Brand")), "brand_name", p.Brand, true)
+                ? v.readInt(dh.getValueFromTable(dh.selectQuery("Brand", "brand_id", $"brand_name = '{p.Brand}'")))
+                : dh.toBrandDB(p);
+        }
+
+        public int colorToDB(Product p)
+        {
+            return v.tableHasValue(dh.dtFromTable(dh.selectQuery("Color")), "color_name", p.Color, true)
+                ? v.readInt(dh.getValueFromTable(dh.selectQuery("Color", "color_id", $"color_name = '{p.Color}'")))
+                : dh.toColorDB(p);
+        }
+
         public List<ProductTile> loadProducts(TableLayoutPanel tablePanel, bool clearRowAfter0) // TODO: make method accesible to Products idk how coz of the event
         {
             dh.loadMasterList();
@@ -143,19 +157,10 @@ namespace SneakTrack___POS___Inventory_System
         // v.idFromValue(dh.productMasterDT, "brand_name", "brand_id", p.Brand, true)  mabye useful
         public void addProduct(Product p)
         {
-
-            int brandid = v.tableHasValue(dh.dtFromTable(dh.selectQuery("Brand")), "brand_name", p.Brand, true) 
-                ? v.readInt(dh.getValueFromTable(dh.selectQuery("Brand", "brand_id", $"brand_name = '{p.Brand}'")))
-                : dh.toBrandDB(p);
-            Debug.WriteLine($"Brand ID: {brandid}");
-
-            int colorid = v.tableHasValue(dh.dtFromTable(dh.selectQuery("Color")), "color_name", p.Color, true) 
-                ? v.readInt(dh.getValueFromTable(dh.selectQuery("Color", "color_id", $"color_name = '{p.Color}'")))
-                : dh.toColorDB(p);
-            Debug.WriteLine($"Color ID: {colorid}");
+            int brandid = brandToDB(p);
+            int colorid = colorToDB(p);
 
             int prodid = dh.toProductDB(p, brandid, colorid); //TODO: yung price sa variant dapat iba for each gender.
-            Debug.WriteLine($"Product ID: {prodid}");
 
             List<char> genders = new List<char>();
             List<int> variantIds = new List<int>();
@@ -172,13 +177,41 @@ namespace SneakTrack___POS___Inventory_System
             }
         }
 
-        public bool updateProd(Product newProd, Product oldProd) 
+        public void updateProd(Product newProd, Product oldProd) 
         {
-            bool valid = false;
+            int prodId = oldProd.ProdId;
+            
+            if (newProd.Brand != oldProd.Brand)
+            {
+                int brandid = brandToDB(newProd);
+                dh.updateValueToTable(dh.updateQuery("Product", "brand_id = @brand_id", $"product_id = {prodId}"), "@brand_id", brandid.ToString());
+            }
 
-            //if (oldProd != null)
+            if (newProd.Color != oldProd.Color)
+            {
+                int colorid = colorToDB(newProd);
+                dh.updateValueToTable(dh.updateQuery("Product", "color_id = @color_id", $"product_id = {prodId}"), "@color_id", colorid.ToString());
+            }
 
-            return valid;
+
+            if (newProd.Name != oldProd.Name) 
+                dh.updateValueToTable(dh.updateQuery("Product", "product_name = @product_name", $"product_id = {prodId}"), "@product_name", newProd.Name);
+
+            if (newProd.Description != oldProd.Description)
+                dh.updateValueToTable(dh.updateQuery("Product", "description = @description", $"product_id = {prodId}"), "@description", v.readString(newProd.Description));
+
+            if (newProd.ImagePath != oldProd.ImagePath)
+                dh.updateValueToTable(dh.updateQuery("Product", "image = @image", $"product_id = {prodId}"), "@image", v.readString(newProd.ImagePath);
+
+            if (newProd.Archived != oldProd.Archived)
+                dh.updateValueToTable(dh.updateQuery("Product", "archived = @archived", $"product_id = {prodId}"), "@archived", newProd.Archived ? "1" : "0";
+
+            if (newProd.ImagePath != oldProd.ImagePath)
+                dh.updateValueToTable(dh.updateQuery("Product", "for_sale = @for_sale", $"product_id = {prodId}"), "@for_sale", newProd.ForSale ? "1" : "0";
+
+
+
+
         }
 
         public void updateQuantity(Product P)

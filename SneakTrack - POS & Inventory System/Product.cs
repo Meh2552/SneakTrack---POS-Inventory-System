@@ -55,6 +55,7 @@ namespace SneakTrack___POS___Inventory_System
         public int ProdId { get { return prodId; } set { prodId = value; } }
         public string Brand { get { return brand; } set { brand = value; } }
         public string Color { get { return color; } set { color = value; } }
+        public bool Archived { get { return archived; } set { archived = value; } }
         public bool HasMale { get { return hasMale; } }
         public bool HasFemale { get { return hasFemale; } }
         public bool HasUnisex { get { return hasUnisex; } }
@@ -245,6 +246,40 @@ namespace SneakTrack___POS___Inventory_System
             catch (Exception e) { }
 
             return 0;
+        }
+
+        public decimal mPrice()
+        {
+            decimal price = 0;
+
+            foreach (Variant var in p.Variants)
+            {
+                if (var.Gender == 'M') return var.Price;
+            }
+
+            return price;
+        }
+        public decimal fPrice()
+        {
+            decimal price = 0;
+
+            foreach (Variant var in p.Variants)
+            {
+                if (var.Gender == 'F') return var.Price;
+            }
+
+            return price;
+        }
+        public decimal uPrice()
+        {
+            decimal price = 0;
+
+            foreach (Variant var in p.Variants)
+            {
+                if (var.Gender == 'U') return var.Price;
+            }
+
+            return price;
         }
 
         private void checkVariantGender(Variant v)

@@ -47,7 +47,6 @@
             this.lbProductError = new System.Windows.Forms.Label();
             this.lbBrandError = new System.Windows.Forms.Label();
             this.lbColorError = new System.Windows.Forms.Label();
-            this.lbPriceError = new System.Windows.Forms.Label();
             this.lbGenderError = new System.Windows.Forms.Label();
             this.pcbxImage = new System.Windows.Forms.PictureBox();
             this.btnAddImage = new System.Windows.Forms.Button();
@@ -56,10 +55,14 @@
             this.lbGenders = new System.Windows.Forms.Label();
             this.roundedPanel2 = new SneakTrack___POS___Inventory_System.UIControls.RoundedPanel();
             this.chbxUnisex = new System.Windows.Forms.CheckBox();
+            this.txbxUPrice = new SneakTrack___POS___Inventory_System.UIControls.RoundedTxBx();
+            this.lbUPrice = new System.Windows.Forms.Label();
+            this.txbxFPrice = new SneakTrack___POS___Inventory_System.UIControls.RoundedTxBx();
+            this.lbFPrice = new System.Windows.Forms.Label();
             this.chbxFemale = new System.Windows.Forms.CheckBox();
+            this.txbxMPrice = new SneakTrack___POS___Inventory_System.UIControls.RoundedTxBx();
             this.chbxMale = new System.Windows.Forms.CheckBox();
-            this.lbPrice = new System.Windows.Forms.Label();
-            this.txbxPrice = new SneakTrack___POS___Inventory_System.UIControls.RoundedTxBx();
+            this.lbMPrice = new System.Windows.Forms.Label();
             this.lbProductName = new System.Windows.Forms.Label();
             this.lbColor = new System.Windows.Forms.Label();
             this.txbxColor = new SneakTrack___POS___Inventory_System.UIControls.RoundedTxBx();
@@ -71,6 +74,7 @@
             this.Size = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SizeType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblpnAddProduct.SuspendLayout();
             this.pnHeader.SuspendLayout();
             this.pnBody.SuspendLayout();
@@ -100,10 +104,10 @@
             this.btnAddProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddProduct.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddProduct.ForeColor = System.Drawing.Color.Black;
-            this.btnAddProduct.Location = new System.Drawing.Point(452, 447);
+            this.btnAddProduct.Location = new System.Drawing.Point(453, 503);
             this.btnAddProduct.Margin = new System.Windows.Forms.Padding(0);
             this.btnAddProduct.Name = "btnAddProduct";
-            this.btnAddProduct.Size = new System.Drawing.Size(431, 74);
+            this.btnAddProduct.Size = new System.Drawing.Size(517, 74);
             this.btnAddProduct.TabIndex = 13;
             this.btnAddProduct.Text = "Add Product";
             this.btnAddProduct.UseVisualStyleBackColor = false;
@@ -120,7 +124,7 @@
             this.btnCloseForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCloseForm.Font = new System.Drawing.Font("Microsoft YaHei UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCloseForm.ForeColor = System.Drawing.Color.White;
-            this.btnCloseForm.Location = new System.Drawing.Point(821, 0);
+            this.btnCloseForm.Location = new System.Drawing.Point(908, 0);
             this.btnCloseForm.Name = "btnCloseForm";
             this.btnCloseForm.Size = new System.Drawing.Size(62, 69);
             this.btnCloseForm.TabIndex = 14;
@@ -140,7 +144,7 @@
             this.tblpnAddProduct.RowCount = 2;
             this.tblpnAddProduct.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 69F));
             this.tblpnAddProduct.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 84.63612F));
-            this.tblpnAddProduct.Size = new System.Drawing.Size(883, 590);
+            this.tblpnAddProduct.Size = new System.Drawing.Size(970, 646);
             this.tblpnAddProduct.TabIndex = 15;
             // 
             // pnHeader
@@ -153,7 +157,7 @@
             this.pnHeader.Location = new System.Drawing.Point(0, 0);
             this.pnHeader.Margin = new System.Windows.Forms.Padding(0);
             this.pnHeader.Name = "pnHeader";
-            this.pnHeader.Size = new System.Drawing.Size(883, 69);
+            this.pnHeader.Size = new System.Drawing.Size(970, 69);
             this.pnHeader.TabIndex = 0;
             this.pnHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnHeader_MouseDown);
             // 
@@ -170,7 +174,7 @@
             this.pnBody.Location = new System.Drawing.Point(0, 69);
             this.pnBody.Margin = new System.Windows.Forms.Padding(0);
             this.pnBody.Name = "pnBody";
-            this.pnBody.Size = new System.Drawing.Size(883, 521);
+            this.pnBody.Size = new System.Drawing.Size(970, 577);
             this.pnBody.TabIndex = 1;
             // 
             // txbxSizeType
@@ -185,7 +189,7 @@
             this.txbxSizeType.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txbxSizeType.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
             this.txbxSizeType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txbxSizeType.Location = new System.Drawing.Point(776, 10);
+            this.txbxSizeType.Location = new System.Drawing.Point(860, 10);
             this.txbxSizeType.Margin = new System.Windows.Forms.Padding(4);
             this.txbxSizeType.MaxLength = 4;
             this.txbxSizeType.Multiline = false;
@@ -204,18 +208,18 @@
             this.lbSizeType.AutoSize = true;
             this.lbSizeType.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSizeType.ForeColor = System.Drawing.Color.Black;
-            this.lbSizeType.Location = new System.Drawing.Point(697, 17);
+            this.lbSizeType.Location = new System.Drawing.Point(722, 16);
             this.lbSizeType.Name = "lbSizeType";
-            this.lbSizeType.Size = new System.Drawing.Size(81, 21);
+            this.lbSizeType.Size = new System.Drawing.Size(135, 21);
             this.lbSizeType.TabIndex = 29;
-            this.lbSizeType.Text = "Size Type: ";
+            this.lbSizeType.Text = "Default Size Type: ";
             // 
             // lbSetStock
             // 
             this.lbSetStock.AutoSize = true;
             this.lbSetStock.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSetStock.ForeColor = System.Drawing.Color.Black;
-            this.lbSetStock.Location = new System.Drawing.Point(485, 13);
+            this.lbSetStock.Location = new System.Drawing.Point(505, 21);
             this.lbSetStock.Name = "lbSetStock";
             this.lbSetStock.Size = new System.Drawing.Size(91, 25);
             this.lbSetStock.TabIndex = 28;
@@ -230,7 +234,6 @@
             this.pnFields.Controls.Add(this.lbProductError);
             this.pnFields.Controls.Add(this.lbBrandError);
             this.pnFields.Controls.Add(this.lbColorError);
-            this.pnFields.Controls.Add(this.lbPriceError);
             this.pnFields.Controls.Add(this.lbGenderError);
             this.pnFields.Controls.Add(this.pcbxImage);
             this.pnFields.Controls.Add(this.btnAddImage);
@@ -238,8 +241,6 @@
             this.pnFields.Controls.Add(this.lbDescription);
             this.pnFields.Controls.Add(this.lbGenders);
             this.pnFields.Controls.Add(this.roundedPanel2);
-            this.pnFields.Controls.Add(this.lbPrice);
-            this.pnFields.Controls.Add(this.txbxPrice);
             this.pnFields.Controls.Add(this.lbProductName);
             this.pnFields.Controls.Add(this.lbColor);
             this.pnFields.Controls.Add(this.txbxColor);
@@ -248,25 +249,23 @@
             this.pnFields.Controls.Add(this.txbxBrand);
             this.pnFields.Cursor = System.Windows.Forms.Cursors.Default;
             this.pnFields.ForeColor = System.Drawing.Color.Transparent;
-            this.pnFields.Location = new System.Drawing.Point(-33, 0);
+            this.pnFields.Location = new System.Drawing.Point(-33, -7);
             this.pnFields.Margin = new System.Windows.Forms.Padding(0);
             this.pnFields.Name = "pnFields";
             this.pnFields.Radius = 50;
-            this.pnFields.Size = new System.Drawing.Size(498, 533);
+            this.pnFields.Size = new System.Drawing.Size(510, 594);
             this.pnFields.TabIndex = 15;
             this.pnFields.Thickness = 5F;
             // 
             // btnRemoveImage
             // 
-            this.btnRemoveImage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemoveImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
             this.btnRemoveImage.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRemoveImage.FlatAppearance.BorderSize = 0;
             this.btnRemoveImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemoveImage.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRemoveImage.ForeColor = System.Drawing.Color.Black;
-            this.btnRemoveImage.Location = new System.Drawing.Point(183, 474);
+            this.btnRemoveImage.Location = new System.Drawing.Point(421, 315);
             this.btnRemoveImage.Margin = new System.Windows.Forms.Padding(0);
             this.btnRemoveImage.Name = "btnRemoveImage";
             this.btnRemoveImage.Size = new System.Drawing.Size(22, 24);
@@ -280,7 +279,7 @@
             this.lbDisclaimer.AutoSize = true;
             this.lbDisclaimer.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbDisclaimer.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbDisclaimer.Location = new System.Drawing.Point(226, 483);
+            this.lbDisclaimer.Location = new System.Drawing.Point(77, 546);
             this.lbDisclaimer.Name = "lbDisclaimer";
             this.lbDisclaimer.Size = new System.Drawing.Size(145, 15);
             this.lbDisclaimer.TabIndex = 33;
@@ -291,7 +290,7 @@
             this.lbProductError.AutoSize = true;
             this.lbProductError.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbProductError.ForeColor = System.Drawing.Color.Tomato;
-            this.lbProductError.Location = new System.Drawing.Point(146, 21);
+            this.lbProductError.Location = new System.Drawing.Point(146, 28);
             this.lbProductError.Name = "lbProductError";
             this.lbProductError.Size = new System.Drawing.Size(140, 16);
             this.lbProductError.TabIndex = 32;
@@ -303,7 +302,7 @@
             this.lbBrandError.AutoSize = true;
             this.lbBrandError.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbBrandError.ForeColor = System.Drawing.Color.Tomato;
-            this.lbBrandError.Location = new System.Drawing.Point(138, 98);
+            this.lbBrandError.Location = new System.Drawing.Point(138, 105);
             this.lbBrandError.Name = "lbBrandError";
             this.lbBrandError.Size = new System.Drawing.Size(140, 16);
             this.lbBrandError.TabIndex = 31;
@@ -315,24 +314,12 @@
             this.lbColorError.AutoSize = true;
             this.lbColorError.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbColorError.ForeColor = System.Drawing.Color.Tomato;
-            this.lbColorError.Location = new System.Drawing.Point(130, 172);
+            this.lbColorError.Location = new System.Drawing.Point(130, 179);
             this.lbColorError.Name = "lbColorError";
             this.lbColorError.Size = new System.Drawing.Size(140, 16);
             this.lbColorError.TabIndex = 30;
             this.lbColorError.Text = "The field cannot be blank";
             this.lbColorError.Visible = false;
-            // 
-            // lbPriceError
-            // 
-            this.lbPriceError.AutoSize = true;
-            this.lbPriceError.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPriceError.ForeColor = System.Drawing.Color.Tomato;
-            this.lbPriceError.Location = new System.Drawing.Point(361, 172);
-            this.lbPriceError.Name = "lbPriceError";
-            this.lbPriceError.Size = new System.Drawing.Size(71, 16);
-            this.lbPriceError.TabIndex = 29;
-            this.lbPriceError.Text = "Invalid price";
-            this.lbPriceError.Visible = false;
             // 
             // lbGenderError
             // 
@@ -351,7 +338,7 @@
             this.pcbxImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.pcbxImage.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pcbxImage.Image = ((System.Drawing.Image)(resources.GetObject("pcbxImage.Image")));
-            this.pcbxImage.Location = new System.Drawing.Point(73, 336);
+            this.pcbxImage.Location = new System.Drawing.Point(311, 175);
             this.pcbxImage.Name = "pcbxImage";
             this.pcbxImage.Size = new System.Drawing.Size(132, 132);
             this.pcbxImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -366,7 +353,7 @@
             this.btnAddImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddImage.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddImage.ForeColor = System.Drawing.Color.White;
-            this.btnAddImage.Location = new System.Drawing.Point(73, 474);
+            this.btnAddImage.Location = new System.Drawing.Point(311, 315);
             this.btnAddImage.Margin = new System.Windows.Forms.Padding(0);
             this.btnAddImage.Name = "btnAddImage";
             this.btnAddImage.Size = new System.Drawing.Size(110, 24);
@@ -381,11 +368,12 @@
             // 
             this.txbxDescription.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.txbxDescription.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
-            this.txbxDescription.Location = new System.Drawing.Point(229, 359);
+            this.txbxDescription.Location = new System.Drawing.Point(291, 381);
             this.txbxDescription.MaxLength = 300;
             this.txbxDescription.Multiline = true;
             this.txbxDescription.Name = "txbxDescription";
-            this.txbxDescription.Size = new System.Drawing.Size(220, 109);
+            this.txbxDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txbxDescription.Size = new System.Drawing.Size(169, 159);
             this.txbxDescription.TabIndex = 25;
             // 
             // lbDescription
@@ -393,7 +381,7 @@
             this.lbDescription.AutoSize = true;
             this.lbDescription.Font = new System.Drawing.Font("Yu Gothic UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbDescription.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbDescription.Location = new System.Drawing.Point(236, 336);
+            this.lbDescription.Location = new System.Drawing.Point(298, 358);
             this.lbDescription.Name = "lbDescription";
             this.lbDescription.Size = new System.Drawing.Size(74, 17);
             this.lbDescription.TabIndex = 23;
@@ -414,12 +402,18 @@
             // 
             this.roundedPanel2.BorderColor = System.Drawing.Color.White;
             this.roundedPanel2.Controls.Add(this.chbxUnisex);
+            this.roundedPanel2.Controls.Add(this.txbxUPrice);
+            this.roundedPanel2.Controls.Add(this.lbUPrice);
+            this.roundedPanel2.Controls.Add(this.txbxFPrice);
+            this.roundedPanel2.Controls.Add(this.lbFPrice);
             this.roundedPanel2.Controls.Add(this.chbxFemale);
+            this.roundedPanel2.Controls.Add(this.txbxMPrice);
             this.roundedPanel2.Controls.Add(this.chbxMale);
+            this.roundedPanel2.Controls.Add(this.lbMPrice);
             this.roundedPanel2.Location = new System.Drawing.Point(73, 268);
             this.roundedPanel2.Name = "roundedPanel2";
             this.roundedPanel2.Radius = 1;
-            this.roundedPanel2.Size = new System.Drawing.Size(375, 53);
+            this.roundedPanel2.Size = new System.Drawing.Size(205, 272);
             this.roundedPanel2.TabIndex = 20;
             this.roundedPanel2.Thickness = 2F;
             // 
@@ -427,7 +421,7 @@
             // 
             this.chbxUnisex.AutoSize = true;
             this.chbxUnisex.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chbxUnisex.Location = new System.Drawing.Point(253, 17);
+            this.chbxUnisex.Location = new System.Drawing.Point(106, 184);
             this.chbxUnisex.Name = "chbxUnisex";
             this.chbxUnisex.Size = new System.Drawing.Size(69, 23);
             this.chbxUnisex.TabIndex = 2;
@@ -435,11 +429,85 @@
             this.chbxUnisex.UseVisualStyleBackColor = true;
             this.chbxUnisex.CheckedChanged += new System.EventHandler(this.chbx_CheckedChanged);
             // 
+            // txbxUPrice
+            // 
+            this.txbxUPrice.AutocompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.txbxUPrice.AutocompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.txbxUPrice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.txbxUPrice.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txbxUPrice.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txbxUPrice.BorderRadius = 0;
+            this.txbxUPrice.BorderSize = 2;
+            this.txbxUPrice.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txbxUPrice.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
+            this.txbxUPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txbxUPrice.Location = new System.Drawing.Point(19, 208);
+            this.txbxUPrice.Margin = new System.Windows.Forms.Padding(4);
+            this.txbxUPrice.MaxLength = 9;
+            this.txbxUPrice.Multiline = false;
+            this.txbxUPrice.Name = "txbxUPrice";
+            this.txbxUPrice.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txbxUPrice.PasswordChar = false;
+            this.txbxUPrice.PlaceholderColor = System.Drawing.Color.Gray;
+            this.txbxUPrice.PlaceholderText = "0.00";
+            this.txbxUPrice.Size = new System.Drawing.Size(164, 32);
+            this.txbxUPrice.TabIndex = 24;
+            this.txbxUPrice.Texts = "";
+            this.txbxUPrice.UnderlinedStyle = false;
+            // 
+            // lbUPrice
+            // 
+            this.lbUPrice.AutoSize = true;
+            this.lbUPrice.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbUPrice.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lbUPrice.Location = new System.Drawing.Point(23, 183);
+            this.lbUPrice.Name = "lbUPrice";
+            this.lbUPrice.Size = new System.Drawing.Size(61, 21);
+            this.lbUPrice.TabIndex = 25;
+            this.lbUPrice.Text = "U-Price";
+            // 
+            // txbxFPrice
+            // 
+            this.txbxFPrice.AutocompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.txbxFPrice.AutocompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.txbxFPrice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.txbxFPrice.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txbxFPrice.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txbxFPrice.BorderRadius = 0;
+            this.txbxFPrice.BorderSize = 2;
+            this.txbxFPrice.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txbxFPrice.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
+            this.txbxFPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txbxFPrice.Location = new System.Drawing.Point(19, 126);
+            this.txbxFPrice.Margin = new System.Windows.Forms.Padding(4);
+            this.txbxFPrice.MaxLength = 9;
+            this.txbxFPrice.Multiline = false;
+            this.txbxFPrice.Name = "txbxFPrice";
+            this.txbxFPrice.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txbxFPrice.PasswordChar = false;
+            this.txbxFPrice.PlaceholderColor = System.Drawing.Color.Gray;
+            this.txbxFPrice.PlaceholderText = "0.00";
+            this.txbxFPrice.Size = new System.Drawing.Size(164, 32);
+            this.txbxFPrice.TabIndex = 21;
+            this.txbxFPrice.Texts = "";
+            this.txbxFPrice.UnderlinedStyle = false;
+            // 
+            // lbFPrice
+            // 
+            this.lbFPrice.AutoSize = true;
+            this.lbFPrice.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFPrice.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lbFPrice.Location = new System.Drawing.Point(23, 98);
+            this.lbFPrice.Name = "lbFPrice";
+            this.lbFPrice.Size = new System.Drawing.Size(57, 21);
+            this.lbFPrice.TabIndex = 22;
+            this.lbFPrice.Text = "F-Price";
+            // 
             // chbxFemale
             // 
             this.chbxFemale.AutoSize = true;
             this.chbxFemale.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chbxFemale.Location = new System.Drawing.Point(144, 17);
+            this.chbxFemale.Location = new System.Drawing.Point(106, 99);
             this.chbxFemale.Name = "chbxFemale";
             this.chbxFemale.Size = new System.Drawing.Size(71, 23);
             this.chbxFemale.TabIndex = 1;
@@ -447,11 +515,37 @@
             this.chbxFemale.UseVisualStyleBackColor = true;
             this.chbxFemale.CheckedChanged += new System.EventHandler(this.chbx_CheckedChanged);
             // 
+            // txbxMPrice
+            // 
+            this.txbxMPrice.AutocompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.txbxMPrice.AutocompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.txbxMPrice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.txbxMPrice.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txbxMPrice.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txbxMPrice.BorderRadius = 0;
+            this.txbxMPrice.BorderSize = 2;
+            this.txbxMPrice.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txbxMPrice.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
+            this.txbxMPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txbxMPrice.Location = new System.Drawing.Point(19, 47);
+            this.txbxMPrice.Margin = new System.Windows.Forms.Padding(4);
+            this.txbxMPrice.MaxLength = 9;
+            this.txbxMPrice.Multiline = false;
+            this.txbxMPrice.Name = "txbxMPrice";
+            this.txbxMPrice.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txbxMPrice.PasswordChar = false;
+            this.txbxMPrice.PlaceholderColor = System.Drawing.Color.Gray;
+            this.txbxMPrice.PlaceholderText = "0.00";
+            this.txbxMPrice.Size = new System.Drawing.Size(164, 32);
+            this.txbxMPrice.TabIndex = 3;
+            this.txbxMPrice.Texts = "";
+            this.txbxMPrice.UnderlinedStyle = false;
+            // 
             // chbxMale
             // 
             this.chbxMale.AutoSize = true;
             this.chbxMale.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chbxMale.Location = new System.Drawing.Point(45, 17);
+            this.chbxMale.Location = new System.Drawing.Point(106, 23);
             this.chbxMale.Name = "chbxMale";
             this.chbxMale.Size = new System.Drawing.Size(58, 23);
             this.chbxMale.TabIndex = 0;
@@ -459,49 +553,23 @@
             this.chbxMale.UseVisualStyleBackColor = true;
             this.chbxMale.CheckedChanged += new System.EventHandler(this.chbx_CheckedChanged);
             // 
-            // lbPrice
+            // lbMPrice
             // 
-            this.lbPrice.AutoSize = true;
-            this.lbPrice.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPrice.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbPrice.Location = new System.Drawing.Point(312, 168);
-            this.lbPrice.Name = "lbPrice";
-            this.lbPrice.Size = new System.Drawing.Size(44, 21);
-            this.lbPrice.TabIndex = 19;
-            this.lbPrice.Text = "Price";
-            // 
-            // txbxPrice
-            // 
-            this.txbxPrice.AutocompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.txbxPrice.AutocompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.txbxPrice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.txbxPrice.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txbxPrice.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.txbxPrice.BorderRadius = 0;
-            this.txbxPrice.BorderSize = 2;
-            this.txbxPrice.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txbxPrice.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
-            this.txbxPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txbxPrice.Location = new System.Drawing.Point(307, 193);
-            this.txbxPrice.Margin = new System.Windows.Forms.Padding(4);
-            this.txbxPrice.MaxLength = 9;
-            this.txbxPrice.Multiline = false;
-            this.txbxPrice.Name = "txbxPrice";
-            this.txbxPrice.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txbxPrice.PasswordChar = false;
-            this.txbxPrice.PlaceholderColor = System.Drawing.Color.Gray;
-            this.txbxPrice.PlaceholderText = "0.00";
-            this.txbxPrice.Size = new System.Drawing.Size(142, 32);
-            this.txbxPrice.TabIndex = 3;
-            this.txbxPrice.Texts = "";
-            this.txbxPrice.UnderlinedStyle = false;
+            this.lbMPrice.AutoSize = true;
+            this.lbMPrice.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbMPrice.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lbMPrice.Location = new System.Drawing.Point(23, 22);
+            this.lbMPrice.Name = "lbMPrice";
+            this.lbMPrice.Size = new System.Drawing.Size(64, 21);
+            this.lbMPrice.TabIndex = 19;
+            this.lbMPrice.Text = "M-Price";
             // 
             // lbProductName
             // 
             this.lbProductName.AutoSize = true;
             this.lbProductName.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbProductName.ForeColor = System.Drawing.Color.White;
-            this.lbProductName.Location = new System.Drawing.Point(76, 17);
+            this.lbProductName.Location = new System.Drawing.Point(76, 24);
             this.lbProductName.Name = "lbProductName";
             this.lbProductName.Size = new System.Drawing.Size(71, 21);
             this.lbProductName.TabIndex = 14;
@@ -512,7 +580,7 @@
             this.lbColor.AutoSize = true;
             this.lbColor.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbColor.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbColor.Location = new System.Drawing.Point(76, 168);
+            this.lbColor.Location = new System.Drawing.Point(76, 175);
             this.lbColor.Name = "lbColor";
             this.lbColor.Size = new System.Drawing.Size(55, 21);
             this.lbColor.TabIndex = 17;
@@ -530,7 +598,7 @@
             this.txbxColor.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txbxColor.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
             this.txbxColor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txbxColor.Location = new System.Drawing.Point(73, 193);
+            this.txbxColor.Location = new System.Drawing.Point(73, 200);
             this.txbxColor.Margin = new System.Windows.Forms.Padding(4);
             this.txbxColor.MaxLength = 20;
             this.txbxColor.Multiline = false;
@@ -539,7 +607,7 @@
             this.txbxColor.PasswordChar = false;
             this.txbxColor.PlaceholderColor = System.Drawing.Color.Gray;
             this.txbxColor.PlaceholderText = "BLACK";
-            this.txbxColor.Size = new System.Drawing.Size(226, 32);
+            this.txbxColor.Size = new System.Drawing.Size(205, 32);
             this.txbxColor.TabIndex = 2;
             this.txbxColor.Texts = "";
             this.txbxColor.UnderlinedStyle = false;
@@ -549,7 +617,7 @@
             this.lbBrand.AutoSize = true;
             this.lbBrand.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbBrand.ForeColor = System.Drawing.Color.White;
-            this.lbBrand.Location = new System.Drawing.Point(76, 93);
+            this.lbBrand.Location = new System.Drawing.Point(76, 100);
             this.lbBrand.Name = "lbBrand";
             this.lbBrand.Size = new System.Drawing.Size(58, 21);
             this.lbBrand.TabIndex = 4;
@@ -567,7 +635,7 @@
             this.txbxProductName.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txbxProductName.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbxProductName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txbxProductName.Location = new System.Drawing.Point(73, 42);
+            this.txbxProductName.Location = new System.Drawing.Point(73, 49);
             this.txbxProductName.Margin = new System.Windows.Forms.Padding(4);
             this.txbxProductName.MaxLength = 50;
             this.txbxProductName.Multiline = false;
@@ -576,7 +644,7 @@
             this.txbxProductName.PasswordChar = false;
             this.txbxProductName.PlaceholderColor = System.Drawing.Color.Gray;
             this.txbxProductName.PlaceholderText = "Product Name";
-            this.txbxProductName.Size = new System.Drawing.Size(375, 32);
+            this.txbxProductName.Size = new System.Drawing.Size(387, 32);
             this.txbxProductName.TabIndex = 0;
             this.txbxProductName.Texts = "";
             this.txbxProductName.UnderlinedStyle = false;
@@ -593,7 +661,7 @@
             this.txbxBrand.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txbxBrand.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
             this.txbxBrand.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txbxBrand.Location = new System.Drawing.Point(73, 118);
+            this.txbxBrand.Location = new System.Drawing.Point(73, 125);
             this.txbxBrand.Margin = new System.Windows.Forms.Padding(4);
             this.txbxBrand.MaxLength = 35;
             this.txbxBrand.Multiline = false;
@@ -602,7 +670,7 @@
             this.txbxBrand.PasswordChar = false;
             this.txbxBrand.PlaceholderColor = System.Drawing.Color.Gray;
             this.txbxBrand.PlaceholderText = "BRAND NAME";
-            this.txbxBrand.Size = new System.Drawing.Size(375, 32);
+            this.txbxBrand.Size = new System.Drawing.Size(387, 32);
             this.txbxBrand.TabIndex = 1;
             this.txbxBrand.Texts = "";
             this.txbxBrand.UnderlinedStyle = false;
@@ -630,11 +698,12 @@
             this.Gender,
             this.Size,
             this.Quantity,
-            this.Barcode});
+            this.Barcode,
+            this.SizeType});
             this.dtgridSizeFields.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.dtgridSizeFields.EnableHeadersVisualStyles = false;
             this.dtgridSizeFields.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.dtgridSizeFields.Location = new System.Drawing.Point(475, 50);
+            this.dtgridSizeFields.Location = new System.Drawing.Point(488, 50);
             this.dtgridSizeFields.Margin = new System.Windows.Forms.Padding(0);
             this.dtgridSizeFields.Name = "dtgridSizeFields";
             this.dtgridSizeFields.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -652,47 +721,57 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             this.dtgridSizeFields.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dtgridSizeFields.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dtgridSizeFields.Size = new System.Drawing.Size(398, 387);
+            this.dtgridSizeFields.Size = new System.Drawing.Size(473, 439);
             this.dtgridSizeFields.TabIndex = 16;
             this.dtgridSizeFields.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgridSizeFields_CellEndEdit);
             // 
             // Gender
             // 
-            this.Gender.FillWeight = 15F;
+            this.Gender.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Gender.FillWeight = 40F;
             this.Gender.HeaderText = "Gender*";
+            this.Gender.MaxInputLength = 1;
             this.Gender.Name = "Gender";
-            this.Gender.Width = 76;
             // 
             // Size
             // 
-            this.Size.FillWeight = 15F;
+            this.Size.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Size.FillWeight = 35F;
             this.Size.HeaderText = "Size*";
             this.Size.MaxInputLength = 6;
             this.Size.Name = "Size";
             this.Size.ToolTipText = "Shoe size fields (Numeric or Decimal)";
-            this.Size.Width = 59;
             // 
             // Quantity
             // 
-            this.Quantity.FillWeight = 20F;
+            this.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Quantity.FillWeight = 45F;
             this.Quantity.HeaderText = "Quantity*";
             this.Quantity.MaxInputLength = 4;
             this.Quantity.Name = "Quantity";
-            this.Quantity.Width = 82;
             // 
             // Barcode
             // 
             this.Barcode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Barcode.FillWeight = 80F;
             this.Barcode.HeaderText = "Barcode";
             this.Barcode.MaxInputLength = 13;
             this.Barcode.Name = "Barcode";
+            // 
+            // SizeType
+            // 
+            this.SizeType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.SizeType.FillWeight = 60F;
+            this.SizeType.HeaderText = "Size Type";
+            this.SizeType.MaxInputLength = 4;
+            this.SizeType.Name = "SizeType";
             // 
             // AddProductForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.ClientSize = new System.Drawing.Size(883, 590);
+            this.ClientSize = new System.Drawing.Size(970, 646);
             this.Controls.Add(this.tblpnAddProduct);
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -728,8 +807,8 @@
         private SneakTrack___POS___Inventory_System.UIControls.RoundedTxBx txbxProductName;
         private System.Windows.Forms.Label lbColor;
         private SneakTrack___POS___Inventory_System.UIControls.RoundedTxBx txbxColor;
-        private System.Windows.Forms.Label lbPrice;
-        private SneakTrack___POS___Inventory_System.UIControls.RoundedTxBx txbxPrice;
+        private System.Windows.Forms.Label lbMPrice;
+        private SneakTrack___POS___Inventory_System.UIControls.RoundedTxBx txbxMPrice;
         private SneakTrack___POS___Inventory_System.UIControls.RoundedPanel pnFields;
         private SneakTrack___POS___Inventory_System.UIControls.RoundedPanel roundedPanel2;
         private System.Windows.Forms.Label lbGenders;
@@ -743,18 +822,22 @@
         private System.Windows.Forms.DataGridView dtgridSizeFields;
         private System.Windows.Forms.Label lbSetStock;
         private System.Windows.Forms.Label lbGenderError;
-        private System.Windows.Forms.Label lbPriceError;
         private System.Windows.Forms.Label lbSizeType;
         private UIControls.RoundedTxBx txbxSizeType;
         private System.Windows.Forms.Label lbProductError;
         private System.Windows.Forms.Label lbBrandError;
         private System.Windows.Forms.Label lbColorError;
         private System.Windows.Forms.Label lbDisclaimer;
+        private System.Windows.Forms.Button btnRemoveImage;
+        private UIControls.RoundedTxBx txbxUPrice;
+        private System.Windows.Forms.Label lbUPrice;
+        private UIControls.RoundedTxBx txbxFPrice;
+        private System.Windows.Forms.Label lbFPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn Gender;
         private System.Windows.Forms.DataGridViewTextBoxColumn Size;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn Barcode;
-        private System.Windows.Forms.Button btnRemoveImage;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SizeType;
     }
 }
 

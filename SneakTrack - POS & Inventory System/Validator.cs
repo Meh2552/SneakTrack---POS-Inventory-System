@@ -29,7 +29,7 @@ namespace SneakTrack___POS___Inventory_System
             }
         }
 
-        public String readStringNoEnd(String input)
+        public String readStringNoEnd(string input)
         {
             if (input == null || input.TrimEnd().Length == 0)
             {
@@ -94,6 +94,30 @@ namespace SneakTrack___POS___Inventory_System
                 else
                 {
                     if (dr[column].ToString().Equals(value)) return true;
+                }
+            }
+            return false;
+        }
+
+        public bool tableHasValue(DataTable table, string column, string value, string excolumn, string exvalue, bool ignoreCase = false)
+        {
+            foreach (DataRow dr in table.Rows)
+            {
+                if (ignoreCase)
+                {
+                    if (dr[column].ToString().Equals(value, StringComparison.OrdinalIgnoreCase))
+                    {
+                        if (dr[excolumn].ToString().Equals(exvalue, StringComparison.OrdinalIgnoreCase)) continue;
+                        return true;
+                    }
+                }
+                else
+                {
+                    if (dr[column].ToString().Equals(value, StringComparison.OrdinalIgnoreCase))
+                    {
+                        if (dr[excolumn].ToString().Equals(exvalue, StringComparison.OrdinalIgnoreCase)) continue;
+                        return true;
+                    }
                 }
             }
             return false;
@@ -165,14 +189,14 @@ namespace SneakTrack___POS___Inventory_System
 
                 foreach (DataGridViewCell cell in row.Cells)
                 {
-                    if (excludeColumns != null && excludeColumns.Contains(cell.ColumnIndex))
-                    {
-                        continue;
-                    }
-
-                    else if (!string.IsNullOrEmpty(cell.ErrorText))
+                    if (!string.IsNullOrEmpty(cell.ErrorText))
                     {
                         hasError = true;
+                    }
+
+                    else if (excludeColumns != null && excludeColumns.Contains(cell.ColumnIndex))
+                    {
+                        continue;
                     }
 
                     else if (string.IsNullOrEmpty(cell.Value?.ToString()))

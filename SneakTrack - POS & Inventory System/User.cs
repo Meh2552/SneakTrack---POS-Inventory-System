@@ -36,7 +36,7 @@ namespace SneakTrack___POS___Inventory_System
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-
+            Application.Exit();
         }
 
         private void tableLayoutPanel1_Paint_1(object sender, PaintEventArgs e)
@@ -100,5 +100,31 @@ namespace SneakTrack___POS___Inventory_System
                 }
             }
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (selectedRow >= 0)
+            {
+                DialogResult result = MessageBox.Show(
+                    "Are you sure you want to delete this account?",
+                    "Delete Account",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (result == DialogResult.Yes)
+                {
+                    dgvUsers.Rows.RemoveAt(selectedRow);
+
+                    MessageBox.Show("Account Deleted!");
+
+                    selectedRow = -1;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Select an account first!");
+            }
+        }
     }
 }
+

@@ -159,7 +159,14 @@ namespace SneakTrack___POS___Inventory_System
                     break;
 
                 case "Barcode":
-                    if (v.readString(newValue) == null) break;
+                    if (v.readString(newValue) == null)
+                    {
+                        cell.Value = txbxSizeType.Texts.ToUpper();
+                        cell.Style.BackColor = Color.White;
+                        cell.Style.ForeColor = Color.Black;
+                        cell.ErrorText = "";
+                        break;
+                    }
 
                     if (v.validateCellValue(cell, !v.tableHasValue(dh.ProductMasterDT, "Barcode", v.readString(newValue)),
                         "Barcode already in the system")) {isValid = false; break; }
@@ -221,12 +228,13 @@ namespace SneakTrack___POS___Inventory_System
             else txbxProductName.Texts = productName;
 
             string sizeType = v.readString(txbxSizeType.Texts);
-            txbxSizeType.Texts = sizeType.ToUpper();
+            txbxSizeType.Texts = sizeType?.ToUpper();
             foreach (DataGridViewRow dr in dtgridSizeFields.Rows)
             {
                 if (dr.IsNewRow) continue;
 
                 DataGridViewCell cell = dr.Cells[4];
+                DataGridViewCell genCell = dr.Cells[0];
 
                 if (sizeType != null && v.readString(cell.Value?.ToString()) == null)
                 {
@@ -236,14 +244,17 @@ namespace SneakTrack___POS___Inventory_System
                     cell.ErrorText = "";
                 }
 
+                else if (sizeType == null && v.readString(cell.Value?.ToString()) == null) continue;
+
                 else
                 {
-                    if (sizeType == null) continue;
                     cell.Value = cell.Value.ToString().ToUpper();
                     cell.Style.BackColor = Color.White;
                     cell.Style.ForeColor = Color.Black;
                     cell.ErrorText = "";
                 }
+
+                v.validateCellValue(genCell, v.validateCharacters(v.readString(genCell.Value?.ToString()), genderRegex), "Invalid gender");
             }
 
 
@@ -269,7 +280,7 @@ namespace SneakTrack___POS___Inventory_System
 
             else
             {
-                txbxMPrice.Texts = v.readDecimal((object)txbxMPrice.Texts).ToString("0.00");
+                textbox.Texts = v.readDecimal((object)textbox.Texts).ToString("0.00");
                 return true;
             }
         }

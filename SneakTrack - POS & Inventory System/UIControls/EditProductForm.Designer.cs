@@ -28,21 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditProductForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditProductForm));
             this.lbHeader = new System.Windows.Forms.Label();
             this.btnConfirmChanges = new System.Windows.Forms.Button();
             this.btnCloseForm = new System.Windows.Forms.Button();
             this.tblpnAddProduct = new System.Windows.Forms.TableLayoutPanel();
             this.pnHeader = new System.Windows.Forms.Panel();
             this.pnBody = new System.Windows.Forms.Panel();
+            this.txbxSizeType = new SneakTrack___POS___Inventory_System.UIControls.RoundedTxBx();
+            this.lbSizeType = new System.Windows.Forms.Label();
             this.chbxForSale = new System.Windows.Forms.CheckBox();
             this.lbSetStock = new System.Windows.Forms.Label();
             this.pnFields = new SneakTrack___POS___Inventory_System.UIControls.RoundedPanel();
-            this.dtgridSizeFields = new System.Windows.Forms.DataGridView();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.btnRemoveImage = new System.Windows.Forms.Button();
             this.lbDisclaimer = new System.Windows.Forms.Label();
             this.lbProductError = new System.Windows.Forms.Label();
@@ -70,8 +70,8 @@
             this.lbBrand = new System.Windows.Forms.Label();
             this.txbxProductName = new SneakTrack___POS___Inventory_System.UIControls.RoundedTxBx();
             this.txbxBrand = new SneakTrack___POS___Inventory_System.UIControls.RoundedTxBx();
-            this.txbxSizeType = new SneakTrack___POS___Inventory_System.UIControls.RoundedTxBx();
-            this.lbSizeType = new System.Windows.Forms.Label();
+            this.dtgridSizeFields = new System.Windows.Forms.DataGridView();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.Gender = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Size = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -82,9 +82,9 @@
             this.pnHeader.SuspendLayout();
             this.pnBody.SuspendLayout();
             this.pnFields.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgridSizeFields)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbxImage)).BeginInit();
             this.roundedPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgridSizeFields)).BeginInit();
             this.SuspendLayout();
             // 
             // lbHeader
@@ -182,6 +182,43 @@
             this.pnBody.Size = new System.Drawing.Size(958, 578);
             this.pnBody.TabIndex = 1;
             // 
+            // txbxSizeType
+            // 
+            this.txbxSizeType.AutocompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.txbxSizeType.AutocompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.txbxSizeType.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.txbxSizeType.BorderColor = System.Drawing.Color.Silver;
+            this.txbxSizeType.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txbxSizeType.BorderRadius = 0;
+            this.txbxSizeType.BorderSize = 2;
+            this.txbxSizeType.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txbxSizeType.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
+            this.txbxSizeType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txbxSizeType.Location = new System.Drawing.Point(848, 15);
+            this.txbxSizeType.Margin = new System.Windows.Forms.Padding(4);
+            this.txbxSizeType.MaxLength = 4;
+            this.txbxSizeType.Multiline = false;
+            this.txbxSizeType.Name = "txbxSizeType";
+            this.txbxSizeType.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txbxSizeType.PasswordChar = false;
+            this.txbxSizeType.PlaceholderColor = System.Drawing.Color.Gray;
+            this.txbxSizeType.PlaceholderText = "US";
+            this.txbxSizeType.Size = new System.Drawing.Size(97, 32);
+            this.txbxSizeType.TabIndex = 33;
+            this.txbxSizeType.Texts = "";
+            this.txbxSizeType.UnderlinedStyle = false;
+            // 
+            // lbSizeType
+            // 
+            this.lbSizeType.AutoSize = true;
+            this.lbSizeType.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbSizeType.ForeColor = System.Drawing.Color.Black;
+            this.lbSizeType.Location = new System.Drawing.Point(717, 18);
+            this.lbSizeType.Name = "lbSizeType";
+            this.lbSizeType.Size = new System.Drawing.Size(135, 21);
+            this.lbSizeType.TabIndex = 32;
+            this.lbSizeType.Text = "Default Size Type: ";
+            // 
             // chbxForSale
             // 
             this.chbxForSale.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -242,74 +279,6 @@
             this.pnFields.TabIndex = 15;
             this.pnFields.Thickness = 5F;
             // 
-            // dtgridSizeFields
-            // 
-            this.dtgridSizeFields.AllowUserToOrderColumns = true;
-            this.dtgridSizeFields.AllowUserToResizeRows = false;
-            this.dtgridSizeFields.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            this.dtgridSizeFields.BackgroundColor = System.Drawing.Color.Silver;
-            this.dtgridSizeFields.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dtgridSizeFields.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.NullValue = "0";
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(3, 5, 0, 3);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgridSizeFields.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dtgridSizeFields.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgridSizeFields.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Gender,
-            this.Size,
-            this.Quantity,
-            this.Barcode,
-            this.SizeType,
-            this.size_id});
-            this.dtgridSizeFields.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.dtgridSizeFields.EnableHeadersVisualStyles = false;
-            this.dtgridSizeFields.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.dtgridSizeFields.Location = new System.Drawing.Point(475, 57);
-            this.dtgridSizeFields.Margin = new System.Windows.Forms.Padding(0);
-            this.dtgridSizeFields.Name = "dtgridSizeFields";
-            this.dtgridSizeFields.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgridSizeFields.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft YaHei UI", 8F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            this.dtgridSizeFields.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.dtgridSizeFields.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dtgridSizeFields.Size = new System.Drawing.Size(471, 435);
-            this.dtgridSizeFields.TabIndex = 16;
-            this.dtgridSizeFields.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgridSizeFields_CellEndEdit);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.BackColor = System.Drawing.Color.Black;
-            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.FlatAppearance.BorderSize = 0;
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(440, 504);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(0);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(222, 74);
-            this.btnCancel.TabIndex = 31;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = false;
-            // 
             // btnRemoveImage
             // 
             this.btnRemoveImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
@@ -325,6 +294,7 @@
             this.btnRemoveImage.TabIndex = 39;
             this.btnRemoveImage.Text = "X";
             this.btnRemoveImage.UseVisualStyleBackColor = false;
+            this.btnRemoveImage.Click += new System.EventHandler(this.btnRemoveImage_Click);
             // 
             // lbDisclaimer
             // 
@@ -414,6 +384,7 @@
             this.btnAddImage.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAddImage.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAddImage.UseVisualStyleBackColor = false;
+            this.btnAddImage.Click += new System.EventHandler(this.btnAddImage_Click);
             // 
             // txbxDescription
             // 
@@ -478,6 +449,7 @@
             this.chbxUnisex.TabIndex = 2;
             this.chbxUnisex.Text = "Unisex";
             this.chbxUnisex.UseVisualStyleBackColor = true;
+            this.chbxUnisex.CheckedChanged += new System.EventHandler(this.chbx_CheckedChanged);
             // 
             // txbxUPrice
             // 
@@ -563,6 +535,7 @@
             this.chbxFemale.TabIndex = 1;
             this.chbxFemale.Text = "Female";
             this.chbxFemale.UseVisualStyleBackColor = true;
+            this.chbxFemale.CheckedChanged += new System.EventHandler(this.chbx_CheckedChanged);
             // 
             // txbxMPrice
             // 
@@ -600,6 +573,7 @@
             this.chbxMale.TabIndex = 0;
             this.chbxMale.Text = "Male";
             this.chbxMale.UseVisualStyleBackColor = true;
+            this.chbxMale.CheckedChanged += new System.EventHandler(this.chbx_CheckedChanged);
             // 
             // lbMPrice
             // 
@@ -723,42 +697,73 @@
             this.txbxBrand.Texts = "";
             this.txbxBrand.UnderlinedStyle = false;
             // 
-            // txbxSizeType
+            // dtgridSizeFields
             // 
-            this.txbxSizeType.AutocompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.txbxSizeType.AutocompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.txbxSizeType.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.txbxSizeType.BorderColor = System.Drawing.Color.Silver;
-            this.txbxSizeType.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txbxSizeType.BorderRadius = 0;
-            this.txbxSizeType.BorderSize = 2;
-            this.txbxSizeType.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txbxSizeType.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
-            this.txbxSizeType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txbxSizeType.Location = new System.Drawing.Point(848, 15);
-            this.txbxSizeType.Margin = new System.Windows.Forms.Padding(4);
-            this.txbxSizeType.MaxLength = 4;
-            this.txbxSizeType.Multiline = false;
-            this.txbxSizeType.Name = "txbxSizeType";
-            this.txbxSizeType.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txbxSizeType.PasswordChar = false;
-            this.txbxSizeType.PlaceholderColor = System.Drawing.Color.Gray;
-            this.txbxSizeType.PlaceholderText = "US";
-            this.txbxSizeType.Size = new System.Drawing.Size(97, 32);
-            this.txbxSizeType.TabIndex = 33;
-            this.txbxSizeType.Texts = "";
-            this.txbxSizeType.UnderlinedStyle = false;
+            this.dtgridSizeFields.AllowUserToOrderColumns = true;
+            this.dtgridSizeFields.AllowUserToResizeRows = false;
+            this.dtgridSizeFields.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.dtgridSizeFields.BackgroundColor = System.Drawing.Color.Silver;
+            this.dtgridSizeFields.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dtgridSizeFields.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.NullValue = "0";
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(3, 5, 0, 3);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgridSizeFields.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dtgridSizeFields.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgridSizeFields.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Gender,
+            this.Size,
+            this.Quantity,
+            this.Barcode,
+            this.SizeType,
+            this.size_id});
+            this.dtgridSizeFields.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.dtgridSizeFields.EnableHeadersVisualStyles = false;
+            this.dtgridSizeFields.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.dtgridSizeFields.Location = new System.Drawing.Point(475, 57);
+            this.dtgridSizeFields.Margin = new System.Windows.Forms.Padding(0);
+            this.dtgridSizeFields.Name = "dtgridSizeFields";
+            this.dtgridSizeFields.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgridSizeFields.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft YaHei UI", 8F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            this.dtgridSizeFields.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.dtgridSizeFields.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dtgridSizeFields.Size = new System.Drawing.Size(471, 435);
+            this.dtgridSizeFields.TabIndex = 16;
+            this.dtgridSizeFields.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgridSizeFields_CellEndEdit);
             // 
-            // lbSizeType
+            // btnCancel
             // 
-            this.lbSizeType.AutoSize = true;
-            this.lbSizeType.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbSizeType.ForeColor = System.Drawing.Color.Black;
-            this.lbSizeType.Location = new System.Drawing.Point(717, 18);
-            this.lbSizeType.Name = "lbSizeType";
-            this.lbSizeType.Size = new System.Drawing.Size(135, 21);
-            this.lbSizeType.TabIndex = 32;
-            this.lbSizeType.Text = "Default Size Type: ";
+            this.btnCancel.BackColor = System.Drawing.Color.Black;
+            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.ForeColor = System.Drawing.Color.White;
+            this.btnCancel.Location = new System.Drawing.Point(440, 504);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(0);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(222, 74);
+            this.btnCancel.TabIndex = 31;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = false;
             // 
             // Gender
             // 
@@ -828,10 +833,10 @@
             this.pnBody.PerformLayout();
             this.pnFields.ResumeLayout(false);
             this.pnFields.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgridSizeFields)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbxImage)).EndInit();
             this.roundedPanel2.ResumeLayout(false);
             this.roundedPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgridSizeFields)).EndInit();
             this.ResumeLayout(false);
 
         }

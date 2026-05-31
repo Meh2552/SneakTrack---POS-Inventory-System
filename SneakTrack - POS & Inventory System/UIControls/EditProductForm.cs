@@ -55,11 +55,16 @@ namespace SneakTrack___POS___Inventory_System
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
-        private void initialize(Product p) // TODO: add for size type
+        private void initialize(Product p)
         {
             this.inProd = p;
-            this.outProd = p;
 
+            this.outProd = new Product(p.ProdId, p.Name, p.Brand, p.BrandId, p.Color, p.Description, p.ImagePath, p.ForSale);
+            foreach(Variant vari in p.Variants)
+            {
+                this.outProd.addVariant(new Variant(vari.Size, vari.SizeType, vari.Quantity, vari.Barcode, vari.Gender, vari.Price, vari.VariantId, vari.SizeId));
+            }
+            
             AutoCompleteStringCollection brandColl = new AutoCompleteStringCollection();
             brandColl.AddRange(dh.BrandList.ToArray());
             txbxBrand.AutoCompleteCustomSource = brandColl;
@@ -67,20 +72,29 @@ namespace SneakTrack___POS___Inventory_System
             AutoCompleteStringCollection colorColl = new AutoCompleteStringCollection();
             colorColl.AddRange(dh.ColorList.ToArray());
             txbxColor.AutoCompleteCustomSource = colorColl;
-            
+
+            AutoCompleteStringCollection sizeTypeColl = new AutoCompleteStringCollection();
+            sizeTypeColl.AddRange(dh.SizeTypesList.ToArray());
+            txbxSizeType.AutoCompleteCustomSource = sizeTypeColl;
+
             txbxProductName.Texts = p.Name;
             txbxBrand.Texts = p.Brand;
             txbxColor.Texts = p.Color;
+            txbxDescription.Text = p.Description;
 
-            txbxMPrice.Texts = p.mPrice().ToString();
-            txbxFPrice.Texts = p.fPrice().ToString();
-            txbxUPrice.Texts = p.uPrice().ToString();
+            pcbxImage.Image = p.Image;
+            pcbxImage.SizeMode = PictureBoxSizeMode.StretchImage;
+            imagePath = p.ImagePath;
 
             loadProductFields(p);
 
             chbxMale.Checked = p.HasMale;
             chbxFemale.Checked = p.HasFemale;
             chbxUnisex.Checked = p.HasUnisex;
+            txbxMPrice.Texts = p.mPrice().ToString();
+            txbxFPrice.Texts = p.fPrice().ToString();
+            txbxUPrice.Texts = p.uPrice().ToString();
+
             chbxForSale.Checked = p.ForSale;
             checkCheckedGenderCheckCheckedCheck();
             
@@ -162,11 +176,15 @@ namespace SneakTrack___POS___Inventory_System
                     break;
 
                 case "Size":
-                    bool hasValue = dtgridSizeFields.Rows.Cast<DataGridViewRow>()
-                        .Where(row => !row.IsNewRow && row.Index != cell.RowIndex)
-                        .Any(row => row.Cells["Size"].Value?.ToString() == cell.Value?.ToString()
-                        && row.Cells["Gender"].Value?.ToString() ==
-                        dtgridSizeFields.Rows[cell.RowIndex].Cells["Gender"].Value?.ToString());
+                    v.validateCellValue(cell, v.readDouble(newValue) >= 0, "Enter a size (0 or more)");
+
+                    bool hasValue = dtgridSizeFields.Rows
+                        .Cast<DataGridViewRow>()
+                        .Where(row => !row.IsNewRow && row.Index != currentRow.Index)
+                        .Any(row =>
+                            row.Cells["Size"].Value?.ToString() == currentRow.Cells["Size"].Value?.ToString() &&
+                            row.Cells["Gender"].Value?.ToString() == currentRow.Cells["Gender"].Value?.ToString() &&
+                            row.Cells["SizeType"].Value?.ToString() == currentRow.Cells["SizeType"].Value?.ToString());
 
                     if (hasValue)
                     {
@@ -183,9 +201,14 @@ namespace SneakTrack___POS___Inventory_System
                     break;
 
                 case "Barcode":
-                    if (v.readString(newValue) == null) break;
+                    if (v.readString(newValue) == null)
+                    {
+                        v.toNormalCell(cell);
+                        break;
+                    }
 
                     string sizeId = currentRow.Cells[5].Value?.ToString();
+                    Debug.WriteLine(sizeId);
                     bool tableValueFound = sizeId != null ? v.tableHasValue(dh.ProductMasterDT, "Barcode", v.readString(newValue), "size_id", sizeId)
                         : v.tableHasValue(dh.ProductMasterDT, "Barcode", v.readString(newValue));
 
@@ -249,29 +272,36 @@ namespace SneakTrack___POS___Inventory_System
             else txbxProductName.Texts = productName;
 
             string sizeType = v.readString(txbxSizeType.Texts);
-            txbxSizeType.Texts = sizeType?.ToUpper();
+            sizeType = txbxSizeType.Texts = sizeType?.ToUpper();
             foreach (DataGridViewRow dr in dtgridSizeFields.Rows)
             {
                 if (dr.IsNewRow) continue;
 
                 DataGridViewCell cell = dr.Cells[4];
+                DataGridViewCell genCell = dr.Cells[0];
 
                 if (sizeType != null && v.readString(cell.Value?.ToString()) == null)
                 {
-                    cell.Value = txbxSizeType.Texts.ToUpper();
-                    cell.Style.BackColor = Color.White;
-                    cell.Style.ForeColor = Color.Black;
-                    cell.ErrorText = "";
+                    v.toNormalCell(cell);
+                    cell.Value = sizeType;
                 }
 
-                else
-                {
-                    if (sizeType == null) continue;
-                    cell.Value = cell.Value.ToString().ToUpper();
-                    cell.Style.BackColor = Color.White;
-                    cell.Style.ForeColor = Color.Black;
-                    cell.ErrorText = "";
-                }
+                else if (sizeType == null && v.readString(cell.Value?.ToString()) == null) continue;
+
+                else v.toNormalCell(cell);
+
+                v.validateCellValue(genCell, v.validateCharacters(v.readString(genCell.Value?.ToString()), genderRegex), "Invalid gender");
+
+                bool hasDuplicate = dtgridSizeFields.Rows
+                    .Cast<DataGridViewRow>()
+                    .Where(row => !row.IsNewRow && row.Index != dr.Index)
+                    .Any(row =>
+                        row.Cells["Size"].Value?.ToString() == dr.Cells["Size"].Value?.ToString() &&
+                        row.Cells["Gender"].Value?.ToString() == dr.Cells["Gender"].Value?.ToString() &&
+                        row.Cells["SizeType"].Value?.ToString() == dr.Cells["SizeType"].Value?.ToString());
+
+                if (hasDuplicate) v.validateCellValue(dr.Cells["Size"], false, "Duplicate size found");
+                else v.toNormalCell(dr.Cells["Size"]);
             }
 
             List<int> columnIndex = new List<int>() { 3, 5};
@@ -297,7 +327,7 @@ namespace SneakTrack___POS___Inventory_System
 
             else
             {
-                txbxMPrice.Texts = v.readDecimal((object)txbxMPrice.Texts).ToString("0.00");
+                textbox.Texts = v.readDecimal((object)textbox.Texts).ToString("0.00");
                 return true;
             }
         }
@@ -428,7 +458,7 @@ namespace SneakTrack___POS___Inventory_System
 
             Debug.WriteLine("\n\n" + p.ToString());
             foreach (Variant v in p.Variants) Debug.WriteLine("\n" + v.ToString());
-            // pc.addProduct(p);
+            pc.updateProd(p, inProd);
         }
 
         private void btnRemoveImage_Click(object sender, EventArgs e)

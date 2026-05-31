@@ -257,6 +257,31 @@ namespace SneakTrack___POS___Inventory_System
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue(parameterName, parameterValue ?? (object)DBNull.Value);
+                        Debug.WriteLine($"{parameterName} = {parameterValue}\n{cmd.CommandText}");
+                        cmd.ExecuteNonQuery();
+                        output = true;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Error: " + e.Message);
+            }
+            return output;
+        }
+
+        public bool deleteValueFromTable(string table, string condition)
+        {
+            bool output = false;
+            string query = $"DELETE FROM [{table}] WHERE {condition}";
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(conString))
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        Debug.WriteLine($"{cmd.CommandText}");
                         cmd.ExecuteNonQuery();
                         output = true;
                     }
@@ -472,15 +497,7 @@ namespace SneakTrack___POS___Inventory_System
                 productId = Convert.ToInt32(cmd.ExecuteScalar());
                 Debug.WriteLine($"Product ID: {productId} = {cmd.CommandText}");
 
-                if (hasImage)
-                {
-                    SqlCommand updateCmd = new SqlCommand(updateQuery("Product", "image = @image", "product_id = @product_id"), conn);
-                    updateCmd.Parameters.AddWithValue("@image", fh.imagePathtoFile(p.ImagePath, p.newImageFileName(productId)));
-                    updateCmd.Parameters.AddWithValue("@product_id", productId);
-                    updateCmd.ExecuteNonQuery();
-
-                    Debug.WriteLine(updateCmd.CommandText + " Updated");
-                }
+                if (hasImage) updateImage(p.ImagePath, productId, p.newImageFileName(productId));
 
                 conn.Close();
             }
@@ -490,6 +507,31 @@ namespace SneakTrack___POS___Inventory_System
             }
 
             return productId;
+        }
+
+        public void updateImage(string imagePath, int productId, string filename)
+        {
+            try
+            {
+                if (imagePath == null) return;
+
+                SqlConnection conn = new SqlConnection(conString);
+                conn.Open();
+                SqlCommand updateCmd = new SqlCommand(updateQuery("Product", "image = @image", "product_id = @product_id"), conn);
+
+                updateCmd.Parameters.AddWithValue("@image", fh.imagePathtoFile(imagePath, filename));
+                updateCmd.Parameters.AddWithValue("@product_id", productId);
+                updateCmd.ExecuteNonQuery();
+               
+                Debug.WriteLine(updateCmd.CommandText + " Updated");
+                
+                conn.Close();
+            }
+
+            catch (Exception e)
+            {
+                Debug.WriteLine("Error: " + e.Message);
+            }
         }
 
         public int toVariantDB(Variant v, int productId)

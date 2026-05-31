@@ -180,6 +180,8 @@ namespace SneakTrack___POS___Inventory_System
         public void updateProd(Product newProd, Product oldProd) 
         {
             int prodId = oldProd.ProdId;
+            Debug.WriteLine(newProd.ToString());
+            Debug.WriteLine(oldProd.ToString());
             
             if (newProd.Brand != oldProd.Brand)
             {
@@ -198,20 +200,112 @@ namespace SneakTrack___POS___Inventory_System
                 dh.updateValueToTable(dh.updateQuery("Product", "product_name = @product_name", $"product_id = {prodId}"), "@product_name", newProd.Name);
 
             if (newProd.Description != oldProd.Description)
-                dh.updateValueToTable(dh.updateQuery("Product", "description = @description", $"product_id = {prodId}"), "@description", v.readString(newProd.Description));
+                dh.updateValueToTable(dh.updateQuery("Product", "description = @description", $"product_id = {prodId}"), "@description", newProd.Description);
 
             if (newProd.ImagePath != oldProd.ImagePath)
-                dh.updateValueToTable(dh.updateQuery("Product", "image = @image", $"product_id = {prodId}"), "@image", v.readString(newProd.ImagePath));
+                if (newProd.ImagePath != null )dh.updateImage(newProd.ImagePath, prodId, newProd.newImageFileName(prodId));
+                else dh.updateValueToTable(dh.updateQuery("Product", "image = @image", $"product_id = {prodId}"), "@image", v.readString(newProd.ImagePath));
 
             if (newProd.Archived != oldProd.Archived)
                 dh.updateValueToTable(dh.updateQuery("Product", "archived = @archived", $"product_id = {prodId}"), "@archived", newProd.Archived ? "1" : "0");
 
-            if (newProd.ImagePath != oldProd.ImagePath)
+            if (newProd.ForSale != oldProd.ForSale)
                 dh.updateValueToTable(dh.updateQuery("Product", "for_sale = @for_sale", $"product_id = {prodId}"), "@for_sale", newProd.ForSale ? "1" : "0");
 
+            int mVariantId = 0, fVariantId = 0, uVariantId = 0;
 
+            if (mVariantId == 0) mVariantId = oldProd.getMaleVariant().VariantId;
+            if (fVariantId == 0) fVariantId = oldProd.getFemaleVariant().VariantId;
+            if (uVariantId == 0) uVariantId = oldProd.getUnisexVariant().VariantId;
 
+            if (newProd.HasMale != oldProd.HasMale) mVariantId = updateProductVariantsTable(newProd.ProdId, newProd.getMaleVariant(), newProd.HasMale);
 
+            if (newProd.HasFemale != oldProd.HasFemale) fVariantId = updateProductVariantsTable(newProd.ProdId, newProd.getFemaleVariant(), newProd.HasFemale);
+
+            if (newProd.HasUnisex != oldProd.HasUnisex) uVariantId = updateProductVariantsTable(newProd.ProdId, newProd.getUnisexVariant(), newProd.HasUnisex);
+            // TODO: if change gender 
+            if (newProd.HasMale && newProd.mPrice() != oldProd.mPrice())
+                dh.updateValueToTable(dh.updateQuery("Product_Variants", "price = @price", $"variant_id = {mVariantId}"), "@price", newProd.mPrice().ToString());
+
+            if (newProd.HasFemale && newProd.fPrice() != oldProd.fPrice())
+                dh.updateValueToTable(dh.updateQuery("Product_Variants", "price = @price", $"variant_id = {fVariantId}"), "@price", newProd.fPrice().ToString());
+
+            if (newProd.HasUnisex && newProd.uPrice() != oldProd.uPrice())
+                dh.updateValueToTable(dh.updateQuery("Product_Variants", "price = @price", $"variant_id = {uVariantId}"), "@price", newProd.uPrice().ToString());
+
+            Debug.WriteLine($"Variant Ids: m:{mVariantId}, f:{fVariantId}, u:{uVariantId}");
+
+            foreach (Variant vari in newProd.Variants)
+            {   
+                int variantId = 0;
+                if (vari.Gender == 'M') variantId = mVariantId;
+                else if (vari.Gender == 'F') variantId = fVariantId;
+                else if (vari.Gender == 'U') variantId = uVariantId;
+                else continue;
+
+                if (vari.SizeId == -1)
+                {
+                    Debug.WriteLine("\nNew Variant:\n" + vari.ToString());
+                    dh.toSizeDB(vari, variantId);
+                }
+
+                else if (vari.Remove)
+                {
+                    Debug.WriteLine("\nRemove Variant:\n" + vari.ToString());
+                    dh.deleteValueFromTable("Size", $"size_id = {vari.SizeId}");
+                }
+
+                else
+                {
+                    Debug.WriteLine("\nUpdate Variant:\n" + vari.ToString());
+                    Debug.WriteLine("\nUpdate Old Prod:\n" + oldProd.fromSizeId(vari.SizeId)?.ToString());
+                    updateSizeTable(vari, oldProd.fromSizeId(vari.SizeId) ,variantId);
+                }
+            }
+        }
+
+        private int updateProductVariantsTable(int product_id, Variant genVariant, bool willAddVariant)
+        {
+            int output = 0;
+
+            Debug.WriteLine("\nUpdateProdVari in ProdController: \n " + genVariant.ToString());
+
+            if (willAddVariant)
+            {
+                return dh.toVariantDB(genVariant, product_id);
+            }
+
+            else
+            {
+                dh.deleteValueFromTable("Size", $"variant_id = {genVariant.VariantId}");
+                dh.deleteValueFromTable("Product_Variants", $"variant_id = {genVariant.VariantId}");
+            }
+
+            return 0;
+        }
+
+        private void updateSizeTable(Variant newVari, Variant oldVari, int variant_id)
+        {
+            if (oldVari == null)
+            {
+                Debug.WriteLine("Variable 'oldVari' from method updateSizeTable() in ProductController is null");
+                return;
+            }
+
+            if (variant_id > 0 && variant_id != oldVari.VariantId)
+                dh.updateValueToTable(dh.updateQuery("Size", "variant_id = @variant_id", $"size_id = {newVari.SizeId}"), "@variant_id", variant_id.ToString());
+
+            if (newVari.Size != oldVari.Size)
+                dh.updateValueToTable(dh.updateQuery("Size", "size = @size", $"size_id = {newVari.SizeId}"), "@size", newVari.Size.ToString());
+
+            if (newVari.SizeType != oldVari.SizeType)
+                dh.updateValueToTable(dh.updateQuery("Size", "size_type = @size_type", $"size_id = {newVari.SizeId}"), "@size_type", newVari.SizeType);
+
+            if (newVari.Quantity != oldVari.Quantity)
+                dh.updateValueToTable(dh.updateQuery("Size", "quantity = @quantity", $"size_id = {newVari.SizeId}"), "@quantity", newVari.Quantity.ToString());
+
+            if (newVari.Barcode != oldVari.Barcode)
+                dh.updateValueToTable(dh.updateQuery("Size", "barcode = @barcode", $"size_id = {newVari.SizeId}"), "@barcode", newVari.Barcode);
         }
 
         public void updateQuantity(Product P)

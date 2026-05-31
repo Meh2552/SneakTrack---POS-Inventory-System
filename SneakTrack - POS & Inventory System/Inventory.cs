@@ -33,10 +33,7 @@ namespace SneakTrack___POS___Inventory_System
         private void reloadInv()
         {
             loadSelection();
-            if (selected != null)
-            {
-                loadSideInfo(selected);
-            }
+            tblpnSideInfo.ColumnStyles[1].Width = 0;
         }
 
         private void loadSelection()
@@ -115,7 +112,7 @@ namespace SneakTrack___POS___Inventory_System
         {
             if (!chbxAutoAddInp.Checked) return;
 
-            barcodeCheck();
+            if (txbxBarcode.Texts.Length >= 12) barcodeCheck();
         }
 
         private void btnNewProduct_Click(object sender, EventArgs e)

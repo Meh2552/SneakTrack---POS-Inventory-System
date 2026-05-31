@@ -97,39 +97,28 @@ namespace SneakTrack___POS___Inventory_System.UIControls
 
             using (GraphicsPath path = new GraphicsPath())
             {
-                int r = Math.Min(Radius, Math.Min(Width / 2, Height / 2));
-                int w = Width - 1;  // 👈 -1 to stay within bounds
+                int r = Math.Max(1, Math.Min(Radius, Math.Min(Width / 2, Height / 2))); // 👈 Math.Max(1,...) prevents 0
+                int w = Width - 1;
                 int h = Height - 1;
 
+                // Also guard r * 2 being larger than w or h
+                int diameter = r * 2;
+                if (diameter > w || diameter > h) return; // 👈 prevent invalid rectangle
+
                 path.StartFigure();
-
-                // Top-left
-                path.AddArc(0, 0, r * 2, r * 2, 180, 90);
-
-                // Top-right
-                path.AddArc(w - r * 2, 0, r * 2, r * 2, 270, 90);
-
-                // Bottom-right
-                path.AddArc(w - r * 2, h - r * 2, r * 2, r * 2, 0, 90);
-
-                // Bottom-left
-                path.AddArc(0, h - r * 2, r * 2, r * 2, 90, 90);
-
+                path.AddArc(0, 0, diameter, diameter, 180, 90);
+                path.AddArc(w - diameter, 0, diameter, diameter, 270, 90);
+                path.AddArc(w - diameter, h - diameter, diameter, diameter, 0, 90);
+                path.AddArc(0, h - diameter, diameter, diameter, 90, 90);
                 path.CloseFigure();
 
                 Region = new Region(path);
 
-                // Draw border
                 using (Pen pen = new Pen(BorderColor, Thickness))
-                {
                     e.Graphics.DrawPath(pen, path);
-                }
 
-                // Fill background
                 using (SolidBrush brush = new SolidBrush(BackColor))
-                {
                     e.Graphics.FillPath(brush, path);
-                }
             }
         }
 

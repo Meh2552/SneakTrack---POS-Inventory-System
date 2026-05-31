@@ -34,6 +34,7 @@ namespace SneakTrack___POS___Inventory_System
             this.brand = brand;
             this.color = color;
             this.image = setImagePath(imagePath);
+            this.imagePath = imagePath;
             this.description = description;
             this.brandId = brandId;
             this.forSale = forSale;
@@ -43,8 +44,8 @@ namespace SneakTrack___POS___Inventory_System
         {
             this.prodId = -1;
             this.name = name;
-            this.brand = brand;
-            this.color = color;
+            this.brand = brand.ToUpper();
+            this.color = color.ToUpper();
             this.description = description;
             this.brandId = -1;
             this.image = imagePath == null ? null : setImagePath(imagePath);
@@ -53,8 +54,8 @@ namespace SneakTrack___POS___Inventory_System
         }
 
         public int ProdId { get { return prodId; } set { prodId = value; } }
-        public string Brand { get { return brand; } set { brand = value; } }
-        public string Color { get { return color; } set { color = value; } }
+        public string Brand { get { return brand; } set { brand = value.ToUpper(); } }
+        public string Color { get { return color; } set { color = value.ToUpper(); } }
         public bool Archived { get { return archived; } set { archived = value; } }
         public bool HasMale { get { return hasMale; } }
         public bool HasFemale { get { return hasFemale; } }
@@ -209,6 +210,42 @@ namespace SneakTrack___POS___Inventory_System
             return genders;
         }
 
+        public Variant getMaleVariant()
+        {
+            Variant variant = null;
+
+            foreach (Variant var in Variants)
+            {
+                if (var.Gender == 'M' && var.VariantId > 0) return var;
+            }
+
+            return variant;
+        }
+
+        public Variant getFemaleVariant()
+        {
+            Variant variant = null;
+
+            foreach (Variant var in Variants)
+            {
+                if (var.Gender == 'F' && var.VariantId > 0) return var;
+            }
+
+            return variant;
+        }
+
+        public Variant getUnisexVariant()
+        {
+            Variant variant = null;
+
+            foreach (Variant var in Variants)
+            {
+                if (var.Gender == 'U' && var.VariantId > 0) return var;
+            }
+
+            return variant;
+        }
+
         public Variant fromVariantId(int id)
         {
             Variant output = null;
@@ -267,7 +304,7 @@ namespace SneakTrack___POS___Inventory_System
             {
                 if (var.Gender == 'F') return var.Price;
             }
-
+            Debug.WriteLine(price);
             return price;
         }
         public decimal uPrice()
@@ -284,6 +321,7 @@ namespace SneakTrack___POS___Inventory_System
 
         private void checkVariantGender(Variant v)
         {
+            if (v.Remove) return;
             switch (v.Gender)
             {
 
@@ -348,10 +386,10 @@ namespace SneakTrack___POS___Inventory_System
                        decimal price, int variant_id, int size_id)
         {
             this.size = size;
-            this.sizeType = sizeType;
+            this.sizeType = sizeType.ToUpper();
             this.quantity = quantity;
             this.barcode = barcode;
-            this.gender = gender;
+            this.gender = gender.ToString().ToUpper()[0];
             this.price = price;
             this.variantId = variant_id;
             this.sizeId = size_id;
@@ -360,20 +398,20 @@ namespace SneakTrack___POS___Inventory_System
         public Variant(double size, string sizeType, int quantity, string barcode, char gender, decimal price)
         {
             this.size = size;
-            this.sizeType = sizeType;
+            this.sizeType = sizeType.ToUpper();
             this.quantity = quantity;
             this.barcode = barcode;
-            this.gender = gender;
+            this.gender = gender.ToString().ToUpper()[0];
             this.price = price;
             this.variantId = -1;
             this.sizeId = -1;
         }
 
         public double Size { get { return size; } set { size = value; } }
-        public string SizeType { get { return sizeType; } set { sizeType = value; } }
+        public string SizeType { get { return sizeType; } set { sizeType = value.ToUpper(); } }
         public int Quantity { get { return quantity; } set { quantity = value; } }
         public string Barcode { get { return barcode; } set { barcode = value; } }
-        public char Gender { get { return gender; } set { gender = value; } }
+        public char Gender { get { return gender; } set { gender = value.ToString().ToUpper()[0]; } }
         public decimal Price { get { return price; } set { price = value; } }
         public int VariantId { get { return variantId; } set { variantId = value; } }
         public int SizeId { get { return sizeId; } set { sizeId = value; } }

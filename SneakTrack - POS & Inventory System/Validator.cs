@@ -211,5 +211,15 @@ namespace SneakTrack___POS___Inventory_System
             return hasError;
         }
 
+        public void toNormalCell(DataGridViewCell cell)
+        {
+            try { cell.Value = cell.Value?.ToString().ToUpper();}
+            catch { }
+
+            cell.Style.BackColor = Color.White;
+            cell.Style.ForeColor = Color.Black;
+            cell.ErrorText = "";
+        }
+
     }
 }

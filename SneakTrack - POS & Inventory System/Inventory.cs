@@ -33,12 +33,14 @@ namespace SneakTrack___POS___Inventory_System
         private void reloadInv()
         {
             loadSelection();
+            selected = null;
             tblpnSideInfo.ColumnStyles[1].Width = 0;
         }
 
         private void loadSelection()
         {
-            List<ProductTile> ptlist = pc.loadProducts(tblpnSelectionInv, true);
+            dh.loadMasterList();
+            List<ProductTile> ptlist = pc.loadProducts(tblpnSelectionInv, dh.toProducts(dh.ProductMasterDT), 1);
             foreach (ProductTile tile in ptlist)
             {
                 tile.Click += new System.EventHandler(this.productTile_Click);
@@ -178,6 +180,30 @@ namespace SneakTrack___POS___Inventory_System
         private void btnReload_Click(object sender, EventArgs e)
         {
             reloadInv();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string search = v.readString(txbxSearch.Texts);
+
+            if (string.IsNullOrEmpty(search)) 
+            {
+                MessageBox.Show("Please enter a search term.");
+                return; 
+            }
+
+            List<ProductTile> ptlist = pc.searchProducts(search, tblpnSelectionInv);
+            if (ptlist == null || ptlist.Count == 0) return;
+
+            foreach (ProductTile tile in ptlist)
+            {
+                tile.Click += new EventHandler(this.productTile_Click);
+            }
+        }
+
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            loadSelection();
         }
     }
 

@@ -32,11 +32,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Inventory));
             this.tblpnHeader = new System.Windows.Forms.TableLayoutPanel();
             this.pnHeader = new System.Windows.Forms.Panel();
+            this.txbxSearch = new SneakTrack___POS___Inventory_System.UIControls.RoundedTxBx();
             this.tblpnSideInfo = new System.Windows.Forms.TableLayoutPanel();
             this.tblpnBottomBar = new System.Windows.Forms.TableLayoutPanel();
             this.pnBottom = new System.Windows.Forms.Panel();
             this.tblpnBottom = new System.Windows.Forms.TableLayoutPanel();
             this.pnBottomButtons = new System.Windows.Forms.Panel();
+            this.txbxBarcode = new SneakTrack___POS___Inventory_System.UIControls.RoundedTxBx();
             this.pnBarcodeControls = new System.Windows.Forms.Panel();
             this.chbxAutoAddInp = new System.Windows.Forms.CheckBox();
             this.pnBarcodeQuan = new System.Windows.Forms.Panel();
@@ -56,17 +58,16 @@
             this.btnDeleteProduct = new System.Windows.Forms.Button();
             this.btnEditProduct = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnHome = new System.Windows.Forms.Button();
             this.btnReload = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnNewProduct = new System.Windows.Forms.Button();
             this.btnQuanIncrease = new System.Windows.Forms.Button();
             this.btnQuanDecrease = new System.Windows.Forms.Button();
-            this.pcbxSideInfo = new System.Windows.Forms.PictureBox();
-            this.txbxSearch = new SneakTrack___POS___Inventory_System.UIControls.RoundedTxBx();
-            this.txbxBarcode = new SneakTrack___POS___Inventory_System.UIControls.RoundedTxBx();
             this.tlTotalStockSH = new SneakTrack___POS___Inventory_System.UIControls.Tile();
             this.tlProductListedSH = new SneakTrack___POS___Inventory_System.UIControls.Tile();
             this.tlTSVSH = new SneakTrack___POS___Inventory_System.UIControls.Tile();
+            this.pcbxSideInfo = new System.Windows.Forms.PictureBox();
             this.tblpnHeader.SuspendLayout();
             this.pnHeader.SuspendLayout();
             this.tblpnSideInfo.SuspendLayout();
@@ -104,6 +105,7 @@
             // pnHeader
             // 
             this.pnHeader.BackColor = System.Drawing.Color.Black;
+            this.pnHeader.Controls.Add(this.btnHome);
             this.pnHeader.Controls.Add(this.btnReload);
             this.pnHeader.Controls.Add(this.btnSearch);
             this.pnHeader.Controls.Add(this.txbxSearch);
@@ -113,6 +115,33 @@
             this.pnHeader.Name = "pnHeader";
             this.pnHeader.Size = new System.Drawing.Size(920, 60);
             this.pnHeader.TabIndex = 0;
+            // 
+            // txbxSearch
+            // 
+            this.txbxSearch.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txbxSearch.AutocompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.txbxSearch.AutocompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.txbxSearch.BackColor = System.Drawing.Color.White;
+            this.txbxSearch.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txbxSearch.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txbxSearch.BorderRadius = 15;
+            this.txbxSearch.BorderSize = 2;
+            this.txbxSearch.CausesValidation = false;
+            this.txbxSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbxSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txbxSearch.Location = new System.Drawing.Point(106, 14);
+            this.txbxSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.txbxSearch.MaxLength = 32767;
+            this.txbxSearch.Multiline = false;
+            this.txbxSearch.Name = "txbxSearch";
+            this.txbxSearch.Padding = new System.Windows.Forms.Padding(20, 7, 10, 7);
+            this.txbxSearch.PasswordChar = false;
+            this.txbxSearch.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txbxSearch.PlaceholderText = "Search";
+            this.txbxSearch.Size = new System.Drawing.Size(381, 31);
+            this.txbxSearch.TabIndex = 0;
+            this.txbxSearch.Texts = "";
+            this.txbxSearch.UnderlinedStyle = true;
             // 
             // tblpnSideInfo
             // 
@@ -187,6 +216,33 @@
             this.pnBottomButtons.Name = "pnBottomButtons";
             this.pnBottomButtons.Size = new System.Drawing.Size(233, 60);
             this.pnBottomButtons.TabIndex = 8;
+            // 
+            // txbxBarcode
+            // 
+            this.txbxBarcode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbxBarcode.AutocompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.txbxBarcode.AutocompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.txbxBarcode.BackColor = System.Drawing.SystemColors.Window;
+            this.txbxBarcode.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txbxBarcode.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txbxBarcode.BorderRadius = 0;
+            this.txbxBarcode.BorderSize = 2;
+            this.txbxBarcode.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbxBarcode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txbxBarcode.Location = new System.Drawing.Point(253, 13);
+            this.txbxBarcode.Margin = new System.Windows.Forms.Padding(20, 4, 10, 4);
+            this.txbxBarcode.MaxLength = 13;
+            this.txbxBarcode.Multiline = false;
+            this.txbxBarcode.Name = "txbxBarcode";
+            this.txbxBarcode.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txbxBarcode.PasswordChar = false;
+            this.txbxBarcode.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txbxBarcode.PlaceholderText = "Barcode";
+            this.txbxBarcode.Size = new System.Drawing.Size(179, 34);
+            this.txbxBarcode.TabIndex = 6;
+            this.txbxBarcode.Texts = "";
+            this.txbxBarcode.UnderlinedStyle = false;
+            this.txbxBarcode._TextChanged += new System.EventHandler(this.txbxBarcode__TextChanged);
             // 
             // pnBarcodeControls
             // 
@@ -460,6 +516,22 @@
             this.btnEditProduct.UseVisualStyleBackColor = false;
             this.btnEditProduct.Click += new System.EventHandler(this.btnEditProduct_Click);
             // 
+            // btnHome
+            // 
+            this.btnHome.BackColor = System.Drawing.Color.Transparent;
+            this.btnHome.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnHome.FlatAppearance.BorderSize = 0;
+            this.btnHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHome.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHome.ForeColor = System.Drawing.Color.White;
+            this.btnHome.Image = global::SneakTrack___POS___Inventory_System.Properties.Resources.home_icon;
+            this.btnHome.Location = new System.Drawing.Point(13, 3);
+            this.btnHome.Name = "btnHome";
+            this.btnHome.Size = new System.Drawing.Size(40, 57);
+            this.btnHome.TabIndex = 6;
+            this.btnHome.UseVisualStyleBackColor = false;
+            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
+            // 
             // btnReload
             // 
             this.btnReload.BackColor = System.Drawing.Color.Transparent;
@@ -469,9 +541,9 @@
             this.btnReload.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReload.ForeColor = System.Drawing.Color.White;
             this.btnReload.Image = global::SneakTrack___POS___Inventory_System.Properties.Resources.refresh;
-            this.btnReload.Location = new System.Drawing.Point(3, 0);
+            this.btnReload.Location = new System.Drawing.Point(59, 3);
             this.btnReload.Name = "btnReload";
-            this.btnReload.Size = new System.Drawing.Size(43, 57);
+            this.btnReload.Size = new System.Drawing.Size(40, 57);
             this.btnReload.TabIndex = 5;
             this.btnReload.UseVisualStyleBackColor = false;
             this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
@@ -485,12 +557,13 @@
             this.btnSearch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Image = global::SneakTrack___POS___Inventory_System.Properties.Resources.search;
-            this.btnSearch.Location = new System.Drawing.Point(400, 15);
+            this.btnSearch.Location = new System.Drawing.Point(449, 16);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(0);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(29, 27);
             this.btnSearch.TabIndex = 5;
             this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnNewProduct
             // 
@@ -543,70 +616,6 @@
             this.btnQuanDecrease.TabIndex = 0;
             this.btnQuanDecrease.UseVisualStyleBackColor = false;
             this.btnQuanDecrease.Click += new System.EventHandler(this.btnQuanDecrease_Click);
-            // 
-            // pcbxSideInfo
-            // 
-            this.pcbxSideInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(35)))), ((int)(((byte)(37)))));
-            this.pcbxSideInfo.Location = new System.Drawing.Point(0, 33);
-            this.pcbxSideInfo.Name = "pcbxSideInfo";
-            this.pcbxSideInfo.Size = new System.Drawing.Size(250, 214);
-            this.pcbxSideInfo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcbxSideInfo.TabIndex = 0;
-            this.pcbxSideInfo.TabStop = false;
-            // 
-            // txbxSearch
-            // 
-            this.txbxSearch.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txbxSearch.AutocompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.txbxSearch.AutocompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.txbxSearch.BackColor = System.Drawing.Color.White;
-            this.txbxSearch.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txbxSearch.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.txbxSearch.BorderRadius = 15;
-            this.txbxSearch.BorderSize = 2;
-            this.txbxSearch.CausesValidation = false;
-            this.txbxSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbxSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txbxSearch.Location = new System.Drawing.Point(57, 13);
-            this.txbxSearch.Margin = new System.Windows.Forms.Padding(4);
-            this.txbxSearch.MaxLength = 32767;
-            this.txbxSearch.Multiline = false;
-            this.txbxSearch.Name = "txbxSearch";
-            this.txbxSearch.Padding = new System.Windows.Forms.Padding(20, 7, 10, 7);
-            this.txbxSearch.PasswordChar = false;
-            this.txbxSearch.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txbxSearch.PlaceholderText = "Search";
-            this.txbxSearch.Size = new System.Drawing.Size(381, 31);
-            this.txbxSearch.TabIndex = 0;
-            this.txbxSearch.Texts = "";
-            this.txbxSearch.UnderlinedStyle = true;
-            // 
-            // txbxBarcode
-            // 
-            this.txbxBarcode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbxBarcode.AutocompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.txbxBarcode.AutocompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.txbxBarcode.BackColor = System.Drawing.SystemColors.Window;
-            this.txbxBarcode.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txbxBarcode.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.txbxBarcode.BorderRadius = 0;
-            this.txbxBarcode.BorderSize = 2;
-            this.txbxBarcode.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbxBarcode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txbxBarcode.Location = new System.Drawing.Point(253, 13);
-            this.txbxBarcode.Margin = new System.Windows.Forms.Padding(20, 4, 10, 4);
-            this.txbxBarcode.MaxLength = 13;
-            this.txbxBarcode.Multiline = false;
-            this.txbxBarcode.Name = "txbxBarcode";
-            this.txbxBarcode.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txbxBarcode.PasswordChar = false;
-            this.txbxBarcode.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txbxBarcode.PlaceholderText = "Barcode";
-            this.txbxBarcode.Size = new System.Drawing.Size(179, 34);
-            this.txbxBarcode.TabIndex = 6;
-            this.txbxBarcode.Texts = "";
-            this.txbxBarcode.UnderlinedStyle = false;
-            this.txbxBarcode._TextChanged += new System.EventHandler(this.txbxBarcode__TextChanged);
             // 
             // tlTotalStockSH
             // 
@@ -664,6 +673,16 @@
             this.tlTSVSH.Thickness = 2;
             this.tlTSVSH.TileImage = global::SneakTrack___POS___Inventory_System.Properties.Resources.wallet;
             this.tlTSVSH.TopText = "Total Stock Value";
+            // 
+            // pcbxSideInfo
+            // 
+            this.pcbxSideInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(35)))), ((int)(((byte)(37)))));
+            this.pcbxSideInfo.Location = new System.Drawing.Point(0, 33);
+            this.pcbxSideInfo.Name = "pcbxSideInfo";
+            this.pcbxSideInfo.Size = new System.Drawing.Size(250, 214);
+            this.pcbxSideInfo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcbxSideInfo.TabIndex = 0;
+            this.pcbxSideInfo.TabStop = false;
             // 
             // Inventory
             // 
@@ -736,5 +755,6 @@
         private System.Windows.Forms.Button btnCloseSideInfo;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnReload;
+        private System.Windows.Forms.Button btnHome;
     }
 }

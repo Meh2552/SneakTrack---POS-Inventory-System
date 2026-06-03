@@ -1,15 +1,10 @@
 ﻿using SneakTrack___POS___Inventory_System.UIControls;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Media;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace SneakTrack___POS___Inventory_System
 {
@@ -106,16 +101,13 @@ namespace SneakTrack___POS___Inventory_System
                 : dh.toColorDB(p);
         }
 
-        public List<ProductTile> loadProducts(TableLayoutPanel tablePanel, bool clearRowAfter0) // TODO: make method accesible to Products idk how coz of the event
+        public List<ProductTile> loadProducts(TableLayoutPanel tablePanel, List<Product> list, int clearFromRow = 1)
         {
-            dh.loadMasterList();
-            
-            List<Product> list = dh.toProducts(dh.ProductMasterDT);
             List<ProductTile> ptList = new List<ProductTile>();
 
-            if (clearRowAfter0)
+            if (clearFromRow >= 1)
             {
-                wh.clearRows(tablePanel, 0);
+                wh.clearRows(tablePanel, clearFromRow);
                 TableLayoutRowStyleCollection style = tablePanel.RowStyles;
                 tablePanel.RowCount = style.Count;
             }
@@ -127,6 +119,32 @@ namespace SneakTrack___POS___Inventory_System
             }
 
             tablePanel.SuspendLayout();
+
+            if (list == null || list.Count == 0)
+            {
+                tablePanel.RowCount++;
+                tablePanel.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+                Debug.WriteLine("No products found., RC: " + tablePanel.RowCount);
+
+                Label resultLabel = brandToLabel("No products found.");
+                resultLabel.Font = new Font("Yu Gothic UI", 30F, FontStyle.Bold);
+                resultLabel.Dock = DockStyle.Fill;
+                resultLabel.AutoSize = true;
+                resultLabel.TextAlign = ContentAlignment.MiddleCenter;
+                Debug.WriteLine("Label added: " + resultLabel?.Text);
+
+                FlowLayoutPanel flpanel = productContainer();
+                flpanel.Padding = new Padding(0, 70, 0, 50);
+                flpanel.Dock = DockStyle.None;
+                flpanel.AutoSize = true;
+                flpanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+
+                tablePanel.Controls.Add(flpanel, 0, tablePanel.RowCount);
+                flpanel.Controls.Add(resultLabel);
+
+                tablePanel.ResumeLayout();
+                return null;
+            }
 
             int current = 0, count = 0; // TODO: limit for page length
             FlowLayoutPanel currentProd = new FlowLayoutPanel();
@@ -212,18 +230,17 @@ namespace SneakTrack___POS___Inventory_System
             if (newProd.ForSale != oldProd.ForSale)
                 dh.updateValueToTable(dh.updateQuery("Product", "for_sale = @for_sale", $"product_id = {prodId}"), "@for_sale", newProd.ForSale ? "1" : "0");
 
-            int mVariantId = 0, fVariantId = 0, uVariantId = 0;
+            int mVariantId = oldProd.getMaleVariant()?.VariantId ?? 0;
+            int fVariantId = oldProd.getFemaleVariant()?.VariantId ?? 0; //TODO: gender change
+            int uVariantId = oldProd.getUnisexVariant()?.VariantId ?? 0;
+            bool removeM = false, removeF = false, removeU = false;
 
-            if (mVariantId == 0) mVariantId = oldProd.getMaleVariant().VariantId;
-            if (fVariantId == 0) fVariantId = oldProd.getFemaleVariant().VariantId;
-            if (uVariantId == 0) uVariantId = oldProd.getUnisexVariant().VariantId;
+            if (newProd.HasMale != oldProd.HasMale && newProd.HasMale) mVariantId = updateProductVariantsTable(newProd.ProdId, newProd.getMaleVariant());
 
-            if (newProd.HasMale != oldProd.HasMale) mVariantId = updateProductVariantsTable(newProd.ProdId, newProd.getMaleVariant(), newProd.HasMale);
+            if (newProd.HasFemale != oldProd.HasFemale && newProd.HasFemale) fVariantId = updateProductVariantsTable(newProd.ProdId, newProd.getFemaleVariant());
 
-            if (newProd.HasFemale != oldProd.HasFemale) fVariantId = updateProductVariantsTable(newProd.ProdId, newProd.getFemaleVariant(), newProd.HasFemale);
+            if (newProd.HasUnisex != oldProd.HasUnisex && newProd.HasUnisex) uVariantId = updateProductVariantsTable(newProd.ProdId, newProd.getUnisexVariant());
 
-            if (newProd.HasUnisex != oldProd.HasUnisex) uVariantId = updateProductVariantsTable(newProd.ProdId, newProd.getUnisexVariant(), newProd.HasUnisex);
-            // TODO: if change gender 
             if (newProd.HasMale && newProd.mPrice() != oldProd.mPrice())
                 dh.updateValueToTable(dh.updateQuery("Product_Variants", "price = @price", $"variant_id = {mVariantId}"), "@price", newProd.mPrice().ToString());
 
@@ -233,15 +250,23 @@ namespace SneakTrack___POS___Inventory_System
             if (newProd.HasUnisex && newProd.uPrice() != oldProd.uPrice())
                 dh.updateValueToTable(dh.updateQuery("Product_Variants", "price = @price", $"variant_id = {uVariantId}"), "@price", newProd.uPrice().ToString());
 
-            Debug.WriteLine($"Variant Ids: m:{mVariantId}, f:{fVariantId}, u:{uVariantId}");
+            Debug.WriteLine($"\nVariant Ids: m:{mVariantId}, f:{fVariantId}, u:{uVariantId}");
 
             foreach (Variant vari in newProd.Variants)
             {   
                 int variantId = 0;
-                if (vari.Gender == 'M') variantId = mVariantId;
-                else if (vari.Gender == 'F') variantId = fVariantId;
-                else if (vari.Gender == 'U') variantId = uVariantId;
-                else continue;
+                switch (vari.Gender)
+                {
+                    case 'M':
+                        variantId = mVariantId;
+                        break;
+                    case 'F':
+                        variantId = fVariantId;
+                        break;
+                    case 'U':
+                        variantId = uVariantId;
+                        break;
+                }
 
                 if (vari.SizeId == -1)
                 {
@@ -255,33 +280,28 @@ namespace SneakTrack___POS___Inventory_System
                     dh.deleteValueFromTable("Size", $"size_id = {vari.SizeId}");
                 }
 
-                else
+                else if (vari.VariantId > 0)
                 {
                     Debug.WriteLine("\nUpdate Variant:\n" + vari.ToString());
                     Debug.WriteLine("\nUpdate Old Prod:\n" + oldProd.fromSizeId(vari.SizeId)?.ToString());
                     updateSizeTable(vari, oldProd.fromSizeId(vari.SizeId) ,variantId);
                 }
             }
+
+            if (newProd.HasMale != oldProd.HasMale && !newProd.HasMale) deleteProductVariantsTable(mVariantId);
+            if (newProd.HasFemale != oldProd.HasFemale && !newProd.HasFemale) deleteProductVariantsTable(fVariantId);
+            if (newProd.HasUnisex != oldProd.HasUnisex && !newProd.HasUnisex) deleteProductVariantsTable(uVariantId);
         }
 
-        private int updateProductVariantsTable(int product_id, Variant genVariant, bool willAddVariant)
+        private int updateProductVariantsTable(int product_id, Variant genVariant)
         {
-            int output = 0;
+            return dh.toVariantDB(genVariant, product_id);
+        }
 
-            Debug.WriteLine("\nUpdateProdVari in ProdController: \n " + genVariant.ToString());
-
-            if (willAddVariant)
-            {
-                return dh.toVariantDB(genVariant, product_id);
-            }
-
-            else
-            {
-                dh.deleteValueFromTable("Size", $"variant_id = {genVariant.VariantId}");
-                dh.deleteValueFromTable("Product_Variants", $"variant_id = {genVariant.VariantId}");
-            }
-
-            return 0;
+        private void deleteProductVariantsTable(int variantId)
+        {
+            dh.deleteValueFromTable("Size", $"variant_id = {variantId}");
+            dh.deleteValueFromTable("Product_Variants", $"variant_id = {variantId}");
         }
 
         private void updateSizeTable(Variant newVari, Variant oldVari, int variant_id)
@@ -292,7 +312,7 @@ namespace SneakTrack___POS___Inventory_System
                 return;
             }
 
-            if (variant_id > 0 && variant_id != oldVari.VariantId)
+            if (variant_id != oldVari.VariantId)
                 dh.updateValueToTable(dh.updateQuery("Size", "variant_id = @variant_id", $"size_id = {newVari.SizeId}"), "@variant_id", variant_id.ToString());
 
             if (newVari.Size != oldVari.Size)
@@ -315,6 +335,47 @@ namespace SneakTrack___POS___Inventory_System
                 dh.updateValueToTable(dh.updateQuery("Size", "quantity = @quantity", $"size_id = {v.SizeId}"), "@quantity", v.Quantity.ToString());
             }
 
+        }
+
+        public List<ProductTile> searchProducts(string search, TableLayoutPanel tablePanel)
+        {
+            search = search.ToUpper();
+            List<Product> searchResult = new List<Product>();
+
+            foreach (Product product in dh.MasterToProductList)
+            {
+                if (product.Name.ToUpper().Contains(search) ||
+                    product.Brand.ToUpper().Contains(search) ||
+                    product.Color.ToUpper().Contains(search) ||
+                    product.Description.ToUpper().Contains(search))
+                {
+                    searchResult.Add(product);
+                    continue;
+                }
+
+                if (product.Variants != null)
+                {
+                    bool variantMatch = false;
+                    foreach (Variant variant in product.Variants)
+                    {
+                        if (variant.Size.ToString().ToUpper().Contains(search) ||
+                            variant.Price.ToString().ToUpper().Contains(search) ||
+                            variant.Gender.ToString().ToUpper().Contains(search) ||
+                            variant.SizeType.ToUpper().Contains(search) ||
+                            variant.Barcode.ToUpper().Contains(search))
+                        {
+                            searchResult.Add(product);
+                            variantMatch = true;
+                            break;
+                        }
+                    }
+
+                    if (variantMatch) continue;
+                }
+            }
+
+            Debug.WriteLine($"Search for '{search}' found {searchResult.Count} results.");
+            return loadProducts(tablePanel, searchResult, 1);
         }
 
         public Product idsToProduct(int prodId)

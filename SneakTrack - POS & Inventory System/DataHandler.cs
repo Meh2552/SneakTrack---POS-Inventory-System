@@ -1,18 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Data.SqlTypes;
 using System.Diagnostics;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Forms;
 
 namespace SneakTrack___POS___Inventory_System
 {
@@ -70,7 +61,7 @@ namespace SneakTrack___POS___Inventory_System
         {
             string output = "INNER JOIN Product_Variants " +
                 "ON Product.product_id = Product_Variants.product_id " +
-                "LEFT JOIN Size ON Product_Variants.variant_id = Size.variant_id " +
+                "INNER JOIN Size ON Product_Variants.variant_id = Size.variant_id " +
                 "LEFT JOIN Brand ON Product.brand_id = Brand.brand_id " +
                 "LEFT JOIN Color ON Product.color_id = Color.color_id ";
             return output;
@@ -315,6 +306,36 @@ namespace SneakTrack___POS___Inventory_System
                 Debug.WriteLine("Error: " + e.Message);
                 return null;
             }
+        }
+
+        public DataTable searchTables(string search)
+        {
+            string query = $"{String.Concat(selectQuery("Product"), joinAllQuery())} " +
+                $"WHERE Product.archived = 0 AND (Product.product_name LIKE @search " +
+                $"OR Brand.brand_name LIKE @search OR Color.color_name LIKE @search" +
+                $"OR Size.size_name LIKE @search OR Product_Variants.gender LIKE @search" +
+                $"OR Product.description LIKE @search) ORDER BY Product.brand_id";
+
+            DataTable output = new DataTable();
+
+            try
+            {
+                SqlConnection conn = new SqlConnection(conString);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("@search", "%" + search + "%");
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(output);
+                conn.Close();
+            }
+
+            catch (Exception e)
+            {
+                Debug.WriteLine("Error: " + e.Message);
+            }
+            return output;
         }
 
         // Checks if user exists and credentials are correct

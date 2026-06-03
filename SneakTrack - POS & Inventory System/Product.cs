@@ -216,7 +216,7 @@ namespace SneakTrack___POS___Inventory_System
 
             foreach (Variant var in Variants)
             {
-                if (var.Gender == 'M' && var.VariantId > 0) return var;
+                if (var.Gender == 'M') return var;
             }
 
             return variant;
@@ -228,7 +228,7 @@ namespace SneakTrack___POS___Inventory_System
 
             foreach (Variant var in Variants)
             {
-                if (var.Gender == 'F' && var.VariantId > 0) return var;
+                if (var.Gender == 'F') return var;
             }
 
             return variant;
@@ -240,7 +240,7 @@ namespace SneakTrack___POS___Inventory_System
 
             foreach (Variant var in Variants)
             {
-                if (var.Gender == 'U' && var.VariantId > 0) return var;
+                if (var.Gender == 'U') return var;
             }
 
             return variant;

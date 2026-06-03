@@ -1,15 +1,11 @@
 ﻿using SneakTrack___POS___Inventory_System.UIControls;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SneakTrack___POS___Inventory_System
@@ -379,7 +375,6 @@ namespace SneakTrack___POS___Inventory_System
            confirmationAddProd();
         }
 
-        // TODO: remove size type txbx 
         private void confirmationAddProd()
         { 
             ConfirmationPrompt confirm = new ConfirmationPrompt();

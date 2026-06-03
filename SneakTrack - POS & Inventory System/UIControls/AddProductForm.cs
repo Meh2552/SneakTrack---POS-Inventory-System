@@ -49,7 +49,7 @@ namespace SneakTrack___POS___Inventory_System
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
-        private void initialize() // TODO: add for size type
+        private void initialize()
         {
             AutoCompleteStringCollection brandColl = new AutoCompleteStringCollection();
             brandColl.AddRange(dh.BrandList.ToArray());
@@ -76,27 +76,6 @@ namespace SneakTrack___POS___Inventory_System
 
         }
 
-        private void btnAddProduct_Click(object sender, EventArgs e)
-        {
-            if (!validateProductFields() || dtgridSizeFields.Rows.Count == 1)
-            {
-                MessageBox.Show("Process has been cancelled due to unexpected errors.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            string name = v.readString(txbxProductName.Texts);
-            string brand = v.readString(txbxBrand.Texts);
-            string color = v.readString(txbxColor.Texts);
-
-            if (dh.hasDuplicateProduct(name, brand, color))
-            {
-                MessageBox.Show("Similar product is already listed in the system", "Duplicate Product", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            confirmationAddProd();
-        }
-
         private void dtgridSizeFields_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             int rowIndex = e.RowIndex;
@@ -116,6 +95,7 @@ namespace SneakTrack___POS___Inventory_System
             bool isValid = true;
             string columnName = dtgridSizeFields.Columns[cell.ColumnIndex].Name;
             string newValue = cell.FormattedValue.ToString();
+            DataGridViewRow currentRow = dtgridSizeFields.Rows[cell.RowIndex];
 
             // Validate based on column
             switch (columnName)
@@ -138,11 +118,15 @@ namespace SneakTrack___POS___Inventory_System
                     break;
 
                 case "Size":
-                    bool hasValue = dtgridSizeFields.Rows.Cast<DataGridViewRow>()
-                        .Where(row => !row.IsNewRow && row.Index != cell.RowIndex)
-                        .Any(row => row.Cells["Size"].Value?.ToString() == cell.Value?.ToString()
-                        && row.Cells["Gender"].Value?.ToString() ==
-                        dtgridSizeFields.Rows[cell.RowIndex].Cells["Gender"].Value?.ToString());
+                    v.validateCellValue(cell, v.readDouble(newValue) >= 0, "Enter a size (0 or more)");
+
+                    bool hasValue = dtgridSizeFields.Rows
+                        .Cast<DataGridViewRow>()
+                        .Where(row => !row.IsNewRow && row.Index != currentRow.Index)
+                        .Any(row =>
+                            row.Cells["Size"].Value?.ToString() == currentRow.Cells["Size"].Value?.ToString() &&
+                            row.Cells["Gender"].Value?.ToString() == currentRow.Cells["Gender"].Value?.ToString() &&
+                            row.Cells["SizeType"].Value?.ToString() == currentRow.Cells["SizeType"].Value?.ToString());
 
                     if (hasValue)
                     {
@@ -161,10 +145,7 @@ namespace SneakTrack___POS___Inventory_System
                 case "Barcode":
                     if (v.readString(newValue) == null)
                     {
-                        cell.Value = txbxSizeType.Texts.ToUpper();
-                        cell.Style.BackColor = Color.White;
-                        cell.Style.ForeColor = Color.Black;
-                        cell.ErrorText = "";
+                        v.toNormalCell(cell);
                         break;
                     }
 
@@ -228,7 +209,7 @@ namespace SneakTrack___POS___Inventory_System
             else txbxProductName.Texts = productName;
 
             string sizeType = v.readString(txbxSizeType.Texts);
-            txbxSizeType.Texts = sizeType?.ToUpper();
+            sizeType = txbxSizeType.Texts = sizeType?.ToUpper();
             foreach (DataGridViewRow dr in dtgridSizeFields.Rows)
             {
                 if (dr.IsNewRow) continue;
@@ -238,23 +219,26 @@ namespace SneakTrack___POS___Inventory_System
 
                 if (sizeType != null && v.readString(cell.Value?.ToString()) == null)
                 {
-                    cell.Value = txbxSizeType.Texts.ToUpper();
-                    cell.Style.BackColor = Color.White;
-                    cell.Style.ForeColor = Color.Black;
-                    cell.ErrorText = "";
+                    v.toNormalCell(cell);
+                    cell.Value = sizeType;
                 }
 
                 else if (sizeType == null && v.readString(cell.Value?.ToString()) == null) continue;
 
-                else
-                {
-                    cell.Value = cell.Value.ToString().ToUpper();
-                    cell.Style.BackColor = Color.White;
-                    cell.Style.ForeColor = Color.Black;
-                    cell.ErrorText = "";
-                }
+                else v.toNormalCell(cell);
 
                 v.validateCellValue(genCell, v.validateCharacters(v.readString(genCell.Value?.ToString()), genderRegex), "Invalid gender");
+
+                bool hasDuplicate = dtgridSizeFields.Rows
+                    .Cast<DataGridViewRow>()
+                    .Where(row => !row.IsNewRow && row.Index != dr.Index)
+                    .Any(row =>
+                        row.Cells["Size"].Value?.ToString() == dr.Cells["Size"].Value?.ToString() &&
+                        row.Cells["Gender"].Value?.ToString() == dr.Cells["Gender"].Value?.ToString() &&
+                        row.Cells["SizeType"].Value?.ToString() == dr.Cells["SizeType"].Value?.ToString());
+
+                if (hasDuplicate) v.validateCellValue(dr.Cells["Size"], false, "Duplicate size found");
+                else v.toNormalCell(dr.Cells["Size"]);
             }
 
 
@@ -287,13 +271,18 @@ namespace SneakTrack___POS___Inventory_System
 
         private void chbx_CheckedChanged(object sender, EventArgs e)
         {
+            checkCheckedGenderCheckCheckedCheck();
+        }
+
+        private void checkCheckedGenderCheckCheckedCheck()
+        {
             string gender = "^[";
 
             bool hasMale = chbxMale.Checked, hasFemale = chbxFemale.Checked, hasUnisex = chbxUnisex.Checked;
 
             gender += hasMale ? "mM" : "";
             gender += hasFemale ? "fF" : "";
-            gender += hasUnisex? "uU" : "";
+            gender += hasUnisex ? "uU" : "";
 
             gender += "]$";
 
@@ -303,6 +292,27 @@ namespace SneakTrack___POS___Inventory_System
             if (!hasMale && !string.IsNullOrWhiteSpace(txbxMPrice.Texts)) txbxMPrice.Texts = "";
             if (!hasFemale && !string.IsNullOrWhiteSpace(txbxFPrice.Texts)) txbxFPrice.Texts = "";
             if (!hasUnisex && !string.IsNullOrWhiteSpace(txbxUPrice.Texts)) txbxUPrice.Texts = "";
+        }
+
+        private void btnAddProduct_Click(object sender, EventArgs e)
+        {
+            if (!validateProductFields() || dtgridSizeFields.Rows.Count == 1)
+            {
+                MessageBox.Show("Process has been cancelled due to unexpected errors.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string name = v.readString(txbxProductName.Texts);
+            string brand = v.readString(txbxBrand.Texts);
+            string color = v.readString(txbxColor.Texts);
+
+            if (dh.hasDuplicateProduct(name, brand, color))
+            {
+                MessageBox.Show("Similar product is already listed in the system", "Duplicate Product", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            confirmationAddProd();
         }
 
         private void confirmationAddProd()

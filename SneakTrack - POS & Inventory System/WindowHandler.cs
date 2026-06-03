@@ -56,23 +56,23 @@ namespace SneakTrack___POS___Inventory_System
          *    Removes the rows of a TableLayoutPanel after the specified index number in afterRow
          */
 
-        public void clearRows(TableLayoutPanel tablePanel, int afterRow)
+        public void clearRows(TableLayoutPanel tablePanel, int clearFromRow)
         {
             tablePanel.SuspendLayout();
 
             for (int i = tablePanel.Controls.Count - 1; i >= 0; i--)
             {
                 Control control = tablePanel.Controls[i];
-                if (tablePanel.GetRow(control) != afterRow)
+                if (tablePanel.GetRow(control) >= clearFromRow)
                 {
                     tablePanel.Controls.Remove(control);
                     control.Dispose();
                 }
             }
 
-            for (int i = tablePanel.RowCount - 1; i >= afterRow; i--)
+            for (int i = tablePanel.RowCount - 1; i >= clearFromRow; i--)
             {
-                if (i != afterRow) tablePanel.RowStyles.RemoveAt(i);
+                if (i >= clearFromRow) tablePanel.RowStyles.RemoveAt(i);
             }
 
             tablePanel.ResumeLayout(true);

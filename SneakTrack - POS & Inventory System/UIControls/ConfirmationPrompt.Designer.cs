@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnExit = new System.Windows.Forms.Button();
             this.lbHeader = new System.Windows.Forms.Label();
@@ -35,6 +36,7 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.lbPrompt = new System.Windows.Forms.Label();
             this.btnChanges = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -152,6 +154,7 @@
             this.btnChanges.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.btnChanges.Size = new System.Drawing.Size(43, 39);
             this.btnChanges.TabIndex = 9;
+            this.toolTip1.SetToolTip(this.btnChanges, "Changelist");
             this.btnChanges.UseVisualStyleBackColor = false;
             this.btnChanges.Visible = false;
             this.btnChanges.Click += new System.EventHandler(this.btnChanges_Click);
@@ -184,5 +187,6 @@
         private System.Windows.Forms.Label lbHeader;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnChanges;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

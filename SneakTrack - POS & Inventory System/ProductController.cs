@@ -23,42 +23,69 @@ namespace SneakTrack___POS___Inventory_System
             this.v = sys.VAL;
         }
 
-        /* remove if unecessary idk
-        public Product prodFromID(int product_id)
+        public Variant barcodeToVariant(string barcode)
         {
-            Product output;
-
-            foreach(Product p in ProdList)
-            {
-                if (p.ProdId == product_id) return p;
-            }
-
-            return null;
-        }
-        */
-
-        public bool readBarcode(string input, int quantity)
-        {
-            bool output = false;
-
+            Variant variant = null;
             DataTable productsM = dh.ProductMasterDT;
-            if (v.tableHasValue(productsM, "Barcode", input))
+
+            if (v.tableHasValue(productsM, "Barcode", barcode))
             {
-                DataRow dr = productsM.Select($"Barcode = '{input}'").First();
+                DataRow dr = productsM.Select($"Barcode = '{barcode}'").First();
 
-                Product p = idsToProduct(v.readInt(dr["product_id"]));
-
-                dh.updateValueToTable(dh.updateQuery("Size", "quantity += @quantity", $"size_id = {dr["size_id"]}"), "@quantity", quantity.ToString());
-                MessageBox.Show("Product updated successfully.", "Stock Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return true;
+                Product p = v.productFromId(v.readInt(dr["product_id"]), dh.MasterToProductList);
+                variant = p.fromSizeId(v.readInt(dr["size_id"]));
             }
 
             else
             {
                 MessageBox.Show("Barcode not found in database.");
+                return null;
+            }
+
+            return variant;
+        }
+
+        public bool addStockFromBarcode(Variant vari, int quantity)
+        {
+            bool output = false;
+
+            if (vari == null) return false;
+
+            if (vari.Quantity + quantity > 9999)
+            {
+                MessageBox.Show("Quantity exceeds maximum limit.", "Stock Update Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-        } // TODO: stock limits for quantity
+
+            dh.updateValueToTable(dh.updateQuery("Size", "quantity += @quantity", $"size_id = {vari.SizeId}"), "@quantity", quantity.ToString());
+            MessageBox.Show("Product updated successfully.", "Stock Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            return true;
+        }
+
+        public bool variantBarcodeToCart(Variant vari,int quantity, int totalInCart)
+        {
+            if (vari == null)
+            {
+                MessageBox.Show("Barcode not found in database.");
+                return false;
+            }
+
+            if (vari.Quantity - vari.reservedQuan < quantity)
+            {
+                MessageBox.Show($"Insufficient stock available.\n(Available: {vari.Quantity - vari.reservedQuan})", "Add To Cart Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (vari.reservedQuan + totalInCart > 200)
+            {
+                MessageBox.Show("Quantity exceeds maximum limit.", "Add To Cart Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            vari.reservedQuan += quantity;
+            return true;
+        }
 
         public Label brandToLabel(string brandName)
         {
@@ -101,7 +128,7 @@ namespace SneakTrack___POS___Inventory_System
                 : dh.toColorDB(p);
         }
 
-        public List<ProductTile> loadProducts(TableLayoutPanel tablePanel, List<Product> list, int clearFromRow = 1)
+        public List<ProductTile> loadProducts(TableLayoutPanel tablePanel, List<Product> list, int clearFromRow = 1, bool showLowStock = true)
         {
             List<ProductTile> ptList = new List<ProductTile>();
 
@@ -163,7 +190,7 @@ namespace SneakTrack___POS___Inventory_System
                     tablePanel.Controls.Add(currentProd, 0, flowRow);
                 }
 
-                ProductTile pt = wh.toProductTile(prod);
+                ProductTile pt = wh.toProductTile(prod, showLowStock);
                 currentProd.Controls.Add(pt);
                 ptList.Add(pt);
             }
@@ -172,7 +199,6 @@ namespace SneakTrack___POS___Inventory_System
             return ptList;
         }
 
-        // v.idFromValue(dh.productMasterDT, "brand_name", "brand_id", p.Brand, true)  mabye useful
         public void addProduct(Product p)
         {
             int brandid = brandToDB(p);
@@ -378,16 +404,6 @@ namespace SneakTrack___POS___Inventory_System
             return loadProducts(tablePanel, searchResult, 1);
         }
 
-        public Product idsToProduct(int prodId)
-        {
-            foreach(Product p in dh.MasterToProductList)
-            {
-                if (p.ProdId == prodId)
-                    return p;
-            }
-            return null;
-        }
-
         public string toProdInfo(Product p)
         {
             string listed = p.ForSale ? "Listed for sale" : "Unlisted";
@@ -399,6 +415,21 @@ namespace SneakTrack___POS___Inventory_System
                 $"Variants: {p.gendersString()}\r\n" +
                 $"Total Quantity: {p.totalQuantity()}\r\n" +
                 $"Status: {listed}\r\n\r\n" +
+                $"{p.Description}";
+
+            return output;
+        }
+
+        public string toProdInfo(Product p, Variant vari)
+        {
+            string output =
+                "\r\n" +
+                $"Product Name: {p.DisplayName()}\r\n" +
+                $"Color: {p.Color}\r\n" +
+                $"Brand: {p.Brand}\r\n\r\n" +
+                $"Price: ₱ {vari.Price:F2}\r\n" +
+                $"Size {vari.Size} ({vari.SizeType}) - {vari.Gender}\r\n" +
+                $"Available Stock: {vari.Quantity}\r\n\r\n" +
                 $"{p.Description}";
 
             return output;
@@ -437,6 +468,25 @@ namespace SneakTrack___POS___Inventory_System
                 .Select(p => p.Field<int>("quantity") * p.Field<decimal>("price")).Sum();
 
             return total;
+        }
+
+        public Product productFromVariant(Variant vari)
+        {
+            Product p = null;
+            int id = v.idFromValue(dh.ProductMasterDT, "size_id", "product_id", vari.SizeId.ToString());
+            p = v.productFromId(id, dh.MasterToProductList);
+            return p;
+        }
+
+        public Variant variantFromId(int sizeId, List<Variant> variants)
+        {
+            Variant vari = null;
+
+            int productId = v.idFromValue(dh.ProductMasterDT, "size_id", "product_id", sizeId.ToString());
+            Product product = v.productFromId(productId, dh.MasterToProductList);
+            vari = product.fromSizeId(sizeId);
+
+            return vari;
         }
     }
 }

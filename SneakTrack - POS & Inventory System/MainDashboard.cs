@@ -28,6 +28,7 @@ namespace SneakTrack___POS___Inventory_System
             this.ua = sys.UA;
             this.wh = sys.WH;
             inventory1.initialize(sys);
+            pos1.initialize(sys);
         }
 
         private void MainDashboard_Load(object sender, EventArgs e)
@@ -64,6 +65,9 @@ namespace SneakTrack___POS___Inventory_System
         private void btnProdSB_Click(object sender, EventArgs e)
         {
             selectedColorBtn(btnProdSB);
+            wh.switchControl(active, pos1);
+            active = pos1;
+            pos1.reloadPOS();
         }
 
         private void btnInvSB_Click(object sender, EventArgs e)
@@ -71,6 +75,7 @@ namespace SneakTrack___POS___Inventory_System
             selectedColorBtn(btnInvSB);
             wh.switchControl(active, inventory1);
             active = inventory1;
+            inventory1.reloadInv();
         }
 
         private void btnHistSB_Click(object sender, EventArgs e)

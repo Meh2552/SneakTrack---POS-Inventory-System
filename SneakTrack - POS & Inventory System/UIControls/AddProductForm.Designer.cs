@@ -189,7 +189,7 @@
             this.txbxSizeType.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txbxSizeType.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
             this.txbxSizeType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txbxSizeType.Location = new System.Drawing.Point(860, 10);
+            this.txbxSizeType.Location = new System.Drawing.Point(860, 7);
             this.txbxSizeType.Margin = new System.Windows.Forms.Padding(4);
             this.txbxSizeType.MaxLength = 4;
             this.txbxSizeType.Multiline = false;
@@ -721,7 +721,7 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             this.dtgridSizeFields.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dtgridSizeFields.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dtgridSizeFields.Size = new System.Drawing.Size(473, 439);
+            this.dtgridSizeFields.Size = new System.Drawing.Size(469, 439);
             this.dtgridSizeFields.TabIndex = 16;
             this.dtgridSizeFields.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgridSizeFields_CellEndEdit);
             // 
@@ -778,7 +778,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.Name = "AddProductForm";
-            this.Text = "Student Registration";
+            this.Text = "Add Product";
             this.tblpnAddProduct.ResumeLayout(false);
             this.pnHeader.ResumeLayout(false);
             this.pnHeader.PerformLayout();

@@ -48,6 +48,7 @@
             this.pnModuleFocused = new System.Windows.Forms.Panel();
             this.inventory1 = new SneakTrack___POS___Inventory_System.Inventory();
             this.user1 = new SneakTrack___POS___Inventory_System.User();
+            this.pos1 = new SneakTrack___POS___Inventory_System.POS();
             this.tblpnSTMenu.SuspendLayout();
             this.pnSidebar.SuspendLayout();
             this.tblpnSBLayout.SuspendLayout();
@@ -316,6 +317,7 @@
             // pnModuleFocused
             // 
             this.pnModuleFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.pnModuleFocused.Controls.Add(this.pos1);
             this.pnModuleFocused.Controls.Add(this.inventory1);
             this.pnModuleFocused.Controls.Add(this.user1);
             this.pnModuleFocused.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -333,6 +335,7 @@
             this.inventory1.Name = "inventory1";
             this.inventory1.Size = new System.Drawing.Size(920, 675);
             this.inventory1.TabIndex = 0;
+            this.inventory1.Visible = false;
             // 
             // user1
             // 
@@ -341,6 +344,16 @@
             this.user1.Name = "user1";
             this.user1.Size = new System.Drawing.Size(920, 675);
             this.user1.TabIndex = 1;
+            this.user1.Visible = false;
+            // 
+            // pos1
+            // 
+            this.pos1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pos1.Location = new System.Drawing.Point(0, 0);
+            this.pos1.Margin = new System.Windows.Forms.Padding(0);
+            this.pos1.Name = "pos1";
+            this.pos1.Size = new System.Drawing.Size(920, 675);
+            this.pos1.TabIndex = 2;
             // 
             // MainDashboard
             // 
@@ -386,5 +399,6 @@
         private System.Windows.Forms.Button btnBurgerBarSB;
         private Inventory inventory1;
         private User user1;
+        private POS pos1;
     }
 }

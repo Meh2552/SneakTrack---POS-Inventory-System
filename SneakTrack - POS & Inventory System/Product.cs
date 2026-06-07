@@ -381,6 +381,7 @@ namespace SneakTrack___POS___Inventory_System
         private char gender;
         private decimal price;
         private bool remove = false;
+        private int reservedQuantity = 0;
 
         public Variant(double size, string sizeType, int quantity, string barcode, char gender, 
                        decimal price, int variant_id, int size_id)
@@ -416,12 +417,14 @@ namespace SneakTrack___POS___Inventory_System
         public int VariantId { get { return variantId; } set { variantId = value; } }
         public int SizeId { get { return sizeId; } set { sizeId = value; } }
         public bool Remove { get { return remove; } set { remove = value; } }
+        public int reservedQuan { get { return reservedQuantity; } set { reservedQuantity = value; } }
+        public decimal subtotal { get { return reservedQuantity * Price; }}
 
         public override string ToString()
         {
             string output = $"Variant: {variantId} \n" +
                 $"Size: {size} ({sizeType}, {gender}) - {quantity} items for {price} - {barcode}\n" + 
-                $"SID: {sizeId} - Remove? {remove}";
+                $"SID: {sizeId} - Remove? {remove} - Reserved: {reservedQuantity}";
             return output;
         }
     }

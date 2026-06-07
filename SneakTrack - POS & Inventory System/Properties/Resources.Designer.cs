@@ -153,6 +153,16 @@ namespace SneakTrack___POS___Inventory_System.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap close {
+            get {
+                object obj = ResourceManager.GetObject("close", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap discord_loading_sticker_discord_loading_loading_gif {
             get {
                 object obj = ResourceManager.GetObject("discord-loading-sticker-discord-loading-loading-gif", resourceCulture);
@@ -176,6 +186,16 @@ namespace SneakTrack___POS___Inventory_System.Properties {
         internal static System.Drawing.Bitmap exclamation_mark {
             get {
                 object obj = ResourceManager.GetObject("exclamation-mark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hand_holding_usd {
+            get {
+                object obj = ResourceManager.GetObject("hand-holding-usd", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

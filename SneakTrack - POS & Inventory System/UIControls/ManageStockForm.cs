@@ -1,15 +1,8 @@
 ﻿using SneakTrack___POS___Inventory_System.UIControls;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SneakTrack___POS___Inventory_System
@@ -57,6 +50,7 @@ namespace SneakTrack___POS___Inventory_System
             lbProductName.Text = p.Name;
             lbBrand.Text = p.Brand;
             lbColor.Text = p.Color;
+            lbPriceText.Text = "₱ " + p.displayPrice().ToString("0.00");
             pcbxProdImage.Image = p.Image;
             txbxDescription.Text = p.Description;
             lbGenderText.Text = p.gendersStringFull();
@@ -105,7 +99,7 @@ namespace SneakTrack___POS___Inventory_System
             DataGridViewCell cell = row.Cells[colIndex];
 
             bool valid = v.validateCellValue(cell, v.readInt(cell.Value) >= 0, "Quantity must be greater than or equal to 0");
-            if (valid && colIndex != 2 ) cell.Style.BackColor = System.Drawing.Color.FromArgb(224, 224, 224);
+            if (valid && colIndex != 2 ) cell.Style.BackColor = Color.FromArgb(224, 224, 224);
         }
 
         

@@ -82,7 +82,7 @@ namespace SneakTrack___POS___Inventory_System
          *    Returns a ProductTile object based on the product and variant parameters
         */
 
-        public ProductTile toProductTile(Product product)
+        public ProductTile toProductTile(Product product, bool showLowStock)
         {
             ProductTile tile = new ProductTile
             {
@@ -94,8 +94,9 @@ namespace SneakTrack___POS___Inventory_System
                 Margin = new Padding(4, 7, 4, 7),
                 Cursor = Cursors.Hand,
                 ProductObj = product,
-                LowStock = product.LowStock
             };
+
+            if (showLowStock) tile.LowStock = product.LowStock;
 
             return tile;
         }

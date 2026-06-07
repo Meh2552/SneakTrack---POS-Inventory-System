@@ -1,0 +1,198 @@
+﻿using SneakTrack___POS___Inventory_System.UIControls;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
+
+namespace SneakTrack___POS___Inventory_System
+{
+    public partial class CheckoutForm : Form
+    {
+
+        private MainSystem sys;
+        private WindowHandler wh;
+        private Validator v;
+        private DataHandler dh;
+        private ProductController pc;
+
+        private List<Variant> cart;
+        private Product selected;
+        private Variant selectedVariant;
+
+        public CheckoutForm()
+        {
+            InitializeComponent();
+        }
+
+        public CheckoutForm(MainSystem system, List<Variant> cart)
+        {
+            InitializeComponent();
+            this.sys = system;
+            this.wh = sys.WH;
+            this.v = sys.VAL;
+            this.dh = sys.DH;
+            this.pc = sys.PC;
+            this.cart = cart;
+
+            initialize(cart);
+        }
+
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+
+        private void pnHeader_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void initialize(List<Variant> list)
+        {
+            lsvCart.Items.Clear();
+            
+            bool alternate = false;
+            foreach (Variant vari in list)
+            {
+                ListViewItem item = new ListViewItem(new string[] {
+                    pc.productFromVariant(vari).DisplayName() ?? "Name",
+                    $"{vari.Gender} - {vari.Size} ({vari.SizeType})",
+                    vari.reservedQuan.ToString(),
+                    $"₱ {vari.subtotal.ToString("0.00")}",
+                    vari.SizeId.ToString()
+                });
+
+                item.BackColor = alternate ? Color.LightGray : Color.Gainsboro;
+                alternate = !alternate;
+
+                lsvCart.Items.Add(item);
+            }
+
+            lbCartItems.Text = $"Items: {cartTotal}/200";
+            lbTotalPrice.Text = $"₱ {finalTotal.ToString("0.00")}";
+            lbPriceNoTax.Text = $"₱ {woTaxTotal.ToString("0.00")}";
+        }
+
+        private void lsvCart_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            if (lsvCart.SelectedItems.Count == 0) return;
+
+            int sizeId = v.readInt(lsvCart.SelectedItems[0].SubItems[4].Text);
+
+            selection(sizeId);
+        }
+
+        private void selection(int sizeId)
+        {
+            if (sizeId < 0) return;
+
+            int productId = v.idFromValue(dh.ProductMasterDT, "size_id", "product_id", sizeId.ToString());
+            selected = v.productFromId(productId, dh.MasterToProductList);
+            selectedVariant = selectionVariant(sizeId);
+
+            pcbxSideInfo.BackColor = Color.White;
+            pcbxSideInfo.Image = selected.Image;
+            txbxProductInfoSI.Text = pc.toProdInfo(selected, selectedVariant);
+        }
+
+        private Variant selectionVariant(int sizeId)
+        {
+            
+            foreach (Variant vari in cart)
+            {
+                if (vari.SizeId == sizeId)
+                    return vari;
+            }
+            return null;
+           
+        }
+
+        private void btnConfirmOrder_Click(object sender, EventArgs e)
+        {
+            /*
+            ConfirmationPrompt confirm = new ConfirmationPrompt();
+            confirm.Header = "Confirm Cart Changes";
+            confirm.Prompt = "Confirm changes made to the cart items?";
+
+            DialogResult results = confirm.ShowDialog();
+
+            if (results == DialogResult.OK)
+            {
+                this.DialogResult = results;
+                loadCart();
+                this.Close();
+            }
+            */
+        }
+
+        private void loadCart()
+        {
+            /*
+            List<Variant> cartItems = new List<Variant>();
+
+            try
+            {
+                foreach (ListViewItem item in lsvCart.Items)
+                {
+                    Variant vari = pc.variantFromId(v.readInt(item.SubItems[2].Text), cart);
+                    int newQuan = v.readInt(item.SubItems[1].Text);
+                    if (vari != null)
+                    {
+                        vari.reservedQuan = newQuan;
+                        cartItems.Add(vari);
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while loading the product.");
+            }
+
+            cart = cartItems;
+            */
+        }
+
+        private int cartTotal 
+        { 
+            get {
+                int count = 0;
+
+                foreach (ListViewItem item in lsvCart.Items)
+                {
+                    int quan = v.readInt(item.SubItems[1].Text);
+                    count += quan < 0 ? 0 : quan;
+                }
+
+                return count;
+            }
+        }
+        public List<Variant> Cart { get { return cart; } }
+
+        private void lsvCart_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
+        {
+            e.Cancel = true;
+            e.NewWidth = lsvCart.Columns[e.ColumnIndex].Width;
+        }
+
+        private decimal finalTotal 
+        {  
+            get {
+                decimal total = 0;
+
+                foreach (Variant vari in Cart)
+                {
+                    total += vari.subtotal;
+                }
+
+                return total;
+            }
+        }
+
+        private decimal woTaxTotal { get { return finalTotal * 0.88m; } }
+    }   
+}

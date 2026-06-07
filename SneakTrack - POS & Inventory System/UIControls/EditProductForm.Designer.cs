@@ -71,13 +71,13 @@
             this.txbxProductName = new SneakTrack___POS___Inventory_System.UIControls.RoundedTxBx();
             this.txbxBrand = new SneakTrack___POS___Inventory_System.UIControls.RoundedTxBx();
             this.dtgridSizeFields = new System.Windows.Forms.DataGridView();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.Gender = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Size = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SizeType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.size_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.tblpnAddProduct.SuspendLayout();
             this.pnHeader.SuspendLayout();
             this.pnBody.SuspendLayout();
@@ -748,23 +748,6 @@
             this.dtgridSizeFields.TabIndex = 16;
             this.dtgridSizeFields.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgridSizeFields_CellEndEdit);
             // 
-            // btnCancel
-            // 
-            this.btnCancel.BackColor = System.Drawing.Color.Black;
-            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.FlatAppearance.BorderSize = 0;
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(440, 504);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(0);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(222, 74);
-            this.btnCancel.TabIndex = 31;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = false;
-            // 
             // Gender
             // 
             this.Gender.FillWeight = 15F;
@@ -813,6 +796,23 @@
             this.size_id.Visible = false;
             this.size_id.Width = 68;
             // 
+            // btnCancel
+            // 
+            this.btnCancel.BackColor = System.Drawing.Color.Black;
+            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.ForeColor = System.Drawing.Color.White;
+            this.btnCancel.Location = new System.Drawing.Point(440, 504);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(0);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(222, 74);
+            this.btnCancel.TabIndex = 31;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = false;
+            // 
             // EditProductForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -825,7 +825,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.Name = "EditProductForm";
-            this.Text = "Student Registration";
+            this.Text = "Edit Product";
             this.tblpnAddProduct.ResumeLayout(false);
             this.pnHeader.ResumeLayout(false);
             this.pnHeader.PerformLayout();

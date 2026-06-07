@@ -30,7 +30,7 @@ namespace SneakTrack___POS___Inventory_System
             loadSelection();
         }
 
-        private void reloadInv()
+        public void reloadInv()
         {
             loadSelection();
             selected = null;
@@ -74,7 +74,7 @@ namespace SneakTrack___POS___Inventory_System
 
         private void txbxBarcodeQuan_TextChanged(object sender, EventArgs e)
         {
-            double quan = v.readDouble((object)txbxBarcodeQuan.Text);
+            double quan = v.readInt(txbxBarcodeQuan.Text);
 
             if (quan == -1)
             {
@@ -97,12 +97,12 @@ namespace SneakTrack___POS___Inventory_System
 
         private void btnQuanDecrease_Click(object sender, EventArgs e)
         {
-            txbxBarcodeQuan.Text = (v.readDouble((object)txbxBarcodeQuan.Text) - 1).ToString();
+            txbxBarcodeQuan.Text = (v.readInt(txbxBarcodeQuan.Text) - 1).ToString();
         }
 
         private void btnQuanIncrease_Click(object sender, EventArgs e)
         {
-            txbxBarcodeQuan.Text = (v.readDouble((object)txbxBarcodeQuan.Text) + 1).ToString();
+            txbxBarcodeQuan.Text = (v.readInt(txbxBarcodeQuan.Text) + 1).ToString();
         }
 
         private void btnCloseSideInfo_Click(object sender, EventArgs e)
@@ -158,7 +158,13 @@ namespace SneakTrack___POS___Inventory_System
             string barcode = v.readString(txbxBarcode.Texts);
             if (string.IsNullOrEmpty(barcode)) return;
 
-            if (pc.readBarcode(barcode, v.readInt(txbxBarcodeQuan.Text))) reloadInv();
+            if (pc.addStockFromBarcode(pc.barcodeToVariant(barcode), v.readInt(txbxBarcodeQuan.Text)))
+            {
+                reloadInv();
+                txbxBarcode.Texts = "";
+                txbxBarcodeQuan.Text = "1";
+            }
+
             txbxBarcode.Focus();
         }
 
@@ -166,7 +172,7 @@ namespace SneakTrack___POS___Inventory_System
         {
             if (v.readString(txbxBarcode.Texts) == null)
             {
-                System.Windows.Forms.MessageBox.Show("Please enter a barcode.");
+                MessageBox.Show("Please enter a barcode.");
                 return;
             }
             barcodeCheck();

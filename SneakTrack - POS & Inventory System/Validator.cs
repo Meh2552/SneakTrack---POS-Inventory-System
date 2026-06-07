@@ -4,6 +4,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Text.RegularExpressions;
+using System.Windows.Controls.Primitives;
 using System.Windows.Forms;
 
 namespace SneakTrack___POS___Inventory_System
@@ -137,6 +138,18 @@ namespace SneakTrack___POS___Inventory_System
                 }
             }
             return -1;
+        }
+
+        public Product productFromId(int id, List<Product> products)
+        {
+            foreach (Product p in products)
+            {
+                if (p.ProdId == id)
+                {
+                    return p;
+                }
+            }
+            return null;
         }
 
         public bool validateCharacters(string input)

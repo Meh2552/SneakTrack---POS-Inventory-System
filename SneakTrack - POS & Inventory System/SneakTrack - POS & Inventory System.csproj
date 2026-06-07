@@ -60,6 +60,12 @@
     </Compile>
     <Compile Include="DataHandler.cs" />
     <Compile Include="FileHandler.cs" />
+    <Compile Include="POS.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="POS.Designer.cs">
+      <DependentUpon>POS.cs</DependentUpon>
+    </Compile>
     <Compile Include="Inventory.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -93,11 +99,29 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UIControls\CheckoutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIControls\CheckoutForm.Designer.cs">
+      <DependentUpon>CheckoutForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UIControls\EditProductForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UIControls\EditProductForm.Designer.cs">
       <DependentUpon>EditProductForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIControls\AddToCartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIControls\AddToCartForm.Designer.cs">
+      <DependentUpon>AddToCartForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIControls\CartListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIControls\CartListForm.Designer.cs">
+      <DependentUpon>CartListForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UIControls\ManageStockForm.cs">
       <SubType>Form</SubType>
@@ -145,12 +169,6 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="POS.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="POS.Designer.cs">
-      <DependentUpon>POS.cs</DependentUpon>
-    </Compile>
     <Compile Include="User.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -177,6 +195,9 @@
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="POS.resx">
+      <DependentUpon>POS.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Inventory.resx">
       <DependentUpon>Inventory.cs</DependentUpon>
     </EmbeddedResource>
@@ -197,8 +218,17 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="UIControls\CheckoutForm.resx">
+      <DependentUpon>CheckoutForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UIControls\EditProductForm.resx">
       <DependentUpon>EditProductForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIControls\AddToCartForm.resx">
+      <DependentUpon>AddToCartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIControls\CartListForm.resx">
+      <DependentUpon>CartListForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UIControls\ManageStockForm.resx">
       <DependentUpon>ManageStockForm.cs</DependentUpon>
@@ -361,6 +391,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon\home icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon\hand-holding-usd.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
-            this.user1 = new SneakTrack___POS___Inventory_System.User();
+            this.user1 = new SneakTrack___POS___Inventory_System.UserManager();
             this.pnModuleFocused = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
@@ -615,7 +615,7 @@
         private System.Windows.Forms.Button btnInvSB;
         private System.Windows.Forms.Button btnHistSB;
         private System.Windows.Forms.Button btnUsersSB;
-        private User user1;
+        private UserManager user1;
         private System.Windows.Forms.Panel pnModuleFocused;
         private System.Windows.Forms.Panel panel1;
         private UIControls.RoundedPanel roundedPanel1;

@@ -27,8 +27,10 @@ namespace SneakTrack___POS___Inventory_System
             this.sys = system;
             this.ua = sys.UA;
             this.wh = sys.WH;
+
             inventory1.initialize(sys);
             pos1.initialize(sys);
+            user1.initialize(sys);
         }
 
         private void MainDashboard_Load(object sender, EventArgs e)

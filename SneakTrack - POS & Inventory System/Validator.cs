@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Windows.Controls.Primitives;
 using System.Windows.Forms;
+using System.Windows.Media.Imaging;
 
 namespace SneakTrack___POS___Inventory_System
 {

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
             "Test",
             "M - Test (TEST)",
             "Text",
@@ -57,6 +57,10 @@
             this.txbxProductInfoSI = new System.Windows.Forms.TextBox();
             this.lbCaptionSI = new System.Windows.Forms.Label();
             this.pcbxSideInfo = new System.Windows.Forms.PictureBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.lbPayment = new System.Windows.Forms.Label();
+            this.lbChange = new System.Windows.Forms.Label();
+            this.btnComplete = new System.Windows.Forms.Button();
             this.pnHeader.SuspendLayout();
             this.pnBody.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -64,6 +68,7 @@
             this.pnSideInfoButtons.SuspendLayout();
             this.pnSideInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbxSideInfo)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbHeader
@@ -81,18 +86,19 @@
             // 
             // btnConfirmOrder
             // 
+            this.btnConfirmOrder.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnConfirmOrder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
             this.btnConfirmOrder.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConfirmOrder.FlatAppearance.BorderSize = 0;
             this.btnConfirmOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfirmOrder.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirmOrder.ForeColor = System.Drawing.Color.Black;
-            this.btnConfirmOrder.Location = new System.Drawing.Point(215, 542);
+            this.btnConfirmOrder.Location = new System.Drawing.Point(215, 603);
             this.btnConfirmOrder.Margin = new System.Windows.Forms.Padding(0);
             this.btnConfirmOrder.Name = "btnConfirmOrder";
             this.btnConfirmOrder.Size = new System.Drawing.Size(452, 59);
             this.btnConfirmOrder.TabIndex = 13;
-            this.btnConfirmOrder.Text = "\\";
+            this.btnConfirmOrder.Text = "Confirm Order (Proceed To Payment)";
             this.btnConfirmOrder.UseVisualStyleBackColor = false;
             this.btnConfirmOrder.Click += new System.EventHandler(this.btnConfirmOrder_Click);
             // 
@@ -129,17 +135,22 @@
             // 
             // pnBody
             // 
+            this.pnBody.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnBody.Controls.Add(this.panel2);
             this.pnBody.Controls.Add(this.lbCartItems);
             this.pnBody.Controls.Add(this.panel1);
             this.pnBody.Controls.Add(this.lbOrderSummary);
             this.pnBody.Controls.Add(this.lsvCart);
-            this.pnBody.Controls.Add(this.btnCancel);
+            this.pnBody.Controls.Add(this.btnComplete);
             this.pnBody.Controls.Add(this.btnConfirmOrder);
+            this.pnBody.Controls.Add(this.btnCancel);
             this.pnBody.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pnBody.Location = new System.Drawing.Point(0, 69);
             this.pnBody.Margin = new System.Windows.Forms.Padding(0);
             this.pnBody.Name = "pnBody";
-            this.pnBody.Size = new System.Drawing.Size(667, 601);
+            this.pnBody.Size = new System.Drawing.Size(667, 662);
             this.pnBody.TabIndex = 1;
             // 
             // lbCartItems
@@ -162,19 +173,19 @@
             this.panel1.Location = new System.Drawing.Point(23, 436);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(620, 88);
+            this.panel1.Size = new System.Drawing.Size(620, 91);
             this.panel1.TabIndex = 38;
             // 
             // lbSneakTrack
             // 
             this.lbSneakTrack.AutoSize = true;
             this.lbSneakTrack.BackColor = System.Drawing.Color.Transparent;
-            this.lbSneakTrack.Font = new System.Drawing.Font("Coolvetica Rg", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbSneakTrack.Font = new System.Drawing.Font("Coolvetica Rg", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSneakTrack.ForeColor = System.Drawing.Color.White;
             this.lbSneakTrack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lbSneakTrack.Location = new System.Drawing.Point(47, 24);
+            this.lbSneakTrack.Location = new System.Drawing.Point(33, 23);
             this.lbSneakTrack.Name = "lbSneakTrack";
-            this.lbSneakTrack.Size = new System.Drawing.Size(144, 32);
+            this.lbSneakTrack.Size = new System.Drawing.Size(198, 45);
             this.lbSneakTrack.TabIndex = 38;
             this.lbSneakTrack.Text = "SneakTrack";
             // 
@@ -226,7 +237,7 @@
             this.lsvCart.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lsvCart.HideSelection = false;
             this.lsvCart.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem3});
             this.lsvCart.Location = new System.Drawing.Point(23, 45);
             this.lsvCart.Margin = new System.Windows.Forms.Padding(0);
             this.lsvCart.MultiSelect = false;
@@ -260,6 +271,7 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnCancel.BackColor = System.Drawing.Color.Black;
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -267,7 +279,7 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(0, 542);
+            this.btnCancel.Location = new System.Drawing.Point(0, 603);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(0);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(215, 59);
@@ -277,6 +289,7 @@
             // 
             // tblpnSideInfoLayout
             // 
+            this.tblpnSideInfoLayout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.tblpnSideInfoLayout.ColumnCount = 1;
             this.tblpnSideInfoLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblpnSideInfoLayout.Controls.Add(this.pnSideInfoButtons, 0, 1);
@@ -287,7 +300,7 @@
             this.tblpnSideInfoLayout.RowCount = 2;
             this.tblpnSideInfoLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblpnSideInfoLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 58F));
-            this.tblpnSideInfoLayout.Size = new System.Drawing.Size(251, 601);
+            this.tblpnSideInfoLayout.Size = new System.Drawing.Size(251, 662);
             this.tblpnSideInfoLayout.TabIndex = 30;
             // 
             // pnSideInfoButtons
@@ -295,7 +308,7 @@
             this.pnSideInfoButtons.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(63)))), ((int)(((byte)(70)))));
             this.pnSideInfoButtons.Controls.Add(this.pnSidebarBottom);
             this.pnSideInfoButtons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnSideInfoButtons.Location = new System.Drawing.Point(0, 543);
+            this.pnSideInfoButtons.Location = new System.Drawing.Point(0, 604);
             this.pnSideInfoButtons.Margin = new System.Windows.Forms.Padding(0);
             this.pnSideInfoButtons.Name = "pnSideInfoButtons";
             this.pnSideInfoButtons.Size = new System.Drawing.Size(251, 58);
@@ -322,7 +335,7 @@
             this.pnSideInfo.Location = new System.Drawing.Point(0, 0);
             this.pnSideInfo.Margin = new System.Windows.Forms.Padding(0);
             this.pnSideInfo.Name = "pnSideInfo";
-            this.pnSideInfo.Size = new System.Drawing.Size(251, 543);
+            this.pnSideInfo.Size = new System.Drawing.Size(251, 604);
             this.pnSideInfo.TabIndex = 3;
             // 
             // txbxProductInfoSI
@@ -339,7 +352,7 @@
             this.txbxProductInfoSI.ReadOnly = true;
             this.txbxProductInfoSI.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txbxProductInfoSI.ShortcutsEnabled = false;
-            this.txbxProductInfoSI.Size = new System.Drawing.Size(231, 296);
+            this.txbxProductInfoSI.Size = new System.Drawing.Size(231, 357);
             this.txbxProductInfoSI.TabIndex = 2;
             // 
             // lbCaptionSI
@@ -363,12 +376,64 @@
             this.pcbxSideInfo.TabIndex = 0;
             this.pcbxSideInfo.TabStop = false;
             // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Black;
+            this.panel2.Controls.Add(this.lbPayment);
+            this.panel2.Controls.Add(this.lbChange);
+            this.panel2.Location = new System.Drawing.Point(23, 530);
+            this.panel2.Margin = new System.Windows.Forms.Padding(0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(620, 60);
+            this.panel2.TabIndex = 39;
+            // 
+            // lbPayment
+            // 
+            this.lbPayment.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPayment.ForeColor = System.Drawing.Color.White;
+            this.lbPayment.Location = new System.Drawing.Point(19, 13);
+            this.lbPayment.Name = "lbPayment";
+            this.lbPayment.Size = new System.Drawing.Size(322, 37);
+            this.lbPayment.TabIndex = 36;
+            this.lbPayment.Text = "Amount Paid: -";
+            this.lbPayment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lbChange
+            // 
+            this.lbChange.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbChange.ForeColor = System.Drawing.Color.White;
+            this.lbChange.Location = new System.Drawing.Point(283, 21);
+            this.lbChange.Name = "lbChange";
+            this.lbChange.Size = new System.Drawing.Size(317, 21);
+            this.lbChange.TabIndex = 37;
+            this.lbChange.Text = "Change: -";
+            this.lbChange.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // btnComplete
+            // 
+            this.btnComplete.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnComplete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
+            this.btnComplete.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnComplete.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnComplete.FlatAppearance.BorderSize = 0;
+            this.btnComplete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnComplete.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnComplete.ForeColor = System.Drawing.Color.Black;
+            this.btnComplete.Location = new System.Drawing.Point(0, 603);
+            this.btnComplete.Margin = new System.Windows.Forms.Padding(0);
+            this.btnComplete.Name = "btnComplete";
+            this.btnComplete.Size = new System.Drawing.Size(667, 59);
+            this.btnComplete.TabIndex = 40;
+            this.btnComplete.Text = "Order Complete (Close Order)";
+            this.btnComplete.UseVisualStyleBackColor = false;
+            this.btnComplete.Visible = false;
+            // 
             // CheckoutForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.ClientSize = new System.Drawing.Size(918, 670);
+            this.ClientSize = new System.Drawing.Size(918, 730);
             this.Controls.Add(this.pnHeader);
             this.Controls.Add(this.tblpnSideInfoLayout);
             this.Controls.Add(this.pnBody);
@@ -390,6 +455,7 @@
             this.pnSideInfo.ResumeLayout(false);
             this.pnSideInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbxSideInfo)).EndInit();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -419,6 +485,10 @@
         private System.Windows.Forms.Label lbSneakTrack;
         private System.Windows.Forms.Label lbPriceNoTax;
         private System.Windows.Forms.Label lbCartItems;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label lbPayment;
+        private System.Windows.Forms.Label lbChange;
+        private System.Windows.Forms.Button btnComplete;
     }
 }
 

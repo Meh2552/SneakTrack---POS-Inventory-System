@@ -79,9 +79,9 @@
             this.lbHeader.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lbHeader.Location = new System.Drawing.Point(22, 18);
             this.lbHeader.Name = "lbHeader";
-            this.lbHeader.Size = new System.Drawing.Size(153, 28);
+            this.lbHeader.Size = new System.Drawing.Size(147, 28);
             this.lbHeader.TabIndex = 1;
-            this.lbHeader.Text = "Add  Product";
+            this.lbHeader.Text = "Add Product";
             // 
             // btnAddToCart
             // 

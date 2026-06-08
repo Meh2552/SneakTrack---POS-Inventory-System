@@ -6,7 +6,7 @@ using System.Linq;
 using System.Diagnostics;
 
 namespace SneakTrack___POS___Inventory_System
-{
+{//TODO: tile logic
     public partial class POS : UserControl
     {
         private MainSystem sys;

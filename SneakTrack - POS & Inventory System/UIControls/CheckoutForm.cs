@@ -113,23 +113,33 @@ namespace SneakTrack___POS___Inventory_System
 
         private void btnConfirmOrder_Click(object sender, EventArgs e)
         {
-            /*
-            ConfirmationPrompt confirm = new ConfirmationPrompt();
-            confirm.Header = "Confirm Cart Changes";
-            confirm.Prompt = "Confirm changes made to the cart items?";
-
-            DialogResult results = confirm.ShowDialog();
+            OrderCalculationPrompt ordCal = new OrderCalculationPrompt(sys, finalTotal);
+            DialogResult results = ordCal.ShowDialog();
 
             if (results == DialogResult.OK)
             {
                 this.DialogResult = results;
-                loadCart();
-                this.Close();
+
+                paymentSuccess(ordCal.Payment);
+                // loadReportEntry() // TODO: this )btw kesa dialog para confirm if success ano nalang may sesend to na something idk what tho_
             }
-            */
         }
 
-        private void loadCart()
+        private void paymentSuccess(decimal payment)
+        {
+            lbPayment.Text = $"Amount Paid: ₱ {payment.ToString("0.00")}";
+
+            decimal change = payment - finalTotal;
+            lbChange.Text = $"Change: ₱ {change.ToString("0.00")}";
+
+            btnCancel.Visible = false;
+            btnConfirmOrder.Visible = false;
+
+            btnComplete.Visible = true;
+            btnComplete.BringToFront();
+        }
+
+        private void loadReportEntry()
         {
             /*
             List<Variant> cartItems = new List<Variant>();
@@ -158,19 +168,18 @@ namespace SneakTrack___POS___Inventory_System
         }
 
         private int cartTotal 
-        { 
-            get {
-                int count = 0;
-
-                foreach (ListViewItem item in lsvCart.Items)
+        {
+            get
+            {
+                int output = 0;
+                foreach (Variant vari in cart)
                 {
-                    int quan = v.readInt(item.SubItems[1].Text);
-                    count += quan < 0 ? 0 : quan;
+                    output += vari.reservedQuan;
                 }
-
-                return count;
+                return output;
             }
         }
+
         public List<Variant> Cart { get { return cart; } }
 
         private void lsvCart_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)

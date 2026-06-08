@@ -47,7 +47,7 @@
             this.btnTitleSB = new System.Windows.Forms.Button();
             this.pnModuleFocused = new System.Windows.Forms.Panel();
             this.inventory1 = new SneakTrack___POS___Inventory_System.Inventory();
-            this.user1 = new SneakTrack___POS___Inventory_System.User();
+            this.user1 = new SneakTrack___POS___Inventory_System.UserManager();
             this.pos1 = new SneakTrack___POS___Inventory_System.POS();
             this.tblpnSTMenu.SuspendLayout();
             this.pnSidebar.SuspendLayout();
@@ -398,7 +398,7 @@
         private System.Windows.Forms.Panel pnHeaderSB;
         private System.Windows.Forms.Button btnBurgerBarSB;
         private Inventory inventory1;
-        private User user1;
+        private UserManager user1;
         private POS pos1;
     }
 }

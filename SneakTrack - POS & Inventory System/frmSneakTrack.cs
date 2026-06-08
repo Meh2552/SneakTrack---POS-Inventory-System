@@ -68,6 +68,7 @@ namespace SneakTrack___POS___Inventory_System
             this.ua = new UserAuth(this);
             this.pc = new ProductController(this);
             this.fh = new FileHandler(this);
+            this.uc = new UserController(this);
 
             dh.initialize();
         }
@@ -78,6 +79,7 @@ namespace SneakTrack___POS___Inventory_System
         private UserAuth ua;
         private ProductController pc;
         private FileHandler fh;
+        private UserController uc;
 
         public WindowHandler WH { get { return this.wh; } }
         public Validator VAL { get { return this.val; } }
@@ -85,6 +87,7 @@ namespace SneakTrack___POS___Inventory_System
         public UserAuth UA { get { return this.ua; } }
         public ProductController PC { get { return this.pc; } }
         public FileHandler FH { get { return this.fh; } }
+        public UserController UC { get { return this.uc; } }
 
     }
 }

@@ -207,35 +207,36 @@ namespace SneakTrack___POS___Inventory_System
             return output;
         }
 
-        /*
-        public bool valueListToTable(string query, List<string> values)
+        public bool hasDuplicateUsername(string userID, string username, bool ignoreSelf = false)
         {
             bool output = false;
             try
             {
-                using (SqlConnection conn = new SqlConnection(conString))
-                {
-                    conn.Open();
+                SqlConnection conn = new SqlConnection(conString);
+                conn.Open();
 
-                    foreach (string value in values)
-                    {
-                        using (SqlCommand cmd = new SqlCommand(query, conn))
-                        {
-                            cmd.Parameters.AddWithValue("@value", value);
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
+                string whereClause = ignoreSelf ? $"username = @username AND user_id != {userID}" :
+                    "username = @username";
 
-                    output = true;
-                }
+                string query = selectQuery("User", "*", whereClause);
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@username", username);
+                Debug.WriteLine(cmd.CommandText);
+
+
+                int count = Convert.ToInt32(cmd.ExecuteScalar());
+                output = count > 0;
+                conn.Close();
             }
+
             catch (Exception e)
             {
-                Debug.WriteLine("Error: " + e.Message);
+                Debug.WriteLine("hasDpUser Error: " + e.Message);
+
             }
             return output;
         }
-        */
         
         public bool updateValueToTable(string query, string parameterName, string parameterValue)
         {
@@ -338,10 +339,10 @@ namespace SneakTrack___POS___Inventory_System
             return output;
         }
 
-        // Checks if user exists and credentials are correct
+        // Checks if user exists
         public UserAuth.User checkUserAuth(string username)
         {
-            string name = "", role = "", dateCreated = "", password = "";
+            string name = "", role = "", dateCreated = "", password = "", id = "";
 
             try
             {
@@ -358,6 +359,7 @@ namespace SneakTrack___POS___Inventory_System
                     role = reader["role"].ToString();
                     dateCreated = reader["date_created"].ToString();
                     password = reader["password"].ToString();
+                    id = reader["user_id"].ToString();
                 }
 
                 reader.Close();
@@ -370,7 +372,7 @@ namespace SneakTrack___POS___Inventory_System
                 Debug.WriteLine("Error: " + e.Message);
             }
 
-            return new UserAuth.User(username, password, name, role, dateCreated);
+            return new UserAuth.User(username, password, name, role, dateCreated, id);
         }
 
         // Used to get Products
@@ -608,6 +610,33 @@ namespace SneakTrack___POS___Inventory_System
                 Debug.WriteLine("Error: " + e.Message);
             }
             return sizeId;
+        }
+
+        public int toUserDB(UserAuth.User user)
+        {
+            string query = insertQuery("User", "name, username, password, role", "@name, @username, @password, @role", true);
+            int userId = 0;
+            try
+            {
+                SqlConnection conn = new SqlConnection(conString);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("@name", user.Name);
+                cmd.Parameters.AddWithValue("@username", user.Username);
+                cmd.Parameters.AddWithValue("@password", user.Password);
+                cmd.Parameters.AddWithValue("@role", user.Role);
+
+                userId = Convert.ToInt32(cmd.ExecuteScalar());
+
+                conn.Close();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Error: " + e.Message);
+            }
+
+            return userId;
         }
     }
 }

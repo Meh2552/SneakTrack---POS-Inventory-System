@@ -181,6 +181,12 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="SalesHistory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SalesHistory.Designer.cs">
+      <DependentUpon>SalesHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserManager.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -260,6 +266,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UIControls\Tile.resx">
       <DependentUpon>Tile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SalesHistory.resx">
+      <DependentUpon>SalesHistory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserManager.resx">
       <DependentUpon>UserManager.cs</DependentUpon>

@@ -27,7 +27,6 @@ namespace SneakTrack___POS___Inventory_System
             this.sys = system;
             this.ua = system.UA;
             this.fh = system.FH;
-            
         }
 
         public void initialize() 
@@ -637,6 +636,30 @@ namespace SneakTrack___POS___Inventory_System
             }
 
             return userId;
+        }
+
+        public void toSale(List<Variant> variants, string user_id, decimal amount)
+        {
+            string query = insertQuery("Sales", "total_amount, user_id", "@total_amount, @user_id", true);
+
+            int saleId = 0;
+            try
+            {
+                SqlConnection conn = new SqlConnection(conString);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("@total_amount", amount.ToString());
+                cmd.Parameters.AddWithValue("@user_id", user_id.UserID);
+
+                saleId = Convert.ToInt32(cmd.ExecuteScalar());
+
+                conn.Close();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Error: " + e.Message);
+            
         }
     }
 }

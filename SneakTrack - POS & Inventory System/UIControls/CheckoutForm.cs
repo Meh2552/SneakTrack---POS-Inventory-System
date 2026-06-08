@@ -1,9 +1,7 @@
 ﻿using SneakTrack___POS___Inventory_System.UIControls;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -13,7 +11,7 @@ namespace SneakTrack___POS___Inventory_System
     {
 
         private MainSystem sys;
-        private WindowHandler wh;
+        private UserAuth ua;
         private Validator v;
         private DataHandler dh;
         private ProductController pc;
@@ -31,7 +29,7 @@ namespace SneakTrack___POS___Inventory_System
         {
             InitializeComponent();
             this.sys = system;
-            this.wh = sys.WH;
+            this.ua = sys.UA;
             this.v = sys.VAL;
             this.dh = sys.DH;
             this.pc = sys.PC;
@@ -139,22 +137,16 @@ namespace SneakTrack___POS___Inventory_System
             btnComplete.BringToFront();
         }
 
-        private void loadReportEntry()
+        private void loadSale()
         {
-            /*
-            List<Variant> cartItems = new List<Variant>();
-
             try
             {
-                foreach (ListViewItem item in lsvCart.Items)
+                foreach (Variant vari in cart)
                 {
-                    Variant vari = pc.variantFromId(v.readInt(item.SubItems[2].Text), cart);
-                    int newQuan = v.readInt(item.SubItems[1].Text);
-                    if (vari != null)
-                    {
-                        vari.reservedQuan = newQuan;
-                        cartItems.Add(vari);
-                    }
+                    int newQuan = vari.Quantity - vari.reservedQuan;
+                    pc.updateQuantity(vari, newQuan);
+
+
                 }
             }
 
@@ -162,9 +154,6 @@ namespace SneakTrack___POS___Inventory_System
             {
                 MessageBox.Show("An error occurred while loading the product.");
             }
-
-            cart = cartItems;
-            */
         }
 
         private int cartTotal 

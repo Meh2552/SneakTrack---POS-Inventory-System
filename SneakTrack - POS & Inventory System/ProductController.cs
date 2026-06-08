@@ -362,6 +362,10 @@ namespace SneakTrack___POS___Inventory_System
             }
 
         }
+        public void updateQuantity(Variant vari, int quantity)
+        {
+            dh.updateValueToTable(dh.updateQuery("Size", "quantity = @quantity", $"size_id = {vari.SizeId}"), "@quantity", quantity.ToString());
+        }
 
         public List<ProductTile> searchProducts(string search, TableLayoutPanel tablePanel)
         {

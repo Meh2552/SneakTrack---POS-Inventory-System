@@ -28,10 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "Test"}, -1, System.Drawing.Color.Black, System.Drawing.Color.LightGray, null);
             this.pnSalesCtrl = new System.Windows.Forms.Panel();
             this.lsvSales = new System.Windows.Forms.ListView();
+            this.clmID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.clmDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.clmRevenue = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pnHeader = new System.Windows.Forms.Panel();
             this.btnHome = new System.Windows.Forms.Button();
             this.btnReload = new System.Windows.Forms.Button();
@@ -41,8 +44,10 @@
             this.pnSales = new System.Windows.Forms.Panel();
             this.tblpnSalesLayout = new System.Windows.Forms.TableLayoutPanel();
             this.pnSidePanel = new System.Windows.Forms.Panel();
+            this.btnCloseRC = new System.Windows.Forms.Button();
             this.lbReciept = new System.Windows.Forms.Label();
             this.pnReciept = new SneakTrack___POS___Inventory_System.UIControls.RoundedPanel();
+            this.lbCashierNameRC = new System.Windows.Forms.Label();
             this.lbOrderNoRC = new System.Windows.Forms.Label();
             this.lbDateRC = new System.Windows.Forms.Label();
             this.pnBottomRC = new System.Windows.Forms.Panel();
@@ -50,11 +55,6 @@
             this.lbSubtitleRC = new System.Windows.Forms.Label();
             this.lbRecieptHeader = new System.Windows.Forms.Label();
             this.lsvReciept = new System.Windows.Forms.ListView();
-            this.lbCashierNameRC = new System.Windows.Forms.Label();
-            this.clmID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.clmDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.clmRevenue = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btnCloseRC = new System.Windows.Forms.Button();
             this.pnHeader.SuspendLayout();
             this.tblpnSales.SuspendLayout();
             this.pnSales.SuspendLayout();
@@ -86,7 +86,7 @@
             this.lsvSales.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lsvSales.HideSelection = false;
             this.lsvSales.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem2});
+            listViewItem1});
             this.lsvSales.Location = new System.Drawing.Point(35, 100);
             this.lsvSales.Margin = new System.Windows.Forms.Padding(35);
             this.lsvSales.MultiSelect = false;
@@ -96,6 +96,22 @@
             this.lsvSales.TabIndex = 2;
             this.lsvSales.UseCompatibleStateImageBehavior = false;
             this.lsvSales.View = System.Windows.Forms.View.Details;
+            this.lsvSales.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.lsvSales_ItemSelectionChanged);
+            // 
+            // clmID
+            // 
+            this.clmID.Text = "Order ID";
+            this.clmID.Width = 100;
+            // 
+            // clmDate
+            // 
+            this.clmDate.Text = "Date";
+            this.clmDate.Width = 120;
+            // 
+            // clmRevenue
+            // 
+            this.clmRevenue.Text = "Revenue";
+            this.clmRevenue.Width = 150;
             // 
             // pnHeader
             // 
@@ -247,6 +263,23 @@
             this.pnSidePanel.Size = new System.Drawing.Size(445, 675);
             this.pnSidePanel.TabIndex = 2;
             // 
+            // btnCloseRC
+            // 
+            this.btnCloseRC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
+            this.btnCloseRC.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCloseRC.FlatAppearance.BorderSize = 0;
+            this.btnCloseRC.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
+            this.btnCloseRC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCloseRC.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCloseRC.ForeColor = System.Drawing.Color.Black;
+            this.btnCloseRC.Location = new System.Drawing.Point(0, -2);
+            this.btnCloseRC.Name = "btnCloseRC";
+            this.btnCloseRC.Size = new System.Drawing.Size(63, 67);
+            this.btnCloseRC.TabIndex = 13;
+            this.btnCloseRC.Text = "X";
+            this.btnCloseRC.UseVisualStyleBackColor = false;
+            this.btnCloseRC.Click += new System.EventHandler(this.btnCloseRC_Click);
+            // 
             // lbReciept
             // 
             this.lbReciept.AutoSize = true;
@@ -275,6 +308,17 @@
             this.pnReciept.Size = new System.Drawing.Size(356, 550);
             this.pnReciept.TabIndex = 3;
             this.pnReciept.Thickness = 10F;
+            // 
+            // lbCashierNameRC
+            // 
+            this.lbCashierNameRC.AutoSize = true;
+            this.lbCashierNameRC.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCashierNameRC.Location = new System.Drawing.Point(29, 141);
+            this.lbCashierNameRC.Name = "lbCashierNameRC";
+            this.lbCashierNameRC.Size = new System.Drawing.Size(130, 19);
+            this.lbCashierNameRC.TabIndex = 19;
+            this.lbCashierNameRC.Text = "Cashier: Nick Name";
+            this.lbCashierNameRC.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lbOrderNoRC
             // 
@@ -340,55 +384,15 @@
             this.lsvReciept.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lsvReciept.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.lsvReciept.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lsvReciept.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
+            this.lsvReciept.FullRowSelect = true;
             this.lsvReciept.HideSelection = false;
-            this.lsvReciept.Location = new System.Drawing.Point(33, 163);
+            this.lsvReciept.Location = new System.Drawing.Point(33, 168);
             this.lsvReciept.Name = "lsvReciept";
-            this.lsvReciept.Size = new System.Drawing.Size(290, 287);
+            this.lsvReciept.Size = new System.Drawing.Size(290, 282);
             this.lsvReciept.TabIndex = 3;
             this.lsvReciept.UseCompatibleStateImageBehavior = false;
-            // 
-            // lbCashierNameRC
-            // 
-            this.lbCashierNameRC.AutoSize = true;
-            this.lbCashierNameRC.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCashierNameRC.Location = new System.Drawing.Point(29, 141);
-            this.lbCashierNameRC.Name = "lbCashierNameRC";
-            this.lbCashierNameRC.Size = new System.Drawing.Size(130, 19);
-            this.lbCashierNameRC.TabIndex = 19;
-            this.lbCashierNameRC.Text = "Cashier: Nick Name";
-            this.lbCashierNameRC.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // clmID
-            // 
-            this.clmID.Text = "Order ID";
-            this.clmID.Width = 100;
-            // 
-            // clmDate
-            // 
-            this.clmDate.Text = "Date";
-            this.clmDate.Width = 120;
-            // 
-            // clmRevenue
-            // 
-            this.clmRevenue.Text = "Revenue";
-            this.clmRevenue.Width = 150;
-            // 
-            // btnCloseRC
-            // 
-            this.btnCloseRC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
-            this.btnCloseRC.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCloseRC.FlatAppearance.BorderSize = 0;
-            this.btnCloseRC.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
-            this.btnCloseRC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCloseRC.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCloseRC.ForeColor = System.Drawing.Color.Black;
-            this.btnCloseRC.Location = new System.Drawing.Point(0, -2);
-            this.btnCloseRC.Name = "btnCloseRC";
-            this.btnCloseRC.Size = new System.Drawing.Size(63, 67);
-            this.btnCloseRC.TabIndex = 13;
-            this.btnCloseRC.Text = "X";
-            this.btnCloseRC.UseVisualStyleBackColor = false;
-            this.btnCloseRC.Click += new System.EventHandler(this.btnCloseRC_Click);
+            this.lsvReciept.View = System.Windows.Forms.View.List;
             // 
             // SalesHistory
             // 
@@ -423,7 +427,6 @@
         private System.Windows.Forms.Panel pnSales;
         private System.Windows.Forms.TableLayoutPanel tblpnSalesLayout;
         private UIControls.RoundedPanel pnReciept;
-        private System.Windows.Forms.ListView lsvReciept;
         private System.Windows.Forms.Label lbReciept;
         private System.Windows.Forms.Label lbRecieptHeader;
         private System.Windows.Forms.Panel pnRecieptSeparator;
@@ -436,5 +439,6 @@
         private System.Windows.Forms.ColumnHeader clmDate;
         private System.Windows.Forms.ColumnHeader clmRevenue;
         private System.Windows.Forms.Button btnCloseRC;
+        private System.Windows.Forms.ListView lsvReciept;
     }
 }

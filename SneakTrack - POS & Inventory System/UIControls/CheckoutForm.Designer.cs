@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "Test",
             "M - Test (TEST)",
             "Text",
@@ -38,6 +38,9 @@
             this.btnCloseForm = new System.Windows.Forms.Button();
             this.pnHeader = new System.Windows.Forms.Panel();
             this.pnBody = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.lbPayment = new System.Windows.Forms.Label();
+            this.lbChange = new System.Windows.Forms.Label();
             this.lbCartItems = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbSneakTrack = new System.Windows.Forms.Label();
@@ -49,6 +52,7 @@
             this.clmGenSize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clmQuantity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clmSubtotal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnComplete = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.tblpnSideInfoLayout = new System.Windows.Forms.TableLayoutPanel();
             this.pnSideInfoButtons = new System.Windows.Forms.Panel();
@@ -57,18 +61,14 @@
             this.txbxProductInfoSI = new System.Windows.Forms.TextBox();
             this.lbCaptionSI = new System.Windows.Forms.Label();
             this.pcbxSideInfo = new System.Windows.Forms.PictureBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.lbPayment = new System.Windows.Forms.Label();
-            this.lbChange = new System.Windows.Forms.Label();
-            this.btnComplete = new System.Windows.Forms.Button();
             this.pnHeader.SuspendLayout();
             this.pnBody.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tblpnSideInfoLayout.SuspendLayout();
             this.pnSideInfoButtons.SuspendLayout();
             this.pnSideInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbxSideInfo)).BeginInit();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbHeader
@@ -152,6 +152,39 @@
             this.pnBody.Name = "pnBody";
             this.pnBody.Size = new System.Drawing.Size(667, 662);
             this.pnBody.TabIndex = 1;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Black;
+            this.panel2.Controls.Add(this.lbPayment);
+            this.panel2.Controls.Add(this.lbChange);
+            this.panel2.Location = new System.Drawing.Point(23, 530);
+            this.panel2.Margin = new System.Windows.Forms.Padding(0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(620, 60);
+            this.panel2.TabIndex = 39;
+            // 
+            // lbPayment
+            // 
+            this.lbPayment.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPayment.ForeColor = System.Drawing.Color.White;
+            this.lbPayment.Location = new System.Drawing.Point(19, 13);
+            this.lbPayment.Name = "lbPayment";
+            this.lbPayment.Size = new System.Drawing.Size(322, 37);
+            this.lbPayment.TabIndex = 36;
+            this.lbPayment.Text = "Amount Paid: -";
+            this.lbPayment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lbChange
+            // 
+            this.lbChange.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbChange.ForeColor = System.Drawing.Color.White;
+            this.lbChange.Location = new System.Drawing.Point(283, 21);
+            this.lbChange.Name = "lbChange";
+            this.lbChange.Size = new System.Drawing.Size(317, 21);
+            this.lbChange.TabIndex = 37;
+            this.lbChange.Text = "Change: -";
+            this.lbChange.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lbCartItems
             // 
@@ -237,7 +270,7 @@
             this.lsvCart.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lsvCart.HideSelection = false;
             this.lsvCart.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem3});
+            listViewItem1});
             this.lsvCart.Location = new System.Drawing.Point(23, 45);
             this.lsvCart.Margin = new System.Windows.Forms.Padding(0);
             this.lsvCart.MultiSelect = false;
@@ -267,7 +300,27 @@
             // 
             // clmSubtotal
             // 
+            this.clmSubtotal.Text = "Subtotal";
             this.clmSubtotal.Width = 120;
+            // 
+            // btnComplete
+            // 
+            this.btnComplete.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnComplete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
+            this.btnComplete.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnComplete.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnComplete.FlatAppearance.BorderSize = 0;
+            this.btnComplete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnComplete.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnComplete.ForeColor = System.Drawing.Color.Black;
+            this.btnComplete.Location = new System.Drawing.Point(0, 603);
+            this.btnComplete.Margin = new System.Windows.Forms.Padding(0);
+            this.btnComplete.Name = "btnComplete";
+            this.btnComplete.Size = new System.Drawing.Size(667, 59);
+            this.btnComplete.TabIndex = 40;
+            this.btnComplete.Text = "Order Complete (Close Order)";
+            this.btnComplete.UseVisualStyleBackColor = false;
+            this.btnComplete.Visible = false;
             // 
             // btnCancel
             // 
@@ -376,58 +429,6 @@
             this.pcbxSideInfo.TabIndex = 0;
             this.pcbxSideInfo.TabStop = false;
             // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.Black;
-            this.panel2.Controls.Add(this.lbPayment);
-            this.panel2.Controls.Add(this.lbChange);
-            this.panel2.Location = new System.Drawing.Point(23, 530);
-            this.panel2.Margin = new System.Windows.Forms.Padding(0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(620, 60);
-            this.panel2.TabIndex = 39;
-            // 
-            // lbPayment
-            // 
-            this.lbPayment.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPayment.ForeColor = System.Drawing.Color.White;
-            this.lbPayment.Location = new System.Drawing.Point(19, 13);
-            this.lbPayment.Name = "lbPayment";
-            this.lbPayment.Size = new System.Drawing.Size(322, 37);
-            this.lbPayment.TabIndex = 36;
-            this.lbPayment.Text = "Amount Paid: -";
-            this.lbPayment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lbChange
-            // 
-            this.lbChange.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbChange.ForeColor = System.Drawing.Color.White;
-            this.lbChange.Location = new System.Drawing.Point(283, 21);
-            this.lbChange.Name = "lbChange";
-            this.lbChange.Size = new System.Drawing.Size(317, 21);
-            this.lbChange.TabIndex = 37;
-            this.lbChange.Text = "Change: -";
-            this.lbChange.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // btnComplete
-            // 
-            this.btnComplete.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnComplete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(182)))), ((int)(((byte)(66)))));
-            this.btnComplete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnComplete.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnComplete.FlatAppearance.BorderSize = 0;
-            this.btnComplete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnComplete.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnComplete.ForeColor = System.Drawing.Color.Black;
-            this.btnComplete.Location = new System.Drawing.Point(0, 603);
-            this.btnComplete.Margin = new System.Windows.Forms.Padding(0);
-            this.btnComplete.Name = "btnComplete";
-            this.btnComplete.Size = new System.Drawing.Size(667, 59);
-            this.btnComplete.TabIndex = 40;
-            this.btnComplete.Text = "Order Complete (Close Order)";
-            this.btnComplete.UseVisualStyleBackColor = false;
-            this.btnComplete.Visible = false;
-            // 
             // CheckoutForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -448,6 +449,7 @@
             this.pnHeader.PerformLayout();
             this.pnBody.ResumeLayout(false);
             this.pnBody.PerformLayout();
+            this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tblpnSideInfoLayout.ResumeLayout(false);
@@ -455,7 +457,6 @@
             this.pnSideInfo.ResumeLayout(false);
             this.pnSideInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbxSideInfo)).EndInit();
-            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

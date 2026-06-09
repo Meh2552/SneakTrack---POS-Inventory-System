@@ -1,16 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static SneakTrack___POS___Inventory_System.UserAuth;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace SneakTrack___POS___Inventory_System
 {
@@ -46,7 +35,7 @@ namespace SneakTrack___POS___Inventory_System
             dh = sys.DH;
         }
 
-        // For Testing
+        // For Testing TODO: remove
         private void skipLogin(bool admin)
         {
             UserAuth.User account = dh.checkUserAuth(admin ? "admin" : "rolandslnt");
@@ -69,6 +58,7 @@ namespace SneakTrack___POS___Inventory_System
             this.pc = new ProductController(this);
             this.fh = new FileHandler(this);
             this.uc = new UserController(this);
+            this.sc = new SalesController(this);
 
             dh.initialize();
         }
@@ -80,6 +70,7 @@ namespace SneakTrack___POS___Inventory_System
         private ProductController pc;
         private FileHandler fh;
         private UserController uc;
+        private SalesController sc;
 
         public WindowHandler WH { get { return this.wh; } }
         public Validator VAL { get { return this.val; } }
@@ -88,6 +79,6 @@ namespace SneakTrack___POS___Inventory_System
         public ProductController PC { get { return this.pc; } }
         public FileHandler FH { get { return this.fh; } }
         public UserController UC { get { return this.uc; } }
-
+        public SalesController SC { get { return this.sc; } }
     }
 }

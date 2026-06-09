@@ -220,10 +220,9 @@ namespace SneakTrack___POS___Inventory_System
             CheckoutForm checkout = new CheckoutForm(sys, cart);
             DialogResult result = checkout.ShowDialog(this);
 
-            if (result == DialogResult.OK)
+            if (checkout.Suceeded)
             {
-                //if (addForm.SelectedVariant != null) updateCart(addForm.SelectedVariant);
-                //clearCart();
+                clearCart();
                 reloadPOS();
             }
         }

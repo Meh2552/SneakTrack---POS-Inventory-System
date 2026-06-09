@@ -46,9 +46,10 @@
             this.btnBurgerBarSB = new System.Windows.Forms.Button();
             this.btnTitleSB = new System.Windows.Forms.Button();
             this.pnModuleFocused = new System.Windows.Forms.Panel();
+            this.pos1 = new SneakTrack___POS___Inventory_System.POS();
             this.inventory1 = new SneakTrack___POS___Inventory_System.Inventory();
             this.user1 = new SneakTrack___POS___Inventory_System.UserManager();
-            this.pos1 = new SneakTrack___POS___Inventory_System.POS();
+            this.salesHistory1 = new SneakTrack___POS___Inventory_System.SalesHistory();
             this.tblpnSTMenu.SuspendLayout();
             this.pnSidebar.SuspendLayout();
             this.tblpnSBLayout.SuspendLayout();
@@ -317,6 +318,7 @@
             // pnModuleFocused
             // 
             this.pnModuleFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.pnModuleFocused.Controls.Add(this.salesHistory1);
             this.pnModuleFocused.Controls.Add(this.pos1);
             this.pnModuleFocused.Controls.Add(this.inventory1);
             this.pnModuleFocused.Controls.Add(this.user1);
@@ -326,6 +328,16 @@
             this.pnModuleFocused.Name = "pnModuleFocused";
             this.pnModuleFocused.Size = new System.Drawing.Size(920, 675);
             this.pnModuleFocused.TabIndex = 1;
+            // 
+            // pos1
+            // 
+            this.pos1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pos1.Location = new System.Drawing.Point(0, 0);
+            this.pos1.Margin = new System.Windows.Forms.Padding(0);
+            this.pos1.Name = "pos1";
+            this.pos1.Size = new System.Drawing.Size(920, 675);
+            this.pos1.TabIndex = 2;
+            this.pos1.Visible = false;
             // 
             // inventory1
             // 
@@ -341,19 +353,20 @@
             // 
             this.user1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.user1.Location = new System.Drawing.Point(0, 0);
+            this.user1.Margin = new System.Windows.Forms.Padding(0);
             this.user1.Name = "user1";
             this.user1.Size = new System.Drawing.Size(920, 675);
             this.user1.TabIndex = 1;
             this.user1.Visible = false;
             // 
-            // pos1
+            // salesHistory1
             // 
-            this.pos1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pos1.Location = new System.Drawing.Point(0, 0);
-            this.pos1.Margin = new System.Windows.Forms.Padding(0);
-            this.pos1.Name = "pos1";
-            this.pos1.Size = new System.Drawing.Size(920, 675);
-            this.pos1.TabIndex = 2;
+            this.salesHistory1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.salesHistory1.Location = new System.Drawing.Point(0, 0);
+            this.salesHistory1.Margin = new System.Windows.Forms.Padding(0);
+            this.salesHistory1.Name = "salesHistory1";
+            this.salesHistory1.Size = new System.Drawing.Size(920, 675);
+            this.salesHistory1.TabIndex = 3;
             // 
             // MainDashboard
             // 
@@ -400,5 +413,6 @@
         private Inventory inventory1;
         private UserManager user1;
         private POS pos1;
+        private SalesHistory salesHistory1;
     }
 }

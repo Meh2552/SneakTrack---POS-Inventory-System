@@ -49,7 +49,7 @@ namespace SneakTrack___POS___Inventory_System
                 return;
             }
 
-            //TODO: prevent archive of current user or logoout if able to
+            //TODO: prevent archive of current user or logoout if able to also prevent no admin and 1 user
 
             ConfirmationPrompt confirm = new ConfirmationPrompt();
             confirm.Header = "Archive Account";

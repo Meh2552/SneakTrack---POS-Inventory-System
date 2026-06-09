@@ -20,6 +20,11 @@ namespace SneakTrack___POS___Inventory_System
         private Product selected;
         private Variant selectedVariant;
 
+        private decimal payment = 0;
+        private bool succeeded = false;
+
+        public bool Suceeded { get { return this.succeeded; } }
+
         public CheckoutForm()
         {
             InitializeComponent();
@@ -71,8 +76,8 @@ namespace SneakTrack___POS___Inventory_System
             }
 
             lbCartItems.Text = $"Items: {cartTotal}/200";
-            lbTotalPrice.Text = $"₱ {finalTotal.ToString("0.00")}";
-            lbPriceNoTax.Text = $"₱ {woTaxTotal.ToString("0.00")}";
+            lbTotalPrice.Text = $"Total: ₱ {finalTotal.ToString("0.00")}";
+            lbPriceNoTax.Text = $"(W/O Tax): ₱ {woTaxTotal.ToString("0.00")}";
         }
 
         private void lsvCart_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
@@ -116,14 +121,13 @@ namespace SneakTrack___POS___Inventory_System
 
             if (results == DialogResult.OK)
             {
-                this.DialogResult = results;
-
-                paymentSuccess(ordCal.Payment);
-                // loadReportEntry() // TODO: this )btw kesa dialog para confirm if success ano nalang may sesend to na something idk what tho_
+                payment = ordCal.Payment;
+                paymentSuccess();
+                loadSale();
             }
         }
 
-        private void paymentSuccess(decimal payment)
+        private void paymentSuccess()
         {
             lbPayment.Text = $"Amount Paid: ₱ {payment.ToString("0.00")}";
 
@@ -135,18 +139,21 @@ namespace SneakTrack___POS___Inventory_System
 
             btnComplete.Visible = true;
             btnComplete.BringToFront();
+
+            succeeded = true;
         }
 
         private void loadSale()
         {
             try
             {
+                int saleId = dh.toSale(ua.CurrentUser.UserID, payment);
+                if (saleId == 0) return;
+
                 foreach (Variant vari in cart)
                 {
-                    int newQuan = vari.Quantity - vari.reservedQuan;
-                    pc.updateQuantity(vari, newQuan);
-
-
+                    dh.toSalesItem(vari, saleId, pc.productFromVariant(vari).ProdId);
+                    pc.updateQuantity(vari, vari.Quantity - vari.reservedQuan);
                 }
             }
 

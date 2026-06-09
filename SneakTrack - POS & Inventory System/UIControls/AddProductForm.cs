@@ -328,7 +328,6 @@ namespace SneakTrack___POS___Inventory_System
                 this.Close();
             }
         }
-        // TODO: check if barcode is duplicate
        
         private void loadProduct()
         {

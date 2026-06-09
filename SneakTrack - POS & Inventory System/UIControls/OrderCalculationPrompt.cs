@@ -82,7 +82,7 @@ namespace SneakTrack___POS___Inventory_System.UIControls
             bool isValid = true;
             decimal paid = v.readDecimal(txbxPayment.Texts);
 
-            if (paid <= 0)
+            if (paid < 0)
             {
                 MessageBox.Show("Invalid payment input", "Input error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 isValid = false;

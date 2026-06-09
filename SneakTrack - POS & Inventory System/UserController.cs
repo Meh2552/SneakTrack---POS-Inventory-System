@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SneakTrack___POS___Inventory_System
@@ -16,7 +13,6 @@ namespace SneakTrack___POS___Inventory_System
         private DataHandler dh;
 
         private BindingList<UserAuth.User> userList;
-        
 
         public UserController(MainSystem system) 
         { 

@@ -66,6 +66,7 @@
     <Compile Include="Inventory.Designer.cs">
       <DependentUpon>Inventory.cs</DependentUpon>
     </Compile>
+    <Compile Include="SalesController.cs" />
     <Compile Include="Test.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -638,7 +638,7 @@ namespace SneakTrack___POS___Inventory_System
             return userId;
         }
 
-        public void toSale(List<Variant> variants, string user_id, decimal amount)
+        public int toSale(string user_id, decimal amount)
         {
             string query = insertQuery("Sales", "total_amount, user_id", "@total_amount, @user_id", true);
 
@@ -650,16 +650,45 @@ namespace SneakTrack___POS___Inventory_System
                 SqlCommand cmd = new SqlCommand(query, conn);
 
                 cmd.Parameters.AddWithValue("@total_amount", amount.ToString());
-                cmd.Parameters.AddWithValue("@user_id", user_id.UserID);
+                cmd.Parameters.AddWithValue("@user_id", user_id);
 
                 saleId = Convert.ToInt32(cmd.ExecuteScalar());
-
                 conn.Close();
             }
             catch (Exception e)
             {
                 Debug.WriteLine("Error: " + e.Message);
-            
+            }
+            return saleId;
+        }
+
+        public void toSalesItem(Variant vari, int saleId, int productId)
+        {
+            string query = insertQuery("Sales_Item", "sale_id, product_id, size, size_type, quantity, price, gender",
+                "@sale_id, @product_id, @size, @size_type, @quantity, @price, @gender");
+
+            try
+            {
+                SqlConnection conn = new SqlConnection(conString);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("@sale_id", saleId);
+                cmd.Parameters.AddWithValue("@product_id", productId);
+                cmd.Parameters.AddWithValue("@size", vari.Size);
+                cmd.Parameters.AddWithValue("@size_type", vari.SizeType);
+                cmd.Parameters.AddWithValue("@quantity", vari.reservedQuan);
+                cmd.Parameters.AddWithValue("@price", vari.Price);
+                cmd.Parameters.AddWithValue("@gender", vari.Gender);
+
+                cmd.ExecuteScalar();
+                conn.Close();
+            }
+
+            catch (Exception e)
+            {
+                Debug.WriteLine("Error: " + e.Message);
+            }
         }
     }
 }

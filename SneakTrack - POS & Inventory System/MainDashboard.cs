@@ -31,6 +31,7 @@ namespace SneakTrack___POS___Inventory_System
             inventory1.initialize(sys);
             pos1.initialize(sys);
             user1.initialize(sys);
+            salesHistory1.initialize(sys);
         }
 
         private void MainDashboard_Load(object sender, EventArgs e)
@@ -83,6 +84,8 @@ namespace SneakTrack___POS___Inventory_System
         private void btnHistSB_Click(object sender, EventArgs e)
         {
             selectedColorBtn(btnHistSB);
+            wh.switchControl(active, salesHistory1);
+            active = salesHistory1;
         }
 
         private void btnUsersSB_Click(object sender, EventArgs e)
